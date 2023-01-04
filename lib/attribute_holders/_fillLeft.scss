@@ -5,6 +5,9 @@
     align-self:var(--fillLeftAlignment);
     box-sizing:border-box;
   }
+  .fill-left__display-control:checked ~ .fill-left__radio{
+    display:none !important;
+  }
   .fill-left__radio{
     appearance:none;
     -webkit-appearance:none;

@@ -862,6 +862,9 @@ body.sheet-darkmode {
   align-self: var(--fillLeftAlignment);
   box-sizing: border-box;
 }
+.ui-dialog .tab-content .charsheet .fill-left__display-control:checked ~ .fill-left__radio {
+  display: none !important;
+}
 .ui-dialog .tab-content .charsheet .fill-left__radio {
   appearance: none;
   -webkit-appearance: none;
@@ -1215,15 +1218,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
 <!-- Fill left using pip and control notation-->
 <div class=\\"fill-left\\">
   <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{fill_left_with_pip}\\"/>
-  <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{fill_left_with_pip|max}\\"/>
   <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
-  <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
   <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
-  <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
   <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
-  <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
   <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
-  <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
   <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
 </div>
 <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -1283,15 +1286,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   <!-- Fill left using pip and control notation-->
   <div class=\\"fill-left\\">
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
   </div>
   <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -1352,15 +1355,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   <!-- Fill left using pip and control notation-->
   <div class=\\"fill-left\\">
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
   </div>
   <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -1425,15 +1428,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   <!-- Fill left using pip and control notation-->
   <div class=\\"fill-left\\">
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
   </div>
   <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -1503,15 +1506,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -1955,15 +1958,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   <!-- Fill left using pip and control notation-->
   <div class=\\"fill-left\\">
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
   </div>
   <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2023,15 +2026,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2092,15 +2095,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2165,15 +2168,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2243,15 +2246,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       <!-- Fill left using pip and control notation-->
       <div class=\\"fill-left\\">
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
       </div>
       <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2693,15 +2696,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   <!-- Fill left using pip and control notation-->
   <div class=\\"fill-left\\">
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
   </div>
   <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2761,15 +2764,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2830,15 +2833,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2903,15 +2906,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -2981,15 +2984,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       <!-- Fill left using pip and control notation-->
       <div class=\\"fill-left\\">
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
       </div>
       <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -3435,15 +3438,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   <!-- Fill left using pip and control notation-->
   <div class=\\"fill-left\\">
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-    <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
     <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
   </div>
   <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -3503,15 +3506,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -3572,15 +3575,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -3645,15 +3648,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -3723,15 +3726,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       <!-- Fill left using pip and control notation-->
       <div class=\\"fill-left\\">
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
       </div>
       <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -4182,15 +4185,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <!-- Fill left using pip and control notation-->
     <div class=\\"fill-left\\">
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-      <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
       <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
     </div>
     <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -4250,15 +4253,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       <!-- Fill left using pip and control notation-->
       <div class=\\"fill-left\\">
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
       </div>
       <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -4319,15 +4322,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       <!-- Fill left using pip and control notation-->
       <div class=\\"fill-left\\">
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
       </div>
       <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -4392,15 +4395,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       <!-- Fill left using pip and control notation-->
       <div class=\\"fill-left\\">
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
-        <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+        <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
         <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
       </div>
       <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -4470,15 +4473,15 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
         <!-- Fill left using pip and control notation-->
         <div class=\\"fill-left\\">
           <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-          <input value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+          <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
           <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-          <input value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+          <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
           <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-          <input value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+          <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
           <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-          <input value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+          <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
           <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
-          <input value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+          <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
           <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
         </div>
         <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
@@ -5843,8 +5846,8 @@ registerFuncs({ kTabOnOpen },{type:['opener']});
 exports[`k.build > Should generate the testFramework.js for tests 1`] = `
 "{
   \\"tabs-main-tabs-basic-attributes\\": \\"tabs-main-tabs-basic-attributes\\",
-  \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\",
   \\"tabs-main-tabs-empty-tab\\": \\"tabs-main-tabs-empty-tab\\",
+  \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\",
   \\"hidden on expanded\\": \\"hidden on expanded\\",
   \\"hidden on collapse\\": \\"hidden on collapse\\",
   \\"always visible\\": \\"always visible\\",
@@ -5859,8 +5862,8 @@ exports[`k.build > Should generate the testFramework.js for tests 1`] = `
 exports[`k.build > Should generate the translation file from the i18n entries 1`] = `
 "{
   \\"tabs-main-tabs-basic-attributes\\": \\"tabs-main-tabs-basic-attributes\\",
-  \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\",
   \\"tabs-main-tabs-empty-tab\\": \\"tabs-main-tabs-empty-tab\\",
+  \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\",
   \\"hidden on expanded\\": \\"hidden on expanded\\",
   \\"hidden on collapse\\": \\"hidden on collapse\\",
   \\"always visible\\": \\"always visible\\",
