@@ -13,8 +13,39 @@
       divObj:{class:'some-custom-class'},
       valueArray:[1,2,3,4,5]
     })
-mixin fillLeft({radioObj,divObj,valueArray,noClear,displayValues})
+mixin fillLeft({radioObj,divObj,valueArray=[],noClear,displayValues=[]})
   - divObj = divObj || {};
+  - const blocks = [];
+  - let currValue;
+  mixin pip(obj)
+    - currValue = obj.value;
+    - const pipObj = {...radioObj,...obj};
+    -
+      pipObj.class = pipObj.class ? 
+        `${pipObj.class} fill-left__radio` :
+        `fill-left__radio`;
+    if obj.value === radioObj.value
+      - pipObj.checked = '';
+    
+    +#{noClear ? 'radio' : 'checkbox'}(pipObj)
+    
+  mixin displayControl(obj)
+    //- spaceholder
+    -
+      const value = obj.hasOwnProperty('value') ?
+        obj.value :
+        currValue;
+    - const addClass = `fill-left__display-control`;
+    -
+      const oClass = obj.class ?
+        `${obj.class} ${addClass}` :
+        addClass;
+    -
+      const name = obj.name ?
+        obj.name :
+        `${radioObj.name} max`;
+    +#{value === 0 ? 'hidden' : 'checkbox'}({...obj,hidden:'',name,value,class:oClass})
+
   .fill-left&attributes(divObj)&attributes(attributes)
     if !noClear
       - const clearObj = {...radioObj,value:0};
@@ -22,19 +53,11 @@ mixin fillLeft({radioObj,divObj,valueArray,noClear,displayValues})
         clearObj.class = clearObj.class ? 
           `${clearObj.class} fill-left__radio` :
           `fill-left__radio`;
-      if value === 0
-        - clearObj.checked = '';
       +hidden(clearObj)
     each value,index in valueArray
-      - const usedObj = {...radioObj,value};
-      -
-        usedObj.class = usedObj.class ? 
-          `${usedObj.class} fill-left__radio` :
-          `fill-left__radio`;
-      if displayValues
+      - const usedObj = {value};
+      if displayValues.length
         - usedObj['data-value'] = displayValues[index];
-      if value === radioObj.value
-        - usedObj.checked = '';
-      
-      +#{noClear ? 'radio' : 'checkbox'}(usedObj)
+      +pip(usedObj)
+    block
 //- End Mixin

@@ -1,5 +1,5 @@
 import { describe,it,expect } from 'vitest';
-import { k } from './testFramework';
+import { k } from '../testFramework';
 
 describe('k.parseHTMLName',()=>{
   it('Should extract the full name from an html version of an attribute name',()=>{

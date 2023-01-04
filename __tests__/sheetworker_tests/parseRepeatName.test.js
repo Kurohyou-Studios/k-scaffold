@@ -1,5 +1,5 @@
 import { describe,it,expect } from 'vitest';
-import { k } from './testFramework';
+import { k } from '../testFramework';
 
 describe('k.parseRepeatName',()=>{
   it('Should extract section, rowID, and attribute/button name from a full repeating name',()=>{

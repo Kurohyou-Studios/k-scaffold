@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { environment } from './testFramework';
+import { environment } from '../testFramework';
 
 describe('Environment',() => {
   it(

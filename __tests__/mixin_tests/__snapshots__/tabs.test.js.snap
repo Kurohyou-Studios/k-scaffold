@@ -1,0 +1,27 @@
+// Vitest Snapshot v1
+
+exports[`tabs entry mixins > Should create the tabs mixins 1`] = `
+"<!-- sectionName:main-tabs -->
+<input name=\\"attr_main_tabs_tab\\" value=\\"nav-tabs-main-tabs--tab1\\" type=\\"hidden\\" title=\\"@{main_tabs_tab}\\"/>
+<div class=\\"tabs tabs--main-tabs\\" id=\\"main\\">
+  <nav class=\\"tabs__header tabs--main-tabs__header\\">
+    <button class=\\"tabs__button tabs--main-tabs__button tabs--main-tabs__button--basic-attributes\\" name=\\"act_nav-tabs-main-tabs--basic-attributes\\" data-container-button=\\"main-tabs\\" data-button=\\"basic-attributes\\" data-i18n=\\"tabs-main-tabs-basic-attributes\\" type=\\"action\\" title=\\"%{nav-tabs-main-tabs--basic-attributes}\\" data-container-tab=\\"main-tabs\\" data-tab=\\"basic-attributes\\">
+    </button>
+    <button class=\\"tabs__button tabs--main-tabs__button tabs--main-tabs__button--empty-tab\\" name=\\"act_nav-tabs-main-tabs--empty-tab\\" data-container-button=\\"main-tabs\\" data-button=\\"empty-tab\\" data-i18n=\\"tabs-main-tabs-empty-tab\\" type=\\"action\\" title=\\"%{nav-tabs-main-tabs--empty-tab}\\" data-container-tab=\\"main-tabs\\" data-tab=\\"empty-tab\\">
+    </button>
+    <button class=\\"tabs__button tabs--main-tabs__button tabs--main-tabs__button--repeating-attributes\\" name=\\"act_nav-tabs-main-tabs--repeating-attributes\\" data-container-button=\\"main-tabs\\" data-button=\\"repeating-attributes\\" data-i18n=\\"tabs-main-tabs-repeating-attributes\\" type=\\"action\\" title=\\"%{nav-tabs-main-tabs--repeating-attributes}\\" data-container-tab=\\"main-tabs\\" data-tab=\\"repeating-attributes\\">
+    </button>
+  </nav>
+  <div class=\\"tabs__body tabs--main-tabs__body\\">
+    <div class=\\"tabs__container tabs--main-tabs__container tabs--main-tabs__container--basic-attributes\\" data-container-tab=\\"main-tabs\\" data-tab=\\"basic-attributes\\">
+<!-- basic attributes-->
+    </div>
+    <div class=\\"tabs__container tabs--main-tabs__container tabs--main-tabs__container--empty-tab\\" data-container-tab=\\"main-tabs\\" data-tab=\\"empty-tab\\">
+<!-- empty tab-->
+    </div>
+    <div class=\\"tabs__container tabs--main-tabs__container tabs--main-tabs__container--repeating-attributes\\" data-container-tab=\\"main-tabs\\" data-tab=\\"repeating-attributes\\">
+<!-- repeating attributes-->
+    </div>
+  </div>
+</div>"
+`;

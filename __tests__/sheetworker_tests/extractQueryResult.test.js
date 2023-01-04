@@ -1,5 +1,5 @@
 import { describe,it,expect } from 'vitest';
-import { k,environment } from './testFramework';
+import { k,environment } from '../testFramework';
 
 describe('k.extractQueryResult',()=>{
   it('Should return the user answer to the prompt',async ()=>{

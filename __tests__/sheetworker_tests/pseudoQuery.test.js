@@ -1,5 +1,5 @@
 import { describe,it,expect } from 'vitest';
-import { k } from './testFramework';
+import { k } from '../testFramework';
 
 describe('k.pseudoQuery',()=>{
   it('Should return undefined if no value passed',async ()=>{

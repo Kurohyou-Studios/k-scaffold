@@ -1,0 +1,366 @@
+// Vitest Snapshot v1
+
+exports[`inputs entry mixins > Should create the inputs mixins 1`] = `
+"
+<!-- input base mixin-->
+<input name=\\"attr_basic_input\\" type=\\"text\\" value=\\"test\\" title=\\"@{basic_input}\\"/>
+<!-- specific input mixins-->
+<input name=\\"attr_text\\" value=\\"text\\" type=\\"text\\" title=\\"@{text}\\"/>
+<input name=\\"attr_number\\" value=\\"1\\" type=\\"number\\" title=\\"@{number}\\"/>
+<input name=\\"attr_unchecked\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{unchecked}\\"/>
+<input name=\\"attr_checked\\" value=\\"1\\" checked=\\"\\" type=\\"checkbox\\" title=\\"@{checked}\\"/>
+<input name=\\"attr_radio\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{radio}\\"/>
+<input name=\\"attr_radio\\" value=\\"2\\" type=\\"radio\\" title=\\"@{radio}\\"/>
+<div class=\\"collapse-container\\">
+  <input class=\\"collapse\\" name=\\"attr_basic_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{basic_collapse}\\"/><span class=\\"collapsed\\" data-i18n=\\"hidden on expanded\\"></span><span class=\\"expanded\\" data-i18n=\\"hidden on collapse\\"></span><span data-i18n=\\"always visible\\"></span>
+</div>
+<input name=\\"attr_range\\" value=\\"2\\" min=\\"1\\" max=\\"10\\" type=\\"range\\" title=\\"@{range}\\"/>
+<input name=\\"attr_hidden\\" value=\\"hidden\\" type=\\"hidden\\" title=\\"@{hidden}\\"/>
+<textarea name=\\"attr_textarea\\" value=\\"textarea\\" title=\\"@{textarea}\\"></textarea>
+<!-- Basic clearable fill left-->
+<div class=\\"fill-left\\">
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{fill_left}\\"/>
+</div>
+<!-- non clearable fill left-->
+<div class=\\"fill-left\\">
+  <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{not_clearable_fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"2\\" type=\\"radio\\" title=\\"@{not_clearable_fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"3\\" type=\\"radio\\" title=\\"@{not_clearable_fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"4\\" type=\\"radio\\" title=\\"@{not_clearable_fill_left}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"5\\" type=\\"radio\\" title=\\"@{not_clearable_fill_left}\\"/>
+</div>
+<!-- Fill left with displayed values-->
+<div class=\\"fill-left\\">
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{fill_left_with_display}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"1\\" data-value=\\"+1\\" type=\\"checkbox\\" title=\\"@{fill_left_with_display}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"2\\" data-value=\\"+2\\" type=\\"checkbox\\" title=\\"@{fill_left_with_display}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"3\\" data-value=\\"+3\\" type=\\"checkbox\\" title=\\"@{fill_left_with_display}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"4\\" data-value=\\"+4\\" type=\\"checkbox\\" title=\\"@{fill_left_with_display}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"5\\" data-value=\\"+5\\" type=\\"checkbox\\" title=\\"@{fill_left_with_display}\\"/>
+</div>
+<!-- Fill left using pip notation-->
+<div class=\\"fill-left\\">
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+</div>
+<!-- Fill left using pip and control notation-->
+<div class=\\"fill-left\\">
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+  <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip|max}\\"/>
+  <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{fill_left_with_pip}\\"/>
+</div>
+<label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
+  <input class=\\"input-label__input\\" name=\\"attr_labelled_input\\" type=\\"text\\" title=\\"@{labelled_input}\\"/>
+</label>
+<fieldset class=\\"repeating_basic-fieldset\\">
+  <!-- input base mixin-->
+  <input name=\\"attr_basic_input\\" type=\\"text\\" value=\\"test\\" title=\\"@{repeating_basic-fieldset_$X_basic_input}\\"/>
+  <!-- specific input mixins-->
+  <input name=\\"attr_text\\" value=\\"text\\" type=\\"text\\" title=\\"@{repeating_basic-fieldset_$X_text}\\"/>
+  <input name=\\"attr_number\\" value=\\"1\\" type=\\"number\\" title=\\"@{repeating_basic-fieldset_$X_number}\\"/>
+  <input name=\\"attr_unchecked\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_unchecked}\\"/>
+  <input name=\\"attr_checked\\" value=\\"1\\" checked=\\"\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_checked}\\"/>
+  <input name=\\"attr_radio\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{repeating_basic-fieldset_$X_radio}\\"/>
+  <input name=\\"attr_radio\\" value=\\"2\\" type=\\"radio\\" title=\\"@{repeating_basic-fieldset_$X_radio}\\"/>
+  <div class=\\"collapse-container\\">
+    <input class=\\"collapse\\" name=\\"attr_basic_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_basic_collapse}\\"/><span class=\\"collapsed\\" data-i18n=\\"hidden on expanded\\"></span><span class=\\"expanded\\" data-i18n=\\"hidden on collapse\\"></span><span data-i18n=\\"always visible\\"></span>
+  </div>
+  <input name=\\"attr_range\\" value=\\"2\\" min=\\"1\\" max=\\"10\\" type=\\"range\\" title=\\"@{repeating_basic-fieldset_$X_range}\\"/>
+  <input name=\\"attr_hidden\\" value=\\"hidden\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_hidden}\\"/>
+  <textarea name=\\"attr_textarea\\" value=\\"textarea\\" title=\\"@{repeating_basic-fieldset_$X_textarea}\\"></textarea>
+  <!-- Basic clearable fill left-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left}\\"/>
+  </div>
+  <!-- non clearable fill left-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{repeating_basic-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"2\\" type=\\"radio\\" title=\\"@{repeating_basic-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"3\\" type=\\"radio\\" title=\\"@{repeating_basic-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"4\\" type=\\"radio\\" title=\\"@{repeating_basic-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"5\\" type=\\"radio\\" title=\\"@{repeating_basic-fieldset_$X_not_clearable_fill_left}\\"/>
+  </div>
+  <!-- Fill left with displayed values-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"1\\" data-value=\\"+1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"2\\" data-value=\\"+2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"3\\" data-value=\\"+3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"4\\" data-value=\\"+4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"5\\" data-value=\\"+5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_display}\\"/>
+  </div>
+  <!-- Fill left using pip notation-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+  </div>
+  <!-- Fill left using pip and control notation-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_basic-fieldset_$X_fill_left_with_pip}\\"/>
+  </div>
+  <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
+    <input class=\\"input-label__input\\" name=\\"attr_labelled_input\\" type=\\"text\\" title=\\"@{repeating_basic-fieldset_$X_labelled_input}\\"/>
+  </label>
+</fieldset><span class=\\"add-a-class\\" hidden=\\"\\"></span>
+<fieldset class=\\"repeating_class-fieldset\\">
+  <!-- input base mixin-->
+  <input name=\\"attr_basic_input\\" type=\\"text\\" value=\\"test\\" title=\\"@{repeating_class-fieldset_$X_basic_input}\\"/>
+  <!-- specific input mixins-->
+  <input name=\\"attr_text\\" value=\\"text\\" type=\\"text\\" title=\\"@{repeating_class-fieldset_$X_text}\\"/>
+  <input name=\\"attr_number\\" value=\\"1\\" type=\\"number\\" title=\\"@{repeating_class-fieldset_$X_number}\\"/>
+  <input name=\\"attr_unchecked\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_unchecked}\\"/>
+  <input name=\\"attr_checked\\" value=\\"1\\" checked=\\"\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_checked}\\"/>
+  <input name=\\"attr_radio\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{repeating_class-fieldset_$X_radio}\\"/>
+  <input name=\\"attr_radio\\" value=\\"2\\" type=\\"radio\\" title=\\"@{repeating_class-fieldset_$X_radio}\\"/>
+  <div class=\\"collapse-container\\">
+    <input class=\\"collapse\\" name=\\"attr_basic_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_basic_collapse}\\"/><span class=\\"collapsed\\" data-i18n=\\"hidden on expanded\\"></span><span class=\\"expanded\\" data-i18n=\\"hidden on collapse\\"></span><span data-i18n=\\"always visible\\"></span>
+  </div>
+  <input name=\\"attr_range\\" value=\\"2\\" min=\\"1\\" max=\\"10\\" type=\\"range\\" title=\\"@{repeating_class-fieldset_$X_range}\\"/>
+  <input name=\\"attr_hidden\\" value=\\"hidden\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_hidden}\\"/>
+  <textarea name=\\"attr_textarea\\" value=\\"textarea\\" title=\\"@{repeating_class-fieldset_$X_textarea}\\"></textarea>
+  <!-- Basic clearable fill left-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left}\\"/>
+  </div>
+  <!-- non clearable fill left-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{repeating_class-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"2\\" type=\\"radio\\" title=\\"@{repeating_class-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"3\\" type=\\"radio\\" title=\\"@{repeating_class-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"4\\" type=\\"radio\\" title=\\"@{repeating_class-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"5\\" type=\\"radio\\" title=\\"@{repeating_class-fieldset_$X_not_clearable_fill_left}\\"/>
+  </div>
+  <!-- Fill left with displayed values-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"1\\" data-value=\\"+1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"2\\" data-value=\\"+2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"3\\" data-value=\\"+3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"4\\" data-value=\\"+4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"5\\" data-value=\\"+5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_display}\\"/>
+  </div>
+  <!-- Fill left using pip notation-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+  </div>
+  <!-- Fill left using pip and control notation-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_class-fieldset_$X_fill_left_with_pip}\\"/>
+  </div>
+  <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
+    <input class=\\"input-label__input\\" name=\\"attr_labelled_input\\" type=\\"text\\" title=\\"@{repeating_class-fieldset_$X_labelled_input}\\"/>
+  </label>
+</fieldset>
+<button class=\\"repcontrol-button repcontrol-button--add\\" name=\\"act_add-custom-fieldset\\" type=\\"action\\" title=\\"%{add-custom-fieldset}\\">
+</button>
+<button class=\\"repcontrol-button repcontrol-button--edit\\" name=\\"act_edit-custom-fieldset\\" type=\\"action\\" title=\\"%{edit-custom-fieldset}\\">
+</button>
+<fieldset class=\\"repeating_custom-fieldset\\">
+  <!-- input base mixin-->
+  <input name=\\"attr_basic_input\\" type=\\"text\\" value=\\"test\\" title=\\"@{repeating_custom-fieldset_$X_basic_input}\\"/>
+  <!-- specific input mixins-->
+  <input name=\\"attr_text\\" value=\\"text\\" type=\\"text\\" title=\\"@{repeating_custom-fieldset_$X_text}\\"/>
+  <input name=\\"attr_number\\" value=\\"1\\" type=\\"number\\" title=\\"@{repeating_custom-fieldset_$X_number}\\"/>
+  <input name=\\"attr_unchecked\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_unchecked}\\"/>
+  <input name=\\"attr_checked\\" value=\\"1\\" checked=\\"\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_checked}\\"/>
+  <input name=\\"attr_radio\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{repeating_custom-fieldset_$X_radio}\\"/>
+  <input name=\\"attr_radio\\" value=\\"2\\" type=\\"radio\\" title=\\"@{repeating_custom-fieldset_$X_radio}\\"/>
+  <div class=\\"collapse-container\\">
+    <input class=\\"collapse\\" name=\\"attr_basic_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_basic_collapse}\\"/><span class=\\"collapsed\\" data-i18n=\\"hidden on expanded\\"></span><span class=\\"expanded\\" data-i18n=\\"hidden on collapse\\"></span><span data-i18n=\\"always visible\\"></span>
+  </div>
+  <input name=\\"attr_range\\" value=\\"2\\" min=\\"1\\" max=\\"10\\" type=\\"range\\" title=\\"@{repeating_custom-fieldset_$X_range}\\"/>
+  <input name=\\"attr_hidden\\" value=\\"hidden\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_hidden}\\"/>
+  <textarea name=\\"attr_textarea\\" value=\\"textarea\\" title=\\"@{repeating_custom-fieldset_$X_textarea}\\"></textarea>
+  <!-- Basic clearable fill left-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left}\\"/>
+  </div>
+  <!-- non clearable fill left-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{repeating_custom-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"2\\" type=\\"radio\\" title=\\"@{repeating_custom-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"3\\" type=\\"radio\\" title=\\"@{repeating_custom-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"4\\" type=\\"radio\\" title=\\"@{repeating_custom-fieldset_$X_not_clearable_fill_left}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"5\\" type=\\"radio\\" title=\\"@{repeating_custom-fieldset_$X_not_clearable_fill_left}\\"/>
+  </div>
+  <!-- Fill left with displayed values-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"1\\" data-value=\\"+1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"2\\" data-value=\\"+2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"3\\" data-value=\\"+3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"4\\" data-value=\\"+4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_display}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"5\\" data-value=\\"+5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_display}\\"/>
+  </div>
+  <!-- Fill left using pip notation-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+  </div>
+  <!-- Fill left using pip and control notation-->
+  <div class=\\"fill-left\\">
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+    <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip|max}\\"/>
+    <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_custom-fieldset_$X_fill_left_with_pip}\\"/>
+  </div>
+  <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
+    <input class=\\"input-label__input\\" name=\\"attr_labelled_input\\" type=\\"text\\" title=\\"@{repeating_custom-fieldset_$X_labelled_input}\\"/>
+  </label>
+</fieldset><span class=\\"inline-fieldset\\" hidden=\\"\\"></span>
+<fieldset class=\\"repeating_inline-fieldset\\">
+  <input class=\\"display-control\\" name=\\"attr_display_state\\" value=\\"short-display\\" hidden=\\"\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_display_state}\\"/>
+  <div class=\\"inline-fieldset__summary display-target\\">
+    <label class=\\"pointer\\">
+      <input name=\\"attr_collapse\\" value=\\"1\\" hidden=\\"\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/><span class=\\"inline-fieldset__summary__text\\" name=\\"attr_name\\" title=\\"@{repeating_inline-fieldset_$X_name}\\"></span>
+    </label>
+  </div>
+  <input class=\\"display-control\\" name=\\"attr_display_state\\" value=\\"display\\" checked=\\"\\" hidden=\\"\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_display_state}\\"/>
+  <div class=\\"inline-fieldset__detail display-target\\">
+    <input class=\\"collapse\\" name=\\"attr_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/>
+    <!-- input base mixin-->
+    <input name=\\"attr_basic_input\\" type=\\"text\\" value=\\"test\\" title=\\"@{repeating_inline-fieldset_$X_basic_input}\\"/>
+    <!-- specific input mixins-->
+    <input name=\\"attr_text\\" value=\\"text\\" type=\\"text\\" title=\\"@{repeating_inline-fieldset_$X_text}\\"/>
+    <input name=\\"attr_number\\" value=\\"1\\" type=\\"number\\" title=\\"@{repeating_inline-fieldset_$X_number}\\"/>
+    <input name=\\"attr_unchecked\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_unchecked}\\"/>
+    <input name=\\"attr_checked\\" value=\\"1\\" checked=\\"\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_checked}\\"/>
+    <input name=\\"attr_radio\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_radio}\\"/>
+    <input name=\\"attr_radio\\" value=\\"2\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_radio}\\"/>
+    <div class=\\"collapse-container\\">
+      <input class=\\"collapse\\" name=\\"attr_basic_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_basic_collapse}\\"/><span class=\\"collapsed\\" data-i18n=\\"hidden on expanded\\"></span><span class=\\"expanded\\" data-i18n=\\"hidden on collapse\\"></span><span data-i18n=\\"always visible\\"></span>
+    </div>
+    <input name=\\"attr_range\\" value=\\"2\\" min=\\"1\\" max=\\"10\\" type=\\"range\\" title=\\"@{repeating_inline-fieldset_$X_range}\\"/>
+    <input name=\\"attr_hidden\\" value=\\"hidden\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_hidden}\\"/>
+    <textarea name=\\"attr_textarea\\" value=\\"textarea\\" title=\\"@{repeating_inline-fieldset_$X_textarea}\\"></textarea>
+    <!-- Basic clearable fill left-->
+    <div class=\\"fill-left\\">
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left}\\"/>
+    </div>
+    <!-- non clearable fill left-->
+    <div class=\\"fill-left\\">
+      <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"1\\" checked=\\"\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_not_clearable_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"2\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_not_clearable_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"3\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_not_clearable_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"4\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_not_clearable_fill_left}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_not_clearable_fill_left\\" value=\\"5\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_not_clearable_fill_left}\\"/>
+    </div>
+    <!-- Fill left with displayed values-->
+    <div class=\\"fill-left\\">
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_display}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"1\\" data-value=\\"+1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_display}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"2\\" data-value=\\"+2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_display}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"3\\" data-value=\\"+3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_display}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"4\\" data-value=\\"+4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_display}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_display\\" value=\\"5\\" data-value=\\"+5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_display}\\"/>
+    </div>
+    <!-- Fill left using pip notation-->
+    <div class=\\"fill-left\\">
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+    </div>
+    <!-- Fill left using pip and control notation-->
+    <div class=\\"fill-left\\">
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"0\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"0\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"1\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"2\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"2\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"3\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"3\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"4\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+      <input class=\\"fill-left__display-control\\" value=\\"4\\" hidden=\\"\\" name=\\"attr_fill_left_with_pip_max\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip|max}\\"/>
+      <input class=\\"fill-left__radio\\" name=\\"attr_fill_left_with_pip\\" value=\\"5\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_fill_left_with_pip}\\"/>
+    </div>
+    <label class=\\"input-label div-class\\"><span class=\\"input-label__text\\" data-i18n=\\"label\\"></span>
+      <input class=\\"input-label__input\\" name=\\"attr_labelled_input\\" type=\\"text\\" title=\\"@{repeating_inline-fieldset_$X_labelled_input}\\"/>
+    </label>
+  </div>
+</fieldset>
+<button class=\\"repcontrol-button repcontrol-button--add repcontrol-button--inline\\" name=\\"act_add-inline-fieldset\\" type=\\"action\\" title=\\"%{add-inline-fieldset}\\">
+</button>
+<button class=\\"repcontrol-button repcontrol-button--edit repcontrol-button--inline\\" name=\\"act_edit-inline-fieldset\\" type=\\"action\\" title=\\"%{edit-inline-fieldset}\\">
+</button>"
+`;

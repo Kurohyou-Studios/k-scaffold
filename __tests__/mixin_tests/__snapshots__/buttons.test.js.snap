@@ -1,0 +1,166 @@
+// Vitest Snapshot v1
+
+exports[`buttons entry mixins > Should create the buttons mixins 1`] = `
+"
+<button name=\\"roll_roll_button\\" value=\\"&{template:default} {{name=Test roll}}\\" title=\\"%{roll_button}\\" type=\\"roll\\">
+</button>
+<button name=\\"act_action-button\\" type=\\"action\\" title=\\"%{action-button}\\">
+</button>
+<button class=\\"roller\\" name=\\"roll_roller\\" value=\\"@{roller_action}\\" title=\\"%{roller}\\" type=\\"roll\\">
+</button>
+<button name=\\"act_roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{roller-action}\\">
+</button>
+<input name=\\"attr_roller_action\\" type=\\"hidden\\" title=\\"@{roller_action}\\"/>
+<div class=\\"input-label input-label--button\\">
+  <button name=\\"act_labelled_action\\" data-i18n=\\"labelled action\\" type=\\"action\\" title=\\"%{labelled_action}\\">
+  </button>
+  <input class=\\"input-label__input\\" name=\\"attr_action_text\\" type=\\"text\\" title=\\"@{action_text}\\"/>
+</div>
+<div class=\\"input-label input-label--button\\">
+  <button name=\\"roll_labelled_button\\" value=\\"&{template:default} {{name=temp roll}}\\" title=\\"%{labelled_button}\\" type=\\"roll\\">
+  </button>
+  <input class=\\"input-label__input\\" name=\\"attr_button_text\\" type=\\"text\\" title=\\"@{button_text}\\"/>
+</div>
+<div class=\\"input-label input-label--button\\">
+  <button class=\\"roller\\" name=\\"roll_labelled_roller\\" value=\\"@{labelled_roller_action}\\" title=\\"%{labelled_roller}\\" type=\\"roll\\">
+  </button>
+  <input class=\\"input-label__input\\" name=\\"attr_roller_text\\" type=\\"text\\" title=\\"@{roller_text}\\"/>
+</div>
+<button name=\\"act_labelled-roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{labelled-roller-action}\\">
+</button>
+<input name=\\"attr_labelled_roller_action\\" type=\\"hidden\\" title=\\"@{labelled_roller_action}\\"/>
+<fieldset class=\\"repeating_basic-fieldset\\">
+  <button name=\\"roll_roll_button\\" value=\\"&{template:default} {{name=Test roll}}\\" title=\\"%{repeating_basic-fieldset_$X_roll_button}\\" type=\\"roll\\">
+  </button>
+  <button name=\\"act_action-button\\" type=\\"action\\" title=\\"%{repeating_basic-fieldset_$X_action-button}\\">
+  </button>
+  <button class=\\"roller\\" name=\\"roll_roller\\" value=\\"@{roller_action}\\" title=\\"%{repeating_basic-fieldset_$X_roller}\\" type=\\"roll\\">
+  </button>
+  <button name=\\"act_roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{repeating_basic-fieldset_$X_roller-action}\\">
+  </button>
+  <input name=\\"attr_roller_action\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_roller_action}\\"/>
+  <div class=\\"input-label input-label--button\\">
+    <button name=\\"act_labelled_action\\" data-i18n=\\"labelled action\\" type=\\"action\\" title=\\"%{repeating_basic-fieldset_$X_labelled_action}\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_action_text\\" type=\\"text\\" title=\\"@{repeating_basic-fieldset_$X_action_text}\\"/>
+  </div>
+  <div class=\\"input-label input-label--button\\">
+    <button name=\\"roll_labelled_button\\" value=\\"&{template:default} {{name=temp roll}}\\" title=\\"%{repeating_basic-fieldset_$X_labelled_button}\\" type=\\"roll\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_button_text\\" type=\\"text\\" title=\\"@{repeating_basic-fieldset_$X_button_text}\\"/>
+  </div>
+  <div class=\\"input-label input-label--button\\">
+    <button class=\\"roller\\" name=\\"roll_labelled_roller\\" value=\\"@{labelled_roller_action}\\" title=\\"%{repeating_basic-fieldset_$X_labelled_roller}\\" type=\\"roll\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_roller_text\\" type=\\"text\\" title=\\"@{repeating_basic-fieldset_$X_roller_text}\\"/>
+  </div>
+  <button name=\\"act_labelled-roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{repeating_basic-fieldset_$X_labelled-roller-action}\\">
+  </button>
+  <input name=\\"attr_labelled_roller_action\\" type=\\"hidden\\" title=\\"@{repeating_basic-fieldset_$X_labelled_roller_action}\\"/>
+</fieldset><span class=\\"add-a-class\\" hidden=\\"\\"></span>
+<fieldset class=\\"repeating_class-fieldset\\">
+  <button name=\\"roll_roll_button\\" value=\\"&{template:default} {{name=Test roll}}\\" title=\\"%{repeating_class-fieldset_$X_roll_button}\\" type=\\"roll\\">
+  </button>
+  <button name=\\"act_action-button\\" type=\\"action\\" title=\\"%{repeating_class-fieldset_$X_action-button}\\">
+  </button>
+  <button class=\\"roller\\" name=\\"roll_roller\\" value=\\"@{roller_action}\\" title=\\"%{repeating_class-fieldset_$X_roller}\\" type=\\"roll\\">
+  </button>
+  <button name=\\"act_roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{repeating_class-fieldset_$X_roller-action}\\">
+  </button>
+  <input name=\\"attr_roller_action\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_roller_action}\\"/>
+  <div class=\\"input-label input-label--button\\">
+    <button name=\\"act_labelled_action\\" data-i18n=\\"labelled action\\" type=\\"action\\" title=\\"%{repeating_class-fieldset_$X_labelled_action}\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_action_text\\" type=\\"text\\" title=\\"@{repeating_class-fieldset_$X_action_text}\\"/>
+  </div>
+  <div class=\\"input-label input-label--button\\">
+    <button name=\\"roll_labelled_button\\" value=\\"&{template:default} {{name=temp roll}}\\" title=\\"%{repeating_class-fieldset_$X_labelled_button}\\" type=\\"roll\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_button_text\\" type=\\"text\\" title=\\"@{repeating_class-fieldset_$X_button_text}\\"/>
+  </div>
+  <div class=\\"input-label input-label--button\\">
+    <button class=\\"roller\\" name=\\"roll_labelled_roller\\" value=\\"@{labelled_roller_action}\\" title=\\"%{repeating_class-fieldset_$X_labelled_roller}\\" type=\\"roll\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_roller_text\\" type=\\"text\\" title=\\"@{repeating_class-fieldset_$X_roller_text}\\"/>
+  </div>
+  <button name=\\"act_labelled-roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{repeating_class-fieldset_$X_labelled-roller-action}\\">
+  </button>
+  <input name=\\"attr_labelled_roller_action\\" type=\\"hidden\\" title=\\"@{repeating_class-fieldset_$X_labelled_roller_action}\\"/>
+</fieldset>
+<button class=\\"repcontrol-button repcontrol-button--add\\" name=\\"act_add-custom-fieldset\\" type=\\"action\\" title=\\"%{add-custom-fieldset}\\">
+</button>
+<button class=\\"repcontrol-button repcontrol-button--edit\\" name=\\"act_edit-custom-fieldset\\" type=\\"action\\" title=\\"%{edit-custom-fieldset}\\">
+</button>
+<fieldset class=\\"repeating_custom-fieldset\\">
+  <button name=\\"roll_roll_button\\" value=\\"&{template:default} {{name=Test roll}}\\" title=\\"%{repeating_custom-fieldset_$X_roll_button}\\" type=\\"roll\\">
+  </button>
+  <button name=\\"act_action-button\\" type=\\"action\\" title=\\"%{repeating_custom-fieldset_$X_action-button}\\">
+  </button>
+  <button class=\\"roller\\" name=\\"roll_roller\\" value=\\"@{roller_action}\\" title=\\"%{repeating_custom-fieldset_$X_roller}\\" type=\\"roll\\">
+  </button>
+  <button name=\\"act_roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{repeating_custom-fieldset_$X_roller-action}\\">
+  </button>
+  <input name=\\"attr_roller_action\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_roller_action}\\"/>
+  <div class=\\"input-label input-label--button\\">
+    <button name=\\"act_labelled_action\\" data-i18n=\\"labelled action\\" type=\\"action\\" title=\\"%{repeating_custom-fieldset_$X_labelled_action}\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_action_text\\" type=\\"text\\" title=\\"@{repeating_custom-fieldset_$X_action_text}\\"/>
+  </div>
+  <div class=\\"input-label input-label--button\\">
+    <button name=\\"roll_labelled_button\\" value=\\"&{template:default} {{name=temp roll}}\\" title=\\"%{repeating_custom-fieldset_$X_labelled_button}\\" type=\\"roll\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_button_text\\" type=\\"text\\" title=\\"@{repeating_custom-fieldset_$X_button_text}\\"/>
+  </div>
+  <div class=\\"input-label input-label--button\\">
+    <button class=\\"roller\\" name=\\"roll_labelled_roller\\" value=\\"@{labelled_roller_action}\\" title=\\"%{repeating_custom-fieldset_$X_labelled_roller}\\" type=\\"roll\\">
+    </button>
+    <input class=\\"input-label__input\\" name=\\"attr_roller_text\\" type=\\"text\\" title=\\"@{repeating_custom-fieldset_$X_roller_text}\\"/>
+  </div>
+  <button name=\\"act_labelled-roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{repeating_custom-fieldset_$X_labelled-roller-action}\\">
+  </button>
+  <input name=\\"attr_labelled_roller_action\\" type=\\"hidden\\" title=\\"@{repeating_custom-fieldset_$X_labelled_roller_action}\\"/>
+</fieldset><span class=\\"inline-fieldset\\" hidden=\\"\\"></span>
+<fieldset class=\\"repeating_inline-fieldset\\">
+  <input class=\\"display-control\\" name=\\"attr_display_state\\" value=\\"short-display\\" hidden=\\"\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_display_state}\\"/>
+  <div class=\\"inline-fieldset__summary display-target\\">
+    <label class=\\"pointer\\">
+      <input name=\\"attr_collapse\\" value=\\"1\\" hidden=\\"\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/><span class=\\"inline-fieldset__summary__text\\" name=\\"attr_name\\" title=\\"@{repeating_inline-fieldset_$X_name}\\"></span>
+    </label>
+  </div>
+  <input class=\\"display-control\\" name=\\"attr_display_state\\" value=\\"display\\" checked=\\"\\" hidden=\\"\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_display_state}\\"/>
+  <div class=\\"inline-fieldset__detail display-target\\">
+    <input class=\\"collapse\\" name=\\"attr_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/>
+    <button name=\\"roll_roll_button\\" value=\\"&{template:default} {{name=Test roll}}\\" title=\\"%{repeating_inline-fieldset_$X_roll_button}\\" type=\\"roll\\">
+    </button>
+    <button name=\\"act_action-button\\" type=\\"action\\" title=\\"%{repeating_inline-fieldset_$X_action-button}\\">
+    </button>
+    <button class=\\"roller\\" name=\\"roll_roller\\" value=\\"@{roller_action}\\" title=\\"%{repeating_inline-fieldset_$X_roller}\\" type=\\"roll\\">
+    </button>
+    <button name=\\"act_roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{repeating_inline-fieldset_$X_roller-action}\\">
+    </button>
+    <input name=\\"attr_roller_action\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_roller_action}\\"/>
+    <div class=\\"input-label input-label--button\\">
+      <button name=\\"act_labelled_action\\" data-i18n=\\"labelled action\\" type=\\"action\\" title=\\"%{repeating_inline-fieldset_$X_labelled_action}\\">
+      </button>
+      <input class=\\"input-label__input\\" name=\\"attr_action_text\\" type=\\"text\\" title=\\"@{repeating_inline-fieldset_$X_action_text}\\"/>
+    </div>
+    <div class=\\"input-label input-label--button\\">
+      <button name=\\"roll_labelled_button\\" value=\\"&{template:default} {{name=temp roll}}\\" title=\\"%{repeating_inline-fieldset_$X_labelled_button}\\" type=\\"roll\\">
+      </button>
+      <input class=\\"input-label__input\\" name=\\"attr_button_text\\" type=\\"text\\" title=\\"@{repeating_inline-fieldset_$X_button_text}\\"/>
+    </div>
+    <div class=\\"input-label input-label--button\\">
+      <button class=\\"roller\\" name=\\"roll_labelled_roller\\" value=\\"@{labelled_roller_action}\\" title=\\"%{repeating_inline-fieldset_$X_labelled_roller}\\" type=\\"roll\\">
+      </button>
+      <input class=\\"input-label__input\\" name=\\"attr_roller_text\\" type=\\"text\\" title=\\"@{repeating_inline-fieldset_$X_roller_text}\\"/>
+    </div>
+    <button name=\\"act_labelled-roller-action\\" hidden=\\"\\" type=\\"action\\" title=\\"%{repeating_inline-fieldset_$X_labelled-roller-action}\\">
+    </button>
+    <input name=\\"attr_labelled_roller_action\\" type=\\"hidden\\" title=\\"@{repeating_inline-fieldset_$X_labelled_roller_action}\\"/>
+  </div>
+</fieldset>
+<button class=\\"repcontrol-button repcontrol-button--add repcontrol-button--inline\\" name=\\"act_add-inline-fieldset\\" type=\\"action\\" title=\\"%{add-inline-fieldset}\\">
+</button>
+<button class=\\"repcontrol-button repcontrol-button--edit repcontrol-button--inline\\" name=\\"act_edit-inline-fieldset\\" type=\\"action\\" title=\\"%{edit-inline-fieldset}\\">
+</button>"
+`;

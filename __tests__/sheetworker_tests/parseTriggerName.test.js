@@ -1,5 +1,5 @@
 import { describe,it,expect } from 'vitest';
-import { k } from './testFramework';
+import { k } from '../testFramework';
 
 describe('k.parseTriggerName',()=>{
   it('Should extract attribute/button name from a basic attribute name',()=>{

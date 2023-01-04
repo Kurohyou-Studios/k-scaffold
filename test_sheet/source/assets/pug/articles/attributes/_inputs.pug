@@ -1,7 +1,7 @@
 mixin creator
-  //- input base mixin
+  // input base mixin
   +input({name:'basic input',type:'text',value:'test'})
-  //- specific input mixins
+  // specific input mixins
   +text({name:'text',value:'text'})
   +number({name:'number',value:1})
 
@@ -23,23 +23,32 @@ mixin creator
 
   +textarea({name:'textarea',value:'textarea'})
 
-  //- Basic clearable fill left
+  // Basic clearable fill left
   +fillLeft({
-    radioObj:{name:'fill left'},
+    radioObj:{name:'fill left',value:0},
     valueArray:[1,2,3,4,5],
   })
-  //- non clearable fill left
+  // non clearable fill left
   +fillLeft({
-    radioObj:{name:'not clearable fill left'},
+    radioObj:{name:'not clearable fill left',value:1},
     valueArray:[1,2,3,4,5],
     noClear:true
   })
-  //- Fill left with displayed values
+  // Fill left with displayed values
   +fillLeft({
-    radioObj:{name:'fill left with display'},
+    radioObj:{name:'fill left with display',value:0},
     valueArray:[1,2,3,4,5],
     displayValues:['+1','+2','+3','+4','+5']
   })
+  // Fill left using pip notation
+  +fillLeft({radioObj:{name:'fill left with pip'}})
+    each value in [1,2,3,4,5]
+      +pip({value})
+  // Fill left using pip and control notation
+  +fillLeft({radioObj:{name:'fill left with pip'}})
+    each value in [1,2,3,4,5]
+      +displayControl({value:value - 1})
+      +pip({value})
   +input-label({
     inputObj:{name:'labelled input',type:'text'},
     spanObj:{'data-i18n':'label'},

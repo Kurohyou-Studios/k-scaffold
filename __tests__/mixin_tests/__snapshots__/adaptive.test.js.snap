@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`adaptive entry mixins > Should create the adaptive mixins 1`] = `
+"
+<div class=\\"adaptive adaptive--input\\"><span class=\\"adaptive--input__span\\" name=\\"attr_adaptive_input\\" title=\\"@{adaptive_input}\\"></span>
+  <input class=\\"adaptive--input__input\\" name=\\"attr_adaptive_input\\" type=\\"text\\" value=\\"adaptable content\\" title=\\"@{adaptive_input}\\"/>
+</div>
+<div class=\\"adaptive adaptive--text\\"><span class=\\"adaptive--text__span\\" name=\\"attr_adaptive_textarea\\" title=\\"@{adaptive_textarea}\\"></span>
+  <textarea class=\\"adaptive--text__textarea\\" name=\\"attr_adaptive_textarea\\" value=\\"adaptable textarea\\" title=\\"@{adaptive_textarea}\\"></textarea>
+</div>
+<fieldset class=\\"repeating_basic-fieldset\\">
+  <div class=\\"adaptive adaptive--input\\"><span class=\\"adaptive--input__span\\" name=\\"attr_adaptive_input\\" title=\\"@{repeating_basic-fieldset_$X_adaptive_input}\\"></span>
+    <input class=\\"adaptive--input__input\\" name=\\"attr_adaptive_input\\" type=\\"text\\" value=\\"adaptable content\\" title=\\"@{repeating_basic-fieldset_$X_adaptive_input}\\"/>
+  </div>
+  <div class=\\"adaptive adaptive--text\\"><span class=\\"adaptive--text__span\\" name=\\"attr_adaptive_textarea\\" title=\\"@{repeating_basic-fieldset_$X_adaptive_textarea}\\"></span>
+    <textarea class=\\"adaptive--text__textarea\\" name=\\"attr_adaptive_textarea\\" value=\\"adaptable textarea\\" title=\\"@{repeating_basic-fieldset_$X_adaptive_textarea}\\"></textarea>
+  </div>
+</fieldset><span class=\\"add-a-class\\" hidden=\\"\\"></span>
+<fieldset class=\\"repeating_class-fieldset\\">
+  <div class=\\"adaptive adaptive--input\\"><span class=\\"adaptive--input__span\\" name=\\"attr_adaptive_input\\" title=\\"@{repeating_class-fieldset_$X_adaptive_input}\\"></span>
+    <input class=\\"adaptive--input__input\\" name=\\"attr_adaptive_input\\" type=\\"text\\" value=\\"adaptable content\\" title=\\"@{repeating_class-fieldset_$X_adaptive_input}\\"/>
+  </div>
+  <div class=\\"adaptive adaptive--text\\"><span class=\\"adaptive--text__span\\" name=\\"attr_adaptive_textarea\\" title=\\"@{repeating_class-fieldset_$X_adaptive_textarea}\\"></span>
+    <textarea class=\\"adaptive--text__textarea\\" name=\\"attr_adaptive_textarea\\" value=\\"adaptable textarea\\" title=\\"@{repeating_class-fieldset_$X_adaptive_textarea}\\"></textarea>
+  </div>
+</fieldset>
+<button class=\\"repcontrol-button repcontrol-button--add\\" name=\\"act_add-custom-fieldset\\" type=\\"action\\" title=\\"%{add-custom-fieldset}\\">
+</button>
+<button class=\\"repcontrol-button repcontrol-button--edit\\" name=\\"act_edit-custom-fieldset\\" type=\\"action\\" title=\\"%{edit-custom-fieldset}\\">
+</button>
+<fieldset class=\\"repeating_custom-fieldset\\">
+  <div class=\\"adaptive adaptive--input\\"><span class=\\"adaptive--input__span\\" name=\\"attr_adaptive_input\\" title=\\"@{repeating_custom-fieldset_$X_adaptive_input}\\"></span>
+    <input class=\\"adaptive--input__input\\" name=\\"attr_adaptive_input\\" type=\\"text\\" value=\\"adaptable content\\" title=\\"@{repeating_custom-fieldset_$X_adaptive_input}\\"/>
+  </div>
+  <div class=\\"adaptive adaptive--text\\"><span class=\\"adaptive--text__span\\" name=\\"attr_adaptive_textarea\\" title=\\"@{repeating_custom-fieldset_$X_adaptive_textarea}\\"></span>
+    <textarea class=\\"adaptive--text__textarea\\" name=\\"attr_adaptive_textarea\\" value=\\"adaptable textarea\\" title=\\"@{repeating_custom-fieldset_$X_adaptive_textarea}\\"></textarea>
+  </div>
+</fieldset><span class=\\"inline-fieldset\\" hidden=\\"\\"></span>
+<fieldset class=\\"repeating_inline-fieldset\\">
+  <input class=\\"display-control\\" name=\\"attr_display_state\\" value=\\"short-display\\" hidden=\\"\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_display_state}\\"/>
+  <div class=\\"inline-fieldset__summary display-target\\">
+    <label class=\\"pointer\\">
+      <input name=\\"attr_collapse\\" value=\\"1\\" hidden=\\"\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/><span class=\\"inline-fieldset__summary__text\\" name=\\"attr_name\\" title=\\"@{repeating_inline-fieldset_$X_name}\\"></span>
+    </label>
+  </div>
+  <input class=\\"display-control\\" name=\\"attr_display_state\\" value=\\"display\\" checked=\\"\\" hidden=\\"\\" type=\\"radio\\" title=\\"@{repeating_inline-fieldset_$X_display_state}\\"/>
+  <div class=\\"inline-fieldset__detail display-target\\">
+    <input class=\\"collapse\\" name=\\"attr_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/>
+    <div class=\\"adaptive adaptive--input\\"><span class=\\"adaptive--input__span\\" name=\\"attr_adaptive_input\\" title=\\"@{repeating_inline-fieldset_$X_adaptive_input}\\"></span>
+      <input class=\\"adaptive--input__input\\" name=\\"attr_adaptive_input\\" type=\\"text\\" value=\\"adaptable content\\" title=\\"@{repeating_inline-fieldset_$X_adaptive_input}\\"/>
+    </div>
+    <div class=\\"adaptive adaptive--text\\"><span class=\\"adaptive--text__span\\" name=\\"attr_adaptive_textarea\\" title=\\"@{repeating_inline-fieldset_$X_adaptive_textarea}\\"></span>
+      <textarea class=\\"adaptive--text__textarea\\" name=\\"attr_adaptive_textarea\\" value=\\"adaptable textarea\\" title=\\"@{repeating_inline-fieldset_$X_adaptive_textarea}\\"></textarea>
+    </div>
+  </div>
+</fieldset>
+<button class=\\"repcontrol-button repcontrol-button--add repcontrol-button--inline\\" name=\\"act_add-inline-fieldset\\" type=\\"action\\" title=\\"%{add-inline-fieldset}\\">
+</button>
+<button class=\\"repcontrol-button repcontrol-button--edit repcontrol-button--inline\\" name=\\"act_edit-inline-fieldset\\" type=\\"action\\" title=\\"%{edit-inline-fieldset}\\">
+</button>"
+`;
