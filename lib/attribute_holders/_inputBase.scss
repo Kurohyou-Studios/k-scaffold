@@ -1,0 +1,93 @@
+@use '../generic_scss/borderPlaceholders';
+/// Mixin for applying our checked styling to something
+@mixin checked{
+  background-color:var(--checkedBackColor);
+  &:before{
+    content: var(--checkContent);
+    grid-area:content;
+    font-weight:var(--checkWeight);
+    place-self:start center;
+    color: var(--checkColor);
+    font-size: var(--checkSize);
+    line-height: var(--checkLineHeight);
+  }
+}
+/// Basic input styling to ensure that the various inputs are ready for future styling
+@mixin inputBase{
+  input{
+    &[type='checkbox']{
+      border: 1px solid var(--checkboxBorderColor);
+      cursor: pointer;
+      -webkit-appearance:none;
+      appearance:none;
+      width: var(--checkboxWidth);
+      min-width: var(--checkboxWidth);
+      height: var(--checkboxHeight);
+      min-height: var(--checkboxHeight);
+      display:grid;
+      grid-template-columns:1fr;
+      grid-template-areas:"content";
+      &:not(.collapse):not(.fill-left__radio):checked{
+        @include checked;
+      }
+    }
+    &[type='number']{
+      width: 3rem;
+      -moz-appearance: textfield !important;
+      text-align: center;
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+  select,
+  .pseudo-select span,
+  .sheet-pseudo-select span,
+  textarea,
+  input:not(:is([type='radio'],[type='checkbox'])),
+  .uneditable-input{
+    padding: var(--inputPadding);
+  }
+  input:is([type="text"],[type="number"]),textarea{
+    cursor:auto;
+  }
+  select,
+  .pseudo-select span,
+  .sheet-pseudo-select span,
+  input:not(:where([type='checkbox'], [type='radio'])),
+  .uneditable-input,
+  textarea{
+    @include borderPlaceholders.base-border;
+  }
+  select,
+  .sheet-pseudo-select span,
+  .pseudo-select span{
+    -webkit-apperance: none;
+    appearance: none;
+    text-transform: var(--selectTextTransform);
+    overflow: hidden!important;
+    white-space: nowrap;
+    text-overflow: var(--selectTextOverflow);
+    text-align: var(--selectTextAlign);
+    color:var(--selectColor);
+  }
+  input{
+    width: auto;
+    &:placeholder{
+      color: var(--placeholderColor);
+    }
+    &.plus-control:not([value*="-"])+span:before{
+      content: '+';
+    }
+  }
+  textarea{
+    resize: var(--textareaResize);
+    white-space: pre-wrap;
+    &.fixed{
+      resize: none;
+      overflow: auto;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+mixin fieldTests
+  +fieldset({
+    name:'basic fieldset',
+    trigger:{triggeredFuncs:'funcOnRemove'}
+  })
+    block
+  +fieldset({
+    name:'class fieldset',
+    addClass:'add-a-class'
+  })
+    block
+  +customControlFieldset({
+    name:'custom fieldset',
+    trigger:{addFuncs:['funcOnAdd']}
+  })
+    block
+  +inlineFieldset({
+    name:'inline fieldset',
+    trigger:{},
+    addClass:''
+  })
+    block

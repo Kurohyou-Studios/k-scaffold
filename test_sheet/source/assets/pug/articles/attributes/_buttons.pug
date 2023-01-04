@@ -1,0 +1,27 @@
+mixin creator
+  +button({name:'roll button',value:'&{template:default} {{name=Test roll}}'})
+  +action({
+    name:'action button',
+    trigger:{triggeredFuncs:['actionTrigger']}
+  })
+  +roller({
+    name:'roller',
+    trigger:{triggeredFuncs:['rollFunc']}
+  })
+  +action-label({
+    buttonObj:{name:'labelled action','data-i18n':'labelled action',trigger:{triggeredFuncs:['actionTrigger']}},
+    inputObj:{name:'action text',type:'text'}
+  })
+  +button-label({
+    buttonObj:{name:'labelled button',value:'&{template:default} {{name=temp roll}}'},
+    inputObj:{name:'button text',type:'text'}
+  })
+  +roller-label({
+    buttonObj:{name:'labelled roller',trigger:{
+      triggeredFuncs:['rollFunc']
+    }},
+    inputObj:{name:'roller text',type:'text'}
+  })
++creator
++fieldTests
+  +creator

@@ -1,0 +1,11 @@
+@use 'k-scaffold';
+
+html{
+  @include k.variables;
+}
+.ui-dialog .tab-content .charsheet{
+  @include k.defaultStyles;
+}
+.test{
+  display:none;
+}
