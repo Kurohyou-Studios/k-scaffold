@@ -8,7 +8,8 @@
     "build": "cd test_sheet && npm run build",
     "watch": "cd test_sheet && npm start",
     "test": "vitest run",
-    "test-watch": "vitest --ui"
+    "test-watch": "vitest --ui",
+    "ri":"npm-recursive-install"
   },
   "files": [
     "index.js",
@@ -21,6 +22,7 @@
     "jest": "^29.1.2",
     "jsdom": "^20.0.1",
     "pug": "^3.0.2",
+    "recursive-install": "^1.4.0",
     "sass": "^1.54.9",
     "sass-embedded": "^1.55.0",
     "underscore": "^1.13.6"
