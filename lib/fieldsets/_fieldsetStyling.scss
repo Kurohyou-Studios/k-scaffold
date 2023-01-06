@@ -36,11 +36,17 @@
       duration: var(--revealTime);
     };
     ~ .repcontrol{
-      display:none;
+      justify-self:end;
+      .repcontrol_edit{
+        &:before{
+          font-family:pictos;
+          content:'p';
+        }
+      }
+      .repcontrol_add{
+        display:none;
+      }
     }
-  }
-  .repcontrol_move{
-    display:none;
   }
   .repcontrol-button--add{
     justify-self:start;
@@ -50,10 +56,5 @@
     }
   }
   .repcontrol-button--edit{
-    justify-self:end;
-    &:before{
-      font-family:pictos;
-      content:'p';
-    }
   }
 }
