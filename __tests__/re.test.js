@@ -15,6 +15,12 @@ describe('RE.escape',()=>{
   });
 });
 describe('RE.unescape',()=>{
+  it('Should return the passed string if it is not encoded',()=>{
+    expect(k.RE.unescape(unescapedString)).toBe(unescapedString);
+  });
+  it('Passing an object should return the object',()=>{
+    expect(k.RE.unescape(unescapedObject)).toBe(unescapedObject);
+  });
   it('Should base64 escape a string',()=>{
     expect(k.RE.unescape(escapedString)).toStrictEqual(unescapedString);
   });

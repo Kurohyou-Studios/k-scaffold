@@ -4471,12 +4471,9 @@ const commaArray = function(string=''){
 };
 kFuncs.commaArray = commaArray;
 
-// Rollescape function from Oosh for Passthrough trick
-// https://app.roll20.net/forum/post/10346883/adventures-with-startroll
-// Helper - the data passed through in an action button needs these characters escaped
-// I've used a mongrel escape sequence to avoid triggering anything internal in Roll20
-// This may not be a complete list of characters that need escaping! If you have heavily
-// punctuated text, it might break the passthrough!
+/**
+ * Roll escape functions for passing data in action button calls. Base64 encodes/decodes the data.
+ */
 const RE = {
   chars: {
       '\\"': '%quot;',
@@ -4488,12 +4485,21 @@ const RE = {
   escape(data) {
     return typeof data === 'object' ?
       \`KDATA\${btoa(JSON.stringify(data))}\` :
-      \`KDATA\${btoa(data)}\`;
+      \`KSTRING\${btoa(data)}\`;
   },
-  unescape(data) {
-    return isString(data) && data.startsWith('KDATA') ?
-      JSON.parse(atob(data.replace(/^KDATA/,''))) :
-      data;
+  unescape(string) {
+    const isData = isString(string) &&
+      (
+        string.startsWith('KDATA') ||
+        string.startsWith('KSTRING')
+      );
+    return isData ?
+      (
+        string.startsWith('KDATA') ?
+          JSON.parse(atob(string.replace(/^KDATA/,''))) :
+          atob(string.replace(/^KSTRING/,''))
+      ) :
+      string;
   }
 };
 kFuncs.RE = RE;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/
@@ -4512,10 +4518,11 @@ const createAttrProxy = function(attrs){
     let cascObj = casc[cascName];
     k.debug({[cascName]:cascObj});
     if(event && cascObj){
-      if(typePrefix === 'attr_'){
+      if(event.previousValue){
         cascObj.previousValue = event.previousValue;
-      }else if(typePrefix === 'act_'){
+      }else if(event.originalRollId){
         cascObj.originalRollId = event.originalRollId;
+        cascObj.rollData = RE.unescape(event.originalRollId);
       }
     }
     return cascObj || {};
@@ -5181,7 +5188,15 @@ exports[`k.build > Should generate the testFramework.js for tests 1`] = `
 "{
   \\"tabs-main-tabs-basic-attributes\\": \\"tabs-main-tabs-basic-attributes\\",
   \\"tabs-main-tabs-empty-tab\\": \\"tabs-main-tabs-empty-tab\\",
-  \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\"
+  \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\",
+  \\"labelled action\\": \\"labelled action\\",
+  \\"hidden on expanded\\": \\"hidden on expanded\\",
+  \\"hidden on collapse\\": \\"hidden on collapse\\",
+  \\"always visible\\": \\"always visible\\",
+  \\"label\\": \\"label\\",
+  \\"option 1\\": \\"option 1\\",
+  \\"option 2\\": \\"option 2\\",
+  \\"select label\\": \\"select label\\"
 }"
 `;
 
@@ -5189,6 +5204,14 @@ exports[`k.build > Should generate the translation file from the i18n entries 1`
 "{
   \\"tabs-main-tabs-basic-attributes\\": \\"tabs-main-tabs-basic-attributes\\",
   \\"tabs-main-tabs-empty-tab\\": \\"tabs-main-tabs-empty-tab\\",
-  \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\"
+  \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\",
+  \\"labelled action\\": \\"labelled action\\",
+  \\"hidden on expanded\\": \\"hidden on expanded\\",
+  \\"hidden on collapse\\": \\"hidden on collapse\\",
+  \\"always visible\\": \\"always visible\\",
+  \\"label\\": \\"label\\",
+  \\"option 1\\": \\"option 1\\",
+  \\"option 2\\": \\"option 2\\",
+  \\"select label\\": \\"select label\\"
 }"
 `;
