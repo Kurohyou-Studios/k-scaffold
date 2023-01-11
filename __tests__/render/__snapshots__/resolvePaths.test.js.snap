@@ -2,7 +2,7 @@
 
 exports[`resolvePaths() > Should resolve the relative source and destination paths 1`] = `
 [
-  "E:\\\\Git\\\\Kurohyou_studios\\\\Roll20-Snippets\\\\test.pug",
-  "E:\\\\Git\\\\Kurohyou_studios\\\\Roll20-Snippets\\\\test.html",
+  "C:\\\\Users\\\\scase\\\\OneDrive\\\\Documents\\\\git\\\\kurohyou_studios\\\\k-scaffold\\\\test.pug",
+  "C:\\\\Users\\\\scase\\\\OneDrive\\\\Documents\\\\git\\\\kurohyou_studios\\\\k-scaffold\\\\test.html",
 ]
 `;
