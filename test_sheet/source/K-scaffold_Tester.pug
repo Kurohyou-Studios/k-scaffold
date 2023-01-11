@@ -7,7 +7,7 @@ include ./assets/pug/mixins/_mixins.pug
   //- Put your sheet code in the articles folder with each article being a page of the sheet. Each discrete section of a page should be it's own file in a section folder for each page.
   include ./assets/pug/articles/_index.pug
 include ./assets/pug/rolltemplates/rolltemplate.pug
-+input({name:'template start',type:'text',value:`&{template:${templateName}} {{character_name=@{character_name}}} {{character_id=@{character_id}}}`})
++hidden({name:'template start',value:`&{template:${templateName}} {{character_name=@{character_name}}} {{character_id=@{character_id}}}`})
 +kscript
   //- All your javascript files should be included in index.pug
   include ./assets/js/_index.pug
