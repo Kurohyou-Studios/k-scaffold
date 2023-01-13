@@ -1,4 +1,3 @@
-
 //- @pugdoc
   name: fieldset
   description: A mixin that creates a fieldset for the creation of a repeating section. The mixin prefixes the name with `repeating_` and replaces problem characters (e.g. spaces are replaced with dashes). Additionally, the auto-generated title properties from the K-scaffold\'s mixins will include the proper repeating section information.
@@ -41,9 +40,6 @@ mixin fieldset({name,trigger,addClass})
   - k.repeatingPrefix = '';
 //-End Mixin
 
-
-
-
 //- @pugdoc
   name: customControlFieldset
   description: Alias for {@link fieldset} that creates to custom action buttons to add/remove rows to the repeating section. Useful when you need to trigger a sheetworker when a row is added. This also prevents the occassional error of a new row disappearing immediately after the user has clicked the button to create one. Proper use of this will require css to hide the default buttons that fieldsets create automatically. Note that currently this assumes the existence of an addItem and editSection sheetworker function.
@@ -73,14 +69,10 @@ mixin customControlFieldset({name,trigger,addClass})
       `${prefixHolder} ${name}`:
       name;
   +action({name:`add ${buttonName}`,class:'repcontrol-button repcontrol-button--add',trigger:{listenerFunc:'addItem'}})
-  +action({name:`edit ${buttonName}`,class:'repcontrol-button repcontrol-button--edit',trigger:{listenerFunc:'editSection'}})
   - setSystemPrefix(prefixHolder);
   +fieldset({name,trigger,addClass})
     block
 //- End Mixin
-
-
-
 
 //- @pugdoc
   name: repeating_section
@@ -110,9 +102,6 @@ mixin repeating_section(name,header,columnArr,id)
       block
 //- End Mixin
 
-
-
-
 //- @pugdoc
   name: inlineFieldset
   description: An alias for {@link fieldset} that creates a fieldset with an added class that can be easily hooked into via CSS to style the fieldset for inline display.
@@ -132,6 +121,8 @@ mixin inlineFieldset({name,trigger,addClass})
   - addClass = addClass ? `${addClass} inline-fieldset` : 'inline-fieldset';
   - varObjects.inlineFieldsets = varObjects.inlineFieldsets || [];
   - varObjects.inlineFieldsets.push(name);
+  
+  +action({name:`add ${name}`,class:'repcontrol-button repcontrol-button--add repcontrol-button--inline',trigger:{listenerFunc:'sectionInteract'}})
   +fieldset({name,trigger,addClass})
     +radio({name:'display state',class:'display-control',value:'short-display',hidden:''})
     .inline-fieldset__summary.display-target
@@ -142,7 +133,4 @@ mixin inlineFieldset({name,trigger,addClass})
     .inline-fieldset__detail.display-target
       +collapse
       block
-  
-  +action({name:`add ${name}`,class:'repcontrol-button repcontrol-button--add repcontrol-button--inline',trigger:{listenerFunc:'sectionInteract'}})
-  +action({name:`edit ${name}`,class:'repcontrol-button repcontrol-button--edit repcontrol-button--inline',trigger:{listenerFunc:'sectionInteract'}})
 //- End Mixin

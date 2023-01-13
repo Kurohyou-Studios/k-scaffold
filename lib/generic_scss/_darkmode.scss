@@ -1,5 +1,5 @@
 /// A mixin that switches the scaffold's sheet color variables over to dark mode specific versions.
-/// @example
+/// @example scss
 ///   // Will apply the darkmode styling attributes to the body of the sheet when dark mode is enabled.
 ///   @use 'k-scaffold' as k;
 ///   body.sheet-darkmode{
@@ -17,7 +17,7 @@
 }
 
 /// A mixin that switches the scaffold's roll template color variables (including sheet variables) over to dark mode specific ones. Should only be used directly inside a `.sheet-rolltemplate-TEMPLATENAME` rule.
-/// @example
+/// @example scss
 ///   // Will apply the darkmode styling attributes to the default template when dark mode is enabled.
 ///   @use 'k-scaffold' as k;
 ///   .sheet-rolltemplate-default{

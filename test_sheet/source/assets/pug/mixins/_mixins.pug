@@ -9,14 +9,16 @@ mixin fieldTests
     addClass:'add-a-class'
   })
     block
-  +customControlFieldset({
-    name:'custom fieldset',
-    trigger:{addFuncs:['funcOnAdd']}
-  })
-    block
-  +inlineFieldset({
-    name:'inline fieldset',
-    trigger:{},
-    addClass:''
-  })
-    block
+  .repeating-container
+    +customControlFieldset({
+      name:'custom fieldset',
+      trigger:{addFuncs:['funcOnAdd']}
+    })
+      block
+  .repeating-container
+    +inlineFieldset({
+      name:'inline fieldset',
+      trigger:{},
+      addClass:''
+    })
+      block

@@ -1,3 +1,11 @@
+//// @group materialStyle
+/// Mixin to add the necessary styling to use material icons. You will need to import the material icons font to use this mixin
+/// @example scss
+///   @use 'k-scaffold' as k;
+///   @import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap');
+///  .charsheet .material-icon{
+///    @include k.materialStyle;
+///  }
 @mixin materialStyle{
   font-family: 'Material Icons';
   font-weight: normal;

@@ -1,0 +1,692 @@
+[
+  {
+    "description": "Mixin that includes all of the framework's styles. Should be included in a 3 class declaration for character sheets.\n",
+    "commentRange": {
+      "start": 18,
+      "end": 24
+    },
+    "context": {
+      "type": "mixin",
+      "name": "defaultStyles",
+      "code": "\n  // Clear roll20 styles\n  @include genericStyle.clear;\n\n  // Basic Layout constructs\n  @include genericStyle.layout;\n  @include genericStyle.borderStyles;\n  @include genericStyle.sizesAndRatios;\n  \n  // Text stylings\n  @include genericStyle.textElements;\n  @include genericStyle.materialIcons;\n  @include genericStyle.textStyles;\n  @include genericStyle.headerElements;\n  @include genericStyle.r20FontClasses;\n\n  // Input and button\n  @include attributeConstructs.inputBase;\n  @include attributeConstructs.button;\n  @include attributeConstructs.collapsible;\n  @include attributeConstructs.fillLeft;\n  @include labels.input-label;\n  @include labels.headed-textarea;\n  @include adaptive.adaptiveText;\n\n  @include fieldsetStyling.fieldsetStyling;\n",
+      "line": {
+        "start": 25,
+        "end": 51
+      }
+    },
+    "example": [
+      {
+        "type": "scss",
+        "code": "@use 'k-scaffold' as k;\n\n.ui-dialog .tab-content .charsheet{\n  @include k.defaultStyles;\n}"
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "_k.scss",
+      "name": "_k.scss"
+    },
+    "usedBy": [
+      {
+        "description": "Mixin that includes all of the default styles as well as rolltemplate specific styling such as inline roll variable assignment. Should be included directly in the rolltemplate declaration for your roll templates.\n",
+        "context": {
+          "type": "mixin",
+          "name": "defaultRollStyling",
+          "code": "\n  @include defaultStyles;\n  @include rolltemplate.rollStyles;\n",
+          "line": {
+            "start": 60,
+            "end": 63
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Mixin that includes all of the default styles as well as rolltemplate specific styling such as inline roll variable assignment. Should be included directly in the rolltemplate declaration for your roll templates.\n",
+    "commentRange": {
+      "start": 53,
+      "end": 59
+    },
+    "context": {
+      "type": "mixin",
+      "name": "defaultRollStyling",
+      "code": "\n  @include defaultStyles;\n  @include rolltemplate.rollStyles;\n",
+      "line": {
+        "start": 60,
+        "end": 63
+      }
+    },
+    "example": [
+      {
+        "type": "scss",
+        "code": "@use 'k-scaffold/k';\n\n.sheet-rolltemplate-TEMPLATENAME{\n  @include k.defaultRollStyling;\n}"
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [
+      {
+        "type": "mixin",
+        "name": "defaultStyles"
+      }
+    ],
+    "file": {
+      "path": "_k.scss",
+      "name": "_k.scss"
+    }
+  },
+  {
+    "description": "Styling for the adaptive text construction to create textareas and inputs that grow based on their contents. Used in the default [defaultStyles](#defaultStyles) mixin, but can be used separately if you only want to include specific framework css.\n",
+    "commentRange": {
+      "start": 2,
+      "end": 2
+    },
+    "context": {
+      "type": "mixin",
+      "name": "adaptiveText",
+      "code": "\n  .adaptive{\n    display:grid;\n    grid-template-columns: auto;\n    grid-template-rows: auto;\n    grid-template-areas: \"content\";\n    position:relative;\n    >*{\n      grid-area: content;\n    }\n    > span{\n      opacity: 0;\n      z-index: -10;\n      @include borderPlaceholders.base-border;\n      text-transform: initial;\n      border-radius:0px;\n    }\n  }\n  .adaptive--text{\n    min-height:4rem;\n  }\n  .adaptive--text__span{\n    white-space: pre-wrap;\n    padding:2px;\n  }\n  .adaptive--text__textarea{\n    width:100%;\n    height:100%;\n    resize: none;\n  }\n  .adaptive--text__textarea,\n  .adaptive--input__input{\n    position:absolute;\n  }\n  .adaptive--input__input{\n    width:100%;\n  }\n  .adaptive--input__span{\n    padding:2px;\n    min-height:1.5rem;\n  }\n",
+      "line": {
+        "start": 3,
+        "end": 44
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "adaptive\\_adaptive.scss",
+      "name": "_adaptive.scss"
+    }
+  },
+  {
+    "description": "The basic stylings for a button like object. Provides some basic coloring, shadowing, and hover/active state styling\n",
+    "commentRange": {
+      "start": 3,
+      "end": 3
+    },
+    "context": {
+      "type": "mixin",
+      "name": "base-button",
+      "code": "\n\tbackground-color: #DCDCDC33;\n\tborder-radius: 5px;\n\tbox-shadow: 0 2px 4px black;\n\tborder-width: 0;\n\ttransition: {\n\t\tproperty:box-shadow,backdrop-filter;\n\t\tduration:200ms;\n\t\ttiming-function:ease-out;\n\t};\n\tbackdrop-filter:blur(1px);\n\toverflow:hidden;\n\t&:is(:hover,:focus){\n\t\tbackground-color: #85858580;\n\t\tbox-shadow: 0 4px 6px black;\n\t\tbackdrop-filter:blur(2px);\n\t}\n\t&:active{\n\t\tbackground-color: #858585ff;\n\t\tbox-shadow: 0 1px 2px black;\n\t\tbackdrop-filter:blur(0px);\n\t}\n",
+      "line": {
+        "start": 4,
+        "end": 26
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "attribute_holders\\_buttons.scss",
+      "name": "_buttons.scss"
+    },
+    "usedBy": [
+      {
+        "description": "Basic styling for dice icon buttons using the dicefonts (e.g. dicefontd20).\n",
+        "context": {
+          "type": "mixin",
+          "name": "die-button",
+          "code": "\n\t@include base-button;\n\tline-height: 14px;\n\t/*height to vertically center a 2rem dicefontd10*/\n\tfont-size: 2rem;\n\tfont-weight: normal;\n\tfont-style: normal;\n\tpadding: 5px 3px 7px;\n",
+          "line": {
+            "start": 29,
+            "end": 37
+          }
+        }
+      },
+      {
+        "description": "Basic styling for buttons with text (or text and icons)\n",
+        "context": {
+          "type": "mixin",
+          "name": "text-button",
+          "code": "\n\tpadding: 5px 7px;\n\t@include base-button;\n",
+          "line": {
+            "start": 40,
+            "end": 43
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Basic styling for dice icon buttons using the dicefonts (e.g. dicefontd20).\n",
+    "commentRange": {
+      "start": 28,
+      "end": 28
+    },
+    "context": {
+      "type": "mixin",
+      "name": "die-button",
+      "code": "\n\t@include base-button;\n\tline-height: 14px;\n\t/*height to vertically center a 2rem dicefontd10*/\n\tfont-size: 2rem;\n\tfont-weight: normal;\n\tfont-style: normal;\n\tpadding: 5px 3px 7px;\n",
+      "line": {
+        "start": 29,
+        "end": 37
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [
+      {
+        "type": "mixin",
+        "name": "base-button"
+      }
+    ],
+    "file": {
+      "path": "attribute_holders\\_buttons.scss",
+      "name": "_buttons.scss"
+    }
+  },
+  {
+    "description": "Basic styling for buttons with text (or text and icons)\n",
+    "commentRange": {
+      "start": 39,
+      "end": 39
+    },
+    "context": {
+      "type": "mixin",
+      "name": "text-button",
+      "code": "\n\tpadding: 5px 7px;\n\t@include base-button;\n",
+      "line": {
+        "start": 40,
+        "end": 43
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [
+      {
+        "type": "mixin",
+        "name": "base-button"
+      }
+    ],
+    "file": {
+      "path": "attribute_holders\\_buttons.scss",
+      "name": "_buttons.scss"
+    }
+  },
+  {
+    "description": "Styling for our roll buttons\n",
+    "commentRange": {
+      "start": 44,
+      "end": 44
+    },
+    "context": {
+      "type": "mixin",
+      "name": "roller",
+      "code": "\n  display: flex;\n  align-items: center;\n  gap: var(--half-gap);\n  &:before{\n    content:'T';\n    font-family:dicefontd20;\n  }\n",
+      "line": {
+        "start": 45,
+        "end": 53
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "attribute_holders\\_buttons.scss",
+      "name": "_buttons.scss"
+    },
+    "usedBy": [
+      {
+        "description": "Ensures our buttons use the pointer cursor and that our roller construct buttons use the proper styling.\n",
+        "context": {
+          "type": "mixin",
+          "name": "button",
+          "code": "\n  button{\n    cursor: pointer;\n  }\n\t.roller{\n\t\t@include roller;\n\t}\n",
+          "line": {
+            "start": 55,
+            "end": 62
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Ensures our buttons use the pointer cursor and that our roller construct buttons use the proper styling.\n",
+    "commentRange": {
+      "start": 54,
+      "end": 54
+    },
+    "context": {
+      "type": "mixin",
+      "name": "button",
+      "code": "\n  button{\n    cursor: pointer;\n  }\n\t.roller{\n\t\t@include roller;\n\t}\n",
+      "line": {
+        "start": 55,
+        "end": 62
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [
+      {
+        "type": "mixin",
+        "name": "roller"
+      }
+    ],
+    "file": {
+      "path": "attribute_holders\\_buttons.scss",
+      "name": "_buttons.scss"
+    }
+  },
+  {
+    "description": "The styling for basic collapsible/expandable sections.\n",
+    "commentRange": {
+      "start": 4,
+      "end": 4
+    },
+    "context": {
+      "type": "mixin",
+      "name": "collapsible",
+      "code": "\n  .collapse-container{\n    display:grid;\n    position:relative;\n  }\n  .text-collapse{\n    cursor:pointer;\n    display:flex;\n    justify-content:flex-start;\n    align-items:center;\n    &:before{\n      content: var(--expandedSymbol);\n      @include materialIcons.materialStyle;\n    }\n  }\n  .text-collapse__text{\n    display:inline;\n  }\n  .text-collapse__check{\n    &:not(:checked) + .text-collapse{\n      @include borderPlaceholders.inputHighlight;\n    }\n    &:checked + .text-collapse:before{\n      content: var(--collapsedSymbol);\n    }\n  }\n  .repitem,\n  .collapse-container{\n    &:hover{\n      .collapse,.roll-container{\n        opacity:var(--collapseHoverOpacity);\n      }\n    }\n    .collapse{\n      opacity:var(--collapseBaseOpacity);\n      position:absolute;\n      right:-10px;\n      top:0px;\n      border:0px solid black;\n      border-radius:0;\n      color:var(--collapseExpandedColor);\n      text-transform:none;\n      background-color:transparent;\n      &:before{\n        content:'y';\n        font-family:pictos;\n      }\n      &:checked{\n        color:var(--collapseCollapsedColor);\n        background-color:transparent;\n        ~ .expanded,\n        ~ .collapse-container .expanded{\n          display:none !important;\n        }\n        ~ .expanded--empty:is(:not([value]),[value='']) + *,\n        ~ .collapse-container ~.expanded--empty:is(:not([value]),[value='']) + *{\n          display:none !important;\n        }\n      }\n      &:not(:checked){\n        ~ .collapsed{\n          display:none !important;\n        }\n      }\n      &:hover{\n        color:var(--collapseExpandedColor);\n      }\n    }\n  }\n  .repcontainer.editmode{\n    .collapse{\n      display:none;\n    }\n  }\n",
+      "line": {
+        "start": 5,
+        "end": 79
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "attribute_holders\\_collapse.scss",
+      "name": "_collapse.scss"
+    }
+  },
+  {
+    "description": "The styling for the functionality of the fillLeft pug mixin. This allows us to easily make [radios/checkboxes that fill as the value increments](https://wiki.roll20.net/CSS_Wizardry#Fill_Radio_Buttons_to_the_Left).\n",
+    "commentRange": {
+      "start": 1,
+      "end": 1
+    },
+    "context": {
+      "type": "mixin",
+      "name": "fillLeft",
+      "code": "\n  .fill-left{\n    display:var(--fillLeftDisplay);\n    align-self:var(--fillLeftAlignment);\n    box-sizing:border-box;\n  }\n  .fill-left__radio{\n    appearance:none;\n    -webkit-appearance:none;\n    background-color:var(--fillLeftSelectedColor);\n    width:100%;\n    height:100%;\n    cursor:pointer;\n    &[data-value]:checked:before{\n      content:attr(data-value);\n      color:var(--fillLeftDataColor);\n      font-size:var(--fillLeftDataSize);\n      place-self:center;\n      text-transform: var(--fillLeftDataTransform);\n    }\n    &:checked ~ .fill-left__radio{\n      background-color:var(--fillLeftUnselectedColor);\n    }\n  }\n",
+      "line": {
+        "start": 2,
+        "end": 26
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "attribute_holders\\_fillLeft.scss",
+      "name": "_fillLeft.scss"
+    }
+  },
+  {
+    "description": "Mixin for applying our checked styling to something\n",
+    "commentRange": {
+      "start": 2,
+      "end": 2
+    },
+    "context": {
+      "type": "mixin",
+      "name": "checked",
+      "code": "\n  background-color:var(--checkedBackColor);\n  &:before{\n    content: var(--checkContent);\n    grid-area:content;\n    font-weight:var(--checkWeight);\n    place-self:start center;\n    color: var(--checkColor);\n    font-size: var(--checkSize);\n    line-height: var(--checkLineHeight);\n  }\n",
+      "line": {
+        "start": 3,
+        "end": 14
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "attribute_holders\\_inputBase.scss",
+      "name": "_inputBase.scss"
+    },
+    "usedBy": [
+      {
+        "description": "Basic input styling to ensure that the various inputs are ready for future styling\n",
+        "context": {
+          "type": "mixin",
+          "name": "inputBase",
+          "code": "\n  input{\n    &[type='checkbox']{\n      border: 1px solid var(--checkboxBorderColor);\n      cursor: pointer;\n      -webkit-appearance:none;\n      appearance:none;\n      width: var(--checkboxWidth);\n      min-width: var(--checkboxWidth);\n      height: var(--checkboxHeight);\n      min-height: var(--checkboxHeight);\n      display:grid;\n      grid-template-columns:1fr;\n      grid-template-areas:\"content\";\n      &:not(.collapse):not(.fill-left__radio):checked{\n        @include checked;\n      }\n    }\n    &[type='number']{\n      width: 3rem;\n      -moz-appearance: textfield !important;\n      text-align: center;\n      &::-webkit-inner-spin-button,\n      &::-webkit-outer-spin-button{\n        -webkit-appearance: none;\n        margin: 0;\n      }\n    }\n  }\n  select,\n  .pseudo-select span,\n  .sheet-pseudo-select span,\n  textarea,\n  input:not(:is([type='radio'],[type='checkbox'])),\n  .uneditable-input{\n    padding: var(--inputPadding);\n  }\n  input:is([type=\"text\"],[type=\"number\"]),textarea{\n    cursor:auto;\n  }\n  select,\n  .pseudo-select span,\n  .sheet-pseudo-select span,\n  input:not(:where([type='checkbox'], [type='radio'])),\n  .uneditable-input,\n  textarea{\n    @include borderPlaceholders.base-border;\n  }\n  select,\n  .sheet-pseudo-select span,\n  .pseudo-select span{\n    -webkit-apperance: none;\n    appearance: none;\n    text-transform: var(--selectTextTransform);\n    overflow: hidden!important;\n    white-space: nowrap;\n    text-overflow: var(--selectTextOverflow);\n    text-align: var(--selectTextAlign);\n    color:var(--selectColor);\n  }\n  input{\n    width: auto;\n    &:placeholder{\n      color: var(--placeholderColor);\n    }\n    &.plus-control:not([value*=\"-\"])+span:before{\n      content: '+';\n    }\n  }\n  textarea{\n    resize: var(--textareaResize);\n    white-space: pre-wrap;\n    &.fixed{\n      resize: none;\n      overflow: auto;\n    }\n  }\n",
+          "line": {
+            "start": 16,
+            "end": 93
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Basic input styling to ensure that the various inputs are ready for future styling\n",
+    "commentRange": {
+      "start": 15,
+      "end": 15
+    },
+    "context": {
+      "type": "mixin",
+      "name": "inputBase",
+      "code": "\n  input{\n    &[type='checkbox']{\n      border: 1px solid var(--checkboxBorderColor);\n      cursor: pointer;\n      -webkit-appearance:none;\n      appearance:none;\n      width: var(--checkboxWidth);\n      min-width: var(--checkboxWidth);\n      height: var(--checkboxHeight);\n      min-height: var(--checkboxHeight);\n      display:grid;\n      grid-template-columns:1fr;\n      grid-template-areas:\"content\";\n      &:not(.collapse):not(.fill-left__radio):checked{\n        @include checked;\n      }\n    }\n    &[type='number']{\n      width: 3rem;\n      -moz-appearance: textfield !important;\n      text-align: center;\n      &::-webkit-inner-spin-button,\n      &::-webkit-outer-spin-button{\n        -webkit-appearance: none;\n        margin: 0;\n      }\n    }\n  }\n  select,\n  .pseudo-select span,\n  .sheet-pseudo-select span,\n  textarea,\n  input:not(:is([type='radio'],[type='checkbox'])),\n  .uneditable-input{\n    padding: var(--inputPadding);\n  }\n  input:is([type=\"text\"],[type=\"number\"]),textarea{\n    cursor:auto;\n  }\n  select,\n  .pseudo-select span,\n  .sheet-pseudo-select span,\n  input:not(:where([type='checkbox'], [type='radio'])),\n  .uneditable-input,\n  textarea{\n    @include borderPlaceholders.base-border;\n  }\n  select,\n  .sheet-pseudo-select span,\n  .pseudo-select span{\n    -webkit-apperance: none;\n    appearance: none;\n    text-transform: var(--selectTextTransform);\n    overflow: hidden!important;\n    white-space: nowrap;\n    text-overflow: var(--selectTextOverflow);\n    text-align: var(--selectTextAlign);\n    color:var(--selectColor);\n  }\n  input{\n    width: auto;\n    &:placeholder{\n      color: var(--placeholderColor);\n    }\n    &.plus-control:not([value*=\"-\"])+span:before{\n      content: '+';\n    }\n  }\n  textarea{\n    resize: var(--textareaResize);\n    white-space: pre-wrap;\n    &.fixed{\n      resize: none;\n      overflow: auto;\n    }\n  }\n",
+      "line": {
+        "start": 16,
+        "end": 93
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [
+      {
+        "type": "mixin",
+        "name": "checked"
+      }
+    ],
+    "file": {
+      "path": "attribute_holders\\_inputBase.scss",
+      "name": "_inputBase.scss"
+    }
+  },
+  {
+    "description": "Creates the default highlight styling for inputs/selects\n",
+    "commentRange": {
+      "start": 3,
+      "end": 3
+    },
+    "context": {
+      "type": "mixin",
+      "name": "inputHighlight",
+      "code": "\n  border-width: 1px 3px;\n  border-style: solid;\n  border-color: var(--borderColor);\n  border-radius: 5px;\n  box-sizing: border-box;\n",
+      "line": {
+        "start": 4,
+        "end": 10
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "generic_scss\\_borderPlaceholders.scss",
+      "name": "_borderPlaceholders.scss"
+    },
+    "usedBy": [
+      {
+        "description": "The complete border styling\n",
+        "context": {
+          "type": "mixin",
+          "name": "borderStyles",
+          "code": "\n  .boxed,\n  .sheet-boxed{\n    @include boxed;\n    &.thick-left{\n      border-left-width: 5px;\n    }\n    &.thick-bottom{\n      border-bottom-width: 5px;\n    }\n    &.thick-right{\n      border-right-width: 5px;\n    }\n    &.thick-top{\n      border-top-width: 5px;\n    }\n  }\n  .underlined,\n  .sheet-underlined{\n    @include base-border;\n    border-radius: 0;\n    border-bottom: 1px solid var(--borderColor);\n    transition: border-radius border var(--revealTrans);\n  }\n  :is(.underlined,.boxed){\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within){\n      @include inputHighlight;\n    }\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:focus,:focus-within){\n      background-color: var(--disabledColor);\n    }\n  }\n  .underlined--invisible{\n    border-color:transparent !important;\n  }\n",
+          "line": {
+            "start": 26,
+            "end": 61
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Basic border styling for elements\n",
+    "commentRange": {
+      "start": 11,
+      "end": 11
+    },
+    "context": {
+      "type": "mixin",
+      "name": "base-border",
+      "code": "\n  border-width: 1px 3px;\n  border-style: solid;\n  border-radius: 5px;\n  border-color: transparent;\n  box-sizing: border-box;\n",
+      "line": {
+        "start": 12,
+        "end": 18
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "file": {
+      "path": "generic_scss\\_borderPlaceholders.scss",
+      "name": "_borderPlaceholders.scss"
+    },
+    "usedBy": [
+      {
+        "description": "The complete border styling\n",
+        "context": {
+          "type": "mixin",
+          "name": "borderStyles",
+          "code": "\n  .boxed,\n  .sheet-boxed{\n    @include boxed;\n    &.thick-left{\n      border-left-width: 5px;\n    }\n    &.thick-bottom{\n      border-bottom-width: 5px;\n    }\n    &.thick-right{\n      border-right-width: 5px;\n    }\n    &.thick-top{\n      border-top-width: 5px;\n    }\n  }\n  .underlined,\n  .sheet-underlined{\n    @include base-border;\n    border-radius: 0;\n    border-bottom: 1px solid var(--borderColor);\n    transition: border-radius border var(--revealTrans);\n  }\n  :is(.underlined,.boxed){\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within){\n      @include inputHighlight;\n    }\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:focus,:focus-within){\n      background-color: var(--disabledColor);\n    }\n  }\n  .underlined--invisible{\n    border-color:transparent !important;\n  }\n",
+          "line": {
+            "start": 26,
+            "end": 61
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Styling for elements that should have a box around them\n",
+    "commentRange": {
+      "start": 19,
+      "end": 19
+    },
+    "context": {
+      "type": "mixin",
+      "name": "boxed",
+      "code": "\n  border: 2px solid var(--borderColor);\n  border-radius:0;\n  box-sizing:border-box;\n",
+      "line": {
+        "start": 20,
+        "end": 24
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "generic_scss\\_borderPlaceholders.scss",
+      "name": "_borderPlaceholders.scss"
+    },
+    "usedBy": [
+      {
+        "description": "The complete border styling\n",
+        "context": {
+          "type": "mixin",
+          "name": "borderStyles",
+          "code": "\n  .boxed,\n  .sheet-boxed{\n    @include boxed;\n    &.thick-left{\n      border-left-width: 5px;\n    }\n    &.thick-bottom{\n      border-bottom-width: 5px;\n    }\n    &.thick-right{\n      border-right-width: 5px;\n    }\n    &.thick-top{\n      border-top-width: 5px;\n    }\n  }\n  .underlined,\n  .sheet-underlined{\n    @include base-border;\n    border-radius: 0;\n    border-bottom: 1px solid var(--borderColor);\n    transition: border-radius border var(--revealTrans);\n  }\n  :is(.underlined,.boxed){\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within){\n      @include inputHighlight;\n    }\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:focus,:focus-within){\n      background-color: var(--disabledColor);\n    }\n  }\n  .underlined--invisible{\n    border-color:transparent !important;\n  }\n",
+          "line": {
+            "start": 26,
+            "end": 61
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "The complete border styling\n",
+    "commentRange": {
+      "start": 25,
+      "end": 25
+    },
+    "context": {
+      "type": "mixin",
+      "name": "borderStyles",
+      "code": "\n  .boxed,\n  .sheet-boxed{\n    @include boxed;\n    &.thick-left{\n      border-left-width: 5px;\n    }\n    &.thick-bottom{\n      border-bottom-width: 5px;\n    }\n    &.thick-right{\n      border-right-width: 5px;\n    }\n    &.thick-top{\n      border-top-width: 5px;\n    }\n  }\n  .underlined,\n  .sheet-underlined{\n    @include base-border;\n    border-radius: 0;\n    border-bottom: 1px solid var(--borderColor);\n    transition: border-radius border var(--revealTrans);\n  }\n  :is(.underlined,.boxed){\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within){\n      @include inputHighlight;\n    }\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:focus,:focus-within){\n      background-color: var(--disabledColor);\n    }\n  }\n  .underlined--invisible{\n    border-color:transparent !important;\n  }\n",
+      "line": {
+        "start": 26,
+        "end": 61
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [
+      {
+        "type": "mixin",
+        "name": "boxed"
+      },
+      {
+        "type": "mixin",
+        "name": "base-border"
+      },
+      {
+        "type": "mixin",
+        "name": "inputHighlight"
+      }
+    ],
+    "file": {
+      "path": "generic_scss\\_borderPlaceholders.scss",
+      "name": "_borderPlaceholders.scss"
+    }
+  },
+  {
+    "description": "A mixin that switches the scaffold's sheet color variables over to dark mode specific versions.\n",
+    "commentRange": {
+      "start": 1,
+      "end": 7
+    },
+    "context": {
+      "type": "mixin",
+      "name": "darkMode",
+      "code": "\n  --backColor:var(--dm-backColor);\n  --selectedColor:var(--dm-selectedColor);\n  --unselectedColor1:var(--dm-unselectedColor1);\n  --unselectedColor1:var(--dm-unselectedColor2);\n  --checkColor:var(--dm-checkColor);\n  --borderColor:var(--dm-borderColor);\n  --fontColor:var(--dm-fontColor);\n  --disabledColor:var(--dm-disabledColor);\n",
+      "line": {
+        "start": 8,
+        "end": 17
+      }
+    },
+    "example": [
+      {
+        "type": "scss",
+        "code": "// Will apply the darkmode styling attributes to the body of the sheet when dark mode is enabled.\n@use 'k-scaffold' as k;\nbody.sheet-darkmode{\n  @include k.darkMode;\n}"
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "generic_scss\\_darkmode.scss",
+      "name": "_darkmode.scss"
+    },
+    "usedBy": [
+      {
+        "description": "A mixin that switches the scaffold's roll template color variables (including sheet variables) over to dark mode specific ones. Should only be used directly inside a `.sheet-rolltemplate-TEMPLATENAME` rule.\n",
+        "context": {
+          "type": "mixin",
+          "name": "darkRoll",
+          "code": "\n  &.sheet-rolltemplate-darkmode{\n    @include darkMode;\n    --inlineRollBackColor: var(--dm-inlineRollBackColor);\n    --inlineRollColor: var(--fontColor);\n    --inlineRollCritColor: var(--dm-inlineRollCritColor);\n    --inlineRollFumbleColor: var(--dm-inlineRollCritColor);\n    --inlineRollImportantColor: var(--dm-inlineRollCritColor);\n  }\n",
+          "line": {
+            "start": 26,
+            "end": 35
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "A mixin that switches the scaffold's roll template color variables (including sheet variables) over to dark mode specific ones. Should only be used directly inside a `.sheet-rolltemplate-TEMPLATENAME` rule.\n",
+    "commentRange": {
+      "start": 19,
+      "end": 25
+    },
+    "context": {
+      "type": "mixin",
+      "name": "darkRoll",
+      "code": "\n  &.sheet-rolltemplate-darkmode{\n    @include darkMode;\n    --inlineRollBackColor: var(--dm-inlineRollBackColor);\n    --inlineRollColor: var(--fontColor);\n    --inlineRollCritColor: var(--dm-inlineRollCritColor);\n    --inlineRollFumbleColor: var(--dm-inlineRollCritColor);\n    --inlineRollImportantColor: var(--dm-inlineRollCritColor);\n  }\n",
+      "line": {
+        "start": 26,
+        "end": 35
+      }
+    },
+    "example": [
+      {
+        "type": "scss",
+        "code": "// Will apply the darkmode styling attributes to the default template when dark mode is enabled.\n@use 'k-scaffold' as k;\n.sheet-rolltemplate-default{\n  @include k.darkRoll;\n}"
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [
+      {
+        "type": "mixin",
+        "name": "darkMode"
+      }
+    ],
+    "file": {
+      "path": "generic_scss\\_darkmode.scss",
+      "name": "_darkmode.scss"
+    }
+  },
+  {
+    "description": "Basic layout of the headed textarea construction\n",
+    "commentRange": {
+      "start": 1,
+      "end": 1
+    },
+    "context": {
+      "type": "mixin",
+      "name": "headed-textarea",
+      "code": "\n  .headed-textarea{\n    display:grid;\n    grid-template-rows: auto 1fr;\n    grid-template-columns: auto;\n    grid-column:1 / -1;\n    :not(textarea):not(.adaptive){\n      justify-self: start;\n    }\n    .headed-textarea__header{\n      grid-area:initial;\n    }\n  }\n",
+      "line": {
+        "start": 2,
+        "end": 15
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "labels\\_headedText.scss",
+      "name": "_headedText.scss"
+    }
+  },
+  {
+    "description": "Mixin that creates the properties that should be assigned for inline rolls\n",
+    "commentRange": {
+      "start": 1,
+      "end": 1
+    },
+    "context": {
+      "type": "mixin",
+      "name": "rollProperties",
+      "code": "\n  // Background settings\n  background-color: var(--inlineRoll#{$type}BackColor);\n\n  // Font settings\n  color:var(--inlineRoll#{$type}Color);\n  font-family:var(--inlineRoll#{$type}Font);\n  font-size:var(--inlineRoll#{$type}Size);\n\n  // Spacing\n  padding: var(--inlineRoll#{$type}Padding);\n  border: var(--inlineRoll#{$type}Border);\n  margin: var(--inlineRoll#{$type}Margin);\n",
+      "line": {
+        "start": 2,
+        "end": 15
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "rolltemplate\\helpers\\_index.scss",
+      "name": "_index.scss"
+    }
+  }
+]

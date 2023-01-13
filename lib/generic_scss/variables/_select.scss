@@ -1,3 +1,6 @@
+////@group variables
+/// @alias select
+/// Variables to control the display of selects
 @mixin variables{
   --lm-selectColor: var(--lm-fontColor);
   --dm-selectColor: var(--dm-fontColor);

@@ -1,59 +1,71 @@
 @use '../attribute_holders/buttons';
+
 // Styling for our various special fieldset constructions. e.g. [customControlFieldset](/pug.html#customControlFieldset).
-@mixin fieldsetStyling{
-  .repitem{
-    > input:not([type='checkbox']){
-      width:100%;
+@mixin fieldsetStyling {
+  .repitem {
+    >input:not([type='checkbox']) {
+      width: 100%;
     }
+
     .headed-textarea,
-    .description{
-      grid-column:1/-1;
+    .description {
+      grid-column: 1/-1;
     }
   }
-  .repcontainer{
-    display:grid;
-    gap:var(--normal-gap);
+
+  .repcontainer {
+    display: grid;
+    gap: var(--normal-gap);
   }
-  .repeating-container{
-    display:grid;
-    grid-template-areas:'header';
-    align-self:start;
-    > .header{
-      grid-area:header;
+
+  .repeating-container {
+    display: grid;
+    grid-template-areas: 'header';
+    align-self: start;
+
+    >.header {
+      grid-area: header;
     }
-    &:is(:hover,:focus-within,:focus) .repcontrol-button{
-      opacity:1;
+    :is(.repcontrol-button,.repcontrol_edit) {
+      opacity: 0;
+      transition: var(--revealTrans);
     }
-  }
-  .repcontrol-button{
-    @include buttons.text-button;
-    grid-area:header;
-    align-self:center;
-    text-transform:none;
-    opacity:0;
-    transition: {
-      property:opacity,background-color;
-      duration: var(--revealTime);
-    };
-    ~ .repcontrol{
-      display:none;
+    &:is(:hover, :focus-within, :focus) :is(.repcontrol-button,.repcontrol_edit) {
+      opacity: 1;
     }
   }
-  .repcontrol_move{
-    display:none;
-  }
-  .repcontrol-button--add{
-    justify-self:start;
-    &:before{
-      font-family:pictos;
-      content:'&';
+
+  // Adding pseudo rep styling
+  .repcontrol-button {
+    align-self: start;
+
+    ~.repcontrol {
+      justify-self: end;
+      z-index: 100;
+
+      >.repcontrol_add {
+        display: none !important;
+      }
     }
   }
-  .repcontrol-button--edit{
-    justify-self:end;
-    &:before{
-      font-family:pictos;
-      content:'p';
+
+  .repcontrol-button--add {
+    justify-self: start;
+    width: 15px;
+    height: 15px;
+    padding: 4px;
+    font-size: 0;
+    color: var(--col-alt);
+    border: 1px solid var(--col-alt);
+
+    &::before {
+      inset: 0;
+      place-self: center;
+      font-family: var(--font-icon);
+      font-size: 12px;
+      content: 'add';
     }
   }
+
+  //End pseudo rep styling
 }

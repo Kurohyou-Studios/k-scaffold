@@ -1,4 +1,6 @@
+//// @group borders
 //- Creates our basic border for inputs
+/// Creates the default highlight styling for inputs/selects
 @mixin inputHighlight{
   border-width: 1px 3px;
   border-style: solid;
@@ -6,6 +8,7 @@
   border-radius: 5px;
   box-sizing: border-box;
 }
+///Basic border styling for elements
 @mixin base-border{
   border-width: 1px 3px;
   border-style: solid;
@@ -13,12 +16,13 @@
   border-color: transparent;
   box-sizing: border-box;
 }
-//- Styling for elements that should have a box around them
+/// Styling for elements that should have a box around them
 @mixin boxed{
   border: 2px solid var(--borderColor);
   border-radius:0;
   box-sizing:border-box;
 }
+/// The complete border styling
 @mixin borderStyles{
   .boxed,
   .sheet-boxed{

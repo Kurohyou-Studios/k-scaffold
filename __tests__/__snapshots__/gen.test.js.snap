@@ -67,10 +67,6 @@ exports[`Environment > Should have attributes, characters, query response sub ob
     },
     {
       "func": [Function],
-      "trigger": "clicked:edit-custom-fieldset",
-    },
-    {
-      "func": [Function],
       "trigger": "change:repeating_inline-fieldset:collapse",
     },
     {
