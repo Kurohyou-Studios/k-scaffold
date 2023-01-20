@@ -21,5 +21,9 @@
   --size6:100%;
   --size7:87.5%;
 
-  --textOverflow: ellipsis;
+  // Default icon font size
+  --icon-size:24px;
+
+  //Default fonts used
+  --font-icon: 'Material Icons';
 }

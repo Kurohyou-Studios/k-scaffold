@@ -1,7 +1,9 @@
 // Vitest Snapshot v1
 
 exports[`k.build > Should generate the css file from scss 1`] = `
-".tabs__container:not(.k-active-tab) {
+"@import url(\\"https://fonts.googleapis.com/css?family=Material+Icons&display=swap\\");
+@import url(\\"https://fonts.googleapis.com/css?family=Material+Icons&display=swap\\");
+.tabs__container:not(.k-active-tab) {
   display: none !important;
 }
 
@@ -21,7 +23,8 @@ body {
   --size5:125%;
   --size6:100%;
   --size7:87.5%;
-  --textOverflow: ellipsis;
+  --icon-size:24px;
+  --font-icon: \\"Material Icons\\";
   --normal-gap-x:1rem;
   --normal-gap-y:1rem;
   --normal-gap: var(--normal-gap-x);
@@ -361,22 +364,7 @@ body.sheet-darkmode {
   font-family: \\"Material Icons\\";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px; /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-  /* Support for IE. */
-  font-feature-settings: \\"liga\\";
+  font-size: var(--icon-size); /* Preferred icon size */
 }
 .ui-dialog .tab-content .charsheet .sheet-italics,
 .ui-dialog .tab-content .charsheet .italics {
@@ -777,22 +765,7 @@ body.sheet-darkmode {
   font-family: \\"Material Icons\\";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px; /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-  /* Support for IE. */
-  font-feature-settings: \\"liga\\";
+  font-size: var(--icon-size); /* Preferred icon size */
 }
 .ui-dialog .tab-content .charsheet .text-collapse__text {
   display: inline;
@@ -4176,6 +4149,7 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   kFuncs.persistentTabs = persistentTabs;
   /**
  * This stores the name of your sheet for use in the logging functions {@link log} and {@link debug}. Accessible by \`k.sheetName\`
+ * @memberof sheetworkers
  * @var
  * @type {string}
  */
@@ -4183,6 +4157,7 @@ let sheetName = 'kScaffold Powered Sheet';
 kFuncs.sheetName = sheetName;
 /**
 	* This stores the version of your sheet for use in the logging functions{@link log} and {@link debug}. It is also stored in the sheet_version attribute on your character sheet. Accessible via \`k.version\`
+ * @memberof sheetworkers
 	* @var
 	* @type {number}
 	*/
@@ -4190,6 +4165,7 @@ let version = 0;
 kFuncs.version = version;
 /**
 	* A boolean flag that tells the script whether to enable or disable {@link debug} calls. If the version of the sheet is \`0\`, or an attribute named \`debug_mode\` is found on opening this is set to true for your entire session. Otherwise, it remains false.
+ * @memberof sheetworkers
 	* @var
 	* @type {boolean}
 	*/
@@ -4203,13 +4179,14 @@ const initialSetups = {};
 const allHandlers = {};
 const addFuncs = {};
 
-const kscaffoldJSVersion = '0.0.4';
-const kscaffoldPUGVersion = '0.0.4';
+const kscaffoldJSVersion = '1.0.0';
+const kscaffoldPUGVersion = '1.0.0';
   /*jshint esversion: 11, laxcomma:true, eqeqeq:true*/
 /*jshint -W014,-W084,-W030,-W033*/
 
 /**
  * Replaces problem characters to use a string as a regex
+ * @memberof sheetworkers
  * @param {string} text - The text to replace characters in
  * @returns {string}
  * @example
@@ -4223,6 +4200,7 @@ kFuncs.sanitizeForRegex = sanitizeForRegex;
 
 /**
  * Converts a value to a number, it\\\\'s default value, or \`0\` if no default value passed.
+ * @memberof sheetworkers
  * @param {string|number} val - Value to convert to a number
  * @param {number} def - The default value, uses 0 if not passed
  * @returns {number|undefined}
@@ -4243,6 +4221,7 @@ kFuncs.value = value;
 
 /**
  * Extracts the section (e.g. \`repeating_equipment\`), rowID (e.g \`-;lkj098J:LKj\`), and field name (e.g. \`bulk\`) from a repeating attribute name.
+ * @memberof sheetworkers
  * @param {string} string - The string to parse
  * @returns {array} - Array of matches. Index 0: the section name, e.g. repeating_equipment | Index 1:the row ID | index 2: The name of the attribute
  * @returns {string[]}
@@ -4270,6 +4249,7 @@ kFuncs.parseRepeatName = parseRepeatName;
  * Parses out the components of a trigger name similar to [parseRepeatName](#parserepeatname). Aliases: parseClickTrigger.
  * 
  * Aliases: \`k.parseClickTrigger\`
+ * @memberof sheetworkers
  * @param {string} string The triggerName property of the
  * @returns {array} - For a repeating button named \`repeating_equipment_-LKJhpoi98;lj_roll\`, the array will be \`['repeating_equipment','-LKJhpoi98;lj','roll']\`. For a non repeating button named \`roll\`, the array will be \`[undefined,undefined,'roll']\`
  * @returns {string[]}
@@ -4303,6 +4283,7 @@ kFuncs.parseClickTrigger = parseClickTrigger;
 
 /**
  * Parses out the attribute name from the htmlattribute name.
+ * @memberof sheetworkers
  * @param {string} string - The triggerName property of the [event](https://wiki.roll20.net/Sheet_Worker_Scripts#eventInfo_Object).
  * @returns {string}
  * @example
@@ -4319,6 +4300,7 @@ kFuncs.parseHTMLName = parseHTMLName;
 
 /**
  * Capitalize each word in a string
+ * @memberof sheetworkers
  * @param {string} string - The string to capitalize
  * @returns {string}
  * @example
@@ -4332,6 +4314,7 @@ kFuncs.capitalize = capitalize;
 
 /**
  * Extracts a roll query result for use in later functions. Must be awaited as per [startRoll documentation](https://wiki.roll20.net/Sheet_Worker_Scripts#Roll_Parsing.28NEW.29). Stolen from [Oosh\\\\'s Adventures with Startroll thread](https://app.roll20.net/forum/post/10346883/adventures-with-startroll).
+ * @memberof sheetworkers
  * @param {string} query - The query should be just the text as the \`?{\` and \`}\` at the start/end of the query are added by the function.
  * @returns {Promise} - Resolves to the selected value from the roll query
  * @example
@@ -4355,6 +4338,7 @@ kFuncs.extractQueryResult = extractQueryResult;
 
 /**
  * Simulates a query for ensuring that async/await works correctly in the sheetworker environment when doing conditional startRolls. E.g. if you have an if/else and only one of the conditions results in \`startRoll\` being called (and thus an \`await\`), the sheetworker environment would normally crash. Awaiting this in the condition that does not actually need to call \`startRoll\` will keep the environment in sync.
+ * @memberof sheetworkers
  * @param {string|number} [value] - The value to return. Optional.
  * @returns {Promise} - Resolves to the value passed to the function
  * @example
@@ -4374,6 +4358,7 @@ kFuncs.pseudoQuery = pseudoQuery;
 
 /**
  * An alias for console.log.
+ * @memberof sheetworkers
  * @param {any} msg - The message can be a straight string, an object, or an array. If it is an object or array, the object will be broken down so that each key is used as a label to output followed by the value of that key. If the value of the key is an object or array, it will be output via \`console.table\`.
  */
 const log = function(msg){
@@ -4394,6 +4379,7 @@ kFuncs.log = log;
 
 /**
  * Alias for console.log that only triggers when debug mode is enabled or when the sheet\\\\'s version is \`0\`. Useful for entering test logs that will not pollute the console on the live sheet.
+ * @memberof sheetworkers
  * @param {any} msg - 'See {@link k.log}
  * @param {boolean} force - Pass as a truthy value to force the debug output to be output to the console regardless of debug mode.
  * @returns {void}
@@ -4418,6 +4404,7 @@ kFuncs.debug = debug;
 
 /**
  * Orders the section id arrays for all sections in the \`sections\` object to match the repOrder attribute.
+ * @memberof sheetworkers
  * @param {attributesProxy} attributes - The attributes object that must have a value for the reporder for each section.
  * @param {object[]} sections - Object containing the IDs for the repeating sections, indexed by repeating section name.
  */
@@ -4431,6 +4418,7 @@ kFuncs.orderSections = orderSections;
 
 /**
  * Orders a single ID array.
+ * @memberof sheetworkers
  * @param {string[]} repOrder - Array of IDs in the order they are in on the sheet.
  * @param {string[]} IDs - Array of IDs to be ordered.
  */
@@ -4443,6 +4431,7 @@ kFuncs.orderSection = orderSection;
 
 /**
  * Splits a comma delimited string into an array
+ * @memberof sheetworkers
  * @param {string} string - The string to split.
  * @returns {array} - The string segments of the comma delimited list.
  */
@@ -4453,6 +4442,7 @@ kFuncs.commaArray = commaArray;
 
 /**
  * Roll escape functions for passing data in action button calls. Base64 encodes/decodes the data.
+ * @memberof sheetworkers
  */
 const RE = {
   chars: {
@@ -4462,11 +4452,21 @@ const RE = {
       '}': '%rcub;',
       '{': '%lcub;',
   },
+  /**
+   * Encodes data in Base64. This is useful for passing roll information to action buttons called from roll buttons.
+   * @param {string|object|any[]} data - The data that you want to Base64 encode
+   * @returns {string} - The encoded data
+   */
   escape(data) {
     return typeof data === 'object' ?
       \`KDATA\${btoa(JSON.stringify(data))}\` :
       \`KSTRING\${btoa(data)}\`;
   },
+  /**
+   * Decodes Base64 encoded strings that were created by the K-scaffold
+   * @param {string|object|any[]} string - The string of encoded data to decode. If this is not a string, or is not a string that was encoded by the K-scaffold, it will be returned as is.
+   * @returns {string|object|any[]}
+   */
   unescape(string) {
     const isData = typeof string === 'string' &&
       (
@@ -4652,6 +4652,7 @@ const createAttrProxy = function(attrs){
 
 /**
  * Function that registers a function for being called via the funcs object. Returns true if the function was successfully registered, and false if it could not be registered for any reason.
+ * @memberof sheetworkers
  * @param {object} funcObj - Object with keys that are names to register functions under and values that are functions.
  * @param {object} optionsObj - Object that contains options to use for this registration.
  * @param {string[]} optionsObj.type - Array that contains the types of specialized functions that apply to the functions being registered. Valid types are \`\\"opener\\"\`, \`\\"updater\\"\`, and \`\\"default\\"\`. \`\\"default\\"\` is always used, and never needs to be passed.
@@ -4701,6 +4702,12 @@ const registerFuncs = function(funcObj,optionsObj = {}){
 };
 kFuncs.registerFuncs = registerFuncs;
 
+/**
+ * Function that sets up the action calls used in the roller mixin.
+ * @memberof sheetworkers
+ * @param {object} attributes - The attribute values of the character
+ * @param {object[]} sections - All the repeating section IDs
+ */
 const setActionCalls = function({attributes,sections}){
   actionAttributes.forEach((base)=>{
     let [section,,field] = k.parseTriggerName(base);
@@ -4717,10 +4724,11 @@ const setActionCalls = function({attributes,sections}){
 funcs.setActionCalls = setActionCalls;
 
 /**
- * Function to call a function previously registered to the funcs object. May not be used that much. Either returns the function or null if no function exists.
+ * Function to call a function previously registered to the funcs object. May not be used that much in actual sheets, but very useful when writing unit tests for your sheet. Either returns the function or null if no function exists.
+ * @memberof sheetworkers
  * @param {string} funcName - The name of the function to invoke.
  * @param {...any} args - The arguments to call the function with.
- * @returns {any}
+ * @returns {function|null}
  * @example
  * //Call myFunc with two arguments
  * k.callFunc('myFunc','an argument','another argument');
@@ -4734,7 +4742,8 @@ const callFunc = function(funcName,...args){
     return null;
   }
 };
-kFuncs.callFunc = callFunc;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/
+kFuncs.callFunc = callFunc;/**@namespace {object} sheetworkers */
+/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/
 /*jshint -W014,-W084,-W030,-W033*/
 //Sheet Updaters and styling functions
 const updateSheet = function(){
@@ -4781,6 +4790,7 @@ const initialSetup = function(attributes,sections){
 
 /**
  * This is the default listener function for attributes that the K-Scaffold uses. It utilizes the \`triggerFuncs\`, \`listenerFunc\`, \`calculation\`, and \`affects\` properties of the K-scaffold trigger object (see the Pug section of the scaffold for more details).
+ * @memberof sheetworkers
  * @param {Roll20Event} event - The Roll20 event object
  * @returns {void}
  * @example
@@ -4860,6 +4870,7 @@ const addAllRows = function(affected,memo,sections){
 /*jshint -W014,-W084,-W030,-W033*/
 /**
  * Alias for [setSectionOrder()](https://wiki.roll20.net/Sheet_Worker_Scripts#setSectionOrder.28.3CRepeating_Section_Name.3E.2C_.3CSection_Array.3E.2C_.3CCallback.3E.29) that allows you to use the section name in either \`repeating_section\` or \`section\` formats. Note that the Roll20 sheetworker [setSectionOrder](https://wiki.roll20.net/Sheet_Worker_Scripts#setSectionOrder.28.3CRepeating_Section_Name.3E.2C_.3CSection_Array.3E.2C_.3CCallback.3E.29) currently causes some display issues on sheets.
+ * @memberof sheetworkers
  * @name setSectionOrder
  * @param {string} section - The name of the section, with or without \`repeating_\`
  * @param {string[]} order - Array of ids describing the desired order of the section.
@@ -4878,6 +4889,7 @@ kFuncs.setSectionOrder = _setSectionOrder;
 
 /**
  * Alias for [removeRepeatingRow](https://wiki.roll20.net/Sheet_Worker_Scripts#removeRepeatingRow.28_RowID_.29) that also removes the row from the current object of attribute values and array of section IDs to ensure that erroneous updates are not issued.
+ * @memberof sheetworkers
  * @name removeRepeatingRow
  * @param {string} row - The row id to be removed
  * @param {attributesProxy} attributes - The attribute values currently in memory
@@ -4909,6 +4921,7 @@ kFuncs.removeRepeatingRow = _removeRepeatingRow;
 
 /**
  * Alias for [getAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getAttrs.28attributeNameArray.2C_callback.29) that converts the default object of attribute values into an {@link attributesProxy} and passes that back to the callback function.
+ * @memberof sheetworkers
  * @name getAttrs
  * @param {string[]} [props=baseGet] - Array of attribute names to get the value of. Defaults to {@link baseGet} if not passed.
  * @param {function(attributesProxy)} callback - The function to call after the attribute values have been gotten. An {@link attributesProxy} is passed to the callback.
@@ -4933,6 +4946,7 @@ kFuncs.getAttrs = _getAttrs;
 
 /**
  * Alias for [getAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getAttrs.28attributeNameArray.2C_callback.29) and [getSectionIDs](https://wiki.roll20.net/Sheet_Worker_Scripts#getSectionIDs.28section_name.2Ccallback.29) that combines the actions of both sheetworker functions and converts the default object of attribute values into an {@link attributesProxy}. Also gets the details on how to handle all attributes from the master {@link cascades} object and.
+ * @memberof sheetworkers
  * @param {Object} args
  * @param {string[]} [args.props=baseGet] - Array of attribute names to get the value of. Defaults to {@link baseGet} if not passed.
  * @param {repeatingSectionDetails} sectionDetails - Array of details about a section to get the IDs for and attributes that need to be gotten. 
@@ -4961,6 +4975,7 @@ kFuncs.getAllAttrs = getAllAttrs;
 
 /**
  * Alias for [getSectionIDs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getSectionIDs.28section_name.2Ccallback.29) that allows you to iterate through several functions at once. Also assembles an array of repeating attributes to get.
+ * @memberof sheetworkers
  * @param {object[]} sectionDetails - Array of details about a section to get the IDs for and attributes that need to be gotten.
  * @param {string} sectionDetails.section - The full name of the repeating section including the \`repeating_\` prefix.
  * @param {string[]} sectionDetails.fields - Array of field names that need to be gotten from the repeating section
@@ -5007,6 +5022,7 @@ kFuncs.getSections = getSections;
 // Can be awaited to get the values returned from _setAttrs
 /**
  * Alias for [setAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#setAttrs.28values.2Coptions.2Ccallback.29) that sets silently by default.
+ * @memberof sheetworkers
  * @param {object} obj - The object containting attributes to set
  * @param {boolean} [vocal=false] - Whether to set silently (default value) or not.
  * @param {function()} [callback] - The callback function to invoke after the setting has been completed. No arguments are passed to the callback function.
@@ -5037,6 +5053,7 @@ const generateCustomID = function(string){
 
 /**
  * Alias for generateRowID that adds the new id to the {@link sectionObj}. Also allows for creation of custom IDs that conform to the section ID requirements.
+ * @memberof sheetworkers
  * @name generateRowID
  * @param {sectionObj} sections
  * @param {string} [customText] - Custom text to start the ID with. This text should not be longer than the standard repeating section ID format.
@@ -5067,6 +5084,13 @@ const _generateRowID = function(section,sections,customText){
 kFuncs.generateRowID = _generateRowID;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/
 /*jshint -W014,-W084,-W030,-W033*/
 const listeners = {};
+
+/**
+ * The array of attribute names that the k-scaffold gets by default. Does not incude repeating attributes.
+ * @memberof sheetworkers
+ * @var
+ * @type {array}
+ */
 const baseGet = Object.entries(cascades).reduce((memo,[attrName,detailObj])=>{
   if(!/repeating/.test(attrName) && detailObj.type !== 'action'){
     memo.push(detailObj.name);
@@ -5077,6 +5101,7 @@ const baseGet = Object.entries(cascades).reduce((memo,[attrName,detailObj])=>{
   return memo;
 },[]);
 kFuncs.baseGet = baseGet;
+
 const registerEventHandlers = function(){
   on('sheet:opened',updateSheet);
   debug({funcKeys:Object.keys(funcs),funcs});
@@ -5092,6 +5117,11 @@ const registerEventHandlers = function(){
 };
 setTimeout(registerEventHandlers,0);//Delay the execution of event registration to ensure all event properties are present.
 
+/**
+ * Function to add a repeating section when the add button of a customControlFieldset or inlineFieldset is clicked.
+ * @memberof sheetworkers
+ * @param {object} event - The R20 event object
+ */
 const addItem = function(event){
   let [,,section] = parseClickTrigger(event.triggerName);
   section = section.replace(/add-/,'');
@@ -5113,18 +5143,11 @@ const addItem = function(event){
     }
   });
 };
-funcs.addItem = addItem;
-
-const editSection = function(event){
-  let [,,section] = parseClickTrigger(event.triggerName);
-  section = section.replace(/edit-/,'');
-  let target = \`fieldset.repeating_\${section} + .repcontainer\`;
-  $20(target).toggleClass('ui-sortable');
-  $20(target).toggleClass('editmode');
-};
-registerFuncs({editSection});/**
+funcs.addItem = addItem;/**
  * The default tab navigation function of the K-scaffold. Courtesy of Riernar. It will add \`k-active-tab\` to the active tab-container and \`k-active-button\` to the active button. You can either write your own CSS to control display of these, or use the default CSS included in \`scaffold/_k.scss\`. Note that \`k-active-button\` has no default CSS as it is assumed that you will want to style the active button to match your system.
+ * @memberof sheetworkers
  * @param {Object} trigger - The trigger object
+ * @param {object} attributes - The attribute values of the character
  */
 const kSwitchTab = function ({ trigger, attributes }) {
   const [container, tab] = (
@@ -5145,10 +5168,8 @@ registerFuncs({ kSwitchTab });
 
 /**
  * Sets persistent tabs to their last active state
- * @param {object} trigger - The trigger that caused the function to be called
+ * @memberof sheetworkers
  * @param {object} attributes - The attribute values of the character
- * @param {object[]} sections - All the repeating section IDs
- * @param {object} casc - Expanded cascade object
  */
 const kTabOnOpen = function({trigger,attributes,sections,casc}){
   if(typeof persistentTabs === 'undefined') return;
@@ -5166,9 +5187,6 @@ registerFuncs({ kTabOnOpen },{type:['opener']});
 
 exports[`k.build > Should generate the testFramework.js for tests 1`] = `
 "{
-  \\"option 1\\": \\"option 1\\",
-  \\"option 2\\": \\"option 2\\",
-  \\"select label\\": \\"select label\\",
   \\"tabs-main-tabs-basic-attributes\\": \\"tabs-main-tabs-basic-attributes\\",
   \\"tabs-main-tabs-empty-tab\\": \\"tabs-main-tabs-empty-tab\\",
   \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\",
@@ -5176,15 +5194,15 @@ exports[`k.build > Should generate the testFramework.js for tests 1`] = `
   \\"hidden on expanded\\": \\"hidden on expanded\\",
   \\"hidden on collapse\\": \\"hidden on collapse\\",
   \\"always visible\\": \\"always visible\\",
-  \\"label\\": \\"label\\"
+  \\"label\\": \\"label\\",
+  \\"option 1\\": \\"option 1\\",
+  \\"option 2\\": \\"option 2\\",
+  \\"select label\\": \\"select label\\"
 }"
 `;
 
 exports[`k.build > Should generate the translation file from the i18n entries 1`] = `
 "{
-  \\"option 1\\": \\"option 1\\",
-  \\"option 2\\": \\"option 2\\",
-  \\"select label\\": \\"select label\\",
   \\"tabs-main-tabs-basic-attributes\\": \\"tabs-main-tabs-basic-attributes\\",
   \\"tabs-main-tabs-empty-tab\\": \\"tabs-main-tabs-empty-tab\\",
   \\"tabs-main-tabs-repeating-attributes\\": \\"tabs-main-tabs-repeating-attributes\\",
@@ -5192,6 +5210,9 @@ exports[`k.build > Should generate the translation file from the i18n entries 1`
   \\"hidden on expanded\\": \\"hidden on expanded\\",
   \\"hidden on collapse\\": \\"hidden on collapse\\",
   \\"always visible\\": \\"always visible\\",
-  \\"label\\": \\"label\\"
+  \\"label\\": \\"label\\",
+  \\"option 1\\": \\"option 1\\",
+  \\"option 2\\": \\"option 2\\",
+  \\"select label\\": \\"select label\\"
 }"
 `;

@@ -9,6 +9,9 @@ lerna-debug.log*
 # Test Framework
 testFramework.js
 
+# Documentation data
+docs/src/assets/data/
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 

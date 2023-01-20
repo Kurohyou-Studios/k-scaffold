@@ -1,6 +1,6 @@
 @use "./../../../../lib/k" as k;
 @use './variables/system';
-
+@import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap');
 body{
   @include k.variables;
   @include system.variables;

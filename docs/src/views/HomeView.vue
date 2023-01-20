@@ -1,9 +1,12 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+
+import Readme from 'X/README.md';
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <Readme/>
 </template>
+
+<style lang="scss">
+</style>

@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin":{
+    "k-build":"cli.mjs"
+  },
   "scripts": {
     "docs": "node docGen",
+    "doc-dev":"cd docs && npm run dev",
+    "build-doc":"cd docs && npm run build",
     "build": "cd test_sheet && npm run build",
     "watch": "cd test_sheet && npm start",
     "test": "vitest run",
