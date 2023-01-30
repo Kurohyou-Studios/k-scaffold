@@ -5,7 +5,6 @@ const { exec } = require(`child_process`);
 const fs = require('fs/promises');
 const pugDoc = require('pug-doc');
 const sassdoc = require('sassdoc');
-const markdown = require(`markdown`).markdown;
 
 const locals = require('./lib/render/locals');
 
@@ -39,7 +38,7 @@ const gen = async ()=>{
     export const sass = ${sJSON};
     export const pug = ${pJSON};
     export const js = ${jJSON};`
-      .replace(/^\s+/mg,'')  
+      .replace(/^\s+/mg,'')
   );
   await Promise.all([
     fs.rm(pugPath),
