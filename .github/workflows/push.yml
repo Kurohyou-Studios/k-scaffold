@@ -21,6 +21,8 @@ jobs:
         run: npm run test
       - name: Build doc data
         run: npm run docs
+      - name: Install doc site npm packages
+        run: cd docs && npm install
       - name: Build doc site
         run: npm run build-doc
       - name: Push doc
