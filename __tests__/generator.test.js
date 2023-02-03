@@ -18,9 +18,8 @@ describe('k.build',()=>{
     expect(html).toMatchSnapshot();
   });
   it('Should generate the translation file from the i18n entries',async ()=>{
-    const translation = await fs.readFile(translationURL,'utf8');
-    console.warn('translation',translation);
-    expect(translation).toMatchObject({
+    const translation = await fs.readFile(translationURL,'utf8').then(d => JSON.parse(d));
+    const expectObj = {
       "tabs-main-tabs-basic-attributes": "tabs-main-tabs-basic-attributes",
       "tabs-main-tabs-empty-tab": "tabs-main-tabs-empty-tab",
       "tabs-main-tabs-repeating-attributes": "tabs-main-tabs-repeating-attributes",
@@ -32,7 +31,8 @@ describe('k.build',()=>{
       "option 1": "option 1",
       "option 2": "option 2",
       "select label": "select label"
-    });
+    };
+    expect(translation).toMatchObject(expectObj);
   })
   it('Should generate the testFramework.js for tests', async ()=>{
     const js = await fs.readFile(jsURL,'utf8');
