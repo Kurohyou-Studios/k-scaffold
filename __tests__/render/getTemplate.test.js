@@ -10,10 +10,9 @@ describe('getTemplate()',()=>{
     const spy = fsSpy.readFile(
       `include k-scaffold
 +tabs({})`
-    )
+    );
     
     const temp = await getTemplate('./mock/path');
-    console.warn('temp',temp);
-    expect(temp).toMatchSnapshot();
+    expect(temp).toMatchInlineSnapshot('"include /node_modules/@kurohyou/k-scaffold/_k.pug\n+tabs({})"');
   })
 });
