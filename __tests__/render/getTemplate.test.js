@@ -11,8 +11,9 @@ describe('getTemplate()',()=>{
       `include k-scaffold
 +tabs({})`
     )
-
+    
     const temp = await getTemplate('./mock/path');
+    console.warn('temp',temp);
     expect(temp).toMatchSnapshot();
   })
 });

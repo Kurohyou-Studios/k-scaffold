@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest';
 
 const cssURL = new URL('./../test_sheet/build/K-scaffold_Tester.css',import.meta.url);
 const htmlURL = new URL('./../test_sheet/build/K-scaffold_Tester.html',import.meta.url);
-const jsURL = new URL('./../test_sheet/build/translation.json',import.meta.url);
+const jsURL = new URL('./testFramework.js',import.meta.url);
 const translationURL = new URL('./../test_sheet/build/translation.json',import.meta.url)
 
 describe('k.build',()=>{
