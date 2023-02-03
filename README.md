@@ -98,7 +98,37 @@ npx @kurohyou/k-init
 
 ## Usage
 
-The scaffold simplifies many of the common tasks of creating a Roll20 character sheet and provides constructs to easily create everything from fill to left radio groups to textareas that grow based on the content of their associated Roll20 attribute.
+The scaffold simplifies many of the common tasks of creating a Roll20 character sheet and provides constructs to easily create everything from fill to left radio groups to textareas that grow based on the content of their associated Roll20 attribute. To generate a K-scaffold sheet, you will need a pug file, and an scss file.
+
+### Pug
+
+Your main pug file should start with:
+```jade
+include k-scaffold
+//- Your code starts here
+```
+This will give your pug file(s) access to the K-scaffold mixins and local variables.
+
+### SCSS
+
+Any scss file that you want to use the K-scaffold's mixins in needs to start with:
+```scss
+@use "k-scaffold" as k;
+```
+
+### Build your sheet
+
+To build your sheet, simply run the following command:
+```shell
+> k-build
+```
+Alternatively, you can build in watch mode so that the sheet is updated as you make code changes.
+```shell
+> k-build --watch
+OR
+> k-build --w
+```
+This is useful when using the [Roll20 Autocode chrome extension](https://chrome.google.com/webstore/detail/roll20-api-and-sheet-auto/hboggmcfmaakkifgifjbccnpfmnegick) to automatically update the Roll20 sandbox.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <!-- ROADMAP -->
 
