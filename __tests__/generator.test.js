@@ -19,6 +19,7 @@ describe('k.build',()=>{
   });
   it('Should generate the translation file from the i18n entries',async ()=>{
     const translation = await fs.readFile(translationURL,'utf8');
+    console.warn('translation',translation);
     expect(translation).toMatchSnapshot();
   })
   it('Should generate the testFramework.js for tests', async ()=>{
