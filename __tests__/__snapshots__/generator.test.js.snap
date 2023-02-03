@@ -4742,7 +4742,7 @@ const callFunc = function(funcName,...args){
     return null;
   }
 };
-kFuncs.callFunc = callFunc;/**@namespace {object} sheetworkers */
+kFuncs.callFunc = callFunc;/**@namespace sheetworkers */
 /*jshint esversion: 11, laxcomma:true, eqeqeq:true*/
 /*jshint -W014,-W084,-W030,-W033*/
 //Sheet Updaters and styling functions
