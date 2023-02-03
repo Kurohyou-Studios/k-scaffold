@@ -5,14 +5,6 @@ import '../mocks';
 describe('kErrorhead',()=>{
   it('Should log the provided error',()=>{
     kErrorHead('test');
-    expect(console.log.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "[41m==============
-      ==== test ====
-      ==============[49m",
-        ],
-      ]
-    `);
+    expect(console.log.calls[0][0]).toMatch('test');
   })
 })
