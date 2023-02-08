@@ -14,6 +14,9 @@ import router from './router'
 
 import './assets/main.scss'
 
+import * as data from '@/assets/data'
+
+console.log('data',data);
 /* add icons to the library */
 library.add(faDiceD20);
 

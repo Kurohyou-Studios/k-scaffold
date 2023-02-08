@@ -1,13 +1,42 @@
 <script setup>
 import LibraryCard from './LibraryCard.vue'
-const { data } = defineProps(['data']);
+const { data:origData } = defineProps(['data']);
+console.log('origData',origData);
+const namespaceObjs = origData.reduce((memo,obj) => {
+  const spaceKey = obj.kind === 'namespace' ?
+    obj.name :
+    obj.memberof;
+  memo[spaceKey] = memo[spaceKey] || {members:[]};
+  if(obj.kind === 'namespace'){
+    memo[spaceKey].head = obj;
+  }else{
+    memo[spaceKey].members.push(obj);
+  }
+  return memo;
+},{});
+console.log('namespaceObjs',namespaceObjs);
+const data = Object.entries(namespaceObjs)
+  .reduce((memo,[name,obj]) => {
+    memo.push(
+      obj.head,
+      ...obj.members.sort((a,b) => (a.name || a.meta?.name).localeCompare(b.name || b.meta?.name))
+    );
+    return memo;
+  },[]);
 </script>
 
 <template>
 <div class="library-container">
   <nav class="library-nav">
     <ul>
-      <li v-for="entry,index in data" :key="`nav-entry-${index}`"><a :href="`#${entry.name || entry.meta?.name || entry.context?.name}`">{{ entry.name || entry.meta?.name || entry.context?.name }}</a></li>
+      <li v-for="hObj,hindex in Object.values(namespaceObjs)" :key="`nav-entry-${hindex}`">
+        <routerLink class="nav-head" :to="`#${hObj.head.name}`">{{ hObj.head.name }}</routerLink>
+        <ul>
+          <li v-for="entry,index in hObj.members" :key="`nav-entry-${hindex}-${index}`">
+            <routerLink :to="`#${entry.name || entry.meta?.name || entry.context?.name}`">{{ entry.name || entry.meta?.name || entry.context?.name }}</routerLink>
+          </li>
+        </ul>
+      </li>
     <!-- navigation -->
     </ul>
   </nav>
@@ -29,7 +58,12 @@ const { data } = defineProps(['data']);
   column-gap:var(--gap);
 }
 .library-nav{
+  --topSet: calc(var(--headHeight,90px) + 50px);
   width:100%;
+  position: sticky;
+  top: var(--topSet);
+  max-height: calc(100vh - var(--topSet) - 32px);
+  overflow: auto;
   ul{
     margin:0;
     padding:0;
@@ -41,5 +75,15 @@ const { data } = defineProps(['data']);
 }
 .library-content{
   grid-area:content;
+  max-width: 100%;
+  overflow: hidden;
+}
+.nav-head{
+  font-size:125%;
+  font-weight:bold;
+  margin-top:var(--half-gap);
+  margin-bottom:var(--tiny-gap);
+  border-bottom:1px solid black;
+  display:block;
 }
 </style>

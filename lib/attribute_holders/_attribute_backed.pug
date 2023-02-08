@@ -2,8 +2,6 @@
 //- @pugdoc
   name: img
   description: A mixin to create a sheet image element. Particularly useful when using the image attribute syntax.
-  arguments:
-  attributes:
   example: |
     include ../_k.pug
     +img({name:'my image',class:'some-class'})
@@ -11,10 +9,12 @@ mixin img(obj)
   - checkKUse();
   - obj.class = obj.class ? replaceProblems(obj.class) : undefined;
   - obj['data-i18n-alt'] = obj['data-i18n-alt'] || obj.name;
-  - obj.name = replaceSpaces(obj.name);
+  - obj.name = attrName(obj.name);
   - obj.title = obj.title || attrTitle(obj.name);
-  - obj.name = `attr_${obj.name}`;
-  img&attributes(obj)
+  - const elementObj = makeElementObj(obj);
+  - addFieldToFieldsetObj(obj);
+  - storeTrigger(obj);
+  img&attributes(elementObj)
 //-End Mixin
 
 

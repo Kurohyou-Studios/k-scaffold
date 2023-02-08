@@ -9,6 +9,8 @@
   --dm-code-back:#f6f8fa;
   --code-back:var(--lm-code-back);
   font-family: 'Exo 2';
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--headHeight);
 }
 h1,h2,h3{
   font-family:Aldrich;

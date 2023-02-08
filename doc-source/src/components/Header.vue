@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import ToggleLabel from '@/components/ToggleLabel.vue'
 const colorValue = ref('system');
 const toggleColor = (event) => colorValue.value = event.newValue;
 </script>
 
 <template>
-<header>
+<header ref="headEl">
   <div class="flex align-items-end gap">
     <h1>The K-Scaffold</h1>
     <span class="subtitle">A Roll20 Sheet Framework</span>
