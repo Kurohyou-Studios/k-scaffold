@@ -4,7 +4,6 @@ import * as mkd from 'markdown'
 const markdown = mkd.markdown;
 const { entry } = defineProps(['entry']);
 const entryName = ref(`${entry.name || entry.meta?.name || entry.context?.name}`);
-console.log(entryName.value,entry);
 const entryLevel = entry.kind === 'namespace' ? 3 : 4;
 </script>
 

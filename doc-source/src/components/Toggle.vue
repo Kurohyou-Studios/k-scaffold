@@ -36,6 +36,7 @@ const clickHandler = (event) => {
     --shadowSize: calc( var(--baseHeight) / 4);
     --shadow:var(--shadowSize) var(--shadowSize) var(--shadowSize) rgb(0 0 0 / 0.2);
     --overlapSize:calc(var(--baseHeight) / 10 * -1);
+    background-color:inherit;
     overflow:hidden;
     display:inline-flex;
     height:var(--baseHeight);

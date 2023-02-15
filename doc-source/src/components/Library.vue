@@ -1,11 +1,10 @@
 <script setup>
 import LibraryCard from './LibraryCard.vue'
 const { data:origData } = defineProps(['data']);
-console.log('origData',origData);
 const namespaceObjs = origData.reduce((memo,obj) => {
   const spaceKey = obj.kind === 'namespace' ?
-    obj.name :
-    obj.memberof;
+    obj.name.toLowerCase() :
+    obj.memberof.toLowerCase();
   memo[spaceKey] = memo[spaceKey] || {members:[]};
   if(obj.kind === 'namespace'){
     memo[spaceKey].head = obj;
@@ -14,7 +13,7 @@ const namespaceObjs = origData.reduce((memo,obj) => {
   }
   return memo;
 },{});
-console.log('namespaceObjs',namespaceObjs);
+console.log('namespaceObjs',namespaceObjs)
 const data = Object.entries(namespaceObjs)
   .reduce((memo,[name,obj]) => {
     memo.push(
@@ -50,7 +49,7 @@ const data = Object.entries(namespaceObjs)
 <style lang="scss">
 .library-container{
   display:grid;
-  grid-template-columns:200px 1fr;
+  grid-template-columns:auto 1fr;
   grid-template-rows: minmax(auto,100vh) 1fr;
   grid-template-areas: 
     'nav content'

@@ -57,6 +57,7 @@ header{
   position:sticky;
   top:0px;
   font-family:Aldrich;
+  z-index:1000;
   .toggle-container{
     border-color:var(--secondary-font-color);
     input:checked:before{
@@ -70,9 +71,13 @@ header{
 nav{
   grid-area:nav;
   justify-self:end;
-  a[aria-current="page"]{
-    text-decoration: none;
-    color:var(--secondary-font-color);
+  a,
+  a:visited{
+    color:var(--primary-nav-color);
+    &[aria-current="page"]{
+      text-decoration: none;
+      color:var(--secondary-nav-color);
+    }
   }
   ul{
     display:flex;

@@ -10,6 +10,39 @@
   scroll-behavior: smooth;
   scroll-padding-top: var(--headHeight);
 }
+a{
+  color:var(--primary-link-color);
+  font-weight: 700;
+  &:visited{
+    color:var(--secondary-link-color);
+  }
+  &:where([href^="/"],[href^="#"]){
+    color:var(--primary-nav-color);
+    &:visited{
+      color:var(--secondary-nav-color);
+    }
+  }
+  &[href*="roll20.net"]{
+    color:var(--roll20-link-color);
+    &:after{
+      content:'';
+      position:relative;
+      top:-5px;
+      display:inline-block;
+      width:10px;
+      aspect-ratio: 1 / 1;
+      background: {
+        image:url('/roll20_logo.png');
+        repeat:no-repeat;
+        position:center;
+        size:contain;
+      }
+    }
+    &:visited{
+      color:var(--roll20-link-color);
+    }
+  }
+}
 h1,h2,h3{
   font-family:Aldrich;
   + .subtitle{

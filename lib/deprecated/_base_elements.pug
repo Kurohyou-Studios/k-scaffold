@@ -87,3 +87,10 @@ mixin label(obj)
   - obj.class = obj.class ? replaceProblems(obj.class) : undefined;
   label&attributes(obj)
     block
+
+mixin navButton(obj)
+  - addIfUnique(obj.name,'navButtons');
+  - obj.name = `nav ${obj.name}`;
+  +action(obj)&attributes(attributes)
+    block
+//- End Mixin

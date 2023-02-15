@@ -16,7 +16,7 @@ const data = [
     ) &&
     !o.undocumented)
 ];
-const kScriptObj = pug.find(o => o.meta.name === 'kscript');
+const kScriptObj = data.find(o => o.meta?.name === 'kscript');
 delete kScriptObj.output;
 </script>
 

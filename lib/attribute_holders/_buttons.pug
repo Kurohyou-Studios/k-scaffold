@@ -43,21 +43,6 @@ mixin action(obj, _attributes)
     block
 //- End Mixin
 
-//- @pugdoc
-  name: navButton
-  description: Alias for {@link button} that creates a button element with a type of `action` for use in nav buttons. Spaces in the name are replaced with dashes instead of underscores. The name is prefixed with `nav_`. A {@link trigger} object should be passed
-  arguments:
-  attributes:
-  example: |
-    include ../_k.pug
-    +navButton({name:'my button','data-i18n':'action button'})
-mixin navButton(obj)
-  - addIfUnique(obj.name,'navButtons');
-  - obj.name = `nav ${obj.name}`;
-  +action(obj)&attributes(attributes)
-    block
-//- End Mixin
-
 mixin rollerExtras(obj)
   - obj.class = obj.class ? `${replaceProblems(obj.class)} roller` : 'roller';
   - let attributeName = replaceSpaces(actionInputName(attrName(obj.name)));
