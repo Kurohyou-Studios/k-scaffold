@@ -11,6 +11,7 @@ mixin img(obj)
   - obj['data-i18n-alt'] = obj['data-i18n-alt'] || obj.name;
   - obj.name = attrName(obj.name);
   - obj.title = obj.title || attrTitle(obj.name);
+  - obj.name = `attr_${obj.name}`;
   - const elementObj = makeElementObj(obj);
   - addFieldToFieldsetObj(obj);
   - storeTrigger(obj);
