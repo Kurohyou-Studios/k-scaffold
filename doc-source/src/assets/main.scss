@@ -1,0 +1,132 @@
+@use './scss/color';
+:root{
+  font-size:10px;
+  --gap: 1.6rem;
+  --huge-gap: calc(var(--gap) * 2);
+  --half-gap: calc(var(--gap) / 2);
+  --tiny-gap: calc(var(--half-gap) / 2);
+
+  font-family: 'Exo 2';
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--headHeight);
+}
+a{
+  color:var(--primary-link-color);
+  font-weight: 700;
+  &:visited{
+    color:var(--secondary-link-color);
+  }
+  &:where([href^="/"],[href^="#"]){
+    color:var(--primary-nav-color);
+    &:visited{
+      color:var(--secondary-nav-color);
+    }
+  }
+  &[href*="roll20.net"]{
+    color:var(--roll20-link-color);
+    &:after{
+      content:'';
+      position:relative;
+      top:-5px;
+      display:inline-block;
+      width:10px;
+      aspect-ratio: 1 / 1;
+      background: {
+        image:url('/roll20_logo.png');
+        repeat:no-repeat;
+        position:center;
+        size:contain;
+      }
+    }
+    &:visited{
+      color:var(--roll20-link-color);
+    }
+  }
+}
+h1,h2,h3{
+  font-family:Aldrich;
+  + .subtitle{
+    font-family:Aldrich;
+  }
+}
+body{
+  font-size:1.6rem;
+  margin-block:0;
+  margin-inline:auto;
+  max-width:1200px;
+  min-height: 100vh;
+}
+.capitalize{
+  text-transform: capitalize;
+}
+.flex{
+  display:flex;
+}
+@each $loc in center,start,end,stretch{
+  .align-items-#{$loc}{
+    align-items: $loc;
+  }
+}
+@each $level in 1,2,3,4,5,6{
+  h#{$level}{
+    margin:0;
+  }
+}
+.flex-box{
+  display:flex;
+}
+.align-items-start{
+  align-items:start;
+}
+.gap{
+  gap:var(--gap);
+}
+@each $size in half,tiny,huge{
+  .#{$size}-gap{
+    gap:var(--#{$size}-gap);
+  }
+}
+#app{
+  display:flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-shadow: 5px 0px 4px rgb(0 0 0 / 0.2),-5px 0px 4px rgb(0 0 0 / 0.2);
+}
+
+.markdown-body{
+  > :not(h2) ~ * {
+    display: none;
+  }
+  > :is(h2,h2 ~ *) {
+    display: block;
+  }
+  > [align="right"]{
+    display:none !important;
+  }
+}
+pre{
+  background:var(--code-block-back);
+  color: var(--code-block-color);
+  border-radius:5px;
+  padding:var(--half-gap);
+}
+:not(pre) > code{
+  background-color: var(--code-inline-back);
+  color:var(--code-inline-color);
+  border-radius: 3px;
+  border:1px solid var(--code-inline-color);
+  padding:1px 2px;
+}
+aside{
+  &.info{
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px rgb(0 0 0 / 0.2) inset, -4px -4px 4px rgb(0 0 0 / 0.2) inset;
+    padding:var(--gap);
+    width:fit-content;
+    float:right;
+  }
+}
+p p{
+  margin:0;
+  padding:0;
+}

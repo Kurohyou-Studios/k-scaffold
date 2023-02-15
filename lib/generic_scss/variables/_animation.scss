@@ -1,3 +1,6 @@
+////@group variables
+/// @alias Animation
+/// These variables control how the default translations included with the scaffold function
 @mixin variables{
   --revealTime:500ms;
   --revealFunction: ease-in-out;

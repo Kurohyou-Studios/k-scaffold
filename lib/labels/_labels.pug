@@ -184,6 +184,6 @@ mixin dual-input-label({label,inputArr,divObj,spanObj})
 mixin headedTextarea({textObj,header})
   .headed-textarea&attributes(attributes)
     - textObj.class = textObj.class ? `${textObj.class} headed-textarea__textarea` : 'headed-textarea__textarea';
-    +h3({'data-i18n':header,class:'headed-textarea__header'})
+    h3(data-i18n=header class='headed-textarea__header')
     +textarea(textObj)
 //-End Mixin

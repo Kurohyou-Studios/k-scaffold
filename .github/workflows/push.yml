@@ -1,0 +1,37 @@
+on: push
+name: CI/CD
+jobs:
+  tests:
+    name: "Test & Doc"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: Setup doc data Folder
+        run: mkdir -p ./doc-source/src/assets/data
+      - name: Install npm packages
+        run: npm install
+      - name: Build test sheet
+        run: npm run build
+      - name: Tests
+        run: npm run test
+      - name: Build doc data
+        run: npm run docs
+      - name: Install doc site npm packages
+        run: cd doc-source && npm install
+      - name: Build doc site
+        run: npm run build-doc
+      - name: Push doc
+        run: |
+          rsync -r --delete --exclude '.nojekyll' doc-source/dist/ docs
+          git config --global user.name "Automated Continuous Integration"
+          git config --global user.email "Riernar@users.noreply.github.com"
+          git add -f docs
+          git commit -m "Continuous Integration - Build Doc"
+          git push
+
+

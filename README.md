@@ -18,10 +18,12 @@
 A PUG, JS, and SCSS framework for building custom Roll20 character sheet templates.
 
 
-<a href="https://github.com/Kurohyou/Roll20-Snippets"><strong>Explore the docs »</strong></a>
+<!-- <a href="https://github.com/Kurohyou-Studios/k-scaffold"> -->
+<strong>Documentation site coming soon! »</strong>
+<!-- </a> -->
 
 
-<a href="https://github.com/Kurohyou/Roll20-Snippets">View Demo</a> · <a href="https://github.com/Kurohyou/Roll20-Snippets/issues">Report Bug</a> · <a href="https://github.com/Kurohyou/Roll20-Snippets/issues">Request Feature</a>
+<a href="https://github.com/Kurohyou-Studios/k-scaffold">View Demo</a> · <a href="https://github.com/Kurohyou-Studios/k-scaffold/issues">Report Bug</a> · <a href="https://github.com/Kurohyou-Studios/k-scaffold/issues">Request Feature</a>
 </p>
 </div>
 <!-- TABLE OF CONTENTS -->
@@ -72,11 +74,12 @@ This framework simplifies the task of writing code for Roll20 character sheets. 
 
 ## Getting Started
 ### K-scaffold PUG
-To use the K-scaffold to write the html of your sheet, you will write normal PUG, but using a comprehensive library of components that are frequently used on character sheets. These range from simple mixin versions of standard html elements inputs, textareas, and selects to more complex constructions that generate Roll20 elements or workarounds for limitations of Roll20 character sheets. See the [K-scaffold PUG documentation](https://kurohyou.github.io/Roll20-Snippets/pug.html) for full details on the mixins available.
+To use the K-scaffold to write the html of your sheet, you will write normal PUG, but using a comprehensive library of components that are frequently used on character sheets. These range from simple mixin versions of standard html elements inputs, textareas, and selects to more complex constructions that generate Roll20 elements or workarounds for limitations of Roll20 character sheets. Library Documentation coming soon!
+<!-- See the [K-scaffold PUG documentation](https://kurohyou.github.io/Roll20-Snippets/pug.html) for full details on the mixins available. -->
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### K-scaffold Javascript
-To use the K-scaffold to write your sheetworkers, you will write normal sheetworkers, but using a library of utility functions and sheetworker aliases supercharge the standard sheetworkers. See the [K-scaffold Javascript documentation](https://kurohyou.github.io/Roll20-Snippets/js.html) for full details on the functions and variables available.
+To use the K-scaffold to write your sheetworkers, you will write normal sheetworkers, but using a library of utility functions and sheetworker aliases to supercharge the standard sheetworkers. Library Documentation coming soon!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Prerequisites
@@ -86,15 +89,46 @@ Install the scaffold via NPM:
 ```
 npm i @kurohyou/k-scaffold
 ```
-Or use the K-scaffold initializer to create a project structure from scratch:
+<!-- Or use the K-scaffold initializer to create a project structure from scratch:
 ```
 npx @kurohyou/k-init
-```
+``` -->
 <p align="right">(<a href="#top">back to top</a>)</p>
 <!-- USAGE EXAMPLES -->
 
 ## Usage
-TODO 
+
+The scaffold simplifies many of the common tasks of creating a Roll20 character sheet and provides constructs to easily create everything from fill to left radio groups to textareas that grow based on the content of their associated Roll20 attribute. To generate a K-scaffold sheet, you will need a pug file, and an scss file.
+
+### Pug
+
+Your main pug file should start with:
+```jade
+include k-scaffold
+//- Your code starts here
+```
+This will give your pug file(s) access to the K-scaffold mixins and local variables.
+
+### SCSS
+
+Any scss file that you want to use the K-scaffold's mixins in needs to start with:
+```scss
+@use "k-scaffold" as k;
+```
+
+### Build your sheet
+
+To build your sheet, simply run the following command:
+```shell
+> k-build
+```
+Alternatively, you can build in watch mode so that the sheet is updated as you make code changes.
+```shell
+> k-build --watch
+OR
+> k-build --w
+```
+This is useful when using the [Roll20 Autocode chrome extension](https://chrome.google.com/webstore/detail/roll20-api-and-sheet-auto/hboggmcfmaakkifgifjbccnpfmnegick) to automatically update the Roll20 sandbox.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <!-- ROADMAP -->
 
@@ -134,9 +168,9 @@ Distributed under the mit License. See [LICENSE.txt](LICENSE.txt) for more infor
 
 ## Contact
 
-Scott Casey - [@Kurohyoustudios](https://twitter.com/Kurohyoustudios) - scaseydv@gmail.com
+[Scott Casey](https://kurohyou.github.io/) - [@Kurohyoustudios](https://twitter.com/Kurohyoustudios)
 
-Project Link: [https://github.com/Kurohyou/Roll20-Snippets](https://github.com/Kurohyou/Roll20-Snippets)
+Project Link: [https://github.com/Kurohyou-Studios/k-scaffold](https://github.com/Kurohyou-Studios/k-scaffold)
 <p align="right">(<a href="#top">back to top</a>)</p>
 <!-- ACKNOWLEDGMENTS -->
 
@@ -150,16 +184,16 @@ This readme template adapted from the [Best-README-Template](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/Kurohyou/Roll20-Snippets.svg?style=flat
-[contributors-url]: https://github.com/Kurohyou/Roll20-Snippets/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Kurohyou/Roll20-Snippets.svg?style=flat
-[forks-url]: https://github.com/Kurohyou/Roll20-Snippets/network/members
-[stars-shield]: https://img.shields.io/github/stars/Kurohyou/Roll20-Snippets.svg?style=flat
-[stars-url]: https://github.com/Kurohyou/Roll20-Snippets/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Kurohyou/Roll20-Snippets.svg?style=flat
-[issues-url]: https://github.com/Kurohyou/Roll20-Snippets/issues
-[license-shield]: https://img.shields.io/github/license/Kurohyou/Roll20-Snippets.svg?style=flat
-[license-url]: https://github.com/Kurohyou/Roll20-Snippets/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Kurohyou-Studios/k-scaffold.svg?style=flat
+[contributors-url]: https://github.com/Kurohyou-Studios/k-scaffold/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Kurohyou-Studios/k-scaffold.svg?style=flat
+[forks-url]: https://github.com/Kurohyou-Studios/k-scaffold/network/members
+[stars-shield]: https://img.shields.io/github/stars/Kurohyou-Studios/k-scaffold.svg?style=flat
+[stars-url]: https://github.com/Kurohyou-Studios/k-scaffold/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Kurohyou-Studios/k-scaffold.svg?style=flat
+[issues-url]: https://github.com/Kurohyou-Studios/k-scaffold/issues
+[license-shield]: https://img.shields.io/github/license/Kurohyou-Studios/k-scaffold.svg?style=flat
+[license-url]: https://github.com/Kurohyou-Studios/k-scaffold/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/scott-casey-20210398
 [patreon-shield]: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dkurohyoustudios%26type%3Dpatrons&style=flat

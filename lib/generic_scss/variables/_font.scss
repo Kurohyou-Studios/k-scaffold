@@ -1,3 +1,6 @@
+////@group variables
+/// @alias font
+/// Variables that control how font family, and font-size of text on the sheet.
 @mixin variables{
   // Font families
   --font1:var(--topHeadFont);
@@ -18,5 +21,9 @@
   --size6:100%;
   --size7:87.5%;
 
-  --textOverflow: ellipsis;
+  // Default icon font size
+  --icon-size:24px;
+
+  //Default fonts used
+  --font-icon: 'Material Icons';
 }

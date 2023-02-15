@@ -1,0 +1,83 @@
+@mixin darkColors{
+  --primary-link-color: var(--dm-primary-link-color);
+  --secondary-link-color: var(--dm-secondary-link-color);
+  --primary-font-color: var(--dm-primary-font-color);
+  --secondary-font-color: var(--dm-secondary-font-color);
+  --primary-back-color: var(--dm-primary-back-color);
+  --secondary-back-color: var(--dm-secondary-back-color);
+  --code-block-color:var(--dm-code-block-color);
+  --code-block-back:var(--dm-code-block-back);
+  --code-inline-color:var(--dm-code-inline-color);
+  --code-inline-back:var(--dm-code-inline-back);
+  --primary-nav-color: var(--dm-primary-nav-color);
+  --secondary-nav-color: var(--dm-secondary-nav-color);
+  --root-back-color:var(--dm-root-back-color);
+}
+
+:root{
+  --lm-root-back-color:white;
+  --dm-root-back-color:#0c0c0c;
+  --root-back-color:var(--lm-root-back-color);
+
+  --lm-primary-nav-color: #F19C79;
+  --dm-primary-nav-color: #AC3931;
+  --primary-nav-color: var(--lm-primary-nav-color);
+
+  --lm-secondary-nav-color: var(--lm-primary-font-color);
+  --dm-secondary-nav-color: var(--dm-primary-font-color);
+  --secondary-nav-color: var(--lm-secondary-nav-color);
+
+  --lm-primary-link-color: #F06449;
+  --dm-primary-link-color: #6c0090;
+  --primary-link-color: var(--lm-primary-link-color);
+
+  --lm-secondary-link-color: #841F0B;
+  --dm-secondary-link-color: #B800F5;
+  --secondary-link-color: var(--lm-secondary-link-color);
+
+  --roll20-link-color: #E10085;
+
+  --lm-primary-font-color: #042A2B;
+  --dm-primary-font-color: #a9d0d1;
+  --primary-font-color: var(--lm-primary-font-color);
+
+  --lm-secondary-font-color: #726E75;
+  --dm-secondary-font-color: #a9d0d1;
+  --secondary-font-color: var(--lm-secondary-font-color);
+
+  --lm-primary-back-color: #a9d0d1;
+  --dm-primary-back-color: #1a1f23;
+  --primary-back-color: var(--lm-primary-back-color);
+
+  --lm-secondary-back-color: #a9d0d1;
+  --dm-secondary-back-color: #042A2B;
+  --secondary-back-color: var(--lm-secondary-back-color);
+
+  --lm-code-block-color:#111113;
+  --dm-code-block-color:rgb(173, 169, 209);
+  --code-block-color:var(--lm-code-block-color);
+
+  --lm-code-block-back:#f6f8fa;
+  --dm-code-block-back:#04192d;
+  --code-block-back:var(--lm-code-block-back);
+
+  --lm-code-inline-color:#e9c0c0;
+  --dm-code-inline-color:#4b0000;
+  --code-inline-color:var(--lm-code-inline-color);
+
+  --lm-code-inline-back:#4b0000;
+  --dm-code-inline-back:#e9c0c0;
+  --code-inline-back:var(--lm-code-inline-back);
+
+  color: var(--primary-font-color);
+  background-color: var(--root-back-color);
+}
+.color-dark{
+  @include darkColors;
+}
+
+@media (prefers-color-scheme: dark){
+  .color-system{
+    @include darkColors;
+  }
+}

@@ -2,79 +2,105 @@ const docPath = `./docs`;
 
 // NPM modules
 const { exec } = require(`child_process`);
-const fs = require(`fs/promises`);
-const hb = require(`handlebars`);
+const fs = require('fs/promises');
 const pugDoc = require('pug-doc');
 const sassdoc = require('sassdoc');
-const markdown = require(`markdown`).markdown;
 
-// Custom modules
-const parseJSdoc = require('./docs/generation/js');
-const parsePugdoc = require('./docs/generation/pug');
-const parseSassdoc = require('./docs/generation/scss');
-
-// html tempaltes
-const card = require(`${docPath}/templates/card.handlebars`);
-const nav = require(`${docPath}/templates/navElement.handlebars`);
-
-const parseLinks = (text) => markdown.toHTML(text?.trim().replace(/\{@link (.+?)\}/g,`[$1](#$1)`) || ``).replace(/<\/?p>/g,``);
-
-hb.registerPartial(`card`,card);
-hb.registerPartial(`navElement`,nav);
-
-hb.registerHelper(`parseLinks`,parseLinks);
-hb.registerHelper(`codeFormat`,(text)=>text.trim().replace(/>(<[^\/])/g,`>\n$1`).replace(/\/></g,`/>\n<`).replace(/(<\/.+?>)</g,`$1\n<`).replace(/include \.\.\/_k\.pug/,`include k-scaffold`))
-hb.registerHelper('hasArgs',(params,metaArgs)=> params || metaArgs);
-hb.registerHelper('kName',(name,contextName,metaName) =>
-  name || contextName ?
-    `k.${name || contextName}` :
-    metaName
-);
-
-console.log(`Generating Documentation`);
+const locals = require('./lib/render/locals');
 
 const gen = async ()=>{
+  locals.resetObjs();
   // generate pug data
+  console.log('locals',locals);
   const pdocs = new Promise((res,rej) => {
       pugDoc({
       input: `lib/**/*.pug`,
-      output: `docs/data/pug.json`,
+      output: `doc-source/src/assets/data/pug.json`,
+      locals:{...locals,pretty:true},
       complete:()=> res(true)
     });
   });
-
   // Generate jsDoc data
   const jdocs = new Promise((res,rej) => {
-    exec(`jsdoc -r -X lib > docs/data/jsdoc-ast.json`,(err,stdout,stderr)=> res(true));
+    exec(`jsdoc -r -X lib > doc-source/src/assets/data/jsdoc-ast.json`,(err,stdout,stderr)=> res(true));
   });
 
   await Promise.all([pdocs,jdocs]);
-  const pJSON = await fs.readFile(`docs/data/pug.json`,`utf8`)
-    .then(t => JSON.parse(t));
-  const jJSON = await fs.readFile(`docs/data/jsdoc-ast.json`,`utf8`)
-    .then(t =>
-      JSON.parse(t)
-        .filter(o => o.comment && !o.undocumented && !o.memberof)
-    );
-
-  // Generate sass data
-  const sJSON = await sassdoc.parse('./lib',{verbose:true,package:'./package.json'});
-  // JSON.parse(pdocs).then(a => console.log(`pdocs`,a))
-  // console.log(`pdocs`,pdocs[0].meta);
-  // console.log(`jdocs`,Array.isArray(jdocs));
+  const pugPath = './doc-source/src/assets/data/pug.json';
+  const jsPath = './doc-source/src/assets/data/jsdoc-ast.json';
+  const [pJSON,jJSON,sJSON] = await Promise.all([
+    fs.readFile(pugPath,'utf8')
+      .then(string => JSON.stringify(JSON.parse(string).map(o => ({...o,output:prettifyHTML(o.output)})))),
+    fs.readFile(jsPath,'utf8'),
+    // Generate sass data
+    sassdoc.parse('./lib',{verbose:true,package:'./package.json'})
+      .then(t => JSON.stringify(t))
+  ]);
+  console.log('pJSON',pJSON);
+  await fs.writeFile('./doc-source/src/assets/data/index.mjs',
+    `
+    export const sass = ${sJSON};
+    export const pug = ${pJSON};
+    export const js = ${jJSON};`
+      .replace(/^\s+/mg,'')
+  );
   await Promise.all([
-    parsePugdoc(pJSON,docPath),
-    parseJSdoc(jJSON,docPath),
-    parseSassdoc(sJSON,docPath)
+    fs.rm(pugPath),
+    fs.rm(jsPath),
   ])
-  console.log(`\n\x1b[32m`);
-  console.log(`==========================`);
-  console.log(`||| Doc Data generated |||`);
-  console.log(`|||  ${docPath}/index.html |||`);
-  console.log(`|||   ${docPath}/js.html   |||`);
-  console.log(`|||   ${docPath}/pug.html  |||`);
-  console.log(`==========================`);
-  console.log(`\x1b[0m`)
 };
+
+const applyIndent = (indent,newLine) => {
+  return newLine ?
+    `${newLine}${[...Array(Math.max(0,indent)).keys()].map(n => '  ').join('')}` :
+    '';
+};
+
+const prettifyHTML = (html) => {
+  let indent = 0;
+  return html
+    .split('')
+    .reduce((m,c,i,a) => {
+      // Look for starts of non self closing
+      let newLine = '\n';
+      if(m.endsWith('>')){
+        if(!/(?:\/[a-z]*?|--)>$/.test(m)){
+          if(a[i+1] !== '/' && a[i+1] !== '!'){
+            indent++;
+          }else{
+            if(a[i+1] === '/'){
+              newLine = '';
+            }
+          }
+        }else if(/\/[a-z]*>$/.test(m)){
+          newLine = '\n';
+          if(a[i+1] === '/'){
+            indent--;
+          }
+        }
+        m += `${applyIndent(indent,newLine)}`;
+      }else if(`${c}${a[i+1]}` === '</'){
+        indent--;
+        m += `${applyIndent(indent,newLine)}`;
+      }
+      m += c;
+      return m;
+    },'');
+  // return html.replace(/((?:\/[a-z]*|--)?>)(<(?:\/|--)?)/g,(match,start,end)=>{
+  //   if(!start.startsWith('/') && !start.startsWith('-') && !start.startsWith('!')){
+  //     indent++;
+  //   }
+  //   if(end.length > 1){
+  //     indent--;
+  //   }
+  //   let line = !start.startsWith('/') && /^<\//.test(end) ?
+  //     '' :
+  //     '\n';
+  //   let spacing = line ?
+  //     [...Array(Math.max(0,indent)).keys()].map(n => '  ').join('') :
+  //     '';
+  //   return `${start}${line}${spacing}${end}`;
+  // });
+}
 
 gen();

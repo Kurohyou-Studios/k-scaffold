@@ -2,72 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/8119a95d19.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Exo+2&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
-    <link href="https://fonts.googleapis.com/css2?family=Aldrich&amp;family=Exo+2:ital,wght@0,400;0,700;1,400&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="./assets/css/clear.css"/>
-    <link rel="stylesheet" href="./assets/css/generic.css"/>
-    <link rel="stylesheet" href="./assets/css/index.css"/>
-    <link rel="stylesheet" href="./assets/css/prettify.css"/>
-    <link rel="stylesheet" href="./assets/css/sons-of-obsidian.css"/>
-    <link rel="stylesheet" href="./assets/css/codeDisplay.css"/>
-    <title>Document</title>
+    <title>K-Scaffold</title>
+    <script type="module" crossorigin src="/assets/index-5d575438.js"></script>
+    <link rel="stylesheet" href="/assets/index-0cebfb40.css">
   </head>
   <body>
-    <header>
-      <h1>The K-Scaffold Framework</h1><span class="subhead">PUG, HTML, and Javascript</span>
-    </header>
-    <nav>
-      <ul>
-        <li><a href="./js.html?v=1.1">Sheetworker Documentation</a></li>
-        <li><a href="./pug.html?v=1.1">Pug Documentation</a></li>
-      </ul>
-      <ul>
-        <li> <a href="#about-header">What is it?</a></li>
-        <li> <a href="#start-header">Getting Started</a></li>
-        <li> <a href="#use-header">Using the Scaffold</a></li>
-        <li><a href="#contact-header">Contact & Feedback</a></li>
-      </ul>
-    </nav>
-    <main>
-      <section aria-labelledby="about-header">
-        <h2 id="about-header">What is it?</h2>
-        <div class="border"></div>
-        <div class="content">
-          <p>Building character sheets is difficult. There's thousands of lines of html, CSS, and Javascript to write and keep track of. The sheet author community has switched to using PUG to write the majority of html code because it simplifies the HTML coding part of creating a sheet. PUG allows us to do many powerful things, including creating reusable bits of code for things that we need frequently.</p>
-          <p>The K-Scaffold provides a comprehensive library of PUG mixins for frequently used generic HTML constructions. It also provides a powerful link between your PUG code and the javascript sheetworkers that will power your sheet by allowing you to link attributes to functions directly in the PUG that creates them.</p>
-        </div>
-      </section>
-      <section aria-labelledby="start-header">
-        <h2 id="start-header">Getting Started</h2>
-        <div class="border"></div>
-        <div class="content">
-          <p>The recommended method for using the K-scaffold as of v0-1-0 is to install it via npm.</p>
-          <pre class="prettyprint"><code>npm -i k-scaffold</code></pre>
-          <p>Then simply use it in your top level pug file:</p>
-          <pre class="prettyprint"><code class="language-jade">include k-scaffold<br>+text({name:'a k-scaffold text input'})</code></pre>
-        </div>
-      </section>
-      <section aria-labelledby="use-header">
-        <h2 id="use-header">Using the Scaffold</h2>
-        <div class="border"></div>
-        <div class="content">
-          <p>The K-scaffold has two primary components; PUG mixins and functions, and Javascript functions.</p>
-          <h3>K-Scaffold PUG</h3>
-          <p>To use the K-scaffold to write the html of your sheet, you will write normal PUG, but using a comprehensive library of components that are frequently used on character sheets. These range from simple mixin versions of standard html elements inputs, textareas, and selects to more complex constructions that generate Roll20 elements or workarounds for limitations of Roll20 character sheets. See the <a href="subpages/pug.html">K-scaffold PUG documentation</a> for full details on the mixins and functions available.</p>
-          <h3>K-Scaffold Javascript</h3>
-          <p>To use the K-scaffold to write your sheetworkers, you will write normal sheetworkers, but using a library of utility functions and sheetworker aliases supercharge the standard sheetworkers. See the <a href="subpages/js.html">K-scaffold Javascript documentation</a> for full details on the functions and variables available.</p>
-        </div>
-      </section>
-    </main>
-    <footer><span>By Scott Casey, Kurohyou Studios</span></footer>
-    <script type="text/javascript">const siteVersion = 1.1;
-      
-    </script>
-    <script src="./assets/javascript/resizer.js"></script>
-    <script src="./assets/javascript/prettify.js"></script>
-    <script src="./assets/javascript/parser.js"></script>
+    <div id="app"></div>
+    
   </body>
 </html>
