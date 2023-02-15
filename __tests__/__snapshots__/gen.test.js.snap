@@ -15,6 +15,7 @@ exports[`Environment > Should have attributes, characters, query response sub ob
     "fill_left": "0",
     "fill_left_with_display": "0",
     "hidden": "hidden",
+    "image": "",
     "labelled_input": "",
     "labelled_roller_action": "",
     "labelled_select": "option 1",
