@@ -1,8 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+
 import ToggleLabel from '@/components/ToggleLabel.vue'
-const colorValue = ref('system');
-const toggleColor = (event) => colorValue.value = event.newValue;
+import { useColorStore } from '@/stores/color'
+
+const colors = useColorStore();
+colors.storeColor();
 </script>
 
 <template>
@@ -11,8 +14,8 @@ const toggleColor = (event) => colorValue.value = event.newValue;
     <h1>The K-Scaffold</h1>
     <span class="subtitle">A Roll20 Sheet Framework</span>
   </div>
-  <ToggleLabel @toggle-value="toggleColor" name="color" :values="['dark','system','light']" def="system">
-    <span class="capitalize">{{ /system/i.test(colorValue) ? 'System Theme' : `${colorValue} mode` }}</span>
+  <ToggleLabel @toggle-value="colors.storeColor($event.newValue)" name="color" :values="['dark','system','light']" :def='colors.color'>
+    <span class="capitalize">{{ /system/i.test(colors.color) ? 'System Theme' : `${colors.color} mode` }}</span>
   </ToggleLabel>
   <nav id="main-nav">
     <ul>
@@ -41,7 +44,8 @@ const toggleColor = (event) => colorValue.value = event.newValue;
 
 <style lang="scss">
 header{
-  background-color:blue;
+  background-color:var(--secondary-back-color);
+  color:var(--secondary-font-color);
   display:grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: repeat(2,auto);
@@ -53,6 +57,12 @@ header{
   position:sticky;
   top:0px;
   font-family:Aldrich;
+  .toggle-container{
+    border-color:var(--secondary-font-color);
+    input:checked:before{
+      background-color:var(--secondary-font-color);
+    }
+  }
 }
 .toggle-label{
   justify-self:end;
@@ -62,7 +72,7 @@ nav{
   justify-self:end;
   a[aria-current="page"]{
     text-decoration: none;
-    color:black;
+    color:var(--secondary-font-color);
   }
   ul{
     display:flex;

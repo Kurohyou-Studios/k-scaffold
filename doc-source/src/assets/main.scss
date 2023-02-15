@@ -1,3 +1,4 @@
+@use './scss/color';
 :root{
   font-size:10px;
   --gap: 1.6rem;
@@ -5,9 +6,6 @@
   --half-gap: calc(var(--gap) / 2);
   --tiny-gap: calc(var(--half-gap) / 2);
 
-  --lm-code-back:#f6f8fa;
-  --dm-code-back:#f6f8fa;
-  --code-back:var(--lm-code-back);
   font-family: 'Exo 2';
   scroll-behavior: smooth;
   scroll-padding-top: var(--headHeight);
@@ -30,9 +28,6 @@ body{
 }
 .flex{
   display:flex;
-}
-main{
-  padding:var(--huge-gap);
 }
 @each $loc in center,start,end,stretch{
   .align-items-#{$loc}{
@@ -77,15 +72,16 @@ main{
   }
 }
 pre{
-  background:var(--code-back);
+  background:var(--code-block-back);
+  color: var(--code-block-color);
   border-radius:5px;
   padding:var(--half-gap);
 }
 :not(pre) > code{
-  background-color: lightcoral;
-  color:red;
+  background-color: var(--code-inline-back);
+  color:var(--code-inline-color);
   border-radius: 3px;
-  border:1px solid red;
+  border:1px solid var(--code-inline-color);
   padding:1px 2px;
 }
 aside{

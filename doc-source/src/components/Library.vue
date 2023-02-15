@@ -58,12 +58,13 @@ const data = Object.entries(namespaceObjs)
   column-gap:var(--gap);
 }
 .library-nav{
-  --topSet: calc(var(--headHeight,90px) + 50px);
-  width:100%;
+  --topSet: calc(var(--headHeight,90px) - 1px);
   position: sticky;
   top: var(--topSet);
   max-height: calc(100vh - var(--topSet) - 32px);
   overflow: auto;
+  background-color:var(--secondary-back-color);
+  padding:var(--gap) var(--half-gap);
   ul{
     margin:0;
     padding:0;
@@ -77,13 +78,14 @@ const data = Object.entries(namespaceObjs)
   grid-area:content;
   max-width: 100%;
   overflow: hidden;
+  padding: var(--huge-gap) var(--huge-gap) var(--huge-gap) 0;
 }
 .nav-head{
   font-size:125%;
   font-weight:bold;
   margin-top:var(--half-gap);
   margin-bottom:var(--tiny-gap);
-  border-bottom:1px solid black;
+  border-bottom:1px solid var(--secondary-font-color);
   display:block;
 }
 </style>

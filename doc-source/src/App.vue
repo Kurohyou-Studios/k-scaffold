@@ -17,5 +17,6 @@ import Header from '@/components/Header.vue'
 .content{
   background-color:teal;
   flex:1 0 0;
+  background-color:var(--primary-back-color);
 }
 </style>
