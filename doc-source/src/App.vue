@@ -13,10 +13,13 @@ import Header from '@/components/Header.vue'
   </main>
 </template>
 
-<style scoped>
+<style lang="scss">
 .content{
   background-color:teal;
   flex:1 0 0;
   background-color:var(--primary-back-color);
+  > div:not(.library-container){
+    padding: var(--huge-gap);
+  }
 }
 </style>

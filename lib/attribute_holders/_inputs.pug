@@ -22,8 +22,9 @@ mixin input(obj)
 
 //- @pugdoc
   name: text
-  description: An alias for {@link input} that specifies the input type as text. See {@link input} for arguments.
   arguments:
+    - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
+  description: An alias for {@link input} that specifies the input type as text. See {@link input} for arguments.
   attributes:
   example: |
     include ../_k.pug
@@ -35,11 +36,13 @@ mixin text(obj)
 
 //- @pugdoc
   name: checkbox
-  description: An alias for {@link input} that specifies the input type as checkbox. See {@link input} for arguments.
   arguments:
+    - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
+  description: An alias for {@link input} that specifies the input type as checkbox. See {@link input} for arguments.
   attributes:
   example: |
     include ../_k.pug
+    +checkbox({name:'my checkbox',value:1})
 mixin checkbox(obj)
   - obj.type = 'checkbox';
   +input(obj)&attributes(attributes)
@@ -47,9 +50,9 @@ mixin checkbox(obj)
 
 //- @pugdoc
   name: collapse
-  description: Alias for {@link checkbox} that creates a checkbox for us in collapse/expanding a section. Sets the checkbox to unchecked with a checked value of `1` and a class of `collapse`. Additional classes/ids can be applied by applying them inline to the mixin call.
   arguments:
     - {string} [name=collapse] - The name to use for the collapse element. Defaults to `collapse`
+  description: Alias for {@link checkbox} that creates a checkbox for us in collapse/expanding a section. Sets the checkbox to unchecked with a checked value of `1` and a class of `collapse`. Additional classes/ids can be applied by applying them inline to the mixin call.
   attributes:
   example: |
     include ../_k.pug
@@ -60,11 +63,15 @@ mixin collapse(name='collapse')
 
 //- @pugdoc
   name: radio
-  description: Alias for {@link input} that specifies `radio` as the input type. See {@link input} for arguments.
   arguments:
+    - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
+  description: Alias for {@link input} that specifies `radio` as the input type. See {@link input} for arguments.
   attributes:
   example: |
     include ../_k.pug
+    +radio({name:'my radio',value:1,checked:''})
+    +radio({name:'my radio',value:2})
+    +radio({name:'my radio',value:3})
 mixin radio(obj)
   - obj.type = 'radio';
   +input(obj)
@@ -72,8 +79,9 @@ mixin radio(obj)
 
 //- @pugdoc
   name: number
-  description: Alias for {@link input} that makes a number input. See {@link input} for arguments.
   arguments:
+    - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
+  description: Alias for {@link input} that makes a number input. See {@link input} for arguments.
   attributes:
   example: |
     include ../_k.pug
@@ -85,8 +93,9 @@ mixin number(obj)
 
 //- @pugdoc
   name: range
-  description: Alias for {@link input} that makes a range input. See {@link input} for arguments.
   arguments:
+    - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
+  description: Alias for {@link input} that makes a range input. See {@link input} for arguments.
   attributes:
   example: |
     include ../_k.pug
@@ -98,8 +107,9 @@ mixin range(obj)
 
 //- @pugdoc
   name: hidden
-  description: Alias for {@link input} that makes a hidden input. See {@link input} for arguments.
   arguments:
+    - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
+  description: Alias for {@link input} that makes a hidden input. See {@link input} for arguments.
   attributes:
   example: |
     include ../_k.pug

@@ -109,6 +109,7 @@ pre{
   color: var(--code-block-color);
   border-radius:5px;
   padding:var(--half-gap);
+    overflow:auto;
 }
 :not(pre) > code{
   background-color: var(--code-inline-back);

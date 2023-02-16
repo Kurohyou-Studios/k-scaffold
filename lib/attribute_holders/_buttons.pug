@@ -29,8 +29,10 @@ mixin button(obj, _attributes)
 
 //- @pugdoc
   name: action
-  description: Alias for {@link button} that creates a button element with a type of `action`. Spaces in the name are replaced with dashes instead of underscores.
   arguments:
+    - {object} buttonObj - The object describing the button
+    - {block} block - The contents of the button element
+  description: Alias for {@link button} that creates a button element with a type of `action`. Spaces in the name are replaced with dashes instead of underscores.
   attributes:
   example: |
     include ../_k.pug
@@ -56,8 +58,10 @@ mixin rollerExtras(obj)
   +hidden({name:attributeName})
 //- @pugdoc
   name: roller
-  description: Creates a multi element construction made of a hidden input, a roll button, and a hidden action button. On sheet load, or character sheet name change, the hidden input is updated with an ability call to the action button. The roll button refers to the hidden input as its value. This allows for an action button to be used to call custom roll parsing (or other sheet functionality) while retaining the ability to drag the button to the macro bar. Uses the same arguments as {@link button}. A trigger should be passed, and will be associated with the action button's name.
   arguments:
+    - {object} buttonObj - The object describing the button
+    - {block} block - The contents of the button element
+  description: Creates a multi element construction made of a hidden input, a roll button, and a hidden action button. On sheet load, or character sheet name change, the hidden input is updated with an ability call to the action button. The roll button refers to the hidden input as its value. This allows for an action button to be used to call custom roll parsing (or other sheet functionality) while retaining the ability to drag the button to the macro bar. Uses the same arguments as {@link button}. A trigger should be passed, and will be associated with the action button's name.
   attributes:
   example: |
     include ../_k.pug

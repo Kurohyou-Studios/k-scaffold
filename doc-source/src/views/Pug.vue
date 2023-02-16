@@ -1,6 +1,7 @@
 <script setup>
 import Library from '@/components/Library.vue'
 import { pug,js } from '@/assets/data/index.mjs'
+import Readme from '@/assets/markdown/pug.md'
 const data = [
   {
     kind:'namespace',
@@ -18,11 +19,13 @@ const data = [
 ];
 const kScriptObj = data.find(o => o.meta?.name === 'kscript');
 delete kScriptObj.output;
+const moduleObj = data.find(o => o.meta?.name === 'module');
+delete moduleObj.output;
 </script>
 
 <template>
   <Library :data="data">
-    <p>Placeholder description</p>
+    <Readme/>
   </Library>
 </template>
 
