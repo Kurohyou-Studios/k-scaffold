@@ -1,5 +1,5 @@
 export const sass = [{"description":"Mixin that includes all of the framework's styles. Should be included in a 3 class declaration for character sheets.\n","commentRange":{"start":21,"end":27},"context":{"type":"mixin","name":"defaultStyles","code":"\n  // Clear roll20 styles\n  @include genericStyle.clear;\n\n  // Basic Layout constructs\n  @include genericStyle.layout;\n  @include genericStyle.borderStyles;\n  @include genericStyle.sizesAndRatios;\n  \n  // Text stylings\n  @include genericStyle.textElements;\n  @include genericStyle.materialIcons;\n  @include genericStyle.textStyles;\n  @include genericStyle.headerElements;\n  @include genericStyle.r20FontClasses;\n\n  // Input and button\n  @include attributeConstructs.inputBase;\n  @include attributeConstructs.button;\n  @include attributeConstructs.collapsible;\n  @include attributeConstructs.fillLeft;\n  @include labels.input-label;\n  @include labels.headed-textarea;\n  @include adaptive.adaptiveText;\n\n  @include fieldsetStyling.fieldsetStyling;\n","line":{"start":28,"end":54}},"example":[{"type":"scss","code":"@use 'k-scaffold' as k;\n\n.ui-dialog .tab-content .charsheet{\n  @include k.defaultStyles;\n}"}],"access":"public","group":["undefined"],"require":[],"file":{"path":"_k.scss","name":"_k.scss"},"usedBy":[{"description":"Mixin that includes all of the default styles as well as rolltemplate specific styling such as inline roll variable assignment. Should be included directly in the rolltemplate declaration for your roll templates.\n","context":{"type":"mixin","name":"defaultRollStyling","code":"\n  @include defaultStyles;\n  @include rolltemplate.rollStyles;\n","line":{"start":63,"end":66}}}]},{"description":"Mixin that includes all of the default styles as well as rolltemplate specific styling such as inline roll variable assignment. Should be included directly in the rolltemplate declaration for your roll templates.\n","commentRange":{"start":56,"end":62},"context":{"type":"mixin","name":"defaultRollStyling","code":"\n  @include defaultStyles;\n  @include rolltemplate.rollStyles;\n","line":{"start":63,"end":66}},"example":[{"type":"scss","code":"@use 'k-scaffold/k';\n\n.sheet-rolltemplate-TEMPLATENAME{\n  @include k.defaultRollStyling;\n}"}],"access":"public","group":["undefined"],"require":[{"type":"mixin","name":"defaultStyles"}],"file":{"path":"_k.scss","name":"_k.scss"}},{"description":"Styling for the adaptive text construction to create textareas and inputs that grow based on their contents. Used in the default [defaultStyles](#defaultStyles) mixin, but can be used separately if you only want to include specific framework css.\n","commentRange":{"start":2,"end":2},"context":{"type":"mixin","name":"adaptiveText","code":"\n  .adaptive{\n    display:grid;\n    grid-template-columns: auto;\n    grid-template-rows: auto;\n    grid-template-areas: \"content\";\n    position:relative;\n    >*{\n      grid-area: content;\n    }\n    > span{\n      opacity: 0;\n      z-index: -10;\n      @include borderPlaceholders.base-border;\n      text-transform: initial;\n      border-radius:0px;\n    }\n  }\n  .adaptive--text{\n    min-height:4rem;\n  }\n  .adaptive--text__span{\n    white-space: pre-wrap;\n    padding:2px;\n  }\n  .adaptive--text__textarea{\n    width:100%;\n    height:100%;\n    resize: none;\n  }\n  .adaptive--text__textarea,\n  .adaptive--input__input{\n    position:absolute;\n  }\n  .adaptive--input__input{\n    width:100%;\n  }\n  .adaptive--input__span{\n    padding:2px;\n    min-height:1.5rem;\n  }\n","line":{"start":3,"end":44}},"access":"public","group":["undefined"],"require":[],"file":{"path":"adaptive\\_adaptive.scss","name":"_adaptive.scss"}},{"description":"The basic stylings for a button like object. Provides some basic coloring, shadowing, and hover/active state styling\n","commentRange":{"start":3,"end":3},"context":{"type":"mixin","name":"base-button","code":"\n\tbackground-color: #DCDCDC33;\n\tborder-radius: 5px;\n\tbox-shadow: 0 2px 4px black;\n\tborder-width: 0;\n\ttransition: {\n\t\tproperty:box-shadow,backdrop-filter;\n\t\tduration:200ms;\n\t\ttiming-function:ease-out;\n\t};\n\tbackdrop-filter:blur(1px);\n\toverflow:hidden;\n\t&:is(:hover,:focus){\n\t\tbackground-color: #85858580;\n\t\tbox-shadow: 0 4px 6px black;\n\t\tbackdrop-filter:blur(2px);\n\t}\n\t&:active{\n\t\tbackground-color: #858585ff;\n\t\tbox-shadow: 0 1px 2px black;\n\t\tbackdrop-filter:blur(0px);\n\t}\n","line":{"start":4,"end":26}},"access":"public","group":["undefined"],"require":[],"file":{"path":"attribute_holders\\_buttons.scss","name":"_buttons.scss"},"usedBy":[{"description":"Basic styling for dice icon buttons using the dicefonts (e.g. dicefontd20).\n","context":{"type":"mixin","name":"die-button","code":"\n\t@include base-button;\n\tline-height: 14px;\n\t/*height to vertically center a 2rem dicefontd10*/\n\tfont-size: 2rem;\n\tfont-weight: normal;\n\tfont-style: normal;\n\tpadding: 5px 3px 7px;\n","line":{"start":29,"end":37}}},{"description":"Basic styling for buttons with text (or text and icons)\n","context":{"type":"mixin","name":"text-button","code":"\n\tpadding: 5px 7px;\n\t@include base-button;\n","line":{"start":40,"end":43}}}]},{"description":"Basic styling for dice icon buttons using the dicefonts (e.g. dicefontd20).\n","commentRange":{"start":28,"end":28},"context":{"type":"mixin","name":"die-button","code":"\n\t@include base-button;\n\tline-height: 14px;\n\t/*height to vertically center a 2rem dicefontd10*/\n\tfont-size: 2rem;\n\tfont-weight: normal;\n\tfont-style: normal;\n\tpadding: 5px 3px 7px;\n","line":{"start":29,"end":37}},"access":"public","group":["undefined"],"require":[{"type":"mixin","name":"base-button"}],"file":{"path":"attribute_holders\\_buttons.scss","name":"_buttons.scss"}},{"description":"Basic styling for buttons with text (or text and icons)\n","commentRange":{"start":39,"end":39},"context":{"type":"mixin","name":"text-button","code":"\n\tpadding: 5px 7px;\n\t@include base-button;\n","line":{"start":40,"end":43}},"access":"public","group":["undefined"],"require":[{"type":"mixin","name":"base-button"}],"file":{"path":"attribute_holders\\_buttons.scss","name":"_buttons.scss"}},{"description":"Styling for our roll buttons\n","commentRange":{"start":44,"end":44},"context":{"type":"mixin","name":"roller","code":"\n  display: flex;\n  align-items: center;\n  gap: var(--half-gap);\n  &:before{\n    content:'T';\n    font-family:dicefontd20;\n  }\n","line":{"start":45,"end":53}},"access":"public","group":["undefined"],"require":[],"file":{"path":"attribute_holders\\_buttons.scss","name":"_buttons.scss"},"usedBy":[{"description":"Ensures our buttons use the pointer cursor and that our roller construct buttons use the proper styling.\n","context":{"type":"mixin","name":"button","code":"\n  button{\n    cursor: pointer;\n  }\n\t.roller{\n\t\t@include roller;\n\t}\n","line":{"start":55,"end":62}}}]},{"description":"Ensures our buttons use the pointer cursor and that our roller construct buttons use the proper styling.\n","commentRange":{"start":54,"end":54},"context":{"type":"mixin","name":"button","code":"\n  button{\n    cursor: pointer;\n  }\n\t.roller{\n\t\t@include roller;\n\t}\n","line":{"start":55,"end":62}},"access":"public","group":["undefined"],"require":[{"type":"mixin","name":"roller"}],"file":{"path":"attribute_holders\\_buttons.scss","name":"_buttons.scss"}},{"description":"The styling for basic collapsible/expandable sections.\n","commentRange":{"start":4,"end":4},"context":{"type":"mixin","name":"collapsible","code":"\n  .collapse-container{\n    display:grid;\n    position:relative;\n  }\n  .text-collapse{\n    cursor:pointer;\n    display:flex;\n    justify-content:flex-start;\n    align-items:center;\n    &:before{\n      content: var(--expandedSymbol);\n      @include materialIcons.materialStyle;\n    }\n  }\n  .text-collapse__text{\n    display:inline;\n  }\n  .text-collapse__check{\n    &:not(:checked) + .text-collapse{\n      @include borderPlaceholders.inputHighlight;\n    }\n    &:checked + .text-collapse:before{\n      content: var(--collapsedSymbol);\n    }\n  }\n  .repitem,\n  .collapse-container{\n    &:hover{\n      .collapse,.roll-container{\n        opacity:var(--collapseHoverOpacity);\n      }\n    }\n    .collapse{\n      opacity:var(--collapseBaseOpacity);\n      position:absolute;\n      right:-10px;\n      top:0px;\n      border:0px solid black;\n      border-radius:0;\n      color:var(--collapseExpandedColor);\n      text-transform:none;\n      background-color:transparent;\n      &:before{\n        content:'y';\n        font-family:pictos;\n      }\n      &:checked{\n        color:var(--collapseCollapsedColor);\n        background-color:transparent;\n        ~ .expanded,\n        ~ .collapse-container .expanded{\n          display:none !important;\n        }\n        ~ .expanded--empty:is(:not([value]),[value='']) + *,\n        ~ .collapse-container ~.expanded--empty:is(:not([value]),[value='']) + *{\n          display:none !important;\n        }\n      }\n      &:not(:checked){\n        ~ .collapsed{\n          display:none !important;\n        }\n      }\n      &:hover{\n        color:var(--collapseExpandedColor);\n      }\n    }\n  }\n  .repcontainer.editmode{\n    .collapse{\n      display:none;\n    }\n  }\n","line":{"start":5,"end":79}},"access":"public","group":["undefined"],"require":[],"file":{"path":"attribute_holders\\_collapse.scss","name":"_collapse.scss"}},{"description":"The styling for the functionality of the fillLeft pug mixin. This allows us to easily make [radios/checkboxes that fill as the value increments](https://wiki.roll20.net/CSS_Wizardry#Fill_Radio_Buttons_to_the_Left).\n","commentRange":{"start":1,"end":1},"context":{"type":"mixin","name":"fillLeft","code":"\n  .fill-left{\n    display:var(--fillLeftDisplay);\n    align-self:var(--fillLeftAlignment);\n    box-sizing:border-box;\n  }\n  .fill-left__radio{\n    appearance:none;\n    -webkit-appearance:none;\n    background-color:var(--fillLeftSelectedColor);\n    width:100%;\n    height:100%;\n    cursor:pointer;\n    &[data-value]:checked:before{\n      content:attr(data-value);\n      color:var(--fillLeftDataColor);\n      font-size:var(--fillLeftDataSize);\n      place-self:center;\n      text-transform: var(--fillLeftDataTransform);\n    }\n    &:checked ~ .fill-left__radio{\n      background-color:var(--fillLeftUnselectedColor);\n    }\n  }\n","line":{"start":2,"end":26}},"access":"public","group":["undefined"],"require":[],"file":{"path":"attribute_holders\\_fillLeft.scss","name":"_fillLeft.scss"}},{"description":"Mixin for applying our checked styling to something\n","commentRange":{"start":2,"end":2},"context":{"type":"mixin","name":"checked","code":"\n  background-color:var(--checkedBackColor);\n  &:before{\n    content: var(--checkContent);\n    grid-area:content;\n    font-weight:var(--checkWeight);\n    place-self:start center;\n    color: var(--checkColor);\n    font-size: var(--checkSize);\n    line-height: var(--checkLineHeight);\n  }\n","line":{"start":3,"end":14}},"access":"public","group":["undefined"],"require":[],"file":{"path":"attribute_holders\\_inputBase.scss","name":"_inputBase.scss"},"usedBy":[{"description":"Basic input styling to ensure that the various inputs are ready for future styling\n","context":{"type":"mixin","name":"inputBase","code":"\n  input{\n    &[type='checkbox']{\n      border: 1px solid var(--checkboxBorderColor);\n      cursor: pointer;\n      -webkit-appearance:none;\n      appearance:none;\n      width: var(--checkboxWidth);\n      min-width: var(--checkboxWidth);\n      height: var(--checkboxHeight);\n      min-height: var(--checkboxHeight);\n      display:grid;\n      grid-template-columns:1fr;\n      grid-template-areas:\"content\";\n      &:not(.collapse):not(.fill-left__radio):checked{\n        @include checked;\n      }\n    }\n    &[type='number']{\n      width: 3rem;\n      -moz-appearance: textfield !important;\n      text-align: center;\n      &::-webkit-inner-spin-button,\n      &::-webkit-outer-spin-button{\n        -webkit-appearance: none;\n        margin: 0;\n      }\n    }\n  }\n  select,\n  .pseudo-select span,\n  .sheet-pseudo-select span,\n  textarea,\n  input:not(:is([type='radio'],[type='checkbox'])),\n  .uneditable-input{\n    padding: var(--inputPadding);\n  }\n  input:is([type=\"text\"],[type=\"number\"]),textarea{\n    cursor:auto;\n  }\n  select,\n  .pseudo-select span,\n  .sheet-pseudo-select span,\n  input:not(:where([type='checkbox'], [type='radio'])),\n  .uneditable-input,\n  textarea{\n    @include borderPlaceholders.base-border;\n  }\n  select,\n  .sheet-pseudo-select span,\n  .pseudo-select span{\n    -webkit-apperance: none;\n    appearance: none;\n    text-transform: var(--selectTextTransform);\n    overflow: hidden!important;\n    white-space: nowrap;\n    text-overflow: var(--selectTextOverflow);\n    text-align: var(--selectTextAlign);\n    color:var(--selectColor);\n  }\n  input{\n    width: auto;\n    &:placeholder{\n      color: var(--placeholderColor);\n    }\n    &.plus-control:not([value*=\"-\"])+span:before{\n      content: '+';\n    }\n  }\n  textarea{\n    resize: var(--textareaResize);\n    white-space: pre-wrap;\n    &.fixed{\n      resize: none;\n      overflow: auto;\n    }\n  }\n","line":{"start":16,"end":93}}}]},{"description":"Basic input styling to ensure that the various inputs are ready for future styling\n","commentRange":{"start":15,"end":15},"context":{"type":"mixin","name":"inputBase","code":"\n  input{\n    &[type='checkbox']{\n      border: 1px solid var(--checkboxBorderColor);\n      cursor: pointer;\n      -webkit-appearance:none;\n      appearance:none;\n      width: var(--checkboxWidth);\n      min-width: var(--checkboxWidth);\n      height: var(--checkboxHeight);\n      min-height: var(--checkboxHeight);\n      display:grid;\n      grid-template-columns:1fr;\n      grid-template-areas:\"content\";\n      &:not(.collapse):not(.fill-left__radio):checked{\n        @include checked;\n      }\n    }\n    &[type='number']{\n      width: 3rem;\n      -moz-appearance: textfield !important;\n      text-align: center;\n      &::-webkit-inner-spin-button,\n      &::-webkit-outer-spin-button{\n        -webkit-appearance: none;\n        margin: 0;\n      }\n    }\n  }\n  select,\n  .pseudo-select span,\n  .sheet-pseudo-select span,\n  textarea,\n  input:not(:is([type='radio'],[type='checkbox'])),\n  .uneditable-input{\n    padding: var(--inputPadding);\n  }\n  input:is([type=\"text\"],[type=\"number\"]),textarea{\n    cursor:auto;\n  }\n  select,\n  .pseudo-select span,\n  .sheet-pseudo-select span,\n  input:not(:where([type='checkbox'], [type='radio'])),\n  .uneditable-input,\n  textarea{\n    @include borderPlaceholders.base-border;\n  }\n  select,\n  .sheet-pseudo-select span,\n  .pseudo-select span{\n    -webkit-apperance: none;\n    appearance: none;\n    text-transform: var(--selectTextTransform);\n    overflow: hidden!important;\n    white-space: nowrap;\n    text-overflow: var(--selectTextOverflow);\n    text-align: var(--selectTextAlign);\n    color:var(--selectColor);\n  }\n  input{\n    width: auto;\n    &:placeholder{\n      color: var(--placeholderColor);\n    }\n    &.plus-control:not([value*=\"-\"])+span:before{\n      content: '+';\n    }\n  }\n  textarea{\n    resize: var(--textareaResize);\n    white-space: pre-wrap;\n    &.fixed{\n      resize: none;\n      overflow: auto;\n    }\n  }\n","line":{"start":16,"end":93}},"access":"public","group":["undefined"],"require":[{"type":"mixin","name":"checked"}],"file":{"path":"attribute_holders\\_inputBase.scss","name":"_inputBase.scss"}},{"description":"Creates the default highlight styling for inputs/selects\n","commentRange":{"start":3,"end":3},"context":{"type":"mixin","name":"inputHighlight","code":"\n  border-width: 1px 3px;\n  border-style: solid;\n  border-color: var(--borderColor);\n  border-radius: 5px;\n  box-sizing: border-box;\n","line":{"start":4,"end":10}},"access":"public","group":["undefined"],"require":[],"file":{"path":"generic_scss\\_borderPlaceholders.scss","name":"_borderPlaceholders.scss"},"usedBy":[{"description":"The complete border styling\n","context":{"type":"mixin","name":"borderStyles","code":"\n  .boxed,\n  .sheet-boxed{\n    @include boxed;\n    &.thick-left{\n      border-left-width: 5px;\n    }\n    &.thick-bottom{\n      border-bottom-width: 5px;\n    }\n    &.thick-right{\n      border-right-width: 5px;\n    }\n    &.thick-top{\n      border-top-width: 5px;\n    }\n  }\n  .underlined,\n  .sheet-underlined{\n    @include base-border;\n    border-radius: 0;\n    border-bottom: 1px solid var(--borderColor);\n    transition: border-radius border var(--revealTrans);\n  }\n  :is(.underlined,.boxed){\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within){\n      @include inputHighlight;\n    }\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:focus,:focus-within){\n      background-color: var(--disabledColor);\n    }\n  }\n  .underlined--invisible{\n    border-color:transparent !important;\n  }\n","line":{"start":26,"end":61}}}]},{"description":"Basic border styling for elements\n","commentRange":{"start":11,"end":11},"context":{"type":"mixin","name":"base-border","code":"\n  border-width: 1px 3px;\n  border-style: solid;\n  border-radius: 5px;\n  border-color: transparent;\n  box-sizing: border-box;\n","line":{"start":12,"end":18}},"access":"public","group":["undefined"],"file":{"path":"generic_scss\\_borderPlaceholders.scss","name":"_borderPlaceholders.scss"},"usedBy":[{"description":"The complete border styling\n","context":{"type":"mixin","name":"borderStyles","code":"\n  .boxed,\n  .sheet-boxed{\n    @include boxed;\n    &.thick-left{\n      border-left-width: 5px;\n    }\n    &.thick-bottom{\n      border-bottom-width: 5px;\n    }\n    &.thick-right{\n      border-right-width: 5px;\n    }\n    &.thick-top{\n      border-top-width: 5px;\n    }\n  }\n  .underlined,\n  .sheet-underlined{\n    @include base-border;\n    border-radius: 0;\n    border-bottom: 1px solid var(--borderColor);\n    transition: border-radius border var(--revealTrans);\n  }\n  :is(.underlined,.boxed){\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within){\n      @include inputHighlight;\n    }\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:focus,:focus-within){\n      background-color: var(--disabledColor);\n    }\n  }\n  .underlined--invisible{\n    border-color:transparent !important;\n  }\n","line":{"start":26,"end":61}}}]},{"description":"Styling for elements that should have a box around them\n","commentRange":{"start":19,"end":19},"context":{"type":"mixin","name":"boxed","code":"\n  border: 2px solid var(--borderColor);\n  border-radius:0;\n  box-sizing:border-box;\n","line":{"start":20,"end":24}},"access":"public","group":["undefined"],"require":[],"file":{"path":"generic_scss\\_borderPlaceholders.scss","name":"_borderPlaceholders.scss"},"usedBy":[{"description":"The complete border styling\n","context":{"type":"mixin","name":"borderStyles","code":"\n  .boxed,\n  .sheet-boxed{\n    @include boxed;\n    &.thick-left{\n      border-left-width: 5px;\n    }\n    &.thick-bottom{\n      border-bottom-width: 5px;\n    }\n    &.thick-right{\n      border-right-width: 5px;\n    }\n    &.thick-top{\n      border-top-width: 5px;\n    }\n  }\n  .underlined,\n  .sheet-underlined{\n    @include base-border;\n    border-radius: 0;\n    border-bottom: 1px solid var(--borderColor);\n    transition: border-radius border var(--revealTrans);\n  }\n  :is(.underlined,.boxed){\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within){\n      @include inputHighlight;\n    }\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:focus,:focus-within){\n      background-color: var(--disabledColor);\n    }\n  }\n  .underlined--invisible{\n    border-color:transparent !important;\n  }\n","line":{"start":26,"end":61}}}]},{"description":"The complete border styling\n","commentRange":{"start":25,"end":25},"context":{"type":"mixin","name":"borderStyles","code":"\n  .boxed,\n  .sheet-boxed{\n    @include boxed;\n    &.thick-left{\n      border-left-width: 5px;\n    }\n    &.thick-bottom{\n      border-bottom-width: 5px;\n    }\n    &.thick-right{\n      border-right-width: 5px;\n    }\n    &.thick-top{\n      border-top-width: 5px;\n    }\n  }\n  .underlined,\n  .sheet-underlined{\n    @include base-border;\n    border-radius: 0;\n    border-bottom: 1px solid var(--borderColor);\n    transition: border-radius border var(--revealTrans);\n  }\n  :is(.underlined,.boxed){\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within){\n      @include inputHighlight;\n    }\n    &:not([readonly]):not([type='checkbox']):not([type='radio']):is(:focus,:focus-within){\n      background-color: var(--disabledColor);\n    }\n  }\n  .underlined--invisible{\n    border-color:transparent !important;\n  }\n","line":{"start":26,"end":61}},"access":"public","group":["undefined"],"require":[{"type":"mixin","name":"boxed"},{"type":"mixin","name":"base-border"},{"type":"mixin","name":"inputHighlight"}],"file":{"path":"generic_scss\\_borderPlaceholders.scss","name":"_borderPlaceholders.scss"}},{"description":"A mixin that switches the scaffold's sheet color variables over to dark mode specific versions.\n","commentRange":{"start":1,"end":7},"context":{"type":"mixin","name":"darkMode","code":"\n  --backColor:var(--dm-backColor);\n  --selectedColor:var(--dm-selectedColor);\n  --unselectedColor1:var(--dm-unselectedColor1);\n  --unselectedColor1:var(--dm-unselectedColor2);\n  --checkColor:var(--dm-checkColor);\n  --borderColor:var(--dm-borderColor);\n  --fontColor:var(--dm-fontColor);\n  --disabledColor:var(--dm-disabledColor);\n","line":{"start":8,"end":17}},"example":[{"type":"scss","code":"// Will apply the darkmode styling attributes to the body of the sheet when dark mode is enabled.\n@use 'k-scaffold' as k;\nbody.sheet-darkmode{\n  @include k.darkMode;\n}"}],"access":"public","group":["undefined"],"require":[],"file":{"path":"generic_scss\\_darkmode.scss","name":"_darkmode.scss"},"usedBy":[{"description":"A mixin that switches the scaffold's roll template color variables (including sheet variables) over to dark mode specific ones. Should only be used directly inside a `.sheet-rolltemplate-TEMPLATENAME` rule.\n","context":{"type":"mixin","name":"darkRoll","code":"\n  &.sheet-rolltemplate-darkmode{\n    @include darkMode;\n    --inlineRollBackColor: var(--dm-inlineRollBackColor);\n    --inlineRollColor: var(--fontColor);\n    --inlineRollCritColor: var(--dm-inlineRollCritColor);\n    --inlineRollFumbleColor: var(--dm-inlineRollCritColor);\n    --inlineRollImportantColor: var(--dm-inlineRollCritColor);\n  }\n","line":{"start":26,"end":35}}}]},{"description":"A mixin that switches the scaffold's roll template color variables (including sheet variables) over to dark mode specific ones. Should only be used directly inside a `.sheet-rolltemplate-TEMPLATENAME` rule.\n","commentRange":{"start":19,"end":25},"context":{"type":"mixin","name":"darkRoll","code":"\n  &.sheet-rolltemplate-darkmode{\n    @include darkMode;\n    --inlineRollBackColor: var(--dm-inlineRollBackColor);\n    --inlineRollColor: var(--fontColor);\n    --inlineRollCritColor: var(--dm-inlineRollCritColor);\n    --inlineRollFumbleColor: var(--dm-inlineRollCritColor);\n    --inlineRollImportantColor: var(--dm-inlineRollCritColor);\n  }\n","line":{"start":26,"end":35}},"example":[{"type":"scss","code":"// Will apply the darkmode styling attributes to the default template when dark mode is enabled.\n@use 'k-scaffold' as k;\n.sheet-rolltemplate-default{\n  @include k.darkRoll;\n}"}],"access":"public","group":["undefined"],"require":[{"type":"mixin","name":"darkMode"}],"file":{"path":"generic_scss\\_darkmode.scss","name":"_darkmode.scss"}},{"description":"Basic layout of the headed textarea construction\n","commentRange":{"start":1,"end":1},"context":{"type":"mixin","name":"headed-textarea","code":"\n  .headed-textarea{\n    display:grid;\n    grid-template-rows: auto 1fr;\n    grid-template-columns: auto;\n    grid-column:1 / -1;\n    :not(textarea):not(.adaptive){\n      justify-self: start;\n    }\n    .headed-textarea__header{\n      grid-area:initial;\n    }\n  }\n","line":{"start":2,"end":15}},"access":"public","group":["undefined"],"require":[],"file":{"path":"labels\\_headedText.scss","name":"_headedText.scss"}},{"description":"Mixin that creates the properties that should be assigned for inline rolls\n","commentRange":{"start":1,"end":1},"context":{"type":"mixin","name":"rollProperties","code":"\n  // Background settings\n  background-color: var(--inlineRoll#{$type}BackColor);\n\n  // Font settings\n  color:var(--inlineRoll#{$type}Color);\n  font-family:var(--inlineRoll#{$type}Font);\n  font-size:var(--inlineRoll#{$type}Size);\n\n  // Spacing\n  padding: var(--inlineRoll#{$type}Padding);\n  border: var(--inlineRoll#{$type}Border);\n  margin: var(--inlineRoll#{$type}Margin);\n","line":{"start":2,"end":15}},"access":"public","group":["undefined"],"require":[],"file":{"path":"rolltemplate\\helpers\\_index.scss","name":"_index.scss"}}];
-export const pug = [{"meta":{"name":"adaptiveTextarea","description":"Creates an html construction for creating a [content-scaled](https://wiki.roll20.net/CSS_Wizardry#Content-scaled_Inputs) textarea. You can apply classes and IDs to the container div by appending them to the mixin call (see the second example).","arguments":[{"name":"textObj","description":"The object describing the textarea as per the {@link textarea} mixin.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} textObj - The object describing the textarea as per the {@link textarea} mixin."}],"attributes":null,"example":"include ../_k.pug\n+adaptiveTextarea({name:'character description'})\n\n//Appending the class directly to the mixin\n+adaptiveTextarea({name:'character description'}).custom-class\n"},"file":"lib\\adaptive\\_adaptive.pug","source":"mixin adaptiveTextarea(textObj)\r\n  .adaptive.adaptive--text&attributes(attributes)\r\n    - let spanObj = {name:textObj.name,class:'adaptive--text__span'};\r\n    - textObj.class = textObj.class ? `${textObj.class} adaptive--text__textarea` : 'adaptive--text__textarea';\r\n    +span(spanObj)\r\n    +textarea(textObj)\r","output":"<div class=\"adaptive adaptive--text\">\n  <span class=\"adaptive--text__span\" name=\"attr_character_description\" title=\"@{character_description}\"></span>\n  <textarea class=\"adaptive--text__textarea\" name=\"attr_character_description\" title=\"@{character_description}\"></textarea>\n</div>\n<!--Appending the class directly to the mixin-->\n<div class=\"adaptive adaptive--text custom-class\">\n  <span class=\"adaptive--text__span\" name=\"attr_character_description\" title=\"@{character_description}\"></span>\n  <textarea class=\"adaptive--text__textarea\" name=\"attr_character_description\" title=\"@{character_description}\"></textarea>\n</div>"},{"meta":{"name":"adaptiveInput","description":"Creates an html construction for creating a [content-scaled](https://wiki.roll20.net/CSS_Wizardry#Content-scaled_Inputs) input. You can apply classes and IDs to the container div by appending them to the mixin call (see the second example).","arguments":[{"name":"inputObj","description":"The object describing the input as per the {@link input} mixin. You can apply classes and IDs to the container div by appending them to the mixin call (see the second example).","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - The object describing the input as per the {@link input} mixin. You can apply classes and IDs to the container div by appending them to the mixin call (see the second example)."}],"attributes":null,"example":"include ../_k.pug\n+adaptiveInput({name:'character description',type:'text'})\n\n//Appending class directly to the mixin\n+adaptiveInput({name:'character description',type:'text'}).custom-class\n"},"file":"lib\\adaptive\\_adaptive.pug","source":"mixin adaptiveInput(textObj)\r\n  .adaptive.adaptive--input&attributes(attributes)\r\n    - let spanObj = {name:textObj.name,class:'adaptive--input__span','max-width':maxWidth};\r\n    - textObj.class = textObj.class ? `${textObj.class} adaptive--input__input` : 'adaptive--input__input';\r\n    +span(spanObj)\r\n    +input(textObj)\r","output":"<div class=\"adaptive adaptive--input\">\n  <span class=\"adaptive--input__span\" name=\"attr_character_description\" title=\"@{character_description}\"></span>\n  <input class=\"adaptive--input__input\" name=\"attr_character_description\" type=\"text\" title=\"@{character_description}\"/>\n</div>\n<!--Appending class directly to the mixin-->\n<div class=\"adaptive adaptive--input custom-class\">\n  <span class=\"adaptive--input__span\" name=\"attr_character_description\" title=\"@{character_description}\"></span>\n  <input class=\"adaptive--input__input\" name=\"attr_character_description\" type=\"text\" title=\"@{character_description}\"/>\n</div>"},{"meta":{"name":"img","description":"A mixin to create a sheet image element. Particularly useful when using the image attribute syntax.","example":"include ../_k.pug\n+img({name:'my image',class:'some-class'})\n"},"file":"lib\\attribute_holders\\_attribute_backed.pug","source":"mixin img(obj)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  - obj['data-i18n-alt'] = obj['data-i18n-alt'] || obj.name;\r\n  - obj.name = attrName(obj.name);\r\n  - obj.title = obj.title || attrTitle(obj.name);\r\n  - const elementObj = makeElementObj(obj);\r\n  - addFieldToFieldsetObj(obj);\r\n  - storeTrigger(obj);\r\n  img&attributes(elementObj)\r","output":"<img class=\"some-class\" name=\"my_image\" data-i18n-alt=\"my image\" title=\"@{my_image}\"/>"},{"meta":{"name":"span","description":"Creates a span element and formats the name of the span for compatibility with the Roll20 attribute system.","arguments":[{"name":"attrObj","description":"The object describing the span itself.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} attrObj - The object describing the span itself."},{"name":"block","description":"What is contained within the span","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - What is contained within the span"}],"attributes":null,"example":"include ../_k.pug\n+span({name:'attribute backed span',trigger:{calculation:'calculateAttribute'}})\n"},"file":"lib\\attribute_holders\\_attribute_backed.pug","source":"mixin span(obj)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  if obj.name\r\n    - obj.name = replaceSpaces(obj.name);\r\n    - obj.title = obj.title || attrTitle(obj.name);\r\n    - obj.name = `attr_${obj.name}`;\r\n    - addFieldToFieldsetObj(obj);\r\n  - const elementObj = makeElementObj(obj);\r\n  span&attributes(elementObj)\r\n    block\r\n  if obj.name\r\n    - obj.type = 'span';\r\n    - storeTrigger(obj);\r","output":"<span name=\"attr_attribute_backed_span\" title=\"@{attribute_backed_span}\"></span>"},{"meta":{"name":"div","description":"Creates a div element and will properly format the name attribute of the div if it is provided","arguments":[{"name":"divObj","description":"The object describing the div","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} divObj - The object describing the div"},{"name":"block","description":"The contents of the div","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The contents of the div"}],"attributes":null,"example":"include ../_k.pug\n+div({name:'background image'})\n"},"file":"lib\\attribute_holders\\_attribute_backed.pug","source":"mixin div(obj)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  if obj.name\r\n    - obj.name = replaceSpaces(obj.name);\r\n    - obj.title = obj.title || attrTitle(obj.name);\r\n    - obj.name = `attr_${obj.name}`;\r\n  div&attributes(obj)\r\n    block\r","output":"<div name=\"attr_background_image\" title=\"@{background_image}\"></div>"},{"meta":{"name":"button","description":"Creates a button element. Valid types are `roll` or `action`. If a type is not specified in the object argument, a roll button is created. If an action button is created, spaces in the name are replaced with dashes instead of underscores.","arguments":[{"name":"buttonObj","description":"The object describing the button","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} buttonObj - The object describing the button"},{"name":"block","description":"The contents of the button element","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The contents of the button element"}],"example":"include ../_k.pug\n//A basic roll button\n+button({name:'my button',value:'/r 3d10'})\n//An action button\n+button({name:'my button',type:'action','data-i18n':'action button',trigger:{triggeredFuncs:['doSomethingOnClick']}})\n"},"file":"lib\\attribute_holders\\_buttons.pug","source":"mixin button(obj, _attributes)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  - obj.name = attrName(obj.name);\r\n  - obj.title = obj.title || buttonTitle(obj.name);\r\n  if obj.type === 'action'\r\n    - obj.name = `act_${obj.name}`;\r\n  else\r\n    - obj.type = 'roll';\r\n    - obj.name = `roll_${obj.name}`;\r\n  - const elementObj = makeElementObj(obj);\r\n  if obj.type !== 'roll'\r\n    - storeTrigger(obj);\r\n  button&attributes(elementObj)&attributes(attributes)\r\n    block\r","output":"<!--A basic roll button-->\n<button name=\"roll_my_button\" value=\"/r 3d10\" title=\"%{my_button}\" type=\"roll\"></button>\n<!--An action button-->\n<button name=\"act_my_button\" type=\"action\" data-i18n=\"action button\" title=\"%{my_button}\"></button>"},{"meta":{"name":"action","description":"Alias for {@link button} that creates a button element with a type of `action`. Spaces in the name are replaced with dashes instead of underscores.","arguments":null,"attributes":null,"example":"include ../_k.pug\n+action({name:'my button','data-i18n':'action button',trigger:{triggeredFuncs:['doSomethingOnClick']}})\n"},"file":"lib\\attribute_holders\\_buttons.pug","source":"mixin action(obj, _attributes)\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  - obj.type = 'action';\r\n  - obj.name = attrName(obj.name).replace(/[\\s_]+/g,'-');\r\n  +button(obj)&attributes(attributes)\r\n    block\r","output":"<button name=\"act_my-button\" data-i18n=\"action button\" type=\"action\" title=\"%{my-button}\"></button>"},{"meta":{"name":"roller","description":"Creates a multi element construction made of a hidden input, a roll button, and a hidden action button. On sheet load, or character sheet name change, the hidden input is updated with an ability call to the action button. The roll button refers to the hidden input as its value. This allows for an action button to be used to call custom roll parsing (or other sheet functionality) while retaining the ability to drag the button to the macro bar. Uses the same arguments as {@link button}. A trigger should be passed, and will be associated with the action button's name.","arguments":null,"attributes":null,"example":"include ../_k.pug\n+roller({name:'my button','data-i18n':'action button',trigger:{triggeredFuncs:['doSomethingOnClick']}})\n"},"file":"lib\\attribute_holders\\_buttons.pug","source":"mixin roller(obj)\r\n  +rollerExtras(obj)\r\n    - let rollObj = {...obj};\r\n    - delete rollObj.trigger;\r\n    +button(obj)\r\n      block\r","output":"<button class=\"roller\" name=\"roll_my_button\" data-i18n=\"action button\" value=\"@{my_button_action}\" title=\"%{my_button}\" type=\"roll\"></button>\n<button name=\"act_my-button-action\" hidden=\"\" type=\"action\" title=\"%{my-button-action}\"></button>\n<input name=\"attr_my_button_action\" type=\"hidden\" title=\"@{my_button_action}\"/>"},{"meta":{"name":"fillLeft","description":"A mixin that creates an html construction ready to be styled for use as a [fill-to-left section](https://wiki.roll20.net/CSS_Wizardry#Fill_Radio_Buttons_to_the_Left).","arguments":[{"name":"radioObj","description":"The object containing the details of the radio input to create. Similar to the {@link radio}, but the value property passed is used as the default checked value.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} radioObj - The object containing the details of the radio input to create. Similar to the {@link radio}, but the value property passed is used as the default checked value."},{"name":"divObj","description":"Optional object containing any details of the div to be applied such as class, id, or other properties. Class and ID can also be supplied by attaching them to the mixin invocation just like with a regular div.","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [divObj] - Optional object containing any details of the div to be applied such as class, id, or other properties. Class and ID can also be supplied by attaching them to the mixin invocation just like with a regular div."},{"name":"valueArray","description":"Array containing the values to be used for the fill to left construction. These should be in the order that they should be displayed left to right.","type":"array","default":null,"nullable":false,"optional":false,"original":"{array} valueArray - Array containing the values to be used for the fill to left construction. These should be in the order that they should be displayed left to right."},{"name":"noClear","description":"Optional argument that tells the mixin whether or not to apply the `fill-left__radio--clearer` class to the first radio button value. If falsy (or not passed), the class is applied. If truthy, the class is not applied.","type":"boolean","default":null,"nullable":false,"optional":true,"original":"{boolean} [noClear] - Optional argument that tells the mixin whether or not to apply the `fill-left__radio--clearer` class to the first radio button value. If falsy (or not passed), the class is applied. If truthy, the class is not applied."}],"example":"include ../_k.pug\n+fillLeft({\n  radioObj:{name:'my radio'},\n  divObj:{class:'some-custom-class'},\n  valueArray:[1,2,3,4,5]\n})\n"},"file":"lib\\attribute_holders\\_fill_left.pug","source":"mixin fillLeft({radioObj,divObj,valueArray,noClear,displayValues})\r\n  - divObj = divObj || {};\r\n  .fill-left&attributes(divObj)&attributes(attributes)\r\n    if !noClear\r\n      - const clearObj = {...radioObj,value:0};\r\n      -\r\n        clearObj.class = clearObj.class ? \r\n          `${clearObj.class} fill-left__radio` :\r\n          `fill-left__radio`;\r\n      if value === 0\r\n        - clearObj.checked = '';\r\n      +hidden(clearObj)\r\n    each value,index in valueArray\r\n      - const usedObj = {...radioObj,value};\r\n      -\r\n        usedObj.class = usedObj.class ? \r\n          `${usedObj.class} fill-left__radio` :\r\n          `fill-left__radio`;\r\n      if displayValues\r\n        - usedObj['data-value'] = displayValues[index];\r\n      if value === radioObj.value\r\n        - usedObj.checked = '';\r\n      \r\n      +#{noClear ? 'radio' : 'checkbox'}(usedObj)\r","output":"<div class=\"fill-left some-custom-class\">\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"0\" type=\"hidden\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"1\" type=\"checkbox\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"2\" type=\"checkbox\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"3\" type=\"checkbox\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"4\" type=\"checkbox\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"5\" type=\"checkbox\" title=\"@{my_radio}\"/>\n</div>"},{"meta":{"name":"select","description":"A mixin to create a select element. Uses K-scaffold global variables to control how {@link option} mixins within the select's block behave.","arguments":[{"name":"inputObj","description":"The object describing the select","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - The object describing the select"},{"name":"block","description":"The content within the select","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The content within the select"}],"attributes":null,"example":"include ../_k.pug\n+select({name:'my select'})\n  +option({value:'a value','data-i18n':'a translation key',trigger:{affects:['some_attribute']}})\n  +option({value:'value 2','data-i18n':'translation 2'})\n  +option({value:'value 3'})\n    |Some Text we include via the option's block\n"},"file":"lib\\attribute_holders\\_selects.pug","source":"mixin select(obj)\r\n  - checkKUse();\r\n  -\r\n    obj.class = obj.class ?\r\n      replaceProblems(obj.class) :\r\n      undefined;\r\n  - obj.name = attrName(obj.name);\r\n  - obj.title = obj.title || attrTitle(obj.name);\r\n  - obj.name = `attr_${obj.name}`;\r\n  - addFieldToFieldsetObj(obj);\r\n\r\n  //- Initialize the object that will be passed to the cascade\r\n  - const triggerObj = {...obj,type:'select'};\r\n  - const options = [];\r\n  \r\n  mixin option(optObj)\r\n    -\r\n      optObj.class = optObj.class ?\r\n        replaceProblems(optObj.class) :\r\n        undefined;\r\n    -\r\n      const pushObj = {\r\n        obj:optObj,\r\n        attributes: attributes || {}\r\n      };\r\n    if block\r\n      - pushObj.block = block;\r\n    - options.push(pushObj);\r\n\r\n\r\n  if !block\r\n    option(value='!!! Error: empty select !!!')\r\n  else\r\n    - block();\r\n    - const selObj = makeElementObj(obj);\r\n    select&attributes(selObj)&attributes(attributes)\r\n      each o in options\r\n        if o.hasOwnProperty('selected') && o.hasOwnProperty('value')\r\n          - triggerObj.value = o.value;\r\n          if o.trigger && !triggerObj.trigger\r\n            - triggerObj.trigger = o.trigger;\r\n        - const elemObj = makeElementObj(o.obj);\r\n        option&attributes(elemObj)&attributes(o.attributes)\r\n    - storeTrigger(triggerObj);\r","output":"<select name=\"attr_my_select\" title=\"@{my_select}\">\n  <option value=\"a value\" data-i18n=\"a translation key\"></option>\n  <option value=\"value 2\" data-i18n=\"translation 2\"></option>\n  <option value=\"value 3\"></option>\n</select>"},{"meta":{"name":"fieldset","description":"A mixin that creates a fieldset for the creation of a repeating section. The mixin prefixes the name with `repeating_` and replaces problem characters (e.g. spaces are replaced with dashes). Additionally, the auto-generated title properties from the K-scaffold\\'s mixins will include the proper repeating section information.","arguments":[{"name":"name","description":"The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`).","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} name - The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`)."},{"name":"trigger","description":"Trigger that defines how to handle the removal of a row from the fieldset. `Optional`","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [trigger] - Trigger that defines how to handle the removal of a row from the fieldset. `Optional`"},{"name":"addClass","description":"Any additional classes that should be used for the repeating section. Note that these are not added to the fieldset itself as adding additional classes to the fieldset itself interferes with calling action buttons from chat, but are added to a span that precedes the fieldset. This allows styling of the repcontainer via a css declaration like `.bonus-class + fieldset + .repcontainer`.","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} addClass - Any additional classes that should be used for the repeating section. Note that these are not added to the fieldset itself as adding additional classes to the fieldset itself interferes with calling action buttons from chat, but are added to a span that precedes the fieldset. This allows styling of the repcontainer via a css declaration like `.bonus-class + fieldset + .repcontainer`."}],"attributes":null,"example":"include ../_k.pug\n//A basic fieldset declaration with a trigger\n+fieldset({\n  name:'fieldset',\n  trigger:{triggeredFuncs:['doWhenRemoved']}\n})\n  +text({name:'name'})\n\n//A Fieldset with an added class\n+fieldset({\n  name:'fieldset',\n  trigger:{triggeredFuncs:['doWhenRemoved']},\n  addClass:'some-class'\n})\n  +text({name:'name'})\n"},"file":"lib\\fieldsets\\_fieldsets.pug","source":"mixin fieldset({name,trigger,addClass})\r\n  -\r\n    name = repeatsIgnoreSystemPrefix || !getSystemPrefix() ?\r\n      name :\r\n      `${getSystemPrefix()} ${name}`;\r\n  - name = name.replace(/\\s+/g,'-');\r\n  - let section = `repeating_${name}`;\r\n  - k.repeatingPrefix = `${section}_$X_`;\r\n  - createFieldsetObj(section)\r\n  if trigger\r\n    - storeTrigger({name:section,type:'fieldset',trigger})\r\n  if addClass\r\n    span(hidden=\"\" class=addClass)\r\n  fieldset(class=`${section}`)\r\n    block\r\n  - k.repeatingPrefix = '';\r","output":"<!--A basic fieldset declaration with a trigger-->\n<fieldset class=\"repeating_fieldset\">\n  <input name=\"attr_name\" type=\"text\" title=\"@{repeating_fieldset_$X_name}\"/>\n</fieldset>\n<!--A Fieldset with an added class-->\n<span class=\"some-class\" hidden=\"\"></span>\n<fieldset class=\"repeating_fieldset\">\n  <input name=\"attr_name\" type=\"text\" title=\"@{repeating_fieldset_$X_name}\"/>\n</fieldset>"},{"meta":{"name":"inlineFieldset","description":"An alias for {@link fieldset} that creates a fieldset with an added class that can be easily hooked into via CSS to style the fieldset for inline display.","arguments":[{"name":"name","description":"The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`).","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} name - The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`)."},{"name":"trigger","description":"Trigger that defines how to handle the removal of a row from the fieldset. `Optional`","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [trigger] - Trigger that defines how to handle the removal of a row from the fieldset. `Optional`"},{"name":"addClass","description":"Any additional classes that should be used for the repeating section. Note that these are not added to the fieldset itself as adding additional classes to the fieldset itself interferes with calling action buttons from chat, but are added to a span that precedes the fieldset. This allows styling of the repcontainer via a css declaration like `.bonus-class + fieldset + .repcontainer`.","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} addClass - Any additional classes that should be used for the repeating section. Note that these are not added to the fieldset itself as adding additional classes to the fieldset itself interferes with calling action buttons from chat, but are added to a span that precedes the fieldset. This allows styling of the repcontainer via a css declaration like `.bonus-class + fieldset + .repcontainer`."}],"attributes":null,"example":"include ../_k.pug\n+inlineFieldset({\n  name:'fieldset',\n  trigger:{triggeredFuncs:['doWhenRemoved']},\n  addClass:'some-class'\n})\n"},"file":"lib\\fieldsets\\_fieldsets.pug","source":"mixin inlineFieldset({name,trigger,addClass})\r\n  - addClass = addClass ? `${addClass} inline-fieldset` : 'inline-fieldset';\r\n  - varObjects.inlineFieldsets = varObjects.inlineFieldsets || [];\r\n  - varObjects.inlineFieldsets.push(name);\r\n  \r\n  +action({name:`add ${name}`,class:'repcontrol-button repcontrol-button--add repcontrol-button--inline',trigger:{listenerFunc:'sectionInteract'}})\r\n  +fieldset({name,trigger,addClass})\r\n    +radio({name:'display state',class:'display-control',value:'short-display',hidden:''})\r\n    .inline-fieldset__summary.display-target\r\n      label.pointer\r\n        +checkbox({name:'collapse',value:1,hidden:'',trigger:{triggeredFuncs:['collapseSection']}})\r\n        +span({name:'name',class:'inline-fieldset__summary__text'})\r\n    +radio({name:'display state',class:'display-control',value:'display',checked:'',hidden:''})\r\n    .inline-fieldset__detail.display-target\r\n      +collapse\r\n      block\r","output":"<button class=\"repcontrol-button repcontrol-button--add repcontrol-button--inline\" name=\"act_add-fieldset\" type=\"action\" title=\"%{add-fieldset}\"></button>\n<span class=\"some-class inline-fieldset\" hidden=\"\"></span>\n<fieldset class=\"repeating_fieldset\">\n  <input class=\"display-control\" name=\"attr_display_state\" value=\"short-display\" hidden=\"\" type=\"radio\" title=\"@{repeating_fieldset_$X_display_state}\"/>\n  <div class=\"inline-fieldset__summary display-target\">\n    <label class=\"pointer\">\n      <input name=\"attr_collapse\" value=\"1\" hidden=\"\" type=\"checkbox\" title=\"@{repeating_fieldset_$X_collapse}\"/>\n      <span class=\"inline-fieldset__summary__text\" name=\"attr_name\" title=\"@{repeating_fieldset_$X_name}\"></span>\n    </label>\n  </div>\n  <input class=\"display-control\" name=\"attr_display_state\" value=\"display\" checked=\"\" hidden=\"\" type=\"radio\" title=\"@{repeating_fieldset_$X_display_state}\"/>\n  <div class=\"inline-fieldset__detail display-target\">\n    <input class=\"collapse\" name=\"attr_collapse\" value=\"1\" type=\"checkbox\" title=\"@{repeating_fieldset_$X_collapse}\"/>\n  </div>\n</fieldset>"},{"meta":{"name":"script","description":"Creates a generic [Roll20 script block](https://wiki.roll20.net/Building_Character_Sheets#JavaScript_2) for use with the sheetworker system.","arguments":null,"attributes":null,"example":"include ../_k.pug\n+script\n"},"file":"lib\\scripts\\_scripts.pug","source":"mixin script\r\n  script(type='text/worker')\r\n    block\r","output":"<script type=\"text/worker\"></script>"},{"meta":{"name":"kscript","description":"Similar to {@link script}, but includes the K-scaffold\\'s javascript function library.","arguments":null,"attributes":null,"example":"include ../_k.pug\n+kscript\n"},"file":"lib\\scripts\\_scripts.pug","source":"mixin kscript\r\n  - scriptUsed = true;\r\n  +script\r\n    |const k = (function(){\r\n    |const kFuncs = {};\r\n    //- The below declarations import variables from the pug file and mixins into the sheetworker code\r\n    - const propArray = ['cascades','repeatingSectionDetails','persistentTabs'];\r\n    each prop in propArray\r\n      |\r\n      |const !{prop} = !{JSON.stringify(varObjects[prop])};\r\n      |\r\n      |kFuncs.!{prop} = !{prop};\r\n      - delete varObjects[prop];\r\n    |\r\n    |\r\n    include kvariables.js\r\n    include utility.js\r\n    include attribute_proxy.js\r\n    include accessSheet.js\r\n    include parse_cascade.js\r\n    include sheetworker_aliases.js\r\n    include listeners.js\r\n    include ../tabs/tabs.js\r\n    |\r\n    |return kFuncs;\r\n    |}());\r\n    |\r\n    each content,prop in varObjects\r\n      |\r\n      if typeof content === 'object'\r\n        |const !{prop} = !{JSON.stringify(content)};\r\n      else\r\n        |let !{prop} = !{content};\r\n      |\r\n    |\r\n    block\r","output":"<script type=\"text/worker\">\n  const k = (function(){\nconst kFuncs = {};\nconst cascades = {\"attr_character_name\":{\"name\":\"character_name\",\"type\":\"text\",\"defaultValue\":\"\",\"affects\":[],\"triggeredFuncs\":[\"setActionCalls\"],\"listenerFunc\":\"accessSheet\",\"listener\":\"change:character_name\"},\"attr_character_description\":{\"name\":\"character_description\",\"type\":\"span\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_my_image\":{\"name\":\"my_image\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_attribute_backed_span\":{\"calculation\":\"calculateAttribute\",\"name\":\"attribute_backed_span\",\"type\":\"span\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"act_my_button\":{\"triggeredFuncs\":[\"doSomethingOnClick\"],\"name\":\"my_button\",\"listener\":\"clicked:my_button\",\"listenerFunc\":\"accessSheet\",\"type\":\"action\"},\"act_my-button\":{\"triggeredFuncs\":[\"doSomethingOnClick\"],\"name\":\"my-button\",\"listener\":\"clicked:my-button\",\"listenerFunc\":\"accessSheet\",\"type\":\"action\"},\"act_my-button-action\":{\"triggeredFuncs\":[\"doSomethingOnClick\"],\"name\":\"my-button-action\",\"listener\":\"clicked:my-button-action\",\"listenerFunc\":\"accessSheet\",\"type\":\"action\"},\"attr_my_button_action\":{\"name\":\"my_button_action\",\"type\":\"hidden\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_my_radio\":{\"name\":\"my_radio\",\"type\":\"hidden\",\"defaultValue\":0,\"triggeredFuncs\":[],\"affects\":[]},\"attr_my_select\":{\"name\":\"my_select\",\"type\":\"select\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"fieldset_repeating_fieldset\":{\"triggeredFuncs\":[\"doWhenRemoved\"],\"name\":\"repeating_fieldset\",\"listener\":\"remove:repeating_fieldset\",\"listenerFunc\":\"accessSheet\",\"type\":\"fieldset\"},\"attr_repeating_fieldset_$X_name\":{\"name\":\"repeating_fieldset_$X_name\",\"type\":\"text\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"act_add-undefined\":{\"listenerFunc\":\"addItem\",\"name\":\"add-undefined\",\"listener\":\"clicked:add-undefined\",\"type\":\"action\"},\"act_add-fieldset\":{\"listenerFunc\":\"sectionInteract\",\"name\":\"add-fieldset\",\"listener\":\"clicked:add-fieldset\",\"type\":\"action\"},\"attr_repeating_fieldset_$X_display_state\":{\"name\":\"repeating_fieldset_$X_display_state\",\"type\":\"radio\",\"defaultValue\":\"short-display\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_repeating_fieldset_$X_collapse\":{\"triggeredFuncs\":[\"collapseSection\"],\"name\":\"repeating_fieldset_$X_collapse\",\"listener\":\"change:repeating_fieldset:collapse\",\"listenerFunc\":\"accessSheet\",\"type\":\"checkbox\",\"defaultValue\":0,\"affects\":[]}};\n\nkFuncs.cascades = cascades;\nconst repeatingSectionDetails = [{\"section\":\"repeating_fieldset\",\"fields\":[\"name\",\"display_state\",\"collapse\"]}];\n\nkFuncs.repeatingSectionDetails = repeatingSectionDetails;\nconst persistentTabs = [];\n\nkFuncs.persistentTabs = persistentTabs;\n/**\n * The K-scaffold provides several variables to allow your scripts to tap into its information flow.\n * @namespace Sheetworkers.Variables\n */\n/**\n * This stores the name of your sheet for use in the logging functions {@link log} and {@link debug}. Accessible by `k.sheetName`\n * @memberof Variables\n * @var\n * @type {string}\n */\nlet sheetName = 'kScaffold Powered Sheet';\nkFuncs.sheetName = sheetName;\n/**\n\t* This stores the version of your sheet for use in the logging functions{@link log} and {@link debug}. It is also stored in the sheet_version attribute on your character sheet. Accessible via `k.version`\n * @memberof Variables\n\t* @var\n\t* @type {number}\n\t*/\nlet version = 0;\nkFuncs.version = version;\n/**\n\t* A boolean flag that tells the script whether to enable or disable {@link debug} calls. If the version of the sheet is `0`, or an attribute named `debug_mode` is found on opening this is set to true for your entire session. Otherwise, it remains false.\n * @memberof Variables\n\t* @var\n\t* @type {boolean}\n\t*/\nlet debugMode = false;\nkFuncs.debugMode = debugMode;\nconst funcs = {};\nkFuncs.funcs = funcs;\nconst updateHandlers = {};\nconst openHandlers = {};\nconst initialSetups = {};\nconst allHandlers = {};\nconst addFuncs = {};\n\nconst kscaffoldJSVersion = '1.0.0';\nconst kscaffoldPUGVersion = '1.0.0';\n/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/**\n * These are utility functions that are not directly related to Roll20 systems. They provide easy methods for everything from processing text and numbers to querying the user for input.\n * @namespace Sheetworkers.Utilities\n * @alias Utilities\n */\n/**\n * Replaces problem characters to use a string as a regex\n * @memberof Utilities\n * @param {string} text - The text to replace characters in\n * @returns {string}\n * @example\n * const textForRegex = k.sanitizeForRegex('.some thing[with characters]');\n * console.log(textForRegex);// =>\n     \"\\.some thing\\[with characters\\]\"\n */\nconst sanitizeForRegex = function(text){\n  return text.replace(/\\.|\\||\\(|\\)|\\[|\\]|\\-|\\+|\\?|\\/|\\{|\\}|\\^|\\$|\\*/g,'\\\\$&');\n};\nkFuncs.sanitizeForRegex = sanitizeForRegex;\n\n/**\n * Converts a value to a number, it\\'s default value, or `0` if no default value passed.\n * @memberof Utilities\n * @param {string|number} val - Value to convert to a number\n * @param {number} def - The default value, uses 0 if not passed\n * @returns {number|undefined}\n * @example\n * const num = k.value('100');\n * console.log(num);// =>\n       100\n */\nconst value = function(val,def){\n  const convertVal = +val;\n  if(def !== undefined && isNaN(def)){\n    throw(`K-scaffold Error: invalid default for value(). Default: ${def}`);\n  }\n  return convertVal === 0 ?\n    convertVal :\n    (+val||def||0);\n};\nkFuncs.value = value;\n\n/**\n * Extracts the section (e.g. `repeating_equipment`), rowID (e.g `-;lkj098J:LKj`), and field name (e.g. `bulk`) from a repeating attribute name.\n * @memberof Utilities\n * @param {string} string - The string to parse\n * @returns {array} - Array of matches. Index 0: the section name, e.g. repeating_equipment | Index 1:the row ID | index 2: The name of the attribute\n * @returns {string[]}\n * @example\n * //Extract info from a full repeating name\n * const [section,rowID,attrName] = k.parseRepeatName('repeating_equipment_-8908asdflkjZlkj23_name');\n * console.log(section);// =>\n         \"repeating_equipment\"\n * console.log(rowID);// =>\n           \"-8908asdflkjZlkj23\"\n * console.log(attrName);// =>\n             \"name\"\n * \n * //Extract info from just a row name\n * const [section,rowID,attrName] = k.parseRepeatName('repeating_equipment_-8908asdflkjZlkj23');\n * console.log(section);// =>\n               \"repeating_equipment\"\n * console.log(rowID);// =>\n                 \"-8908asdflkjZlkj23\"\n * console.log(attrName);// =>\n                   undefined\n */\nconst parseRepeatName = function(string){\n  let match = string.match(/(repeating_[^_]+)_([^_]+)(?:_(.+))?/);\n  match.shift();\n  return match;\n};\nkFuncs.parseRepeatName = parseRepeatName;\n\n/**\n * Parses out the components of a trigger name similar to [parseRepeatName](#parserepeatname). Aliases: parseClickTrigger.\n * \n * Aliases: `k.parseClickTrigger`\n * @memberof Utilities\n * @param {string} string The triggerName property of the\n * @returns {array} - For a repeating button named `repeating_equipment_-LKJhpoi98;lj_roll`, the array will be `['repeating_equipment','-LKJhpoi98;lj','roll']`. For a non repeating button named `roll`, the array will be `[undefined,undefined,'roll']`\n * @returns {string[]}\n * @example\n * //Parse a non repeating trigger\n * const [section,rowID,attrName] = k.parseTriggerName('clicked:some-button');\n * console.log(section);// =>\n                     undefined\n * console.log(rowID);// =>\n                       undefined\n * console.log(attrName);// =>\n                         \"some-button\"\n * \n * //Parse a repeating trigger\n * const [section,rowID,attrName] = k.parseTriggerName('clicked:repeating_attack_-234lkjpd8fu8usadf_some-button');\n * console.log(section);// =>\n                           \"repeating_attack\"\n * console.log(rowID);// =>\n                             \"-234lkjpd8fu8usadf\"\n * console.log(attrName);// =>\n                               \"some-button\"\n * \n * //Parse a repeating name\n * const [section,rowID,attrName] = k.parseTriggerName('repeating_attack_-234lkjpd8fu8usadf_some-button');\n * console.log(section);// =>\n                                 \"repeating_attack\"\n * console.log(rowID);// =>\n                                   \"-234lkjpd8fu8usadf\"\n * console.log(attrName);// =>\n                                     \"some-button\"\n */\nconst parseTriggerName = function(string){\n  let match = string.replace(/^clicked:/,'').match(/(?:(repeating_[^_]+)_([^_]+)_)?(.+)/);\n  match.shift();\n  return match;\n};\nkFuncs.parseTriggerName = parseTriggerName;\nconst parseClickTrigger = parseTriggerName;\nkFuncs.parseClickTrigger = parseClickTrigger;\n\n/**\n * Parses out the attribute name from the htmlattribute name.\n * @memberof Utilities\n * @param {string} string - The triggerName property of the [event](https://wiki.roll20.net/Sheet_Worker_Scripts#eventInfo_Object).\n * @returns {string}\n * @example\n * //Parse a name\n * const attrName = k.parseHtmlName('attr_attribute_1');\n * console.log(attrName);// =>\n                                       \"attribute_1\"\n */\nconst parseHTMLName = function(string){\n  let match = string.match(/(?:attr|act|roll)_(.+)/);\n  match.shift();\n  return match[0];\n};\nkFuncs.parseHTMLName = parseHTMLName;\n\n/**\n * Capitalize each word in a string\n * @memberof Utilities\n * @param {string} string - The string to capitalize\n * @returns {string}\n * @example\n * const capitalized = k.capitalize('a word');\n * console.log(capitalized);// =>\n                                         \"A Word\"\n */\nconst capitalize = function(string){\n  return string.replace(/(?:^|\\s+|\\/)[a-z]/ig,(letter)=>\n                                          letter.toUpperCase());\n};\nkFuncs.capitalize = capitalize;\n\n/**\n * Extracts a roll query result for use in later functions. Must be awaited as per [startRoll documentation](https://wiki.roll20.net/Sheet_Worker_Scripts#Roll_Parsing.28NEW.29). Stolen from [Oosh\\'s Adventures with Startroll thread](https://app.roll20.net/forum/post/10346883/adventures-with-startroll).\n * @memberof Utilities\n * @param {string} query - The query should be just the text as the `?{` and `}` at the start/end of the query are added by the function.\n * @returns {Promise} - Resolves to the selected value from the roll query\n * @example\n * const rollFunction = async function(){\n *  //Get the result of a choose from list query\n *  const queryResult = await extractQueryResult('Prompt Text Here|Option 1|Option 2');\n *  console.log(queryResult);//=>\n                                             \"Option 1\" or \"Option 2\" depending on what the user selects\n * \n *  //Get free form input from the user\n *  const freeResult = await extractQueryResult('Prompt Text Here');\n *  consoel.log(freeResult);// =>\n                                               Whatever the user entered\n * }\n */\nconst extractQueryResult = async function(query){\n\tdebug('entering extractQueryResult');\n\tlet queryRoll = await startRoll(`!{{query=[[0[response=?{${query}}]]]}}`);\n\tfinishRoll(queryRoll.rollId);\n\treturn queryRoll.results.query.expression.replace(/^.+?response=|\\]$/g,'');\n};\nkFuncs.extractQueryResult = extractQueryResult;\n\n/**\n * Simulates a query for ensuring that async/await works correctly in the sheetworker environment when doing conditional startRolls. E.g. if you have an if/else and only one of the conditions results in `startRoll` being called (and thus an `await`), the sheetworker environment would normally crash. Awaiting this in the condition that does not actually need to call `startRoll` will keep the environment in sync.\n * @memberof Utilities\n * @param {string|number} [value] - The value to return. Optional.\n * @returns {Promise} - Resolves to the value passed to the function\n * @example\n * const rollFunction = async function(){\n *  //Get the result of a choose from list query\n *  const queryResult = await pseudoQuery('a value');\n *  console.log(queryResult);//=>\n                                                 \"a value\"\n * }\n */\nconst pseudoQuery = async function(value){\n\tdebug('entering pseudoQuery');\n\tlet queryRoll = await startRoll(`!{{query=[[0[response=${value}]]]}}`);\n\tfinishRoll(queryRoll.rollId);\n\treturn queryRoll.results.query.expression.replace(/^.+?response=|\\]$/g,'');\n};\nkFuncs.pseudoQuery = pseudoQuery;\n\n/**\n * An alias for console.log.\n * @memberof Utilities\n * @param {any} msg - The message can be a straight string, an object, or an array. If it is an object or array, the object will be broken down so that each key is used as a label to output followed by the value of that key. If the value of the key is an object or array, it will be output via `console.table`.\n */\nconst log = function(msg){\n  if(typeof msg === 'string'){\n    console.log(`%c${kFuncs.sheetName} log| ${msg}`,\"background-color:#159ccf\");\n  }else if(typeof msg === 'object'){\n    Object.keys(msg).forEach((m)=>\n                                                  {\n      if(typeof msg[m] === 'string'){\n        console.log(`%c${kFuncs.sheetName} log| ${m}: ${msg[m]}`,\"background-color:#159ccf\");\n      }else{\n        console.log(`%c${kFuncs.sheetName} log| ${typeof msg[m]} ${m}`,\"background-color:#159ccf\");\n        console.table(msg[m]);\n      }\n    });\n  }\n};\nkFuncs.log = log;\n\n/**\n * Alias for console.log that only triggers when debug mode is enabled or when the sheet\\'s version is `0`. Useful for entering test logs that will not pollute the console on the live sheet.\n * @memberof Utilities\n * @param {any} msg - 'See {@link k.log}\n * @param {boolean} force - Pass as a truthy value to force the debug output to be output to the console regardless of debug mode.\n * @returns {void}\n */\nconst debug = function(msg,force){\n  console.warn('kFuncs.version',kFuncs.version);\n  if(!kFuncs.debugMode && !force && kFuncs.version >\n                                                     0) return;\n  if(typeof msg === 'string'){\n    console.log(`%c${kFuncs.sheetName} DEBUG| ${msg}`,\"background-color:tan;color:red;\");\n  }else if(typeof msg === 'object'){\n    Object.keys(msg).forEach((m)=>\n                                                      {\n      if(typeof msg[m] === 'string'){\n        console.log(`%c${kFuncs.sheetName} DEBUG| ${m}: ${msg[m]}`,\"background-color:tan;color:red;\");\n      }else{\n        console.log(`%c${kFuncs.sheetName} DEBUG| ${typeof msg[m]} ${m}`,\"background-color:tan;color:red;font-weight:bold;\");\n        console.table(msg[m]);\n      }\n    });\n  }\n};\nkFuncs.debug = debug;\n\n/**\n * Orders the section id arrays for all sections in the `sections` object to match the repOrder attribute.\n * @memberof Utilities\n * @param {attributesProxy} attributes - The attributes object that must have a value for the reporder for each section.\n * @param {object[]} sections - Object containing the IDs for the repeating sections, indexed by repeating section name.\n */\nconst orderSections = function(attributes,sections){\n  Object.keys(sections).forEach((section)=>\n                                                        {\n    attributes.attributes[`_reporder_${section}`] = commaArray(attributes[`_reporder_${section}`]);\n    orderSection(attributes.attributes[`_reporder_${section}`],sections[section]);\n  });\n};\nkFuncs.orderSections = orderSections;\n\n/**\n * Orders a single ID array.\n * @memberof Utilities\n * @param {string[]} repOrder - Array of IDs in the order they are in on the sheet.\n * @param {string[]} IDs - Array of IDs to be ordered.\n */\nconst orderSection = function(repOrder,IDs=[]){\n  IDs.sort((a,b)=>\n                                                          {\n    return repOrder.indexOf(a.toLowerCase()) - repOrder.indexOf(b.toLowerCase());\n  });\n};\nkFuncs.orderSection = orderSection;\n\n/**\n * Splits a comma delimited string into an array\n * @memberof Utilities\n * @param {string} string - The string to split.\n * @returns {array} - The string segments of the comma delimited list.\n */\nconst commaArray = function(string=''){\n  return string.toLowerCase().split(/\\s*,\\s*/);\n};\nkFuncs.commaArray = commaArray;\n\n// Roll escape functions for passing data in action button calls. Base64 encodes/decodes the data.\nconst RE = {\n  chars: {\n      '\"': '%quot;',\n      ',': '%comma;',\n      ':': '%colon;',\n      '}': '%rcub;',\n      '{': '%lcub;',\n  },\n  escape(data) {\n    return typeof data === 'object' ?\n      `KDATA${btoa(JSON.stringify(data))}` :\n      `KSTRING${btoa(data)}`;\n  },\n  unescape(string) {\n    const isData = typeof string === 'string' &&\n      (\n        string.startsWith('KDATA') ||\n        string.startsWith('KSTRING')\n      );\n    return isData ?\n      (\n        string.startsWith('KDATA') ?\n          JSON.parse(atob(string.replace(/^KDATA/,''))) :\n          atob(string.replace(/^KSTRING/,''))\n      ) :\n      string;\n  }\n};\n\n/**\n * Encodes data in Base64. This is useful for passing roll information to action buttons called from roll buttons.\n * @function\n * @param {string|object|any[]} data - The data that you want to Base64 encode\n * @returns {string} - The encoded data\n * @memberof! Utilities\n */\nconst escape = RE.escape;\n/**\n * Decodes Base64 encoded strings that were created by the K-scaffold\n * @function\n * @param {string|object|any[]} string - The string of encoded data to decode. If this is not a string, or is not a string that was encoded by the K-scaffold, it will be returned as is.\n * @returns {string|object|any[]}\n * @memberof! Utilities\n */\nconst unescape = RE.unescape;\n\nObject.assign(kFuncs,{escape,unescape});/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n\n//# Attribute Obj Proxy handler\nconst createAttrProxy = function(attrs){\n  //creates a proxy for the attributes object so that values can be worked with more easily.\n  const getCascObj = function(event,casc){\n    const eventName = event.triggerName || event.sourceAttribute;\n    let typePrefix = eventName.startsWith('clicked:') ?\n      'act_' :\n      event.removedInfo ?\n      'fieldset_' :\n      'attr_';\n    let cascName = `${typePrefix}${eventName.replace(/(?:removed|clicked):/,'')}`;\n    let cascObj = casc[cascName];\n    k.debug({[cascName]:cascObj});\n    if(event && cascObj){\n      if(event.previousValue){\n        cascObj.previousValue = event.previousValue;\n      }else if(event.originalRollId){\n        cascObj.originalRollId = event.originalRollId;\n        cascObj.rollData = RE.unescape(event.originalRollId);\n      }\n    }\n    return cascObj || {};\n  };\n  \n  const triggerFunctions = function(obj,attributes,sections,casc){\n    if(obj.triggeredFuncs && obj.triggeredFuncs.length){\n      debug(`triggering functions for ${obj.name}`);\n      obj.triggeredFuncs && obj.triggeredFuncs.forEach(func=>\n                                                            funcs[func] ? \n        funcs[func]({trigger:obj,attributes,sections,casc}) :\n        debug(`!!!Warning!!! no function named ${func} found. Triggered function not called for ${obj.name}`,true));\n    }\n  };\n  \n  const initialFunction = function(obj,attributes,sections){\n    if(obj.initialFunc){\n      debug(`initial functions for ${obj.name}`);\n      funcs[obj.initialFunc] ?\n        funcs[obj.initialFunc]({trigger:obj,attributes,sections}) :\n        debug(`!!!Warning!!! no function named ${obj.initialFunc} found. Initial function not called for ${obj.name}`,true);\n    }\n  };\n  const alwaysFunctions = function(trigger,attributes,sections,casc){\n    Object.values(allHandlers).forEach((handler)=>\n                                                              {\n      handler({trigger,attributes,sections,casc});\n    });\n  };\n  const processChange = function({event,trigger,attributes,sections,casc}){\n    if(event && !trigger){\n      debug(`${event.sourceAttribute} change detected. No trigger found`);\n      return;\n    }\n    if(!attributes || !sections || !casc){\n      debug(`!!! Insufficient arguments || attributes >\n                                                                 ${!!attributes} | sections >\n                                                                   ${!!sections} | casc >\n                                                                     ${!!casc} !!!`);\n      return;\n    }\n    debug({trigger});\n    if(event){\n      debug('checking for initial & always functions');\n      alwaysFunctions(trigger,attributes,sections,casc);//Functions that should be run for all events.\n      initialFunction(trigger,attributes,sections,casc);//functions that should only be run if the attribute was the thing changed by the user\n    }\n    if(trigger){\n      debug(`processing ${trigger.name}`);\n      triggerFunctions(trigger,attributes,sections,casc);\n      if(!event && trigger.calculation && funcs[trigger.calculation]){\n        attributes[trigger.name] = funcs[trigger.calculation]({trigger,attributes,sections,casc});\n      }else if(trigger.calculation && !funcs[trigger.calculation]){\n        debug(`K-Scaffold Error: No function named ${trigger.calculation} found`);\n      }\n      if(Array.isArray(trigger.affects)){\n        attributes.queue.push(...trigger.affects);\n      }\n    }\n    attributes.set({attributes,sections,casc});\n  };\n  const attrTarget = {\n    updates:{},\n    attributes:{...attrs},\n    repOrders:{},\n    queue: [],\n    casc:{},\n    alwaysFunctions,\n    processChange,\n    triggerFunctions,\n    initialFunction,\n    getCascObj\n  };\n  const attrHandler = {\n    get:function(obj,prop){//gets the most value of the attribute.\n      //If it is a repeating order, returns the array, otherwise returns the update value or the original value\n      if(prop === 'set'){\n        return function(){\n          let {attributes,sections,casc,callback,vocal} = arguments[0] ? arguments[0] : {};\n          if(attributes && attributes.queue.length && sections && casc){\n            let triggerName = attributes.queue.shift();\n            let trigger = getCascObj({sourceAttribute:triggerName},casc);\n            attributes.processChange({trigger,attributes,sections,casc});\n          }else{\n            debug({updates:obj.updates});\n            let trueCallback = Object.keys(obj.repOrders).length ?\n              function(){\n                Object.entries(obj.repOrders).forEach(([section,order])=>\n                                                                      {\n                  _setSectionOrder(section,order,)\n                });\n                callback && callback();\n              }:\n              callback;\n            Object.keys(obj.updates).forEach((key)=>\n                                                                        obj.attributes[key] = obj.updates[key]);\n            const update = obj.updates;\n            obj.updates = {};\n            set(update,vocal,trueCallback);\n          }\n        }\n      }else if(Object.keys(obj).some(key=>\n                                                                          key===prop)){ \n        return Reflect.get(...arguments)\n      }else{\n        let retValue;\n        switch(true){\n          case obj.repOrders.hasOwnProperty(prop):\n            retValue = obj.repOrders[prop];\n            break;\n          case obj.updates.hasOwnProperty(prop):\n            retValue = obj.updates[prop];\n            break;\n          default:\n            retValue = obj.attributes[prop];\n            break;\n        }\n        let cascRef = `attr_${prop.replace(/(repeating_[^_]+_)[^_]+/,'$1\\$X')}`;\n        let numRetVal = +retValue;\n        if(!Number.isNaN(numRetVal) && retValue !== ''){\n          retValue = numRetVal;\n        }else if(cascades[cascRef] && (typeof cascades[cascRef].defaultValue === 'number' || cascades[cascRef].type === 'number')){\n          retValue = cascades[cascRef].defaultValue;\n        }\n        return retValue;\n      }\n    },\n    set:function(obj,prop,value){\n      //Sets the value. Also verifies that the value is a valid attribute value\n      //e.g. not undefined, null, or NaN\n      if(value || value===0 || value===''){\n        if(/reporder|^repeating_[^_]+$/.test(prop)){\n          let section = prop.replace(/_reporder_/,'');\n          obj.repOrders[section] = value;\n        }else if(`${obj.attributes}` !== `${value}` || \n          (obj.updates[prop] && `${obj.updates}` !== `${value}`)\n        ){\n          obj.updates[prop] = value;\n        }\n      }else{\n        debug(`!!!Warning: Attempted to set ${prop} to an invalid value:${value}; value not stored!!!`);\n      }\n      return true;\n    },\n    deleteProperty(obj,prop){\n      //removes the property from the original attributes, updates, and the reporders\n      Object.keys(obj).forEach((key)=>\n                                                                            {\n        delete obj[key][prop.toLowerCase()];\n      });\n    }\n  };\n  return new Proxy(attrTarget,attrHandler);\n};\n\n/**\n * Function that registers a function for being called via the funcs object. Returns true if the function was successfully registered, and false if it could not be registered for any reason.\n * @memberof Utilities\n * @param {object} funcObj - Object with keys that are names to register functions under and values that are functions.\n * @param {object} optionsObj - Object that contains options to use for this registration.\n * @param {string[]} optionsObj.type - Array that contains the types of specialized functions that apply to the functions being registered. Valid types are `\"opener\"`, `\"updater\"`, and `\"default\"`. `\"default\"` is always used, and never needs to be passed.\n * @returns {boolean} - True if the registration succeeded, false if it failed.\n * @example\n * //Basic Registration\n * const myFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({myFunc});\n * \n * //Register a function to run on sheet open\n * const openFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({openFunc},{type:['opener']})\n * \n * //Register a function to run on all events\n * const allFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({allFunc},{type:['all']})\n */\nconst registerFuncs = function(funcObj,optionsObj = {}){\n  if(typeof funcObj !== 'object' || typeof optionsObj !== 'object'){\n    debug(`!!!! K-scaffold error: Improper arguments to register functions !!!!`);\n    return false;\n  }\n  const typeArr = optionsObj.type ? ['default',...optionsObj.type] : ['default'];\n  const typeSwitch = {\n    'opener':openHandlers,\n    'updater':updateHandlers,\n    'new':initialSetups,\n    'all':allHandlers,\n    'default':funcs\n  };\n  let setState;\n  Object.entries(funcObj).map(([prop,value])=>\n                                                                              {\n    typeArr.forEach((type)=>\n                                                                                {\n      if(typeSwitch[type][prop]){\n        debug(`!!! Duplicate function name for ${prop} as ${type}!!!`);\n        setState = false;\n      }else if(typeof value === 'function'){\n        typeSwitch[type][prop] = value;\n        setState = setState !== false ? true : false;\n      }else{\n        debug(`!!! K-scaffold error: Function registration requires a function. Invalid value to register as ${type} !!!`);\n        setState = false;\n      }\n    });\n  });\n  return setState;\n};\nkFuncs.registerFuncs = registerFuncs;\n\n/**\n * Function that sets up the action calls used in the roller mixin.\n * @memberof Sheetworkers\n * @param {object} attributes - The attribute values of the character\n * @param {object[]} sections - All the repeating section IDs\n */\nconst setActionCalls = function({attributes,sections}){\n  actionAttributes.forEach((base)=>\n                                                                                  {\n    let [section,,field] = k.parseTriggerName(base);\n    let fieldAction = field.replace(/_/g,'-');\n    if(section){\n      sections[section].forEach((id)=>\n                                                                                    {\n        attributes[`${section}_${id}_${field}`] = `%{${attributes.character_name}|${section}_${id}_${fieldAction}}`;\n      });\n    }else{\n      attributes[`${field}`] = `%{${attributes.character_name}|${fieldAction}}`;\n    }\n  });\n};\nfuncs.setActionCalls = setActionCalls;\n\n/**\n * Function to call a function previously registered to the funcs object. May not be used that much in actual sheets, but very useful when writing unit tests for your sheet. Either returns the function or null if no function exists.\n * @memberof Sheetworkers\n * @param {string} funcName - The name of the function to invoke.\n * @param {...any} args - The arguments to call the function with.\n * @returns {function|null}\n * @example\n * //Call myFunc with two arguments\n * k.callFunc('myFunc','an argument','another argument');\n */\nconst callFunc = function(funcName,...args){\n  if(funcs[funcName]){\n    debug(`calling ${funcName}`);\n    return funcs[funcName](...args);\n  }else{\n    debug(`Invalid function name: ${funcName}`);\n    return null;\n  }\n};\nkFuncs.callFunc = callFunc;/**@namespace Sheetworkers */\n/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n//Sheet Updaters and styling functions\nconst updateSheet = function(){\n  log('updating sheet');\n  getAllAttrs({props:['debug_mode',...baseGet],callback:(attributes,sections,casc)=>\n                                                                                      {\n    kFuncs.debugMode = kFuncs.debugMode || !!attributes.debug_mode;\n    debug({sheet_version:attributes.sheet_version});\n    if(!attributes.sheet_version){\n      Object.entries(initialSetups).forEach(([funcName,handler])=>\n                                                                                        {\n        if(typeof funcs[funcName] === 'function'){\n          debug(`running ${funcName}`);\n          funcs[funcName]({attributes,sections,casc});\n        }else{\n          debug(`!!!Warning!!! no function named ${funcName} found. Initial sheet setup not performed.`);\n        }\n      });\n    }else{\n      Object.entries(updateHandlers).forEach(([ver,handler])=>\n                                                                                          {\n        if(attributes.sheet_version < +ver){\n          handler({attributes,sections,casc});\n        }\n      });\n    }\n    k.debug({openHandlers});\n    Object.entries(openHandlers).forEach(([funcName,func])=>\n                                                                                            {\n      if(typeof funcs[funcName] === 'function'){\n        debug(`running ${funcName}`);\n        funcs[funcName]({attributes,sections,casc});\n      }else{\n        debug(`!!!Warning!!! no function named ${funcName} found. Sheet open handling not performed.`);\n      }\n    });\n    setActionCalls({attributes,sections});\n    attributes.sheet_version = kFuncs.version;\n    log(`Sheet Update applied. Current Sheet Version ${kFuncs.version}`);\n    attributes.set();\n    log('Sheet ready for use');\n  }});\n};\n\nconst initialSetup = function(attributes,sections){\n  debug('Initial sheet setup');\n};\n\n/**\n * This is the default listener function for attributes that the K-Scaffold uses. It utilizes the `triggerFuncs`, `listenerFunc`, `calculation`, and `affects` properties of the K-scaffold trigger object (see the Pug section of the scaffold for more details).\n * @memberof Sheetworkers\n * @param {Roll20Event} event - The Roll20 event object\n * @returns {void}\n * @example\n * //Call from an attribute change\n * on('change:an_attribute',k.accessSheet);\n */\nconst accessSheet = function(event){\n  debug({funcs:Object.keys(funcs)});\n  debug({event});\n  getAllAttrs({callback:(attributes,sections,casc)=>\n                                                                                              {\n    let trigger = attributes.getCascObj(event,casc);\n    attributes.processChange({event,trigger,attributes,sections,casc});\n  }});\n};\nfuncs.accessSheet = accessSheet;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/*\nCascade Expansion functions\n*/\n//Expands the repeating section templates in cascades to reflect the rows actually available\nconst expandCascade = function(cascade,sections,attributes){\n  return _.keys(cascade).reduce((memo,key)=>{//iterate through cascades and replace references to repeating attributes with correct row ids.\n    if(/^(?:act|attr)_repeating_/.test(key)){//If the attribute is a repeating attribute, do special logic\n      expandRepeating(memo,key,cascade,sections,attributes);\n    }else if(key){//for non repeating attributes do this logic\n      expandNormal(memo,key,cascade,sections);\n    }\n    return memo;\n  },{});\n};\n\nconst expandRepeating = function(memo,key,cascade,sections,attributes){\n  key.replace(/((?:attr|act)_)(repeating_[^_]+)_[^_]+?_(.+)/,(match,type,section,field)=>\n                                                                                                {\n    (sections[section]||[]).forEach((id)=>\n                                                                                                  {\n      memo[`${type}${section}_${id}_${field}`]=_.clone(cascade[key]);//clone the details so that each row's attributes have correct ids\n      memo[`${type}${section}_${id}_${field}`].name = `${section}_${id}_${field}`;\n      if(key.startsWith('attr_')){\n        memo[`${type}${section}_${id}_${field}`].affects = memo[`${type}${section}_${id}_${field}`].affects.reduce((m,affected)=>\n                                                                                                    {\n          if(section === affected){//otherwise if the affected attribute is in the same section, simply set the affected attribute to have the same row id.\n            m.push(applyID(affected,id));\n          }else if(/repeating/.test(affected)){//If the affected attribute isn't in the same repeating section but is still a repeating attribute, add all the rows of that section\n            addAllRows(affected,m,sections);\n          }else{//otherwise the affected attribute is a non repeating attribute. Simply add it to the computed affected array\n            m.push(affected);\n          }\n          return m;\n        },[]);\n      }\n    });\n  });\n};\n\nconst applyID = function(affected,id){\n  return affected.replace(/(repeating_[^_]+_)[^_]+(.+)/,`$1${id}$2`);\n};\n\nconst expandNormal = function(memo,key,cascade,sections){\n  memo[key] = _.clone(cascade[key]);\n  if(key.startsWith('attr_')){\n    memo[key].affects = memo[key].affects || [];\n    memo[key].affects = memo[key].affects.reduce((m,a)=>\n                                                                                                      {\n      if(/^repeating/.test(a)){\n        addAllRows(a,m,sections);\n      }else{\n        m.push(a);\n      }\n      return m;\n    },[]);\n  }\n};\n\nconst addAllRows = function(affected,memo,sections){\n  affected.replace(/(repeating_[^_]+?)_[^_]+?_(.+)/,(match,section,field)=>\n                                                                                                        {\n    sections[section].forEach(id=>\n                                                                                                          memo.push(`${section}_${id}_${field}`));\n  });\n};/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/**\n * These are functions that provide K-scaffold aliases for the basic Roll20 sheetworker functions. These functions also provide many additional features on top of the standard Roll20 sheetworkers.\n * @namespace Sheetworkers.Sheetworker Aliases\n */\n/**\n * Alias for [setSectionOrder()](https://wiki.roll20.net/Sheet_Worker_Scripts#setSectionOrder.28.3CRepeating_Section_Name.3E.2C_.3CSection_Array.3E.2C_.3CCallback.3E.29) that allows you to use the section name in either `repeating_section` or `section` formats. Note that the Roll20 sheetworker [setSectionOrder](https://wiki.roll20.net/Sheet_Worker_Scripts#setSectionOrder.28.3CRepeating_Section_Name.3E.2C_.3CSection_Array.3E.2C_.3CCallback.3E.29) currently causes some display issues on sheets.\n * @memberof Sheetworker Aliases\n * @name setSectionOrder\n * @param {string} section - The name of the section, with or without `repeating_`\n * @param {string[]} order - Array of ids describing the desired order of the section.\n * @returns {void}\n * @example\n * //Set the order of a repeating_weapon section\n * k.setSectionOrder('repeating_equipment',['id1','id2','id3']);\n * //Can also specify the section name without the repeating_ prefix\n * k.setSectionOrder('equipment',['id1','id2','id3']);\n */\nconst _setSectionOrder = function(section,order){\n  let trueSection = section.replace(/repeating_/,'');\n  setSectionOrder(trueSection,order);\n};\nkFuncs.setSectionOrder = _setSectionOrder;\n\n/**\n * Alias for [removeRepeatingRow](https://wiki.roll20.net/Sheet_Worker_Scripts#removeRepeatingRow.28_RowID_.29) that also removes the row from the current object of attribute values and array of section IDs to ensure that erroneous updates are not issued.\n * @memberof Sheetworker Aliases\n * @name removeRepeatingRow\n * @param {string} row - The row id to be removed\n * @param {attributesProxy} attributes - The attribute values currently in memory\n * @param {object} sections - Object that contains arrays of all the IDs in sections on the sheet indexed by repeating name.\n * @returns {void}\n * @example\n * //Remove a repeating Row\n * k.getAllAttrs({\n *  callback:(attributes,sections)=>\n                                                                                                            {\n *    const rowID = sections.repeating_equipment[0];\n *    k.removeRepeatingRow(`repeating_equipment_${rowID}`,attributes,sections);\n *    console.log(sections.repeating_equipment); // =>\n                                                                                                               rowID no longer exists in the array.\n *    console.log(attributes[`repeating_equipment_${rowID}_name`]); // =>\n                                                                                                                 undefined\n *  }\n * })\n */\nconst _removeRepeatingRow = function(row,attributes,sections){\n  debug(`removing ${row}`);\n  Object.keys(attributes.attributes).forEach((key)=>\n                                                                                                                  {\n    if(key.startsWith(row)){\n      delete attributes[key];\n    }\n  });\n  let [,section,rowID] = row.match(/(repeating_[^_]+)_(.+)/,'');\n  sections[section] = sections[section].filter((id)=>\n                                                                                                                    id!==rowID);\n  removeRepeatingRow(row);\n};\nkFuncs.removeRepeatingRow = _removeRepeatingRow;\n\n/**\n * Alias for [getAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getAttrs.28attributeNameArray.2C_callback.29) that converts the default object of attribute values into an {@link attributesProxy} and passes that back to the callback function.\n * @memberof Sheetworker Aliases\n * @name getAttrs\n * @param {string[]} [props=baseGet] - Array of attribute names to get the value of. Defaults to {@link baseGet} if not passed.\n * @param {function(attributesProxy)} callback - The function to call after the attribute values have been gotten. An {@link attributesProxy} is passed to the callback.\n * @example\n * //Gets the attributes named in props.\n * k.getAttrs({\n *  props:['attribute_1','attribute_2'],\n *  callback:(attributes)=>\n                                                                                                                      {\n *    //Work with the attributes as you would in a normal getAttrs, or use the superpowers of the K-scaffold attributes object like so:\n *    attributes.attribute_1 = 'new value';\n *    attributes.set();\n *  }\n * })\n */\nconst _getAttrs = function({props=baseGet,callback}){\n  getAttrs(props,(values)=>\n                                                                                                                        {\n    const attributes = createAttrProxy(values);\n    callback(attributes);\n  });\n};\nkFuncs.getAttrs = _getAttrs;\n\n/**\n * Alias for [getAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getAttrs.28attributeNameArray.2C_callback.29) and [getSectionIDs](https://wiki.roll20.net/Sheet_Worker_Scripts#getSectionIDs.28section_name.2Ccallback.29) that combines the actions of both sheetworker functions and converts the default object of attribute values into an {@link attributesProxy}. Also gets the details on how to handle all attributes from the master {@link cascades} object and.\n * @memberof Sheetworker Aliases\n * @param {Object} args\n * @param {string[]} [args.props=baseGet] - Array of attribute names to get the value of. Defaults to {@link baseGet} if not passed.\n * @param {repeatingSectionDetails} sectionDetails - Array of details about a section to get the IDs for and attributes that need to be gotten. \n * @param {function(attributesProxy,sectionObj,expandedCascade):void} args.callback - The function to call after the attribute values have been gotten. An {@link attributesProxy} is passed to the callback along with a {@link sectionObj} and {@link expandedCascade}.\n * @example\n * //Get every K-scaffold linked attribute on the sheet\n * k.getAllAttrs({\n *  callback:(attributes,sections,casc)=>\n                                                                                                                          {\n *    //Work with the attributes as you please.\n *    attributes.some_attribute = 'a value';\n *    attributes.set();//Apply our change\n *  }\n * })\n */\nconst getAllAttrs = function({props=baseGet,sectionDetails=repeatingSectionDetails,callback}){\n  getSections(sectionDetails,(repeats,sections)=>\n                                                                                                                            {\n    getAttrs([...props,...repeats],(values)=>\n                                                                                                                              {\n      const attributes = createAttrProxy(values);\n      orderSections(attributes,sections);\n      const casc = expandCascade(cascades,sections,attributes);\n      callback(attributes,sections,casc);\n    })\n  });\n};\nkFuncs.getAllAttrs = getAllAttrs;\n\n/**\n * Alias for [getSectionIDs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getSectionIDs.28section_name.2Ccallback.29) that allows you to iterate through several functions at once. Also assembles an array of repeating attributes to get.\n * @memberof Sheetworker Aliases\n * @param {object[]} sectionDetails - Array of details about a section to get the IDs for and attributes that need to be gotten.\n * @param {string} sectionDetails.section - The full name of the repeating section including the `repeating_` prefix.\n * @param {string[]} sectionDetails.fields - Array of field names that need to be gotten from the repeating section\n * @param {function(string[],sectionObj)} callback - The function to call once all IDs have been gotten and the array of repating attributes to get has been assembled. The callback is passed the array of repating attributes to get and a {@link sectionObj}.\n * @example\n * // Get some section details\n * const sectionDetails = {\n *  {section:'repeating_equipment',fields:['name','weight','cost']},\n *  {section:'repeating_weapon',fields:['name','attack','damage']}\n * };\n * k.getSections(sectionDetails,(attributeNames,sections)=>\n                                                                                                                                {\n *  console.log(attributeNames);// =>\n                                                                                                                                   Array containing all row specific attribute names\n *  console.log(sections);// =>\n                                                                                                                                     Object with arrays containing the row ids. Indexed by section name (e.g. repeating_eqiupment)\n * })\n */\nconst getSections = function(sectionDetails,callback){\n  let queueClone = _.clone(sectionDetails);\n  const worker = (queue,repeatAttrs=[],sections={})=>\n                                                                                                                                      {\n    let detail = queue.shift();\n    getSectionIDs(detail.section,(IDs)=>\n                                                                                                                                        {\n      sections[detail.section] = IDs;\n      IDs.forEach((id)=>\n                                                                                                                                          {\n        detail.fields.forEach((f)=>\n                                                                                                                                            {\n          repeatAttrs.push(`${detail.section}_${id}_${f}`);\n        });\n      });\n      repeatAttrs.push(`_reporder_${detail.section}`);\n      if(queue.length){\n        worker(queue,repeatAttrs,sections);\n      }else{\n        callback(repeatAttrs,sections);\n      }\n    });\n  };\n  if(!queueClone[0]){\n    callback([],{});\n  }else{\n    worker(queueClone);\n  }\n};\nkFuncs.getSections = getSections;\n\n// Sets the attributes while always calling with {silent:true}\n// Can be awaited to get the values returned from _setAttrs\n/**\n * Alias for [setAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#setAttrs.28values.2Coptions.2Ccallback.29) that sets silently by default.\n * @memberof Sheetworker Aliases\n * @param {object} obj - The object containting attributes to set\n * @param {boolean} [vocal=false] - Whether to set silently (default value) or not.\n * @param {function()} [callback] - The callback function to invoke after the setting has been completed. No arguments are passed to the callback function.\n * @example\n * //Set some attributes silently\n * k.setAttrs({attribute_1:'new value'})\n * //Set some attributes and triggers listeners\n * k.setAttrs({attribute_1:'new value',true})\n * //Set some attributes and call a callback function\n * k.setAttrs({attribute_1:'new value'},null,()=>\n                                                                                                                                              {\n *  //Do something after the attribute is set\n * })\n */\nconst set = function(obj,vocal=false,callback){\n  setAttrs(obj,{silent:!vocal},callback);\n};\nkFuncs.setAttrs = set;\n\nconst generateCustomID = function(string){\n  if(!string.startsWith('-')){\n    string = `-${string}`;\n  }\n  rowID = generateRowID();\n  let re = new RegExp(`^.{${string.length}}`);\n  return `${string}${rowID.replace(re,'')}`;\n};\n\n\n/**\n * Alias for generateRowID that adds the new id to the {@link sectionObj}. Also allows for creation of custom IDs that conform to the section ID requirements.\n * @memberof Sheetworker Aliases\n * @name generateRowID\n * @param {sectionObj} sections\n * @param {string} [customText] - Custom text to start the ID with. This text should not be longer than the standard repeating section ID format.\n * @returns {string} - The created ID\n * @example\n * k.getAllAttrs({\n *  callback:(attributes,sections,casc)=>\n                                                                                                                                                {\n *    //Create a new row ID\n *    const rowID = k.generateRowID('repeating_equipment',sections);\n *    console.log(rowID);// =>\n                                                                                                                                                   -p8rg908ug0suzz\n *    //Create a custom row ID\n *    const customID = k.generateRowID('repeating_equipment',sections,'custom');\n *    console.log(customID);// =>\n                                                                                                                                                     -custom98uadj89kj\n *  }\n * });\n */\nconst _generateRowID = function(section,sections,customText){\n  let rowID = customText ?\n    generateCustomID(customText) :\n    generateRowID();\n  section = section.match(/^repeating_[^_]+$/) ?\n    section :\n    `repeating_${section}`;\n  sections[section] = sections[section] || [];\n  sections[section].push(rowID);\n  return `${section}_${rowID}`;\n};\nkFuncs.generateRowID = _generateRowID;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\nconst listeners = {};\n\n/**\n * The array of attribute names that the k-scaffold gets by default. Does not incude repeating attributes.\n * @memberof Variables\n * @var\n * @type {array}\n */\nconst baseGet = Object.entries(cascades).reduce((memo,[attrName,detailObj])=>\n                                                                                                                                                      {\n  if(!/repeating/.test(attrName) && detailObj.type !== 'action'){\n    memo.push(detailObj.name);\n  }\n  if(detailObj.listener){\n    listeners[detailObj.listener] = detailObj.listenerFunc;\n  }\n  return memo;\n},[]);\nkFuncs.baseGet = baseGet;\n\nconst registerEventHandlers = function(){\n  on('sheet:opened',updateSheet);\n  debug({funcKeys:Object.keys(funcs),funcs});\n  //Roll20 change and click listeners\n  Object.entries(listeners).forEach(([event,funcName])=>\n                                                                                                                                                        {\n    if(funcs[funcName]){\n      on(event,funcs[funcName]);\n    }else{\n      debug(`!!!Warning!!! no function named ${funcName} found. No listener created for ${event}`,true);\n    }\n  });\n  log(`kScaffold Loaded`);\n};\nsetTimeout(registerEventHandlers,0);//Delay the execution of event registration to ensure all event properties are present.\n\n/**\n * Function to add a repeating section when the add button of a customControlFieldset or inlineFieldset is clicked.\n * @memberof Sheetworkers\n * @param {object} event - The R20 event object\n */\nconst addItem = function(event){\n  let [,,section] = parseClickTrigger(event.triggerName);\n  section = section.replace(/add-/,'');\n  getAllAttrs({\n    callback:(attributes,sections,casc) =>\n                                                                                                                                                           {\n      let row = _generateRowID(section,sections);\n      debug({row});\n      attributes[`${row}_name`] = '';\n      setActionCalls({attributes,sections});\n      const trigger = cascades[`fieldset_repeating_${section}`];\n      if(trigger && trigger.addFuncs){\n        trigger.addFuncs.forEach((funcName) =>\n                                                                                                                                                             {\n          if(funcs[funcName]){\n            funcs[funcName]({attributes,sections,casc,trigger});\n          }\n        });\n      }\n      attributes.set({attributes,sections,casc});\n    }\n  });\n};\nfuncs.addItem = addItem;/**\n * The default tab navigation function of the K-scaffold. Courtesy of Riernar. It will add `k-active-tab` to the active tab-container and `k-active-button` to the active button. You can either write your own CSS to control display of these, or use the default CSS included in `scaffold/_k.scss`. Note that `k-active-button` has no default CSS as it is assumed that you will want to style the active button to match your system.\n * @memberof Sheetworkers\n * @param {Object} trigger - The trigger object\n * @param {object} attributes - The attribute values of the character\n */\nconst kSwitchTab = function ({ trigger, attributes }) {\n  const [container, tab] = (\n    trigger.name.match(/nav-tabs-(.+)--(.+)/) ||\n    []\n  ).slice(1);\n  $20(`[data-container-tab=\"${container}\"]`).removeClass('k-active-tab');\n  $20(`[data-container-tab=\"${container}\"][data-tab=\"${tab}\"]`).addClass('k-active-tab');\n  $20(`[data-container-button=\"${container}\"]`).removeClass('k-active-button');\n  $20(`[data-container-button=\"${container}\"][data-button=\"${tab}\"]`).addClass('k-active-button');\n  const tabInputName = `${container.replace(/\\-/g,'_')}_tab`;\n  if(persistentTabs.indexOf(tabInputName) >\n                                                                                                                                                               -1){\n    attributes[tabInputName] = trigger.name;\n  }\n}\n\nregisterFuncs({ kSwitchTab });\n\n/**\n * Sets persistent tabs to their last active state\n * @memberof Sheetworkers\n * @param {object} attributes - The attribute values of the character\n */\nconst kTabOnOpen = function({trigger,attributes,sections,casc}){\n  if(typeof persistentTabs === 'undefined') return;\n  persistentTabs.forEach((tabInput) =>\n                                                                                                                                                                 {\n    const pseudoTrigger = {name:attributes[tabInput]};\n    kSwitchTab({trigger:pseudoTrigger, attributes});\n  });\n};\nregisterFuncs({ kTabOnOpen },{type:['opener']});\nreturn kFuncs;\n}());\nconst actionAttributes = [\"my_button_action\"];const inlineFieldsets = [\"fieldset\"];\n                                                                                                                                                              </script>"}];
+export const pug = [{"meta":{"name":"img","description":"A mixin to create a sheet image element. Particularly useful when using the image attribute syntax.","arguments":[{"name":"imgObj","description":"An object describing the properties of the img just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} imgObj - An object describing the properties of the img just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property."}],"example":"include ../_k.pug\n+img({name:'my image',class:'some-class'})\n"},"file":"lib\\attribute_holders\\_attribute_backed.pug","source":"mixin img(obj)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  - obj['data-i18n-alt'] = obj['data-i18n-alt'] || obj.name;\r\n  - obj.name = attrName(obj.name);\r\n  - obj.title = obj.title || attrTitle(obj.name);\r\n  - obj.name = `attr_${obj.name}`;\r\n  - const elementObj = makeElementObj(obj);\r\n  - addFieldToFieldsetObj(obj);\r\n  - storeTrigger(obj);\r\n  img&attributes(elementObj)\r","output":"<img class=\"some-class\" name=\"attr_my_image\" data-i18n-alt=\"my image\" title=\"@{my_image}\"/>"},{"meta":{"name":"span","description":"Creates a span element and formats the name of the span for compatibility with the Roll20 attribute system.","arguments":[{"name":"attrObj","description":"The object describing the span itself.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} attrObj - The object describing the span itself."},{"name":"block","description":"What is contained within the span","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - What is contained within the span"}],"attributes":null,"example":"include ../_k.pug\n+span({name:'attribute backed span',trigger:{calculation:'calculateAttribute'}})\n"},"file":"lib\\attribute_holders\\_attribute_backed.pug","source":"mixin span(obj)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  if obj.name\r\n    - obj.name = replaceSpaces(obj.name);\r\n    - obj.title = obj.title || attrTitle(obj.name);\r\n    - obj.name = `attr_${obj.name}`;\r\n    - addFieldToFieldsetObj(obj);\r\n  - const elementObj = makeElementObj(obj);\r\n  span&attributes(elementObj)\r\n    block\r\n  if obj.name\r\n    - obj.type = 'span';\r\n    - storeTrigger(obj);\r","output":"<span name=\"attr_attribute_backed_span\" title=\"@{attribute_backed_span}\"></span>"},{"meta":{"name":"div","description":"Creates a div element and will properly format the name attribute of the div if it is provided","arguments":[{"name":"divObj","description":"The object describing the div","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} divObj - The object describing the div"},{"name":"block","description":"The contents of the div","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The contents of the div"}],"attributes":null,"example":"include ../_k.pug\n+div({name:'background image'})\n"},"file":"lib\\attribute_holders\\_attribute_backed.pug","source":"mixin div(obj)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  if obj.name\r\n    - obj.name = replaceSpaces(obj.name);\r\n    - obj.title = obj.title || attrTitle(obj.name);\r\n    - obj.name = `attr_${obj.name}`;\r\n  div&attributes(obj)\r\n    block\r","output":"<div name=\"attr_background_image\" title=\"@{background_image}\"></div>"},{"meta":{"name":"adaptiveTextarea","description":"Creates an html construction for creating a [content-scaled](https://wiki.roll20.net/CSS_Wizardry#Content-scaled_Inputs) textarea. You can apply classes and IDs to the container div by appending them to the mixin call (see the second example).","arguments":[{"name":"textObj","description":"The object describing the textarea as per the {@link textarea} mixin.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} textObj - The object describing the textarea as per the {@link textarea} mixin."}],"attributes":null,"example":"include ../_k.pug\n+adaptiveTextarea({name:'character description'})\n\n//Appending the class directly to the mixin\n+adaptiveTextarea({name:'character description'}).custom-class\n"},"file":"lib\\adaptive\\_adaptive.pug","source":"mixin adaptiveTextarea(textObj)\r\n  .adaptive.adaptive--text&attributes(attributes)\r\n    - let spanObj = {name:textObj.name,class:'adaptive--text__span'};\r\n    - textObj.class = textObj.class ? `${textObj.class} adaptive--text__textarea` : 'adaptive--text__textarea';\r\n    +span(spanObj)\r\n    +textarea(textObj)\r","output":"<div class=\"adaptive adaptive--text\">\n  <span class=\"adaptive--text__span\" name=\"attr_character_description\" title=\"@{character_description}\"></span>\n  <textarea class=\"adaptive--text__textarea\" name=\"attr_character_description\" title=\"@{character_description}\"></textarea>\n</div>\n<!--Appending the class directly to the mixin-->\n<div class=\"adaptive adaptive--text custom-class\">\n  <span class=\"adaptive--text__span\" name=\"attr_character_description\" title=\"@{character_description}\"></span>\n  <textarea class=\"adaptive--text__textarea\" name=\"attr_character_description\" title=\"@{character_description}\"></textarea>\n</div>"},{"meta":{"name":"adaptiveInput","description":"Creates an html construction for creating a [content-scaled](https://wiki.roll20.net/CSS_Wizardry#Content-scaled_Inputs) input. You can apply classes and IDs to the container div by appending them to the mixin call (see the second example).","arguments":[{"name":"inputObj","description":"The object describing the input as per the {@link input} mixin. You can apply classes and IDs to the container div by appending them to the mixin call (see the second example).","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - The object describing the input as per the {@link input} mixin. You can apply classes and IDs to the container div by appending them to the mixin call (see the second example)."}],"attributes":null,"example":"include ../_k.pug\n+adaptiveInput({name:'character description',type:'text'})\n\n//Appending class directly to the mixin\n+adaptiveInput({name:'character description',type:'text'}).custom-class\n"},"file":"lib\\adaptive\\_adaptive.pug","source":"mixin adaptiveInput(textObj)\r\n  .adaptive.adaptive--input&attributes(attributes)\r\n    - let spanObj = {name:textObj.name,class:'adaptive--input__span','max-width':maxWidth};\r\n    - textObj.class = textObj.class ? `${textObj.class} adaptive--input__input` : 'adaptive--input__input';\r\n    +span(spanObj)\r\n    +input(textObj)\r","output":"<div class=\"adaptive adaptive--input\">\n  <span class=\"adaptive--input__span\" name=\"attr_character_description\" title=\"@{character_description}\"></span>\n  <input class=\"adaptive--input__input\" name=\"attr_character_description\" type=\"text\" title=\"@{character_description}\"/>\n</div>\n<!--Appending class directly to the mixin-->\n<div class=\"adaptive adaptive--input custom-class\">\n  <span class=\"adaptive--input__span\" name=\"attr_character_description\" title=\"@{character_description}\"></span>\n  <input class=\"adaptive--input__input\" name=\"attr_character_description\" type=\"text\" title=\"@{character_description}\"/>\n</div>"},{"meta":{"name":"button","description":"Creates a button element. Valid types are `roll` or `action`. If a type is not specified in the object argument, a roll button is created. If an action button is created, spaces in the name are replaced with dashes instead of underscores.","arguments":[{"name":"buttonObj","description":"The object describing the button","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} buttonObj - The object describing the button"},{"name":"block","description":"The contents of the button element","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The contents of the button element"}],"example":"include ../_k.pug\n//A basic roll button\n+button({name:'my button',value:'/r 3d10'})\n//An action button\n+button({name:'my button',type:'action','data-i18n':'action button',trigger:{triggeredFuncs:['doSomethingOnClick']}})\n"},"file":"lib\\attribute_holders\\_buttons.pug","source":"mixin button(obj, _attributes)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  - obj.name = attrName(obj.name);\r\n  - obj.title = obj.title || buttonTitle(obj.name);\r\n  if obj.type === 'action'\r\n    - obj.name = `act_${obj.name}`;\r\n  else\r\n    - obj.type = 'roll';\r\n    - obj.name = `roll_${obj.name}`;\r\n  - const elementObj = makeElementObj(obj);\r\n  if obj.type !== 'roll'\r\n    - storeTrigger(obj);\r\n  button&attributes(elementObj)&attributes(attributes)\r\n    block\r","output":"<!--A basic roll button-->\n<button name=\"roll_my_button\" value=\"/r 3d10\" title=\"%{my_button}\" type=\"roll\"></button>\n<!--An action button-->\n<button name=\"act_my_button\" type=\"action\" data-i18n=\"action button\" title=\"%{my_button}\"></button>"},{"meta":{"name":"action","arguments":[{"name":"buttonObj","description":"The object describing the button","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} buttonObj - The object describing the button"},{"name":"block","description":"The contents of the button element","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The contents of the button element"}],"description":"Alias for {@link button} that creates a button element with a type of `action`. Spaces in the name are replaced with dashes instead of underscores.","attributes":null,"example":"include ../_k.pug\n+action({name:'my button','data-i18n':'action button',trigger:{triggeredFuncs:['doSomethingOnClick']}})\n"},"file":"lib\\attribute_holders\\_buttons.pug","source":"mixin action(obj, _attributes)\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  - obj.type = 'action';\r\n  - obj.name = attrName(obj.name).replace(/[\\s_]+/g,'-');\r\n  +button(obj)&attributes(attributes)\r\n    block\r","output":"<button name=\"act_my-button\" data-i18n=\"action button\" type=\"action\" title=\"%{my-button}\"></button>"},{"meta":{"name":"roller","arguments":[{"name":"buttonObj","description":"The object describing the button","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} buttonObj - The object describing the button"},{"name":"block","description":"The contents of the button element","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The contents of the button element"}],"description":"Creates a multi element construction made of a hidden input, a roll button, and a hidden action button. On sheet load, or character sheet name change, the hidden input is updated with an ability call to the action button. The roll button refers to the hidden input as its value. This allows for an action button to be used to call custom roll parsing (or other sheet functionality) while retaining the ability to drag the button to the macro bar. Uses the same arguments as {@link button}. A trigger should be passed, and will be associated with the action button's name.","attributes":null,"example":"include ../_k.pug\n+roller({name:'my button','data-i18n':'action button',trigger:{triggeredFuncs:['doSomethingOnClick']}})\n"},"file":"lib\\attribute_holders\\_buttons.pug","source":"mixin roller(obj)\r\n  +rollerExtras(obj)\r\n    - let rollObj = {...obj};\r\n    - delete rollObj.trigger;\r\n    +button(obj)\r\n      block\r","output":"<button class=\"roller\" name=\"roll_my_button\" data-i18n=\"action button\" value=\"@{my_button_action}\" title=\"%{my_button}\" type=\"roll\"></button>\n<button name=\"act_my-button-action\" hidden=\"\" type=\"action\" title=\"%{my-button-action}\"></button>\n<input name=\"attr_my_button_action\" type=\"hidden\" title=\"@{my_button_action}\"/>"},{"meta":{"name":"compendiumAttributes","description":"Creates a set of compendium drop target attributes. Defaults to creating target attributes for the `Name` and `data` compendium attributes.","arguments":[{"name":"prefix","description":"A prefix to attach to the default attribute names.","type":"string","default":null,"nullable":false,"optional":true,"original":"{string} [prefix] - A prefix to attach to the default attribute names."},{"name":"lookupAttributes","description":"An array of the lookup attributes to create targets for. The target attributes are named based on the compendium attribute they are for.","type":"array","default":"['Name','data']","nullable":false,"optional":true,"original":"{array} [lookupAttributes = ['Name','data']] - An array of the lookup attributes to create targets for. The target attributes are named based on the compendium attribute they are for."},{"name":"triggerAccept","description":"The compendium attribute that should trigger the sheetworkers to handle the compendium drop.","type":"string","default":"'Name'","nullable":false,"optional":true,"original":"{string} [triggerAccept = 'Name'] - The compendium attribute that should trigger the sheetworkers to handle the compendium drop."},{"name":"trigger","description":"The trigger object.","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [trigger] - The trigger object."}],"attributes":null,"example":"include ../_k.pug\n//Using just defaults\n+compendiumAttributes({})\n\n//Specifying a prefix\n+compendiumAttributes({prefix:'prefix'})\n\n//Specifying lookupAttributes and a prefix\n+compendiumAttributes({lookupAttributes:['Name','data','Category'],prefix:'prefix'})\n"},"file":"lib\\attribute_holders\\_compendium.pug","source":"mixin compendiumAttributes({prefix,lookupAttributes = ['Name','data'],triggerAccept = 'Name',trigger = {triggeredFuncs:[\"handleCompendiumDrop\"]}})\r\n  - prefix = prefix ? `${prefix} ` : '';\r\n  each accept in lookupAttributes\r\n    - let inputObj = {name:`${prefix}drop ${accept.toLowerCase()}`,accept,value:''};\r\n    if accept === triggerAccept\r\n      - inputObj.trigger = trigger;\r\n    +hidden(inputObj)\r","output":"<!--Using just defaults-->\n<input name=\"attr_drop_name\" accept=\"Name\" value=\"\" type=\"hidden\" title=\"@{drop_name}\"/>\n<input name=\"attr_drop_data\" accept=\"data\" value=\"\" type=\"hidden\" title=\"@{drop_data}\"/>\n<!--Specifying a prefix-->\n<input name=\"attr_prefix_drop_name\" accept=\"Name\" value=\"\" type=\"hidden\" title=\"@{prefix_drop_name}\"/>\n<input name=\"attr_prefix_drop_data\" accept=\"data\" value=\"\" type=\"hidden\" title=\"@{prefix_drop_data}\"/>\n<!--Specifying lookupAttributes and a prefix-->\n<input name=\"attr_prefix_drop_name\" accept=\"Name\" value=\"\" type=\"hidden\" title=\"@{prefix_drop_name}\"/>\n<input name=\"attr_prefix_drop_data\" accept=\"data\" value=\"\" type=\"hidden\" title=\"@{prefix_drop_data}\"/>\n<input name=\"attr_prefix_drop_category\" accept=\"Category\" value=\"\" type=\"hidden\" title=\"@{prefix_drop_category}\"/>"},{"meta":{"name":"fillLeft","description":"A mixin that creates an html construction ready to be styled for use as a [fill-to-left section](https://wiki.roll20.net/CSS_Wizardry#Fill_Radio_Buttons_to_the_Left).","arguments":[{"name":"radioObj","description":"The object containing the details of the radio input to create. Similar to the {@link radio}, but the value property passed is used as the default checked value.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} radioObj - The object containing the details of the radio input to create. Similar to the {@link radio}, but the value property passed is used as the default checked value."},{"name":"divObj","description":"Optional object containing any details of the div to be applied such as class, id, or other properties. Class and ID can also be supplied by attaching them to the mixin invocation just like with a regular div.","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [divObj] - Optional object containing any details of the div to be applied such as class, id, or other properties. Class and ID can also be supplied by attaching them to the mixin invocation just like with a regular div."},{"name":"valueArray","description":"Array containing the values to be used for the fill to left construction. These should be in the order that they should be displayed left to right.","type":"array","default":null,"nullable":false,"optional":false,"original":"{array} valueArray - Array containing the values to be used for the fill to left construction. These should be in the order that they should be displayed left to right."},{"name":"noClear","description":"Optional argument that tells the mixin whether or not to apply the `fill-left__radio--clearer` class to the first radio button value. If falsy (or not passed), the class is applied. If truthy, the class is not applied.","type":"boolean","default":null,"nullable":false,"optional":true,"original":"{boolean} [noClear] - Optional argument that tells the mixin whether or not to apply the `fill-left__radio--clearer` class to the first radio button value. If falsy (or not passed), the class is applied. If truthy, the class is not applied."}],"example":"include ../_k.pug\n+fillLeft({\n  radioObj:{name:'my radio'},\n  divObj:{class:'some-custom-class'},\n  valueArray:[1,2,3,4,5]\n})\n"},"file":"lib\\attribute_holders\\_fill_left.pug","source":"mixin fillLeft({radioObj,divObj,valueArray,noClear,displayValues})\r\n  - divObj = divObj || {};\r\n  .fill-left&attributes(divObj)&attributes(attributes)\r\n    if !noClear\r\n      - const clearObj = {...radioObj,value:0};\r\n      -\r\n        clearObj.class = clearObj.class ? \r\n          `${clearObj.class} fill-left__radio` :\r\n          `fill-left__radio`;\r\n      if value === 0\r\n        - clearObj.checked = '';\r\n      +hidden(clearObj)\r\n    each value,index in valueArray\r\n      - const usedObj = {...radioObj,value};\r\n      -\r\n        usedObj.class = usedObj.class ? \r\n          `${usedObj.class} fill-left__radio` :\r\n          `fill-left__radio`;\r\n      if displayValues\r\n        - usedObj['data-value'] = displayValues[index];\r\n      if value === radioObj.value\r\n        - usedObj.checked = '';\r\n      \r\n      +#{noClear ? 'radio' : 'checkbox'}(usedObj)\r","output":"<div class=\"fill-left some-custom-class\">\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"0\" type=\"hidden\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"1\" type=\"checkbox\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"2\" type=\"checkbox\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"3\" type=\"checkbox\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"4\" type=\"checkbox\" title=\"@{my_radio}\"/>\n  <input class=\"fill-left__radio\" name=\"attr_my_radio\" value=\"5\" type=\"checkbox\" title=\"@{my_radio}\"/>\n</div>"},{"meta":{"name":"input","description":"A generic mixin to create an input. The mixin will replace spaces in the attribute name with underscores and will add a title property if one isn't supplied that will inform the user what the attribute call for the attribute is.","arguments":[{"name":"inputObj","description":"An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property"}],"attributes":null,"example":"include ../_k.pug\n+input({name:'my attribute',type:'text',class:'some-class',trigger:{affects:['other_attribute']}})\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin input(obj)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  - obj.name = attrName(obj.name);\r\n  - obj.title = obj.title || attrTitle(obj.name);\r\n  - obj.name = `attr_${obj.name}`;\r\n  - const elementObj = makeElementObj(obj);\r\n  - addFieldToFieldsetObj(obj);\r\n  - storeTrigger(obj);\r\n  input&attributes(elementObj)&attributes(attributes)\r","output":"<input class=\"some-class\" name=\"attr_my_attribute\" type=\"text\" title=\"@{my_attribute}\"/>"},{"meta":{"name":"text","arguments":[{"name":"inputObj","description":"An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property"}],"description":"An alias for {@link input} that specifies the input type as text. See {@link input} for arguments.","attributes":null,"example":"include ../_k.pug\n+text({name:'my attribute',class:'some-class',trigger:{affects:['other_attribute']}})\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin text(obj)\r\n  - obj.type = 'text';\r\n  +input(obj)\r","output":"<input class=\"some-class\" name=\"attr_my_attribute\" type=\"text\" title=\"@{my_attribute}\"/>"},{"meta":{"name":"checkbox","arguments":[{"name":"inputObj","description":"An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property"}],"description":"An alias for {@link input} that specifies the input type as checkbox. See {@link input} for arguments.","attributes":null,"example":"include ../_k.pug\n+checkbox({name:'my checkbox',value:1})\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin checkbox(obj)\r\n  - obj.type = 'checkbox';\r\n  +input(obj)&attributes(attributes)\r","output":"<input name=\"attr_my_checkbox\" value=\"1\" type=\"checkbox\" title=\"@{my_checkbox}\"/>"},{"meta":{"name":"collapse","arguments":[{"name":"name","description":"The name to use for the collapse element. Defaults to `collapse`","type":"string","default":"collapse","nullable":false,"optional":true,"original":"{string} [name=collapse] - The name to use for the collapse element. Defaults to `collapse`"}],"description":"Alias for {@link checkbox} that creates a checkbox for us in collapse/expanding a section. Sets the checkbox to unchecked with a checked value of `1` and a class of `collapse`. Additional classes/ids can be applied by applying them inline to the mixin call.","attributes":null,"example":"include ../_k.pug\n+collapse()\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin collapse(name='collapse')\r\n  +checkbox({name,value:1,class:'collapse'})&attributes(attributes)\r","output":"<input class=\"collapse\" name=\"attr_collapse\" value=\"1\" type=\"checkbox\" title=\"@{collapse}\"/>"},{"meta":{"name":"radio","arguments":[{"name":"inputObj","description":"An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property"}],"description":"Alias for {@link input} that specifies `radio` as the input type. See {@link input} for arguments.","attributes":null,"example":"include ../_k.pug\n+radio({name:'my radio',value:1,checked:''})\n+radio({name:'my radio',value:2})\n+radio({name:'my radio',value:3})\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin radio(obj)\r\n  - obj.type = 'radio';\r\n  +input(obj)\r","output":"<input name=\"attr_my_radio\" value=\"1\" checked=\"\" type=\"radio\" title=\"@{my_radio}\"/>\n<input name=\"attr_my_radio\" value=\"2\" type=\"radio\" title=\"@{my_radio}\"/>\n<input name=\"attr_my_radio\" value=\"3\" type=\"radio\" title=\"@{my_radio}\"/>"},{"meta":{"name":"number","arguments":[{"name":"inputObj","description":"An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property"}],"description":"Alias for {@link input} that makes a number input. See {@link input} for arguments.","attributes":null,"example":"include ../_k.pug\n+number({name:'my number',class:'some-class',trigger:{affects:['other_attribute']}})\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin number(obj)\r\n  - obj.type = 'number';\r\n  +input(obj)\r","output":"<input class=\"some-class\" name=\"attr_my_number\" type=\"number\" title=\"@{my_number}\"/>"},{"meta":{"name":"range","arguments":[{"name":"inputObj","description":"An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property"}],"description":"Alias for {@link input} that makes a range input. See {@link input} for arguments.","attributes":null,"example":"include ../_k.pug\n+range({name:'my range',class:'some-class'})\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin range(obj)\r\n  - obj.type = 'range';\r\n  +input(obj)\r","output":"<input class=\"some-class\" name=\"attr_my_range\" type=\"range\" title=\"@{my_range}\"/>"},{"meta":{"name":"hidden","arguments":[{"name":"inputObj","description":"An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property"}],"description":"Alias for {@link input} that makes a hidden input. See {@link input} for arguments.","attributes":null,"example":"include ../_k.pug\n+hidden({name:'my hidden attribute',class:'some-class',trigger:{triggeredFuncs:['someFunction']}})\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin hidden(obj)\r\n  - obj.type = 'hidden';\r\n  +input(obj)\r","output":"<input class=\"some-class\" name=\"attr_my_hidden_attribute\" type=\"hidden\" title=\"@{my_hidden_attribute}\"/>"},{"meta":{"name":"textarea","description":"A mixin to create K-scaffold compatible textareas.","arguments":[{"name":"textObj","description":"See {@link input} for information on valid properties of the textObj.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} textObj - See {@link input} for information on valid properties of the textObj."}],"attributes":null,"example":"include ../_k.pug\n+textarea({name:'my textarea',class:'some-class',trigger:{affects:['an_attribute']}})\n"},"file":"lib\\attribute_holders\\_inputs.pug","source":"mixin textarea(obj)\r\n  - checkKUse();\r\n  - obj.class = obj.class ? replaceProblems(obj.class) : undefined;\r\n  - obj.name = attrName(obj.name);\r\n  - obj.title = obj.title || attrTitle(obj.name);\r\n  - obj.name = `attr_${obj.name}`;\r\n  - addFieldToFieldsetObj(obj);\r\n  - storeTrigger(obj);\r\n  - const elementObj = makeElementObj(obj);\r\n  textarea&attributes(elementObj)\r","output":"<textarea class=\"some-class\" name=\"attr_my_textarea\" title=\"@{my_textarea}\"></textarea>"},{"meta":{"name":"select","arguments":[{"name":"selectObj","description":"The object describing the select","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} selectObj - The object describing the select"},{"name":"block","description":"The content within the select","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The content within the select"}],"description":"A mixin to create a select element. Also provides an option mixin that is restricted to only work within the select. Trigger objects can be passed as arguments on the select call itself or on the default selected option. Uses K-scaffold global variables to control how option mixins within the select's block behave.","example":"include ../_k.pug\n+select({name:'my select'})\n  +option({value:'a value','data-i18n':'a translation key',trigger:{affects:['some_attribute']}})\n  +option({value:'value 2','data-i18n':'translation 2'})\n  +option({value:'value 3'})\n  |Some Text we include via the option's block\n|\n|\n+select({\n  name:'my select',\n  trigger:{\n    affects:['some_attribute']\n  }\n})\n  +option({value:'a value','data-i18n':'a translation key'})\n  +option({value:'value 2','data-i18n':'translation 2'})\n  +option({value:'value 3'})\n    |Some Text we include via the option's block\n"},"file":"lib\\attribute_holders\\_selects.pug","source":"mixin select(obj)\r\n  - checkKUse();\r\n  -\r\n    obj.class = obj.class ?\r\n      replaceProblems(obj.class) :\r\n      undefined;\r\n  - obj.name = attrName(obj.name);\r\n  - obj.title = obj.title || attrTitle(obj.name);\r\n  - obj.name = `attr_${obj.name}`;\r\n  - addFieldToFieldsetObj(obj);\r\n\r\n  //- Initialize the object that will be passed to the cascade\r\n  - const triggerObj = {...obj,type:'select'};\r\n  - const options = [];\r\n  \r\n  mixin option(optObj)\r\n    -\r\n      optObj.class = optObj.class ?\r\n        replaceProblems(optObj.class) :\r\n        undefined;\r\n    -\r\n      const pushObj = {\r\n        obj:optObj,\r\n        attributes: attributes || {}\r\n      };\r\n    if block\r\n      - pushObj.block = block;\r\n    - options.push(pushObj);\r\n\r\n\r\n  if !block\r\n    option(value='!!! Error: empty select !!!')\r\n  else\r\n    - block();\r\n    - const selObj = makeElementObj(obj);\r\n    select&attributes(selObj)&attributes(attributes)\r\n      each o in options\r\n        if o.hasOwnProperty('selected') && o.hasOwnProperty('value')\r\n          - triggerObj.value = o.value;\r\n          if o.trigger && !triggerObj.trigger\r\n            - triggerObj.trigger = o.trigger;\r\n        - const elemObj = makeElementObj(o.obj);\r\n        option&attributes(elemObj)&attributes(o.attributes)\r\n    - storeTrigger(triggerObj);\r","output":"Some Text we include via the option's block<select name=\"attr_my_select\" title=\"@{my_select}\">\n  <option value=\"a value\" data-i18n=\"a translation key\"></option>\n  <option value=\"value 2\" data-i18n=\"translation 2\"></option>\n  <option value=\"value 3\"></option>\n</select>\n\n<select name=\"attr_my_select\" title=\"@{my_select}\">\n  <option value=\"a value\" data-i18n=\"a translation key\"></option>\n  <option value=\"value 2\" data-i18n=\"translation 2\"></option>\n  <option value=\"value 3\"></option>\n</select>"},{"meta":{"name":"fieldset","description":"A mixin that creates a fieldset for the creation of a repeating section. The mixin prefixes the name with `repeating_` and replaces problem characters (e.g. spaces are replaced with dashes). Additionally, the auto-generated title properties from the K-scaffold\\'s mixins will include the proper repeating section information.","arguments":[{"name":"name","description":"The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`).","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} name - The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`)."},{"name":"trigger","description":"Trigger that defines how to handle the removal of a row from the fieldset. `Optional`","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [trigger] - Trigger that defines how to handle the removal of a row from the fieldset. `Optional`"},{"name":"addClass","description":"Any additional classes that should be used for the repeating section. Note that these are not added to the fieldset itself as adding additional classes to the fieldset itself interferes with calling action buttons from chat, but are added to a span that precedes the fieldset. This allows styling of the repcontainer via a css declaration like `.bonus-class + fieldset + .repcontainer`.","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} addClass - Any additional classes that should be used for the repeating section. Note that these are not added to the fieldset itself as adding additional classes to the fieldset itself interferes with calling action buttons from chat, but are added to a span that precedes the fieldset. This allows styling of the repcontainer via a css declaration like `.bonus-class + fieldset + .repcontainer`."}],"attributes":null,"example":"include ../_k.pug\n//A basic fieldset declaration with a trigger\n+fieldset({\n  name:'fieldset',\n  trigger:{triggeredFuncs:['doWhenRemoved']}\n})\n  +text({name:'name'})\n\n//A Fieldset with an added class\n+fieldset({\n  name:'fieldset',\n  trigger:{triggeredFuncs:['doWhenRemoved']},\n  addClass:'some-class'\n})\n  +text({name:'name'})\n"},"file":"lib\\fieldsets\\_fieldsets.pug","source":"mixin fieldset({name,trigger,addClass})\r\n  -\r\n    name = repeatsIgnoreSystemPrefix || !getSystemPrefix() ?\r\n      name :\r\n      `${getSystemPrefix()} ${name}`;\r\n  - name = name.replace(/\\s+/g,'-');\r\n  - let section = `repeating_${name}`;\r\n  - k.repeatingPrefix = `${section}_$X_`;\r\n  - createFieldsetObj(section)\r\n  if trigger\r\n    - storeTrigger({name:section,type:'fieldset',trigger})\r\n  if addClass\r\n    span(hidden=\"\" class=addClass)\r\n  fieldset(class=`${section}`)\r\n    block\r\n  - k.repeatingPrefix = '';\r","output":"<!--A basic fieldset declaration with a trigger-->\n<fieldset class=\"repeating_fieldset\">\n  <input name=\"attr_name\" type=\"text\" title=\"@{repeating_fieldset_$X_name}\"/>\n</fieldset>\n<!--A Fieldset with an added class-->\n<span class=\"some-class\" hidden=\"\"></span>\n<fieldset class=\"repeating_fieldset\">\n  <input name=\"attr_name\" type=\"text\" title=\"@{repeating_fieldset_$X_name}\"/>\n</fieldset>"},{"meta":{"name":"inlineFieldset","description":"An alias for {@link fieldset} that creates a fieldset with an added class that can be easily hooked into via CSS to style the fieldset for inline display.","arguments":[{"name":"name","description":"The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`).","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} name - The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`)."},{"name":"trigger","description":"Trigger that defines how to handle the removal of a row from the fieldset. `Optional`","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [trigger] - Trigger that defines how to handle the removal of a row from the fieldset. `Optional`"},{"name":"addClass","description":"Any additional classes that should be used for the repeating section. Note that these are not added to the fieldset itself as adding additional classes to the fieldset itself interferes with calling action buttons from chat, but are added to a span that precedes the fieldset. This allows styling of the repcontainer via a css declaration like `.bonus-class + fieldset + .repcontainer`.","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} addClass - Any additional classes that should be used for the repeating section. Note that these are not added to the fieldset itself as adding additional classes to the fieldset itself interferes with calling action buttons from chat, but are added to a span that precedes the fieldset. This allows styling of the repcontainer via a css declaration like `.bonus-class + fieldset + .repcontainer`."}],"attributes":null,"example":"include ../_k.pug\n+inlineFieldset({\n  name:'fieldset',\n  trigger:{triggeredFuncs:['doWhenRemoved']},\n  addClass:'some-class'\n})\n"},"file":"lib\\fieldsets\\_fieldsets.pug","source":"mixin inlineFieldset({name,trigger,addClass})\r\n  - addClass = addClass ? `${addClass} inline-fieldset` : 'inline-fieldset';\r\n  - varObjects.inlineFieldsets = varObjects.inlineFieldsets || [];\r\n  - varObjects.inlineFieldsets.push(name);\r\n  \r\n  +action({name:`add ${name}`,class:'repcontrol-button repcontrol-button--add repcontrol-button--inline',trigger:{listenerFunc:'sectionInteract'}})\r\n  +fieldset({name,trigger,addClass})\r\n    +radio({name:'display state',class:'display-control',value:'short-display',hidden:''})\r\n    .inline-fieldset__summary.display-target\r\n      label.pointer\r\n        +checkbox({name:'collapse',value:1,hidden:'',trigger:{triggeredFuncs:['collapseSection']}})\r\n        +span({name:'name',class:'inline-fieldset__summary__text'})\r\n    +radio({name:'display state',class:'display-control',value:'display',checked:'',hidden:''})\r\n    .inline-fieldset__detail.display-target\r\n      +collapse\r\n      block\r","output":"<button class=\"repcontrol-button repcontrol-button--add repcontrol-button--inline\" name=\"act_add-fieldset\" type=\"action\" title=\"%{add-fieldset}\"></button>\n<span class=\"some-class inline-fieldset\" hidden=\"\"></span>\n<fieldset class=\"repeating_fieldset\">\n  <input class=\"display-control\" name=\"attr_display_state\" value=\"short-display\" hidden=\"\" type=\"radio\" title=\"@{repeating_fieldset_$X_display_state}\"/>\n  <div class=\"inline-fieldset__summary display-target\">\n    <label class=\"pointer\">\n      <input name=\"attr_collapse\" value=\"1\" hidden=\"\" type=\"checkbox\" title=\"@{repeating_fieldset_$X_collapse}\"/>\n      <span class=\"inline-fieldset__summary__text\" name=\"attr_name\" title=\"@{repeating_fieldset_$X_name}\"></span>\n    </label>\n  </div>\n  <input class=\"display-control\" name=\"attr_display_state\" value=\"display\" checked=\"\" hidden=\"\" type=\"radio\" title=\"@{repeating_fieldset_$X_display_state}\"/>\n  <div class=\"inline-fieldset__detail display-target\">\n    <input class=\"collapse\" name=\"attr_collapse\" value=\"1\" type=\"checkbox\" title=\"@{repeating_fieldset_$X_collapse}\"/>\n  </div>\n</fieldset>"},{"meta":{"name":"button-label","description":"A mixin to create a combined button and input that are within the same container. Similar to {@link input-label}, but does not use a label.","arguments":[{"name":"inputObj","description":"An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}."},{"name":"buttonObj","description":"An object describing the button to be paired with the input. This is the same object that you would pass to {@link button}.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} buttonObj - An object describing the button to be paired with the input. This is the same object that you would pass to {@link button}."},{"name":"divObj","description":"An object describing the container div. Similar to the first two objects, but will most likely only have a `class` property if it is passed at all.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} divObj - An object describing the container div. Similar to the first two objects, but will most likely only have a `class` property if it is passed at all."}],"attributes":null,"example":"include ../_k.pug\n+button-label({\n  inputObj:{name:'strength',type:'number',class:'underlined',value:10,trigger:{affects:['athletics']}},\n  buttonObj:{name:'strength_roll',type:'roll',value:'/r 1d20+@{strength}'},\n  divObj:{class:'strength'}\n})\n"},"file":"lib\\labels\\_labels.pug","source":"mixin button-label({inputObj,buttonObj,divObj})\r\n  if divObj\r\n    - divObj.class = divObj.class ? replaceProblems(divObj.class) : undefined;\r\n  - inputObj.class = inputObj.class ? replaceProblems(inputObj.class) : undefined;\r\n  - buttonObj.class = buttonObj.class ? replaceProblems(buttonObj.class) : undefined;\r\n  - inputObj.name = inputObj.name.replace(/\\s+/g,'_');\r\n  - buttonObj.name = (buttonObj.name || inputObj.name).replace(/\\s+/g,'_');\r\n  .input-label.input-label--button&attributes(divObj)\r\n    - inputObj.class = inputObj.class ? `${inputObj.class} input-label__input` : 'input-label__input';\r\n    if spanObj\r\n      - buttonObj.class = buttonObj.class ? `${buttonObj.class} input-label__text` : 'input-label__text';\r\n    +button(buttonObj)\r\n    +input(inputObj)\r","output":"<div class=\"input-label input-label--button strength\">\n  <button name=\"roll_strength_roll\" type=\"roll\" value=\"/r 1d20+@{strength}\" title=\"%{strength_roll}\"></button>\n  <input class=\"underlined input-label__input\" name=\"attr_strength\" type=\"number\" value=\"10\" title=\"@{strength}\"/>\n</div>"},{"meta":{"name":"roller-label","description":"Similar to the construction created by {@link button-label}, except that it creates a {@link roller} construction instead of just a straight button.","arguments":[{"name":"inputObj","description":"An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}."},{"name":"buttonObj","description":"An object describing the button to be paired with the input. This is the same object that you would pass to {@link button}.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} buttonObj - An object describing the button to be paired with the input. This is the same object that you would pass to {@link button}."},{"name":"divObj","description":"An object describing the container div. Similar to the first two objects, but will most likely only have a `class` property if it is passed at all.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} divObj - An object describing the container div. Similar to the first two objects, but will most likely only have a `class` property if it is passed at all."}],"attributes":null,"example":"include ../_k.pug\n+roller-label({\n  inputObj:{name:'strength',type:'number',class:'underlined',value:10,trigger:{affects:['athletics']}},\n  buttonObj:{name:'strength_roll',type:'roll',value:'/r 1d20+@{strength}'},\n  divObj:{class:'strength'}\n})\n"},"file":"lib\\labels\\_labels.pug","source":"mixin roller-label({inputObj,buttonObj,divObj})\r\n  +rollerExtras(buttonObj)\r\n    +button-label({inputObj,buttonObj,divObj})\r","output":"<div class=\"input-label input-label--button strength\">\n  <button class=\"roller\" name=\"roll_strength_roll\" type=\"roll\" value=\"@{strength_action}\" title=\"%{strength_roll}\"></button>\n  <input class=\"underlined input-label__input\" name=\"attr_strength\" type=\"number\" value=\"10\" title=\"@{strength}\"/>\n</div>\n<button name=\"act_strength-action\" hidden=\"\" type=\"action\" title=\"%{strength-action}\"></button>\n<input name=\"attr_strength_action\" type=\"hidden\" title=\"@{strength_action}\"/>"},{"meta":{"name":"action-label","description":"Similar to the construction created by {@link button-label}, except that it specifcally creates an [action button](https://wiki.roll20.net/Button#Action_Button) as per {@link action}.","arguments":[{"name":"inputObj","description":"An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}."},{"name":"buttonObj","description":"An object describing the button to be paired with the input. This is the same object that you would pass to {@link button}.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} buttonObj - An object describing the button to be paired with the input. This is the same object that you would pass to {@link button}."},{"name":"divObj","description":"An object describing the container div. Similar to the first two objects, but will most likely only have a `class` property if it is passed at all.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} divObj - An object describing the container div. Similar to the first two objects, but will most likely only have a `class` property if it is passed at all."}],"attributes":null,"example":"include ../_k.pug\n+roller-label({\n  inputObj:{name:'strength',type:'number',class:'underlined',value:10,trigger:{affects:['athletics']}},\n  buttonObj:{name:'strength_roll',type:'roll',value:'/r 1d20+@{strength}'},\n  divObj:{class:'strength'}\n})\n"},"file":"lib\\labels\\_labels.pug","source":"mixin action-label({inputObj,buttonObj,divObj})\r\n  - buttonObj.type = 'action';\r\n  +button-label({inputObj,buttonObj,divObj})\r","output":"<div class=\"input-label input-label--button strength\">\n  <button class=\"roller\" name=\"roll_strength_roll\" type=\"roll\" value=\"@{strength_action}\" title=\"%{strength_roll}\"></button>\n  <input class=\"underlined input-label__input\" name=\"attr_strength\" type=\"number\" value=\"10\" title=\"@{strength}\"/>\n</div>\n<button name=\"act_strength-action\" hidden=\"\" type=\"action\" title=\"%{strength-action}\"></button>\n<input name=\"attr_strength_action\" type=\"hidden\" title=\"@{strength_action}\"/>"},{"meta":{"name":"select-label","description":"Similar to the construction created by {@link input-label}, except that the input is replaced with a select.","arguments":[{"name":"label","description":"The translation key to use for the span. If not passed, then the spanObj must be passed with a translation key","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} label - The translation key to use for the span. If not passed, then the spanObj must be passed with a translation key"},{"name":"inputObj","description":"An object describing the select to be paired with the button. This is the same object that you would pass to {@link select}.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the select to be paired with the button. This is the same object that you would pass to {@link select}."},{"name":"divObj","description":"An object describing the container label. Similar to the inputObj, but will most likely only have a `class` property if it is passed at all.","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [divObj] - An object describing the container label. Similar to the inputObj, but will most likely only have a `class` property if it is passed at all."},{"name":"spanObj","description":"An object describing the span to be paired with the input. This is the same object that you would pass to {@link span}.","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [spanObj] - An object describing the span to be paired with the input. This is the same object that you would pass to {@link span}."},{"name":"block","description":"The mixin uses the pug block as the content of the select.","type":"block","default":null,"nullable":false,"optional":false,"original":"{block} block - The mixin uses the pug block as the content of the select."}],"attributes":null,"example":"include ../_k.pug\n+select-label({\n  label:'Whisper to GM',\n  inputObj:{name:'whisper'},\n  divObj:{class:'div-class'},\n  spanObj:{class:'span-class'}\n})\n  +option({value:'','data-i18n':'never',selected:''})\n  +option({value:'/w gm ','data-i18n':'always'})\n"},"file":"lib\\labels\\_labels.pug","source":"mixin select-label({label,inputObj,divObj,spanObj})\r\n  if divObj\r\n    - divObj.class = divObj.class ? replaceProblems(divObj.class) : undefined;\r\n  if inputObj\r\n    - inputObj.class = inputObj.class ? replaceProblems(inputObj.class) : undefined;\r\n  if spanObj\r\n    - spanObj.class = spanObj.class ? replaceProblems(spanObj.class) : undefined;\r\n  label.input-label&attributes(divObj)\r\n    - inputObj.name = inputObj.name.replace(/\\s+/g,'_');\r\n    - inputObj.class = inputObj.class ? `${inputObj.class} input-label__input` : 'input-label__input';\r\n    if spanObj\r\n      - spanObj.class = spanObj.class ? `${spanObj.class} input-label__text` : 'input-label__text';\r\n    span(data-i18n=label)&attributes(spanObj)\r\n    +select(inputObj)\r\n      block\r","output":"<label class=\"input-label div-class\">\n  <span class=\"span-class input-label__text\" data-i18n=\"Whisper to GM\"></span>\n  <select class=\"input-label__input\" name=\"attr_whisper\" title=\"@{whisper}\">\n    <option value=\"\" data-i18n=\"never\" selected=\"\"></option>\n    <option value=\"/w gm \" data-i18n=\"always\"></option>\n  </select>\n</label>"},{"meta":{"name":"input-label","description":null,"arguments":[{"name":"label","description":"The translation key to use for the span. If not passed, then the spanObj must be passed with a translation key","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} label - The translation key to use for the span. If not passed, then the spanObj must be passed with a translation key"},{"name":"inputObj","description":"An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}.","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} inputObj - An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}."},{"name":"divObj","description":"An object describing the container label. Similar to the inputObj, but will most likely only have a `class` property if it is passed at all.","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [divObj] - An object describing the container label. Similar to the inputObj, but will most likely only have a `class` property if it is passed at all."},{"name":"spanObj","description":"An object describing the span to be paired with the input. This is the same object that you would pass to {@link span}.","type":"object","default":null,"nullable":false,"optional":true,"original":"{object} [spanObj] - An object describing the span to be paired with the input. This is the same object that you would pass to {@link span}."}],"attributes":null,"example":"include ../_k.pug\n+input-label({\n  label:'strength',\n  inputObj:{name:'strength',type:'number'},\n  divObj:{class:'div-class'},\n  spanObj:{class:'span-class'}\n})\n"},"file":"lib\\labels\\_labels.pug","source":"mixin input-label({label,inputObj,divObj,spanObj})\r\n  if divObj\r\n    - divObj.class = divObj.class ? replaceProblems(divObj.class) : undefined;\r\n  if inputObj\r\n    - inputObj.class = inputObj.class ? replaceProblems(inputObj.class) : undefined;\r\n  if spanObj\r\n    - spanObj.class = spanObj.class ? replaceProblems(spanObj.class) : undefined;\r\n  label.input-label&attributes(divObj)\r\n    - inputObj.name = inputObj.name.replace(/\\s+/g,'_');\r\n    - inputObj.class = inputObj.class ? `${inputObj.class} input-label__input` : 'input-label__input';\r\n    if spanObj\r\n      - spanObj.class = spanObj.class ? `${spanObj.class} input-label__text` : 'input-label__text';\r\n    span(data-i18n=label)&attributes(spanObj)\r\n    +input(inputObj)\r","output":"<label class=\"input-label div-class\">\n  <span class=\"span-class input-label__text\" data-i18n=\"strength\"></span>\n  <input class=\"input-label__input\" name=\"attr_strength\" type=\"number\" title=\"@{strength}\"/>\n</label>"},{"meta":{"name":"headedTextarea","description":"Creates a construction for pairing a header with a textarea. Currently is locked to creating an `h3`.  This mixin also accepts classes and IDs appended directly to it (see the second example)","arguments":[{"name":"textObj","description":"The object describing the textarea as per {@link textarea}","type":"object","default":null,"nullable":false,"optional":false,"original":"{object} textObj - The object describing the textarea as per {@link textarea}"},{"name":"header","description":"The `data-i18n` translation key to use for the header","type":"string","default":null,"nullable":false,"optional":false,"original":"{string} header - The `data-i18n` translation key to use for the header"}],"attributes":null,"example":"include ../_k.pug\n+headedTextarea({textObj:{name:'character description','data-i18n-placeholder':'The description of your character'},header:'description'})\n//With class appended to the mixin itself\n+headedTextarea({textObj:{name:'character description','data-i18n-placeholder':'The description of your character'},header:'description'}).character-description\n"},"file":"lib\\labels\\_labels.pug","source":"mixin headedTextarea({textObj,header})\r\n  .headed-textarea&attributes(attributes)\r\n    - textObj.class = textObj.class ? `${textObj.class} headed-textarea__textarea` : 'headed-textarea__textarea';\r\n    h3(data-i18n=header class='headed-textarea__header')\r\n    +textarea(textObj)\r","output":"<div class=\"headed-textarea\">\n  <h3 class=\"headed-textarea__header\" data-i18n=\"description\"></h3>\n    <textarea class=\"headed-textarea__textarea\" name=\"attr_character_description\" data-i18n-placeholder=\"The description of your character\" title=\"@{character_description}\"></textarea>\n  </div>\n  <!--With class appended to the mixin itself-->\n  <div class=\"headed-textarea character-description\">\n    <h3 class=\"headed-textarea__header\" data-i18n=\"description\"></h3>\n      <textarea class=\"headed-textarea__textarea\" name=\"attr_character_description\" data-i18n-placeholder=\"The description of your character\" title=\"@{character_description}\"></textarea>\n    </div>"},{"meta":{"name":"script","description":"Creates a generic [Roll20 script block](https://wiki.roll20.net/Building_Character_Sheets#JavaScript_2) for use with the sheetworker system.","arguments":null,"attributes":null,"example":"include ../_k.pug\n+script\n"},"file":"lib\\scripts\\_scripts.pug","source":"mixin script\r\n  script(type='text/worker')\r\n    block\r","output":"<script type=\"text/worker\"></script>"},{"meta":{"name":"kscript","description":"Similar to {@link script}, but includes the K-scaffold\\'s javascript function library.","arguments":null,"attributes":null,"example":"include ../_k.pug\n+kscript\n"},"file":"lib\\scripts\\_scripts.pug","source":"mixin kscript\r\n  - scriptUsed = true;\r\n  +script\r\n    |const k = (function(){\r\n    |const kFuncs = {};\r\n    //- The below declarations import variables from the pug file and mixins into the sheetworker code\r\n    - const propArray = ['cascades','repeatingSectionDetails','persistentTabs'];\r\n    each prop in propArray\r\n      |\r\n      |const !{prop} = !{JSON.stringify(varObjects[prop])};\r\n      |\r\n      |kFuncs.!{prop} = !{prop};\r\n      - delete varObjects[prop];\r\n    |\r\n    |\r\n    include kvariables.js\r\n    include utility.js\r\n    include attribute_proxy.js\r\n    include accessSheet.js\r\n    include parse_cascade.js\r\n    include sheetworker_aliases.js\r\n    include listeners.js\r\n    include ../tabs/tabs.js\r\n    |\r\n    |return kFuncs;\r\n    |}());\r\n    |\r\n    each content,prop in varObjects\r\n      |\r\n      if typeof content === 'object'\r\n        |const !{prop} = !{JSON.stringify(content)};\r\n      else\r\n        |let !{prop} = !{content};\r\n      |\r\n    |\r\n    block\r\n    each jsBlock in k.scriptBlocks\r\n      |\r\n      |\r\n      - jsBlock();\r","output":"<script type=\"text/worker\">\n  const k = (function(){\nconst kFuncs = {};\nconst cascades = {\"attr_character_name\":{\"name\":\"character_name\",\"type\":\"text\",\"defaultValue\":\"\",\"affects\":[],\"triggeredFuncs\":[\"setActionCalls\"],\"listenerFunc\":\"accessSheet\",\"listener\":\"change:character_name\"},\"attr_my_image\":{\"name\":\"my_image\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_attribute_backed_span\":{\"calculation\":\"calculateAttribute\",\"name\":\"attribute_backed_span\",\"type\":\"span\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_character_description\":{\"name\":\"character_description\",\"type\":\"span\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"act_my_button\":{\"triggeredFuncs\":[\"doSomethingOnClick\"],\"name\":\"my_button\",\"listener\":\"clicked:my_button\",\"listenerFunc\":\"accessSheet\",\"type\":\"action\"},\"act_my-button\":{\"triggeredFuncs\":[\"doSomethingOnClick\"],\"name\":\"my-button\",\"listener\":\"clicked:my-button\",\"listenerFunc\":\"accessSheet\",\"type\":\"action\"},\"act_my-button-action\":{\"triggeredFuncs\":[\"doSomethingOnClick\"],\"name\":\"my-button-action\",\"listener\":\"clicked:my-button-action\",\"listenerFunc\":\"accessSheet\",\"type\":\"action\"},\"attr_my_button_action\":{\"name\":\"my_button_action\",\"type\":\"hidden\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_drop_name\":{\"triggeredFuncs\":[\"handleCompendiumDrop\"],\"name\":\"drop_name\",\"listener\":\"change:drop_name\",\"listenerFunc\":\"accessSheet\",\"type\":\"hidden\",\"defaultValue\":\"\",\"affects\":[]},\"attr_drop_data\":{\"name\":\"drop_data\",\"type\":\"hidden\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_prefix_drop_name\":{\"triggeredFuncs\":[\"handleCompendiumDrop\"],\"name\":\"prefix_drop_name\",\"listener\":\"change:prefix_drop_name\",\"listenerFunc\":\"accessSheet\",\"type\":\"hidden\",\"defaultValue\":\"\",\"affects\":[]},\"attr_prefix_drop_data\":{\"name\":\"prefix_drop_data\",\"type\":\"hidden\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_prefix_drop_category\":{\"name\":\"prefix_drop_category\",\"type\":\"hidden\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_my_radio\":{\"name\":\"my_radio\",\"type\":\"hidden\",\"defaultValue\":0,\"triggeredFuncs\":[],\"affects\":[]},\"attr_my_attribute\":{\"affects\":[\"other_attribute\"],\"name\":\"my_attribute\",\"listener\":\"change:my_attribute\",\"listenerFunc\":\"accessSheet\",\"type\":\"text\",\"defaultValue\":\"\",\"triggeredFuncs\":[]},\"attr_my_checkbox\":{\"name\":\"my_checkbox\",\"type\":\"checkbox\",\"defaultValue\":0,\"triggeredFuncs\":[],\"affects\":[]},\"attr_collapse\":{\"name\":\"collapse\",\"type\":\"checkbox\",\"defaultValue\":0,\"triggeredFuncs\":[],\"affects\":[]},\"attr_my_number\":{\"affects\":[\"other_attribute\"],\"name\":\"my_number\",\"listener\":\"change:my_number\",\"listenerFunc\":\"accessSheet\",\"type\":\"number\",\"defaultValue\":0,\"triggeredFuncs\":[]},\"attr_my_range\":{\"name\":\"my_range\",\"type\":\"range\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_my_hidden_attribute\":{\"triggeredFuncs\":[\"someFunction\"],\"name\":\"my_hidden_attribute\",\"listener\":\"change:my_hidden_attribute\",\"listenerFunc\":\"accessSheet\",\"type\":\"hidden\",\"defaultValue\":\"\",\"affects\":[]},\"attr_my_textarea\":{\"affects\":[\"an_attribute\"],\"name\":\"my_textarea\",\"listener\":\"change:my_textarea\",\"listenerFunc\":\"accessSheet\",\"defaultValue\":\"\",\"triggeredFuncs\":[]},\"attr_my_select\":{\"name\":\"my_select\",\"type\":\"select\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[\"some_attribute\"],\"listener\":\"change:my_select\",\"listenerFunc\":\"accessSheet\"},\"fieldset_repeating_fieldset\":{\"triggeredFuncs\":[\"doWhenRemoved\"],\"name\":\"repeating_fieldset\",\"listener\":\"remove:repeating_fieldset\",\"listenerFunc\":\"accessSheet\",\"type\":\"fieldset\"},\"attr_repeating_fieldset_$X_name\":{\"name\":\"repeating_fieldset_$X_name\",\"type\":\"text\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"act_add-undefined\":{\"listenerFunc\":\"addItem\",\"name\":\"add-undefined\",\"listener\":\"clicked:add-undefined\",\"type\":\"action\"},\"act_add-fieldset\":{\"listenerFunc\":\"sectionInteract\",\"name\":\"add-fieldset\",\"listener\":\"clicked:add-fieldset\",\"type\":\"action\"},\"attr_repeating_fieldset_$X_display_state\":{\"name\":\"repeating_fieldset_$X_display_state\",\"type\":\"radio\",\"defaultValue\":\"short-display\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_repeating_fieldset_$X_collapse\":{\"triggeredFuncs\":[\"collapseSection\"],\"name\":\"repeating_fieldset_$X_collapse\",\"listener\":\"change:repeating_fieldset:collapse\",\"listenerFunc\":\"accessSheet\",\"type\":\"checkbox\",\"defaultValue\":0,\"affects\":[]},\"attr_strength\":{\"affects\":[\"athletics\"],\"name\":\"strength\",\"listener\":\"change:strength\",\"listenerFunc\":\"accessSheet\",\"type\":\"number\",\"defaultValue\":10,\"triggeredFuncs\":[]},\"act_strength-action\":{\"listenerFunc\":\"initiateRoll\",\"name\":\"strength-action\",\"listener\":\"clicked:strength-action\",\"type\":\"action\"},\"attr_strength_action\":{\"name\":\"strength_action\",\"type\":\"hidden\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]},\"attr_whisper\":{\"name\":\"whisper\",\"type\":\"select\",\"defaultValue\":\"\",\"triggeredFuncs\":[],\"affects\":[]}};\n\nkFuncs.cascades = cascades;\nconst repeatingSectionDetails = [{\"section\":\"repeating_fieldset\",\"fields\":[\"name\",\"display_state\",\"collapse\"]}];\n\nkFuncs.repeatingSectionDetails = repeatingSectionDetails;\nconst persistentTabs = [];\n\nkFuncs.persistentTabs = persistentTabs;\n/**\n * The K-scaffold provides several variables to allow your scripts to tap into its information flow.\n * @namespace Sheetworkers.Variables\n */\n/**\n * This stores the name of your sheet for use in the logging functions {@link log} and {@link debug}. Accessible by `k.sheetName`\n * @memberof Variables\n * @var\n * @type {string}\n */\nlet sheetName = 'kScaffold Powered Sheet';\nkFuncs.sheetName = sheetName;\n/**\n\t* This stores the version of your sheet for use in the logging functions{@link log} and {@link debug}. It is also stored in the sheet_version attribute on your character sheet. Accessible via `k.version`\n * @memberof Variables\n\t* @var\n\t* @type {number}\n\t*/\nlet version = 0;\nkFuncs.version = version;\n/**\n\t* A boolean flag that tells the script whether to enable or disable {@link debug} calls. If the version of the sheet is `0`, or an attribute named `debug_mode` is found on opening this is set to true for your entire session. Otherwise, it remains false.\n * @memberof Variables\n\t* @var\n\t* @type {boolean}\n\t*/\nlet debugMode = false;\nkFuncs.debugMode = debugMode;\nconst funcs = {};\nkFuncs.funcs = funcs;\nconst updateHandlers = {};\nconst openHandlers = {};\nconst initialSetups = {};\nconst allHandlers = {};\nconst addFuncs = {};\n\nconst kscaffoldJSVersion = '1.0.0';\nconst kscaffoldPUGVersion = '1.0.0';\n/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/**\n * These are utility functions that are not directly related to Roll20 systems. They provide easy methods for everything from processing text and numbers to querying the user for input.\n * @namespace Sheetworkers.Utilities\n * @alias Utilities\n */\n/**\n * Replaces problem characters to use a string as a regex\n * @memberof Utilities\n * @param {string} text - The text to replace characters in\n * @returns {string}\n * @example\n * const textForRegex = k.sanitizeForRegex('.some thing[with characters]');\n * console.log(textForRegex);// =>\n     \"\\.some thing\\[with characters\\]\"\n */\nconst sanitizeForRegex = function(text){\n  return text.replace(/\\.|\\||\\(|\\)|\\[|\\]|\\-|\\+|\\?|\\/|\\{|\\}|\\^|\\$|\\*/g,'\\\\$&');\n};\nkFuncs.sanitizeForRegex = sanitizeForRegex;\n\n/**\n * Converts a value to a number, it\\'s default value, or `0` if no default value passed.\n * @memberof Utilities\n * @param {string|number} val - Value to convert to a number\n * @param {number} def - The default value, uses 0 if not passed\n * @returns {number|undefined}\n * @example\n * const num = k.value('100');\n * console.log(num);// =>\n       100\n */\nconst value = function(val,def){\n  const convertVal = +val;\n  if(def !== undefined && isNaN(def)){\n    throw(`K-scaffold Error: invalid default for value(). Default: ${def}`);\n  }\n  return convertVal === 0 ?\n    convertVal :\n    (+val||def||0);\n};\nkFuncs.value = value;\n\n/**\n * Extracts the section (e.g. `repeating_equipment`), rowID (e.g `-;lkj098J:LKj`), and field name (e.g. `bulk`) from a repeating attribute name.\n * @memberof Utilities\n * @param {string} string - The string to parse\n * @returns {array} - Array of matches. Index 0: the section name, e.g. repeating_equipment | Index 1:the row ID | index 2: The name of the attribute\n * @returns {string[]}\n * @example\n * //Extract info from a full repeating name\n * const [section,rowID,attrName] = k.parseRepeatName('repeating_equipment_-8908asdflkjZlkj23_name');\n * console.log(section);// =>\n         \"repeating_equipment\"\n * console.log(rowID);// =>\n           \"-8908asdflkjZlkj23\"\n * console.log(attrName);// =>\n             \"name\"\n * \n * //Extract info from just a row name\n * const [section,rowID,attrName] = k.parseRepeatName('repeating_equipment_-8908asdflkjZlkj23');\n * console.log(section);// =>\n               \"repeating_equipment\"\n * console.log(rowID);// =>\n                 \"-8908asdflkjZlkj23\"\n * console.log(attrName);// =>\n                   undefined\n */\nconst parseRepeatName = function(string){\n  let match = string.match(/(repeating_[^_]+)_([^_]+)(?:_(.+))?/);\n  match.shift();\n  return match;\n};\nkFuncs.parseRepeatName = parseRepeatName;\n\n/**\n * Parses out the components of a trigger name similar to [parseRepeatName](#parserepeatname). Aliases: parseClickTrigger.\n * \n * Aliases: `k.parseClickTrigger`\n * @memberof Utilities\n * @param {string} string The triggerName property of the\n * @returns {array} - For a repeating button named `repeating_equipment_-LKJhpoi98;lj_roll`, the array will be `['repeating_equipment','-LKJhpoi98;lj','roll']`. For a non repeating button named `roll`, the array will be `[undefined,undefined,'roll']`\n * @returns {string[]}\n * @example\n * //Parse a non repeating trigger\n * const [section,rowID,attrName] = k.parseTriggerName('clicked:some-button');\n * console.log(section);// =>\n                     undefined\n * console.log(rowID);// =>\n                       undefined\n * console.log(attrName);// =>\n                         \"some-button\"\n * \n * //Parse a repeating trigger\n * const [section,rowID,attrName] = k.parseTriggerName('clicked:repeating_attack_-234lkjpd8fu8usadf_some-button');\n * console.log(section);// =>\n                           \"repeating_attack\"\n * console.log(rowID);// =>\n                             \"-234lkjpd8fu8usadf\"\n * console.log(attrName);// =>\n                               \"some-button\"\n * \n * //Parse a repeating name\n * const [section,rowID,attrName] = k.parseTriggerName('repeating_attack_-234lkjpd8fu8usadf_some-button');\n * console.log(section);// =>\n                                 \"repeating_attack\"\n * console.log(rowID);// =>\n                                   \"-234lkjpd8fu8usadf\"\n * console.log(attrName);// =>\n                                     \"some-button\"\n */\nconst parseTriggerName = function(string){\n  let match = string.replace(/^clicked:/,'').match(/(?:(repeating_[^_]+)_([^_]+)_)?(.+)/);\n  match.shift();\n  return match;\n};\nkFuncs.parseTriggerName = parseTriggerName;\nconst parseClickTrigger = parseTriggerName;\nkFuncs.parseClickTrigger = parseClickTrigger;\n\n/**\n * Parses out the attribute name from the htmlattribute name.\n * @memberof Utilities\n * @param {string} string - The triggerName property of the [event](https://wiki.roll20.net/Sheet_Worker_Scripts#eventInfo_Object).\n * @returns {string}\n * @example\n * //Parse a name\n * const attrName = k.parseHtmlName('attr_attribute_1');\n * console.log(attrName);// =>\n                                       \"attribute_1\"\n */\nconst parseHTMLName = function(string){\n  let match = string.match(/(?:attr|act|roll)_(.+)/);\n  match.shift();\n  return match[0];\n};\nkFuncs.parseHTMLName = parseHTMLName;\n\n/**\n * Capitalize each word in a string\n * @memberof Utilities\n * @param {string} string - The string to capitalize\n * @returns {string}\n * @example\n * const capitalized = k.capitalize('a word');\n * console.log(capitalized);// =>\n                                         \"A Word\"\n */\nconst capitalize = function(string){\n  return string.replace(/(?:^|\\s+|\\/)[a-z]/ig,(letter)=>\n                                          letter.toUpperCase());\n};\nkFuncs.capitalize = capitalize;\n\n/**\n * Extracts a roll query result for use in later functions. Must be awaited as per [startRoll documentation](https://wiki.roll20.net/Sheet_Worker_Scripts#Roll_Parsing.28NEW.29). Stolen from [Oosh\\'s Adventures with Startroll thread](https://app.roll20.net/forum/post/10346883/adventures-with-startroll).\n * @memberof Utilities\n * @param {string} query - The query should be just the text as the `?{` and `}` at the start/end of the query are added by the function.\n * @returns {Promise} - Resolves to the selected value from the roll query\n * @example\n * const rollFunction = async function(){\n *  //Get the result of a choose from list query\n *  const queryResult = await extractQueryResult('Prompt Text Here|Option 1|Option 2');\n *  console.log(queryResult);//=>\n                                             \"Option 1\" or \"Option 2\" depending on what the user selects\n * \n *  //Get free form input from the user\n *  const freeResult = await extractQueryResult('Prompt Text Here');\n *  consoel.log(freeResult);// =>\n                                               Whatever the user entered\n * }\n */\nconst extractQueryResult = async function(query){\n\tdebug('entering extractQueryResult');\n\tlet queryRoll = await startRoll(`!{{query=[[0[response=?{${query}}]]]}}`);\n\tfinishRoll(queryRoll.rollId);\n\treturn queryRoll.results.query.expression.replace(/^.+?response=|\\]$/g,'');\n};\nkFuncs.extractQueryResult = extractQueryResult;\n\n/**\n * Simulates a query for ensuring that async/await works correctly in the sheetworker environment when doing conditional startRolls. E.g. if you have an if/else and only one of the conditions results in `startRoll` being called (and thus an `await`), the sheetworker environment would normally crash. Awaiting this in the condition that does not actually need to call `startRoll` will keep the environment in sync.\n * @memberof Utilities\n * @param {string|number} [value] - The value to return. Optional.\n * @returns {Promise} - Resolves to the value passed to the function\n * @example\n * const rollFunction = async function(){\n *  //Get the result of a choose from list query\n *  const queryResult = await pseudoQuery('a value');\n *  console.log(queryResult);//=>\n                                                 \"a value\"\n * }\n */\nconst pseudoQuery = async function(value){\n\tdebug('entering pseudoQuery');\n\tlet queryRoll = await startRoll(`!{{query=[[0[response=${value}]]]}}`);\n\tfinishRoll(queryRoll.rollId);\n\treturn queryRoll.results.query.expression.replace(/^.+?response=|\\]$/g,'');\n};\nkFuncs.pseudoQuery = pseudoQuery;\n\n/**\n * An alias for console.log.\n * @memberof Utilities\n * @param {any} msg - The message can be a straight string, an object, or an array. If it is an object or array, the object will be broken down so that each key is used as a label to output followed by the value of that key. If the value of the key is an object or array, it will be output via `console.table`.\n */\nconst log = function(msg){\n  if(typeof msg === 'string'){\n    console.log(`%c${kFuncs.sheetName} log| ${msg}`,\"background-color:#159ccf\");\n  }else if(typeof msg === 'object'){\n    Object.keys(msg).forEach((m)=>\n                                                  {\n      if(typeof msg[m] === 'string'){\n        console.log(`%c${kFuncs.sheetName} log| ${m}: ${msg[m]}`,\"background-color:#159ccf\");\n      }else{\n        console.log(`%c${kFuncs.sheetName} log| ${typeof msg[m]} ${m}`,\"background-color:#159ccf\");\n        console.table(msg[m]);\n      }\n    });\n  }\n};\nkFuncs.log = log;\n\n/**\n * Alias for console.log that only triggers when debug mode is enabled or when the sheet\\'s version is `0`. Useful for entering test logs that will not pollute the console on the live sheet.\n * @memberof Utilities\n * @param {any} msg - 'See {@link k.log}\n * @param {boolean} force - Pass as a truthy value to force the debug output to be output to the console regardless of debug mode.\n * @returns {void}\n */\nconst debug = function(msg,force){\n  console.warn('kFuncs.version',kFuncs.version);\n  if(!kFuncs.debugMode && !force && kFuncs.version >\n                                                     0) return;\n  if(typeof msg === 'string'){\n    console.log(`%c${kFuncs.sheetName} DEBUG| ${msg}`,\"background-color:tan;color:red;\");\n  }else if(typeof msg === 'object'){\n    Object.keys(msg).forEach((m)=>\n                                                      {\n      if(typeof msg[m] === 'string'){\n        console.log(`%c${kFuncs.sheetName} DEBUG| ${m}: ${msg[m]}`,\"background-color:tan;color:red;\");\n      }else{\n        console.log(`%c${kFuncs.sheetName} DEBUG| ${typeof msg[m]} ${m}`,\"background-color:tan;color:red;font-weight:bold;\");\n        console.table(msg[m]);\n      }\n    });\n  }\n};\nkFuncs.debug = debug;\n\n/**\n * Orders the section id arrays for all sections in the `sections` object to match the repOrder attribute.\n * @memberof Utilities\n * @param {attributesProxy} attributes - The attributes object that must have a value for the reporder for each section.\n * @param {object[]} sections - Object containing the IDs for the repeating sections, indexed by repeating section name.\n */\nconst orderSections = function(attributes,sections){\n  Object.keys(sections).forEach((section)=>\n                                                        {\n    attributes.attributes[`_reporder_${section}`] = commaArray(attributes[`_reporder_${section}`]);\n    orderSection(attributes.attributes[`_reporder_${section}`],sections[section]);\n  });\n};\nkFuncs.orderSections = orderSections;\n\n/**\n * Orders a single ID array.\n * @memberof Utilities\n * @param {string[]} repOrder - Array of IDs in the order they are in on the sheet.\n * @param {string[]} IDs - Array of IDs to be ordered.\n */\nconst orderSection = function(repOrder,IDs=[]){\n  IDs.sort((a,b)=>\n                                                          {\n    return repOrder.indexOf(a.toLowerCase()) - repOrder.indexOf(b.toLowerCase());\n  });\n};\nkFuncs.orderSection = orderSection;\n\n/**\n * Splits a comma delimited string into an array\n * @memberof Utilities\n * @param {string} string - The string to split.\n * @returns {array} - The string segments of the comma delimited list.\n */\nconst commaArray = function(string=''){\n  return string.toLowerCase().split(/\\s*,\\s*/);\n};\nkFuncs.commaArray = commaArray;\n\n// Roll escape functions for passing data in action button calls. Base64 encodes/decodes the data.\nconst RE = {\n  chars: {\n      '\"': '%quot;',\n      ',': '%comma;',\n      ':': '%colon;',\n      '}': '%rcub;',\n      '{': '%lcub;',\n  },\n  escape(data) {\n    return typeof data === 'object' ?\n      `KDATA${btoa(JSON.stringify(data))}` :\n      `KSTRING${btoa(data)}`;\n  },\n  unescape(string) {\n    const isData = typeof string === 'string' &&\n      (\n        string.startsWith('KDATA') ||\n        string.startsWith('KSTRING')\n      );\n    return isData ?\n      (\n        string.startsWith('KDATA') ?\n          JSON.parse(atob(string.replace(/^KDATA/,''))) :\n          atob(string.replace(/^KSTRING/,''))\n      ) :\n      string;\n  }\n};\n\n/**\n * Encodes data in Base64. This is useful for passing roll information to action buttons called from roll buttons.\n * @function\n * @param {string|object|any[]} data - The data that you want to Base64 encode\n * @returns {string} - The encoded data\n * @memberof! Utilities\n */\nconst escape = RE.escape;\n/**\n * Decodes Base64 encoded strings that were created by the K-scaffold\n * @function\n * @param {string|object|any[]} string - The string of encoded data to decode. If this is not a string, or is not a string that was encoded by the K-scaffold, it will be returned as is.\n * @returns {string|object|any[]}\n * @memberof! Utilities\n */\nconst unescape = RE.unescape;\n\nObject.assign(kFuncs,{escape,unescape});/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n\n//# Attribute Obj Proxy handler\nconst createAttrProxy = function(attrs){\n  //creates a proxy for the attributes object so that values can be worked with more easily.\n  const getCascObj = function(event,casc){\n    const eventName = event.triggerName || event.sourceAttribute;\n    let typePrefix = eventName.startsWith('clicked:') ?\n      'act_' :\n      event.removedInfo ?\n      'fieldset_' :\n      'attr_';\n    let cascName = `${typePrefix}${eventName.replace(/(?:removed|clicked):/,'')}`;\n    let cascObj = casc[cascName];\n    k.debug({[cascName]:cascObj});\n    if(event && cascObj){\n      if(event.previousValue){\n        cascObj.previousValue = event.previousValue;\n      }else if(event.originalRollId){\n        cascObj.originalRollId = event.originalRollId;\n        cascObj.rollData = RE.unescape(event.originalRollId);\n      }\n    }\n    return cascObj || {};\n  };\n  \n  const triggerFunctions = function(obj,attributes,sections,casc){\n    if(obj.triggeredFuncs && obj.triggeredFuncs.length){\n      debug(`triggering functions for ${obj.name}`);\n      obj.triggeredFuncs && obj.triggeredFuncs.forEach(func=>\n                                                            funcs[func] ? \n        funcs[func]({trigger:obj,attributes,sections,casc}) :\n        debug(`!!!Warning!!! no function named ${func} found. Triggered function not called for ${obj.name}`,true));\n    }\n  };\n  \n  const initialFunction = function(obj,attributes,sections){\n    if(obj.initialFunc){\n      debug(`initial functions for ${obj.name}`);\n      funcs[obj.initialFunc] ?\n        funcs[obj.initialFunc]({trigger:obj,attributes,sections}) :\n        debug(`!!!Warning!!! no function named ${obj.initialFunc} found. Initial function not called for ${obj.name}`,true);\n    }\n  };\n  const alwaysFunctions = function(trigger,attributes,sections,casc){\n    Object.values(allHandlers).forEach((handler)=>\n                                                              {\n      handler({trigger,attributes,sections,casc});\n    });\n  };\n  const processChange = function({event,trigger,attributes,sections,casc}){\n    if(event && !trigger){\n      debug(`${event.sourceAttribute} change detected. No trigger found`);\n      return;\n    }\n    if(!attributes || !sections || !casc){\n      debug(`!!! Insufficient arguments || attributes >\n                                                                 ${!!attributes} | sections >\n                                                                   ${!!sections} | casc >\n                                                                     ${!!casc} !!!`);\n      return;\n    }\n    debug({trigger});\n    if(event){\n      debug('checking for initial & always functions');\n      alwaysFunctions(trigger,attributes,sections,casc);//Functions that should be run for all events.\n      initialFunction(trigger,attributes,sections,casc);//functions that should only be run if the attribute was the thing changed by the user\n    }\n    if(trigger){\n      debug(`processing ${trigger.name}`);\n      triggerFunctions(trigger,attributes,sections,casc);\n      if(!event && trigger.calculation && funcs[trigger.calculation]){\n        attributes[trigger.name] = funcs[trigger.calculation]({trigger,attributes,sections,casc});\n      }else if(trigger.calculation && !funcs[trigger.calculation]){\n        debug(`K-Scaffold Error: No function named ${trigger.calculation} found`);\n      }\n      if(Array.isArray(trigger.affects)){\n        attributes.queue.push(...trigger.affects);\n      }\n    }\n    attributes.set({attributes,sections,casc});\n  };\n  const attrTarget = {\n    updates:{},\n    attributes:{...attrs},\n    repOrders:{},\n    queue: [],\n    casc:{},\n    alwaysFunctions,\n    processChange,\n    triggerFunctions,\n    initialFunction,\n    getCascObj\n  };\n  const attrHandler = {\n    get:function(obj,prop){//gets the most value of the attribute.\n      //If it is a repeating order, returns the array, otherwise returns the update value or the original value\n      if(prop === 'set'){\n        return function(){\n          let {attributes,sections,casc,callback,vocal} = arguments[0] ? arguments[0] : {};\n          if(attributes && attributes.queue.length && sections && casc){\n            let triggerName = attributes.queue.shift();\n            let trigger = getCascObj({sourceAttribute:triggerName},casc);\n            attributes.processChange({trigger,attributes,sections,casc});\n          }else{\n            debug({updates:obj.updates});\n            let trueCallback = Object.keys(obj.repOrders).length ?\n              function(){\n                Object.entries(obj.repOrders).forEach(([section,order])=>\n                                                                      {\n                  _setSectionOrder(section,order,)\n                });\n                callback && callback();\n              }:\n              callback;\n            Object.keys(obj.updates).forEach((key)=>\n                                                                        obj.attributes[key] = obj.updates[key]);\n            const update = obj.updates;\n            obj.updates = {};\n            set(update,vocal,trueCallback);\n          }\n        }\n      }else if(Object.keys(obj).some(key=>\n                                                                          key===prop)){ \n        return Reflect.get(...arguments)\n      }else{\n        let retValue;\n        switch(true){\n          case obj.repOrders.hasOwnProperty(prop):\n            retValue = obj.repOrders[prop];\n            break;\n          case obj.updates.hasOwnProperty(prop):\n            retValue = obj.updates[prop];\n            break;\n          default:\n            retValue = obj.attributes[prop];\n            break;\n        }\n        let cascRef = `attr_${prop.replace(/(repeating_[^_]+_)[^_]+/,'$1\\$X')}`;\n        let numRetVal = +retValue;\n        if(!Number.isNaN(numRetVal) && retValue !== ''){\n          retValue = numRetVal;\n        }else if(cascades[cascRef] && (typeof cascades[cascRef].defaultValue === 'number' || cascades[cascRef].type === 'number')){\n          retValue = cascades[cascRef].defaultValue;\n        }\n        return retValue;\n      }\n    },\n    set:function(obj,prop,value){\n      //Sets the value. Also verifies that the value is a valid attribute value\n      //e.g. not undefined, null, or NaN\n      if(value || value===0 || value===''){\n        if(/reporder|^repeating_[^_]+$/.test(prop)){\n          let section = prop.replace(/_reporder_/,'');\n          obj.repOrders[section] = value;\n        }else if(`${obj.attributes}` !== `${value}` || \n          (obj.updates[prop] && `${obj.updates}` !== `${value}`)\n        ){\n          obj.updates[prop] = value;\n        }\n      }else{\n        debug(`!!!Warning: Attempted to set ${prop} to an invalid value:${value}; value not stored!!!`);\n      }\n      return true;\n    },\n    deleteProperty(obj,prop){\n      //removes the property from the original attributes, updates, and the reporders\n      Object.keys(obj).forEach((key)=>\n                                                                            {\n        delete obj[key][prop.toLowerCase()];\n      });\n    }\n  };\n  return new Proxy(attrTarget,attrHandler);\n};\n\n/**\n * Function that registers a function for being called via the funcs object. Returns true if the function was successfully registered, and false if it could not be registered for any reason.\n * @memberof Utilities\n * @param {object} funcObj - Object with keys that are names to register functions under and values that are functions.\n * @param {object} optionsObj - Object that contains options to use for this registration.\n * @param {string[]} optionsObj.type - Array that contains the types of specialized functions that apply to the functions being registered. Valid types are `\"opener\"`, `\"updater\"`, and `\"default\"`. `\"default\"` is always used, and never needs to be passed.\n * @returns {boolean} - True if the registration succeeded, false if it failed.\n * @example\n * //Basic Registration\n * const myFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({myFunc});\n * \n * //Register a function to run on sheet open\n * const openFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({openFunc},{type:['opener']})\n * \n * //Register a function to run on all events\n * const allFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({allFunc},{type:['all']})\n */\nconst registerFuncs = function(funcObj,optionsObj = {}){\n  if(typeof funcObj !== 'object' || typeof optionsObj !== 'object'){\n    debug(`!!!! K-scaffold error: Improper arguments to register functions !!!!`);\n    return false;\n  }\n  const typeArr = optionsObj.type ? ['default',...optionsObj.type] : ['default'];\n  const typeSwitch = {\n    'opener':openHandlers,\n    'updater':updateHandlers,\n    'new':initialSetups,\n    'all':allHandlers,\n    'default':funcs\n  };\n  let setState;\n  Object.entries(funcObj).map(([prop,value])=>\n                                                                              {\n    typeArr.forEach((type)=>\n                                                                                {\n      if(typeSwitch[type][prop]){\n        debug(`!!! Duplicate function name for ${prop} as ${type}!!!`);\n        setState = false;\n      }else if(typeof value === 'function'){\n        typeSwitch[type][prop] = value;\n        setState = setState !== false ? true : false;\n      }else{\n        debug(`!!! K-scaffold error: Function registration requires a function. Invalid value to register as ${type} !!!`);\n        setState = false;\n      }\n    });\n  });\n  return setState;\n};\nkFuncs.registerFuncs = registerFuncs;\n\n/**\n * Function that sets up the action calls used in the roller mixin.\n * @memberof Sheetworkers\n * @param {object} attributes - The attribute values of the character\n * @param {object[]} sections - All the repeating section IDs\n */\nconst setActionCalls = function({attributes,sections}){\n  actionAttributes.forEach((base)=>\n                                                                                  {\n    let [section,,field] = k.parseTriggerName(base);\n    let fieldAction = field.replace(/_/g,'-');\n    if(section){\n      sections[section].forEach((id)=>\n                                                                                    {\n        attributes[`${section}_${id}_${field}`] = `%{${attributes.character_name}|${section}_${id}_${fieldAction}}`;\n      });\n    }else{\n      attributes[`${field}`] = `%{${attributes.character_name}|${fieldAction}}`;\n    }\n  });\n};\nfuncs.setActionCalls = setActionCalls;\n\n/**\n * Function to call a function previously registered to the funcs object. May not be used that much in actual sheets, but very useful when writing unit tests for your sheet. Either returns the function or null if no function exists.\n * @memberof Sheetworkers\n * @param {string} funcName - The name of the function to invoke.\n * @param {...any} args - The arguments to call the function with.\n * @returns {function|null}\n * @example\n * //Call myFunc with two arguments\n * k.callFunc('myFunc','an argument','another argument');\n */\nconst callFunc = function(funcName,...args){\n  if(funcs[funcName]){\n    debug(`calling ${funcName}`);\n    return funcs[funcName](...args);\n  }else{\n    debug(`Invalid function name: ${funcName}`);\n    return null;\n  }\n};\nkFuncs.callFunc = callFunc;/**@namespace Sheetworkers */\n/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n//Sheet Updaters and styling functions\nconst updateSheet = function(){\n  log('updating sheet');\n  getAllAttrs({props:['debug_mode',...baseGet],callback:(attributes,sections,casc)=>\n                                                                                      {\n    kFuncs.debugMode = kFuncs.debugMode || !!attributes.debug_mode;\n    debug({sheet_version:attributes.sheet_version});\n    if(!attributes.sheet_version){\n      Object.entries(initialSetups).forEach(([funcName,handler])=>\n                                                                                        {\n        if(typeof funcs[funcName] === 'function'){\n          debug(`running ${funcName}`);\n          funcs[funcName]({attributes,sections,casc});\n        }else{\n          debug(`!!!Warning!!! no function named ${funcName} found. Initial sheet setup not performed.`);\n        }\n      });\n    }else{\n      Object.entries(updateHandlers).forEach(([ver,handler])=>\n                                                                                          {\n        if(attributes.sheet_version < +ver){\n          handler({attributes,sections,casc});\n        }\n      });\n    }\n    k.debug({openHandlers});\n    Object.entries(openHandlers).forEach(([funcName,func])=>\n                                                                                            {\n      if(typeof funcs[funcName] === 'function'){\n        debug(`running ${funcName}`);\n        funcs[funcName]({attributes,sections,casc});\n      }else{\n        debug(`!!!Warning!!! no function named ${funcName} found. Sheet open handling not performed.`);\n      }\n    });\n    setActionCalls({attributes,sections});\n    attributes.sheet_version = kFuncs.version;\n    log(`Sheet Update applied. Current Sheet Version ${kFuncs.version}`);\n    attributes.set();\n    log('Sheet ready for use');\n  }});\n};\n\nconst initialSetup = function(attributes,sections){\n  debug('Initial sheet setup');\n};\n\n/**\n * This is the default listener function for attributes that the K-Scaffold uses. It utilizes the `triggerFuncs`, `listenerFunc`, `calculation`, and `affects` properties of the K-scaffold trigger object (see the Pug section of the scaffold for more details).\n * @memberof Sheetworkers\n * @param {Roll20Event} event - The Roll20 event object\n * @returns {void}\n * @example\n * //Call from an attribute change\n * on('change:an_attribute',k.accessSheet);\n */\nconst accessSheet = function(event){\n  debug({funcs:Object.keys(funcs)});\n  debug({event});\n  getAllAttrs({callback:(attributes,sections,casc)=>\n                                                                                              {\n    let trigger = attributes.getCascObj(event,casc);\n    attributes.processChange({event,trigger,attributes,sections,casc});\n  }});\n};\nfuncs.accessSheet = accessSheet;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/*\nCascade Expansion functions\n*/\n//Expands the repeating section templates in cascades to reflect the rows actually available\nconst expandCascade = function(cascade,sections,attributes){\n  return _.keys(cascade).reduce((memo,key)=>{//iterate through cascades and replace references to repeating attributes with correct row ids.\n    if(/^(?:act|attr)_repeating_/.test(key)){//If the attribute is a repeating attribute, do special logic\n      expandRepeating(memo,key,cascade,sections,attributes);\n    }else if(key){//for non repeating attributes do this logic\n      expandNormal(memo,key,cascade,sections);\n    }\n    return memo;\n  },{});\n};\n\nconst expandRepeating = function(memo,key,cascade,sections,attributes){\n  key.replace(/((?:attr|act)_)(repeating_[^_]+)_[^_]+?_(.+)/,(match,type,section,field)=>\n                                                                                                {\n    (sections[section]||[]).forEach((id)=>\n                                                                                                  {\n      memo[`${type}${section}_${id}_${field}`]=_.clone(cascade[key]);//clone the details so that each row's attributes have correct ids\n      memo[`${type}${section}_${id}_${field}`].name = `${section}_${id}_${field}`;\n      if(key.startsWith('attr_')){\n        memo[`${type}${section}_${id}_${field}`].affects = memo[`${type}${section}_${id}_${field}`].affects.reduce((m,affected)=>\n                                                                                                    {\n          if(section === affected){//otherwise if the affected attribute is in the same section, simply set the affected attribute to have the same row id.\n            m.push(applyID(affected,id));\n          }else if(/repeating/.test(affected)){//If the affected attribute isn't in the same repeating section but is still a repeating attribute, add all the rows of that section\n            addAllRows(affected,m,sections);\n          }else{//otherwise the affected attribute is a non repeating attribute. Simply add it to the computed affected array\n            m.push(affected);\n          }\n          return m;\n        },[]);\n      }\n    });\n  });\n};\n\nconst applyID = function(affected,id){\n  return affected.replace(/(repeating_[^_]+_)[^_]+(.+)/,`$1${id}$2`);\n};\n\nconst expandNormal = function(memo,key,cascade,sections){\n  memo[key] = _.clone(cascade[key]);\n  if(key.startsWith('attr_')){\n    memo[key].affects = memo[key].affects || [];\n    memo[key].affects = memo[key].affects.reduce((m,a)=>\n                                                                                                      {\n      if(/^repeating/.test(a)){\n        addAllRows(a,m,sections);\n      }else{\n        m.push(a);\n      }\n      return m;\n    },[]);\n  }\n};\n\nconst addAllRows = function(affected,memo,sections){\n  affected.replace(/(repeating_[^_]+?)_[^_]+?_(.+)/,(match,section,field)=>\n                                                                                                        {\n    sections[section].forEach(id=>\n                                                                                                          memo.push(`${section}_${id}_${field}`));\n  });\n};/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/**\n * These are functions that provide K-scaffold aliases for the basic Roll20 sheetworker functions. These functions also provide many additional features on top of the standard Roll20 sheetworkers.\n * @namespace Sheetworkers.Sheetworker Aliases\n */\n/**\n * Alias for [setSectionOrder()](https://wiki.roll20.net/Sheet_Worker_Scripts#setSectionOrder.28.3CRepeating_Section_Name.3E.2C_.3CSection_Array.3E.2C_.3CCallback.3E.29) that allows you to use the section name in either `repeating_section` or `section` formats. Note that the Roll20 sheetworker [setSectionOrder](https://wiki.roll20.net/Sheet_Worker_Scripts#setSectionOrder.28.3CRepeating_Section_Name.3E.2C_.3CSection_Array.3E.2C_.3CCallback.3E.29) currently causes some display issues on sheets.\n * @memberof Sheetworker Aliases\n * @name setSectionOrder\n * @param {string} section - The name of the section, with or without `repeating_`\n * @param {string[]} order - Array of ids describing the desired order of the section.\n * @returns {void}\n * @example\n * //Set the order of a repeating_weapon section\n * k.setSectionOrder('repeating_equipment',['id1','id2','id3']);\n * //Can also specify the section name without the repeating_ prefix\n * k.setSectionOrder('equipment',['id1','id2','id3']);\n */\nconst _setSectionOrder = function(section,order){\n  let trueSection = section.replace(/repeating_/,'');\n  setSectionOrder(trueSection,order);\n};\nkFuncs.setSectionOrder = _setSectionOrder;\n\n/**\n * Alias for [removeRepeatingRow](https://wiki.roll20.net/Sheet_Worker_Scripts#removeRepeatingRow.28_RowID_.29) that also removes the row from the current object of attribute values and array of section IDs to ensure that erroneous updates are not issued.\n * @memberof Sheetworker Aliases\n * @name removeRepeatingRow\n * @param {string} row - The row id to be removed\n * @param {attributesProxy} attributes - The attribute values currently in memory\n * @param {object} sections - Object that contains arrays of all the IDs in sections on the sheet indexed by repeating name.\n * @returns {void}\n * @example\n * //Remove a repeating Row\n * k.getAllAttrs({\n *  callback:(attributes,sections)=>\n                                                                                                            {\n *    const rowID = sections.repeating_equipment[0];\n *    k.removeRepeatingRow(`repeating_equipment_${rowID}`,attributes,sections);\n *    console.log(sections.repeating_equipment); // =>\n                                                                                                               rowID no longer exists in the array.\n *    console.log(attributes[`repeating_equipment_${rowID}_name`]); // =>\n                                                                                                                 undefined\n *  }\n * })\n */\nconst _removeRepeatingRow = function(row,attributes,sections){\n  debug(`removing ${row}`);\n  Object.keys(attributes.attributes).forEach((key)=>\n                                                                                                                  {\n    if(key.startsWith(row)){\n      delete attributes[key];\n    }\n  });\n  let [,section,rowID] = row.match(/(repeating_[^_]+)_(.+)/,'');\n  sections[section] = sections[section].filter((id)=>\n                                                                                                                    id!==rowID);\n  removeRepeatingRow(row);\n};\nkFuncs.removeRepeatingRow = _removeRepeatingRow;\n\n/**\n * Alias for [getAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getAttrs.28attributeNameArray.2C_callback.29) that converts the default object of attribute values into an {@link attributesProxy} and passes that back to the callback function.\n * @memberof Sheetworker Aliases\n * @name getAttrs\n * @param {string[]} [props=baseGet] - Array of attribute names to get the value of. Defaults to {@link baseGet} if not passed.\n * @param {function(attributesProxy)} callback - The function to call after the attribute values have been gotten. An {@link attributesProxy} is passed to the callback.\n * @example\n * //Gets the attributes named in props.\n * k.getAttrs({\n *  props:['attribute_1','attribute_2'],\n *  callback:(attributes)=>\n                                                                                                                      {\n *    //Work with the attributes as you would in a normal getAttrs, or use the superpowers of the K-scaffold attributes object like so:\n *    attributes.attribute_1 = 'new value';\n *    attributes.set();\n *  }\n * })\n */\nconst _getAttrs = function({props=baseGet,callback}){\n  getAttrs(props,(values)=>\n                                                                                                                        {\n    const attributes = createAttrProxy(values);\n    callback(attributes);\n  });\n};\nkFuncs.getAttrs = _getAttrs;\n\n/**\n * Alias for [getAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getAttrs.28attributeNameArray.2C_callback.29) and [getSectionIDs](https://wiki.roll20.net/Sheet_Worker_Scripts#getSectionIDs.28section_name.2Ccallback.29) that combines the actions of both sheetworker functions and converts the default object of attribute values into an {@link attributesProxy}. Also gets the details on how to handle all attributes from the master {@link cascades} object and.\n * @memberof Sheetworker Aliases\n * @param {Object} args\n * @param {string[]} [args.props=baseGet] - Array of attribute names to get the value of. Defaults to {@link baseGet} if not passed.\n * @param {repeatingSectionDetails} sectionDetails - Array of details about a section to get the IDs for and attributes that need to be gotten. \n * @param {function(attributesProxy,sectionObj,expandedCascade):void} args.callback - The function to call after the attribute values have been gotten. An {@link attributesProxy} is passed to the callback along with a {@link sectionObj} and {@link expandedCascade}.\n * @example\n * //Get every K-scaffold linked attribute on the sheet\n * k.getAllAttrs({\n *  callback:(attributes,sections,casc)=>\n                                                                                                                          {\n *    //Work with the attributes as you please.\n *    attributes.some_attribute = 'a value';\n *    attributes.set();//Apply our change\n *  }\n * })\n */\nconst getAllAttrs = function({props=baseGet,sectionDetails=repeatingSectionDetails,callback}){\n  getSections(sectionDetails,(repeats,sections)=>\n                                                                                                                            {\n    getAttrs([...props,...repeats],(values)=>\n                                                                                                                              {\n      const attributes = createAttrProxy(values);\n      orderSections(attributes,sections);\n      const casc = expandCascade(cascades,sections,attributes);\n      callback(attributes,sections,casc);\n    })\n  });\n};\nkFuncs.getAllAttrs = getAllAttrs;\n\n/**\n * Alias for [getSectionIDs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getSectionIDs.28section_name.2Ccallback.29) that allows you to iterate through several functions at once. Also assembles an array of repeating attributes to get.\n * @memberof Sheetworker Aliases\n * @param {object[]} sectionDetails - Array of details about a section to get the IDs for and attributes that need to be gotten.\n * @param {string} sectionDetails.section - The full name of the repeating section including the `repeating_` prefix.\n * @param {string[]} sectionDetails.fields - Array of field names that need to be gotten from the repeating section\n * @param {function(string[],sectionObj)} callback - The function to call once all IDs have been gotten and the array of repating attributes to get has been assembled. The callback is passed the array of repating attributes to get and a {@link sectionObj}.\n * @example\n * // Get some section details\n * const sectionDetails = {\n *  {section:'repeating_equipment',fields:['name','weight','cost']},\n *  {section:'repeating_weapon',fields:['name','attack','damage']}\n * };\n * k.getSections(sectionDetails,(attributeNames,sections)=>\n                                                                                                                                {\n *  console.log(attributeNames);// =>\n                                                                                                                                   Array containing all row specific attribute names\n *  console.log(sections);// =>\n                                                                                                                                     Object with arrays containing the row ids. Indexed by section name (e.g. repeating_eqiupment)\n * })\n */\nconst getSections = function(sectionDetails,callback){\n  let queueClone = _.clone(sectionDetails);\n  const worker = (queue,repeatAttrs=[],sections={})=>\n                                                                                                                                      {\n    let detail = queue.shift();\n    getSectionIDs(detail.section,(IDs)=>\n                                                                                                                                        {\n      sections[detail.section] = IDs;\n      IDs.forEach((id)=>\n                                                                                                                                          {\n        detail.fields.forEach((f)=>\n                                                                                                                                            {\n          repeatAttrs.push(`${detail.section}_${id}_${f}`);\n        });\n      });\n      repeatAttrs.push(`_reporder_${detail.section}`);\n      if(queue.length){\n        worker(queue,repeatAttrs,sections);\n      }else{\n        callback(repeatAttrs,sections);\n      }\n    });\n  };\n  if(!queueClone[0]){\n    callback([],{});\n  }else{\n    worker(queueClone);\n  }\n};\nkFuncs.getSections = getSections;\n\n// Sets the attributes while always calling with {silent:true}\n// Can be awaited to get the values returned from _setAttrs\n/**\n * Alias for [setAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#setAttrs.28values.2Coptions.2Ccallback.29) that sets silently by default.\n * @memberof Sheetworker Aliases\n * @param {object} obj - The object containting attributes to set\n * @param {boolean} [vocal=false] - Whether to set silently (default value) or not.\n * @param {function()} [callback] - The callback function to invoke after the setting has been completed. No arguments are passed to the callback function.\n * @example\n * //Set some attributes silently\n * k.setAttrs({attribute_1:'new value'})\n * //Set some attributes and triggers listeners\n * k.setAttrs({attribute_1:'new value',true})\n * //Set some attributes and call a callback function\n * k.setAttrs({attribute_1:'new value'},null,()=>\n                                                                                                                                              {\n *  //Do something after the attribute is set\n * })\n */\nconst set = function(obj,vocal=false,callback){\n  setAttrs(obj,{silent:!vocal},callback);\n};\nkFuncs.setAttrs = set;\n\nconst generateCustomID = function(string){\n  if(!string.startsWith('-')){\n    string = `-${string}`;\n  }\n  rowID = generateRowID();\n  let re = new RegExp(`^.{${string.length}}`);\n  return `${string}${rowID.replace(re,'')}`;\n};\n\n\n/**\n * Alias for generateRowID that adds the new id to the {@link sectionObj}. Also allows for creation of custom IDs that conform to the section ID requirements.\n * @memberof Sheetworker Aliases\n * @name generateRowID\n * @param {sectionObj} sections\n * @param {string} [customText] - Custom text to start the ID with. This text should not be longer than the standard repeating section ID format.\n * @returns {string} - The created ID\n * @example\n * k.getAllAttrs({\n *  callback:(attributes,sections,casc)=>\n                                                                                                                                                {\n *    //Create a new row ID\n *    const rowID = k.generateRowID('repeating_equipment',sections);\n *    console.log(rowID);// =>\n                                                                                                                                                   -p8rg908ug0suzz\n *    //Create a custom row ID\n *    const customID = k.generateRowID('repeating_equipment',sections,'custom');\n *    console.log(customID);// =>\n                                                                                                                                                     -custom98uadj89kj\n *  }\n * });\n */\nconst _generateRowID = function(section,sections,customText){\n  let rowID = customText ?\n    generateCustomID(customText) :\n    generateRowID();\n  section = section.match(/^repeating_[^_]+$/) ?\n    section :\n    `repeating_${section}`;\n  sections[section] = sections[section] || [];\n  sections[section].push(rowID);\n  return `${section}_${rowID}`;\n};\nkFuncs.generateRowID = _generateRowID;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\nconst listeners = {};\n\n/**\n * The array of attribute names that the k-scaffold gets by default. Does not incude repeating attributes.\n * @memberof Variables\n * @var\n * @type {array}\n */\nconst baseGet = Object.entries(cascades).reduce((memo,[attrName,detailObj])=>\n                                                                                                                                                      {\n  if(!/repeating/.test(attrName) && detailObj.type !== 'action'){\n    memo.push(detailObj.name);\n  }\n  if(detailObj.listener){\n    listeners[detailObj.listener] = detailObj.listenerFunc;\n  }\n  return memo;\n},[]);\nkFuncs.baseGet = baseGet;\n\nconst registerEventHandlers = function(){\n  on('sheet:opened',updateSheet);\n  debug({funcKeys:Object.keys(funcs),funcs});\n  //Roll20 change and click listeners\n  Object.entries(listeners).forEach(([event,funcName])=>\n                                                                                                                                                        {\n    if(funcs[funcName]){\n      on(event,funcs[funcName]);\n    }else{\n      debug(`!!!Warning!!! no function named ${funcName} found. No listener created for ${event}`,true);\n    }\n  });\n  log(`kScaffold Loaded`);\n};\nsetTimeout(registerEventHandlers,0);//Delay the execution of event registration to ensure all event properties are present.\n\n/**\n * Function to add a repeating section when the add button of a customControlFieldset or inlineFieldset is clicked.\n * @memberof Sheetworkers\n * @param {object} event - The R20 event object\n */\nconst addItem = function(event){\n  let [,,section] = parseClickTrigger(event.triggerName);\n  section = section.replace(/add-/,'');\n  getAllAttrs({\n    callback:(attributes,sections,casc) =>\n                                                                                                                                                           {\n      let row = _generateRowID(section,sections);\n      debug({row});\n      attributes[`${row}_name`] = '';\n      setActionCalls({attributes,sections});\n      const trigger = cascades[`fieldset_repeating_${section}`];\n      if(trigger && trigger.addFuncs){\n        trigger.addFuncs.forEach((funcName) =>\n                                                                                                                                                             {\n          if(funcs[funcName]){\n            funcs[funcName]({attributes,sections,casc,trigger});\n          }\n        });\n      }\n      attributes.set({attributes,sections,casc});\n    }\n  });\n};\nfuncs.addItem = addItem;/**\n * The default tab navigation function of the K-scaffold. Courtesy of Riernar. It will add `k-active-tab` to the active tab-container and `k-active-button` to the active button. You can either write your own CSS to control display of these, or use the default CSS included in `scaffold/_k.scss`. Note that `k-active-button` has no default CSS as it is assumed that you will want to style the active button to match your system.\n * @memberof Sheetworkers\n * @param {Object} trigger - The trigger object\n * @param {object} attributes - The attribute values of the character\n */\nconst kSwitchTab = function ({ trigger, attributes }) {\n  const [container, tab] = (\n    trigger.name.match(/nav-tabs-(.+)--(.+)/) ||\n    []\n  ).slice(1);\n  $20(`[data-container-tab=\"${container}\"]`).removeClass('k-active-tab');\n  $20(`[data-container-tab=\"${container}\"][data-tab=\"${tab}\"]`).addClass('k-active-tab');\n  $20(`[data-container-button=\"${container}\"]`).removeClass('k-active-button');\n  $20(`[data-container-button=\"${container}\"][data-button=\"${tab}\"]`).addClass('k-active-button');\n  const tabInputName = `${container.replace(/\\-/g,'_')}_tab`;\n  if(persistentTabs.indexOf(tabInputName) >\n                                                                                                                                                               -1){\n    attributes[tabInputName] = trigger.name;\n  }\n}\n\nregisterFuncs({ kSwitchTab });\n\n/**\n * Sets persistent tabs to their last active state\n * @memberof Sheetworkers\n * @param {object} attributes - The attribute values of the character\n */\nconst kTabOnOpen = function({trigger,attributes,sections,casc}){\n  if(typeof persistentTabs === 'undefined') return;\n  persistentTabs.forEach((tabInput) =>\n                                                                                                                                                                 {\n    const pseudoTrigger = {name:attributes[tabInput]};\n    kSwitchTab({trigger:pseudoTrigger, attributes});\n  });\n};\nregisterFuncs({ kTabOnOpen },{type:['opener']});\nreturn kFuncs;\n}());\nconst actionAttributes = [\"my_button_action\",\"strength_action\"];const inlineFieldsets = [\"fieldset\"];\n                                                                                                                                                              </script>"},{"meta":{"name":"module","description":"A mixin that works with {@link kscript}. It allows you to link your js directly in the pug file that the js is related to. The K-scaffold will then put the js in the final script tag.","arguments":null,"attributes":null,"example":"include ../_k.pug\n+module\n  |// include local js file here\n+kscript\n  |// local js file will be put here\n"},"file":"lib\\scripts\\_scripts.pug","source":"mixin module\r\n  if block\r\n    - k.scriptBlocks.push(block)\r","output":"<script type=\"text/worker\">\n  const k = (function(){\nconst kFuncs = {};\nconst cascades = ;\n\nkFuncs.cascades = cascades;\nconst repeatingSectionDetails = ;\n\nkFuncs.repeatingSectionDetails = repeatingSectionDetails;\nconst persistentTabs = ;\n\nkFuncs.persistentTabs = persistentTabs;\n/**\n * The K-scaffold provides several variables to allow your scripts to tap into its information flow.\n * @namespace Sheetworkers.Variables\n */\n/**\n * This stores the name of your sheet for use in the logging functions {@link log} and {@link debug}. Accessible by `k.sheetName`\n * @memberof Variables\n * @var\n * @type {string}\n */\nlet sheetName = 'kScaffold Powered Sheet';\nkFuncs.sheetName = sheetName;\n/**\n\t* This stores the version of your sheet for use in the logging functions{@link log} and {@link debug}. It is also stored in the sheet_version attribute on your character sheet. Accessible via `k.version`\n * @memberof Variables\n\t* @var\n\t* @type {number}\n\t*/\nlet version = 0;\nkFuncs.version = version;\n/**\n\t* A boolean flag that tells the script whether to enable or disable {@link debug} calls. If the version of the sheet is `0`, or an attribute named `debug_mode` is found on opening this is set to true for your entire session. Otherwise, it remains false.\n * @memberof Variables\n\t* @var\n\t* @type {boolean}\n\t*/\nlet debugMode = false;\nkFuncs.debugMode = debugMode;\nconst funcs = {};\nkFuncs.funcs = funcs;\nconst updateHandlers = {};\nconst openHandlers = {};\nconst initialSetups = {};\nconst allHandlers = {};\nconst addFuncs = {};\n\nconst kscaffoldJSVersion = '1.0.0';\nconst kscaffoldPUGVersion = '1.0.0';\n/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/**\n * These are utility functions that are not directly related to Roll20 systems. They provide easy methods for everything from processing text and numbers to querying the user for input.\n * @namespace Sheetworkers.Utilities\n * @alias Utilities\n */\n/**\n * Replaces problem characters to use a string as a regex\n * @memberof Utilities\n * @param {string} text - The text to replace characters in\n * @returns {string}\n * @example\n * const textForRegex = k.sanitizeForRegex('.some thing[with characters]');\n * console.log(textForRegex);// =>\n     \"\\.some thing\\[with characters\\]\"\n */\nconst sanitizeForRegex = function(text){\n  return text.replace(/\\.|\\||\\(|\\)|\\[|\\]|\\-|\\+|\\?|\\/|\\{|\\}|\\^|\\$|\\*/g,'\\\\$&');\n};\nkFuncs.sanitizeForRegex = sanitizeForRegex;\n\n/**\n * Converts a value to a number, it\\'s default value, or `0` if no default value passed.\n * @memberof Utilities\n * @param {string|number} val - Value to convert to a number\n * @param {number} def - The default value, uses 0 if not passed\n * @returns {number|undefined}\n * @example\n * const num = k.value('100');\n * console.log(num);// =>\n       100\n */\nconst value = function(val,def){\n  const convertVal = +val;\n  if(def !== undefined && isNaN(def)){\n    throw(`K-scaffold Error: invalid default for value(). Default: ${def}`);\n  }\n  return convertVal === 0 ?\n    convertVal :\n    (+val||def||0);\n};\nkFuncs.value = value;\n\n/**\n * Extracts the section (e.g. `repeating_equipment`), rowID (e.g `-;lkj098J:LKj`), and field name (e.g. `bulk`) from a repeating attribute name.\n * @memberof Utilities\n * @param {string} string - The string to parse\n * @returns {array} - Array of matches. Index 0: the section name, e.g. repeating_equipment | Index 1:the row ID | index 2: The name of the attribute\n * @returns {string[]}\n * @example\n * //Extract info from a full repeating name\n * const [section,rowID,attrName] = k.parseRepeatName('repeating_equipment_-8908asdflkjZlkj23_name');\n * console.log(section);// =>\n         \"repeating_equipment\"\n * console.log(rowID);// =>\n           \"-8908asdflkjZlkj23\"\n * console.log(attrName);// =>\n             \"name\"\n * \n * //Extract info from just a row name\n * const [section,rowID,attrName] = k.parseRepeatName('repeating_equipment_-8908asdflkjZlkj23');\n * console.log(section);// =>\n               \"repeating_equipment\"\n * console.log(rowID);// =>\n                 \"-8908asdflkjZlkj23\"\n * console.log(attrName);// =>\n                   undefined\n */\nconst parseRepeatName = function(string){\n  let match = string.match(/(repeating_[^_]+)_([^_]+)(?:_(.+))?/);\n  match.shift();\n  return match;\n};\nkFuncs.parseRepeatName = parseRepeatName;\n\n/**\n * Parses out the components of a trigger name similar to [parseRepeatName](#parserepeatname). Aliases: parseClickTrigger.\n * \n * Aliases: `k.parseClickTrigger`\n * @memberof Utilities\n * @param {string} string The triggerName property of the\n * @returns {array} - For a repeating button named `repeating_equipment_-LKJhpoi98;lj_roll`, the array will be `['repeating_equipment','-LKJhpoi98;lj','roll']`. For a non repeating button named `roll`, the array will be `[undefined,undefined,'roll']`\n * @returns {string[]}\n * @example\n * //Parse a non repeating trigger\n * const [section,rowID,attrName] = k.parseTriggerName('clicked:some-button');\n * console.log(section);// =>\n                     undefined\n * console.log(rowID);// =>\n                       undefined\n * console.log(attrName);// =>\n                         \"some-button\"\n * \n * //Parse a repeating trigger\n * const [section,rowID,attrName] = k.parseTriggerName('clicked:repeating_attack_-234lkjpd8fu8usadf_some-button');\n * console.log(section);// =>\n                           \"repeating_attack\"\n * console.log(rowID);// =>\n                             \"-234lkjpd8fu8usadf\"\n * console.log(attrName);// =>\n                               \"some-button\"\n * \n * //Parse a repeating name\n * const [section,rowID,attrName] = k.parseTriggerName('repeating_attack_-234lkjpd8fu8usadf_some-button');\n * console.log(section);// =>\n                                 \"repeating_attack\"\n * console.log(rowID);// =>\n                                   \"-234lkjpd8fu8usadf\"\n * console.log(attrName);// =>\n                                     \"some-button\"\n */\nconst parseTriggerName = function(string){\n  let match = string.replace(/^clicked:/,'').match(/(?:(repeating_[^_]+)_([^_]+)_)?(.+)/);\n  match.shift();\n  return match;\n};\nkFuncs.parseTriggerName = parseTriggerName;\nconst parseClickTrigger = parseTriggerName;\nkFuncs.parseClickTrigger = parseClickTrigger;\n\n/**\n * Parses out the attribute name from the htmlattribute name.\n * @memberof Utilities\n * @param {string} string - The triggerName property of the [event](https://wiki.roll20.net/Sheet_Worker_Scripts#eventInfo_Object).\n * @returns {string}\n * @example\n * //Parse a name\n * const attrName = k.parseHtmlName('attr_attribute_1');\n * console.log(attrName);// =>\n                                       \"attribute_1\"\n */\nconst parseHTMLName = function(string){\n  let match = string.match(/(?:attr|act|roll)_(.+)/);\n  match.shift();\n  return match[0];\n};\nkFuncs.parseHTMLName = parseHTMLName;\n\n/**\n * Capitalize each word in a string\n * @memberof Utilities\n * @param {string} string - The string to capitalize\n * @returns {string}\n * @example\n * const capitalized = k.capitalize('a word');\n * console.log(capitalized);// =>\n                                         \"A Word\"\n */\nconst capitalize = function(string){\n  return string.replace(/(?:^|\\s+|\\/)[a-z]/ig,(letter)=>\n                                          letter.toUpperCase());\n};\nkFuncs.capitalize = capitalize;\n\n/**\n * Extracts a roll query result for use in later functions. Must be awaited as per [startRoll documentation](https://wiki.roll20.net/Sheet_Worker_Scripts#Roll_Parsing.28NEW.29). Stolen from [Oosh\\'s Adventures with Startroll thread](https://app.roll20.net/forum/post/10346883/adventures-with-startroll).\n * @memberof Utilities\n * @param {string} query - The query should be just the text as the `?{` and `}` at the start/end of the query are added by the function.\n * @returns {Promise} - Resolves to the selected value from the roll query\n * @example\n * const rollFunction = async function(){\n *  //Get the result of a choose from list query\n *  const queryResult = await extractQueryResult('Prompt Text Here|Option 1|Option 2');\n *  console.log(queryResult);//=>\n                                             \"Option 1\" or \"Option 2\" depending on what the user selects\n * \n *  //Get free form input from the user\n *  const freeResult = await extractQueryResult('Prompt Text Here');\n *  consoel.log(freeResult);// =>\n                                               Whatever the user entered\n * }\n */\nconst extractQueryResult = async function(query){\n\tdebug('entering extractQueryResult');\n\tlet queryRoll = await startRoll(`!{{query=[[0[response=?{${query}}]]]}}`);\n\tfinishRoll(queryRoll.rollId);\n\treturn queryRoll.results.query.expression.replace(/^.+?response=|\\]$/g,'');\n};\nkFuncs.extractQueryResult = extractQueryResult;\n\n/**\n * Simulates a query for ensuring that async/await works correctly in the sheetworker environment when doing conditional startRolls. E.g. if you have an if/else and only one of the conditions results in `startRoll` being called (and thus an `await`), the sheetworker environment would normally crash. Awaiting this in the condition that does not actually need to call `startRoll` will keep the environment in sync.\n * @memberof Utilities\n * @param {string|number} [value] - The value to return. Optional.\n * @returns {Promise} - Resolves to the value passed to the function\n * @example\n * const rollFunction = async function(){\n *  //Get the result of a choose from list query\n *  const queryResult = await pseudoQuery('a value');\n *  console.log(queryResult);//=>\n                                                 \"a value\"\n * }\n */\nconst pseudoQuery = async function(value){\n\tdebug('entering pseudoQuery');\n\tlet queryRoll = await startRoll(`!{{query=[[0[response=${value}]]]}}`);\n\tfinishRoll(queryRoll.rollId);\n\treturn queryRoll.results.query.expression.replace(/^.+?response=|\\]$/g,'');\n};\nkFuncs.pseudoQuery = pseudoQuery;\n\n/**\n * An alias for console.log.\n * @memberof Utilities\n * @param {any} msg - The message can be a straight string, an object, or an array. If it is an object or array, the object will be broken down so that each key is used as a label to output followed by the value of that key. If the value of the key is an object or array, it will be output via `console.table`.\n */\nconst log = function(msg){\n  if(typeof msg === 'string'){\n    console.log(`%c${kFuncs.sheetName} log| ${msg}`,\"background-color:#159ccf\");\n  }else if(typeof msg === 'object'){\n    Object.keys(msg).forEach((m)=>\n                                                  {\n      if(typeof msg[m] === 'string'){\n        console.log(`%c${kFuncs.sheetName} log| ${m}: ${msg[m]}`,\"background-color:#159ccf\");\n      }else{\n        console.log(`%c${kFuncs.sheetName} log| ${typeof msg[m]} ${m}`,\"background-color:#159ccf\");\n        console.table(msg[m]);\n      }\n    });\n  }\n};\nkFuncs.log = log;\n\n/**\n * Alias for console.log that only triggers when debug mode is enabled or when the sheet\\'s version is `0`. Useful for entering test logs that will not pollute the console on the live sheet.\n * @memberof Utilities\n * @param {any} msg - 'See {@link k.log}\n * @param {boolean} force - Pass as a truthy value to force the debug output to be output to the console regardless of debug mode.\n * @returns {void}\n */\nconst debug = function(msg,force){\n  console.warn('kFuncs.version',kFuncs.version);\n  if(!kFuncs.debugMode && !force && kFuncs.version >\n                                                     0) return;\n  if(typeof msg === 'string'){\n    console.log(`%c${kFuncs.sheetName} DEBUG| ${msg}`,\"background-color:tan;color:red;\");\n  }else if(typeof msg === 'object'){\n    Object.keys(msg).forEach((m)=>\n                                                      {\n      if(typeof msg[m] === 'string'){\n        console.log(`%c${kFuncs.sheetName} DEBUG| ${m}: ${msg[m]}`,\"background-color:tan;color:red;\");\n      }else{\n        console.log(`%c${kFuncs.sheetName} DEBUG| ${typeof msg[m]} ${m}`,\"background-color:tan;color:red;font-weight:bold;\");\n        console.table(msg[m]);\n      }\n    });\n  }\n};\nkFuncs.debug = debug;\n\n/**\n * Orders the section id arrays for all sections in the `sections` object to match the repOrder attribute.\n * @memberof Utilities\n * @param {attributesProxy} attributes - The attributes object that must have a value for the reporder for each section.\n * @param {object[]} sections - Object containing the IDs for the repeating sections, indexed by repeating section name.\n */\nconst orderSections = function(attributes,sections){\n  Object.keys(sections).forEach((section)=>\n                                                        {\n    attributes.attributes[`_reporder_${section}`] = commaArray(attributes[`_reporder_${section}`]);\n    orderSection(attributes.attributes[`_reporder_${section}`],sections[section]);\n  });\n};\nkFuncs.orderSections = orderSections;\n\n/**\n * Orders a single ID array.\n * @memberof Utilities\n * @param {string[]} repOrder - Array of IDs in the order they are in on the sheet.\n * @param {string[]} IDs - Array of IDs to be ordered.\n */\nconst orderSection = function(repOrder,IDs=[]){\n  IDs.sort((a,b)=>\n                                                          {\n    return repOrder.indexOf(a.toLowerCase()) - repOrder.indexOf(b.toLowerCase());\n  });\n};\nkFuncs.orderSection = orderSection;\n\n/**\n * Splits a comma delimited string into an array\n * @memberof Utilities\n * @param {string} string - The string to split.\n * @returns {array} - The string segments of the comma delimited list.\n */\nconst commaArray = function(string=''){\n  return string.toLowerCase().split(/\\s*,\\s*/);\n};\nkFuncs.commaArray = commaArray;\n\n// Roll escape functions for passing data in action button calls. Base64 encodes/decodes the data.\nconst RE = {\n  chars: {\n      '\"': '%quot;',\n      ',': '%comma;',\n      ':': '%colon;',\n      '}': '%rcub;',\n      '{': '%lcub;',\n  },\n  escape(data) {\n    return typeof data === 'object' ?\n      `KDATA${btoa(JSON.stringify(data))}` :\n      `KSTRING${btoa(data)}`;\n  },\n  unescape(string) {\n    const isData = typeof string === 'string' &&\n      (\n        string.startsWith('KDATA') ||\n        string.startsWith('KSTRING')\n      );\n    return isData ?\n      (\n        string.startsWith('KDATA') ?\n          JSON.parse(atob(string.replace(/^KDATA/,''))) :\n          atob(string.replace(/^KSTRING/,''))\n      ) :\n      string;\n  }\n};\n\n/**\n * Encodes data in Base64. This is useful for passing roll information to action buttons called from roll buttons.\n * @function\n * @param {string|object|any[]} data - The data that you want to Base64 encode\n * @returns {string} - The encoded data\n * @memberof! Utilities\n */\nconst escape = RE.escape;\n/**\n * Decodes Base64 encoded strings that were created by the K-scaffold\n * @function\n * @param {string|object|any[]} string - The string of encoded data to decode. If this is not a string, or is not a string that was encoded by the K-scaffold, it will be returned as is.\n * @returns {string|object|any[]}\n * @memberof! Utilities\n */\nconst unescape = RE.unescape;\n\nObject.assign(kFuncs,{escape,unescape});/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n\n//# Attribute Obj Proxy handler\nconst createAttrProxy = function(attrs){\n  //creates a proxy for the attributes object so that values can be worked with more easily.\n  const getCascObj = function(event,casc){\n    const eventName = event.triggerName || event.sourceAttribute;\n    let typePrefix = eventName.startsWith('clicked:') ?\n      'act_' :\n      event.removedInfo ?\n      'fieldset_' :\n      'attr_';\n    let cascName = `${typePrefix}${eventName.replace(/(?:removed|clicked):/,'')}`;\n    let cascObj = casc[cascName];\n    k.debug({[cascName]:cascObj});\n    if(event && cascObj){\n      if(event.previousValue){\n        cascObj.previousValue = event.previousValue;\n      }else if(event.originalRollId){\n        cascObj.originalRollId = event.originalRollId;\n        cascObj.rollData = RE.unescape(event.originalRollId);\n      }\n    }\n    return cascObj || {};\n  };\n  \n  const triggerFunctions = function(obj,attributes,sections,casc){\n    if(obj.triggeredFuncs && obj.triggeredFuncs.length){\n      debug(`triggering functions for ${obj.name}`);\n      obj.triggeredFuncs && obj.triggeredFuncs.forEach(func=>\n                                                            funcs[func] ? \n        funcs[func]({trigger:obj,attributes,sections,casc}) :\n        debug(`!!!Warning!!! no function named ${func} found. Triggered function not called for ${obj.name}`,true));\n    }\n  };\n  \n  const initialFunction = function(obj,attributes,sections){\n    if(obj.initialFunc){\n      debug(`initial functions for ${obj.name}`);\n      funcs[obj.initialFunc] ?\n        funcs[obj.initialFunc]({trigger:obj,attributes,sections}) :\n        debug(`!!!Warning!!! no function named ${obj.initialFunc} found. Initial function not called for ${obj.name}`,true);\n    }\n  };\n  const alwaysFunctions = function(trigger,attributes,sections,casc){\n    Object.values(allHandlers).forEach((handler)=>\n                                                              {\n      handler({trigger,attributes,sections,casc});\n    });\n  };\n  const processChange = function({event,trigger,attributes,sections,casc}){\n    if(event && !trigger){\n      debug(`${event.sourceAttribute} change detected. No trigger found`);\n      return;\n    }\n    if(!attributes || !sections || !casc){\n      debug(`!!! Insufficient arguments || attributes >\n                                                                 ${!!attributes} | sections >\n                                                                   ${!!sections} | casc >\n                                                                     ${!!casc} !!!`);\n      return;\n    }\n    debug({trigger});\n    if(event){\n      debug('checking for initial & always functions');\n      alwaysFunctions(trigger,attributes,sections,casc);//Functions that should be run for all events.\n      initialFunction(trigger,attributes,sections,casc);//functions that should only be run if the attribute was the thing changed by the user\n    }\n    if(trigger){\n      debug(`processing ${trigger.name}`);\n      triggerFunctions(trigger,attributes,sections,casc);\n      if(!event && trigger.calculation && funcs[trigger.calculation]){\n        attributes[trigger.name] = funcs[trigger.calculation]({trigger,attributes,sections,casc});\n      }else if(trigger.calculation && !funcs[trigger.calculation]){\n        debug(`K-Scaffold Error: No function named ${trigger.calculation} found`);\n      }\n      if(Array.isArray(trigger.affects)){\n        attributes.queue.push(...trigger.affects);\n      }\n    }\n    attributes.set({attributes,sections,casc});\n  };\n  const attrTarget = {\n    updates:{},\n    attributes:{...attrs},\n    repOrders:{},\n    queue: [],\n    casc:{},\n    alwaysFunctions,\n    processChange,\n    triggerFunctions,\n    initialFunction,\n    getCascObj\n  };\n  const attrHandler = {\n    get:function(obj,prop){//gets the most value of the attribute.\n      //If it is a repeating order, returns the array, otherwise returns the update value or the original value\n      if(prop === 'set'){\n        return function(){\n          let {attributes,sections,casc,callback,vocal} = arguments[0] ? arguments[0] : {};\n          if(attributes && attributes.queue.length && sections && casc){\n            let triggerName = attributes.queue.shift();\n            let trigger = getCascObj({sourceAttribute:triggerName},casc);\n            attributes.processChange({trigger,attributes,sections,casc});\n          }else{\n            debug({updates:obj.updates});\n            let trueCallback = Object.keys(obj.repOrders).length ?\n              function(){\n                Object.entries(obj.repOrders).forEach(([section,order])=>\n                                                                      {\n                  _setSectionOrder(section,order,)\n                });\n                callback && callback();\n              }:\n              callback;\n            Object.keys(obj.updates).forEach((key)=>\n                                                                        obj.attributes[key] = obj.updates[key]);\n            const update = obj.updates;\n            obj.updates = {};\n            set(update,vocal,trueCallback);\n          }\n        }\n      }else if(Object.keys(obj).some(key=>\n                                                                          key===prop)){ \n        return Reflect.get(...arguments)\n      }else{\n        let retValue;\n        switch(true){\n          case obj.repOrders.hasOwnProperty(prop):\n            retValue = obj.repOrders[prop];\n            break;\n          case obj.updates.hasOwnProperty(prop):\n            retValue = obj.updates[prop];\n            break;\n          default:\n            retValue = obj.attributes[prop];\n            break;\n        }\n        let cascRef = `attr_${prop.replace(/(repeating_[^_]+_)[^_]+/,'$1\\$X')}`;\n        let numRetVal = +retValue;\n        if(!Number.isNaN(numRetVal) && retValue !== ''){\n          retValue = numRetVal;\n        }else if(cascades[cascRef] && (typeof cascades[cascRef].defaultValue === 'number' || cascades[cascRef].type === 'number')){\n          retValue = cascades[cascRef].defaultValue;\n        }\n        return retValue;\n      }\n    },\n    set:function(obj,prop,value){\n      //Sets the value. Also verifies that the value is a valid attribute value\n      //e.g. not undefined, null, or NaN\n      if(value || value===0 || value===''){\n        if(/reporder|^repeating_[^_]+$/.test(prop)){\n          let section = prop.replace(/_reporder_/,'');\n          obj.repOrders[section] = value;\n        }else if(`${obj.attributes}` !== `${value}` || \n          (obj.updates[prop] && `${obj.updates}` !== `${value}`)\n        ){\n          obj.updates[prop] = value;\n        }\n      }else{\n        debug(`!!!Warning: Attempted to set ${prop} to an invalid value:${value}; value not stored!!!`);\n      }\n      return true;\n    },\n    deleteProperty(obj,prop){\n      //removes the property from the original attributes, updates, and the reporders\n      Object.keys(obj).forEach((key)=>\n                                                                            {\n        delete obj[key][prop.toLowerCase()];\n      });\n    }\n  };\n  return new Proxy(attrTarget,attrHandler);\n};\n\n/**\n * Function that registers a function for being called via the funcs object. Returns true if the function was successfully registered, and false if it could not be registered for any reason.\n * @memberof Utilities\n * @param {object} funcObj - Object with keys that are names to register functions under and values that are functions.\n * @param {object} optionsObj - Object that contains options to use for this registration.\n * @param {string[]} optionsObj.type - Array that contains the types of specialized functions that apply to the functions being registered. Valid types are `\"opener\"`, `\"updater\"`, and `\"default\"`. `\"default\"` is always used, and never needs to be passed.\n * @returns {boolean} - True if the registration succeeded, false if it failed.\n * @example\n * //Basic Registration\n * const myFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({myFunc});\n * \n * //Register a function to run on sheet open\n * const openFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({openFunc},{type:['opener']})\n * \n * //Register a function to run on all events\n * const allFunc = function({trigger,attributes,sections,casc}){};\n * k.registerFuncs({allFunc},{type:['all']})\n */\nconst registerFuncs = function(funcObj,optionsObj = {}){\n  if(typeof funcObj !== 'object' || typeof optionsObj !== 'object'){\n    debug(`!!!! K-scaffold error: Improper arguments to register functions !!!!`);\n    return false;\n  }\n  const typeArr = optionsObj.type ? ['default',...optionsObj.type] : ['default'];\n  const typeSwitch = {\n    'opener':openHandlers,\n    'updater':updateHandlers,\n    'new':initialSetups,\n    'all':allHandlers,\n    'default':funcs\n  };\n  let setState;\n  Object.entries(funcObj).map(([prop,value])=>\n                                                                              {\n    typeArr.forEach((type)=>\n                                                                                {\n      if(typeSwitch[type][prop]){\n        debug(`!!! Duplicate function name for ${prop} as ${type}!!!`);\n        setState = false;\n      }else if(typeof value === 'function'){\n        typeSwitch[type][prop] = value;\n        setState = setState !== false ? true : false;\n      }else{\n        debug(`!!! K-scaffold error: Function registration requires a function. Invalid value to register as ${type} !!!`);\n        setState = false;\n      }\n    });\n  });\n  return setState;\n};\nkFuncs.registerFuncs = registerFuncs;\n\n/**\n * Function that sets up the action calls used in the roller mixin.\n * @memberof Sheetworkers\n * @param {object} attributes - The attribute values of the character\n * @param {object[]} sections - All the repeating section IDs\n */\nconst setActionCalls = function({attributes,sections}){\n  actionAttributes.forEach((base)=>\n                                                                                  {\n    let [section,,field] = k.parseTriggerName(base);\n    let fieldAction = field.replace(/_/g,'-');\n    if(section){\n      sections[section].forEach((id)=>\n                                                                                    {\n        attributes[`${section}_${id}_${field}`] = `%{${attributes.character_name}|${section}_${id}_${fieldAction}}`;\n      });\n    }else{\n      attributes[`${field}`] = `%{${attributes.character_name}|${fieldAction}}`;\n    }\n  });\n};\nfuncs.setActionCalls = setActionCalls;\n\n/**\n * Function to call a function previously registered to the funcs object. May not be used that much in actual sheets, but very useful when writing unit tests for your sheet. Either returns the function or null if no function exists.\n * @memberof Sheetworkers\n * @param {string} funcName - The name of the function to invoke.\n * @param {...any} args - The arguments to call the function with.\n * @returns {function|null}\n * @example\n * //Call myFunc with two arguments\n * k.callFunc('myFunc','an argument','another argument');\n */\nconst callFunc = function(funcName,...args){\n  if(funcs[funcName]){\n    debug(`calling ${funcName}`);\n    return funcs[funcName](...args);\n  }else{\n    debug(`Invalid function name: ${funcName}`);\n    return null;\n  }\n};\nkFuncs.callFunc = callFunc;/**@namespace Sheetworkers */\n/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n//Sheet Updaters and styling functions\nconst updateSheet = function(){\n  log('updating sheet');\n  getAllAttrs({props:['debug_mode',...baseGet],callback:(attributes,sections,casc)=>\n                                                                                      {\n    kFuncs.debugMode = kFuncs.debugMode || !!attributes.debug_mode;\n    debug({sheet_version:attributes.sheet_version});\n    if(!attributes.sheet_version){\n      Object.entries(initialSetups).forEach(([funcName,handler])=>\n                                                                                        {\n        if(typeof funcs[funcName] === 'function'){\n          debug(`running ${funcName}`);\n          funcs[funcName]({attributes,sections,casc});\n        }else{\n          debug(`!!!Warning!!! no function named ${funcName} found. Initial sheet setup not performed.`);\n        }\n      });\n    }else{\n      Object.entries(updateHandlers).forEach(([ver,handler])=>\n                                                                                          {\n        if(attributes.sheet_version < +ver){\n          handler({attributes,sections,casc});\n        }\n      });\n    }\n    k.debug({openHandlers});\n    Object.entries(openHandlers).forEach(([funcName,func])=>\n                                                                                            {\n      if(typeof funcs[funcName] === 'function'){\n        debug(`running ${funcName}`);\n        funcs[funcName]({attributes,sections,casc});\n      }else{\n        debug(`!!!Warning!!! no function named ${funcName} found. Sheet open handling not performed.`);\n      }\n    });\n    setActionCalls({attributes,sections});\n    attributes.sheet_version = kFuncs.version;\n    log(`Sheet Update applied. Current Sheet Version ${kFuncs.version}`);\n    attributes.set();\n    log('Sheet ready for use');\n  }});\n};\n\nconst initialSetup = function(attributes,sections){\n  debug('Initial sheet setup');\n};\n\n/**\n * This is the default listener function for attributes that the K-Scaffold uses. It utilizes the `triggerFuncs`, `listenerFunc`, `calculation`, and `affects` properties of the K-scaffold trigger object (see the Pug section of the scaffold for more details).\n * @memberof Sheetworkers\n * @param {Roll20Event} event - The Roll20 event object\n * @returns {void}\n * @example\n * //Call from an attribute change\n * on('change:an_attribute',k.accessSheet);\n */\nconst accessSheet = function(event){\n  debug({funcs:Object.keys(funcs)});\n  debug({event});\n  getAllAttrs({callback:(attributes,sections,casc)=>\n                                                                                              {\n    let trigger = attributes.getCascObj(event,casc);\n    attributes.processChange({event,trigger,attributes,sections,casc});\n  }});\n};\nfuncs.accessSheet = accessSheet;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/*\nCascade Expansion functions\n*/\n//Expands the repeating section templates in cascades to reflect the rows actually available\nconst expandCascade = function(cascade,sections,attributes){\n  return _.keys(cascade).reduce((memo,key)=>{//iterate through cascades and replace references to repeating attributes with correct row ids.\n    if(/^(?:act|attr)_repeating_/.test(key)){//If the attribute is a repeating attribute, do special logic\n      expandRepeating(memo,key,cascade,sections,attributes);\n    }else if(key){//for non repeating attributes do this logic\n      expandNormal(memo,key,cascade,sections);\n    }\n    return memo;\n  },{});\n};\n\nconst expandRepeating = function(memo,key,cascade,sections,attributes){\n  key.replace(/((?:attr|act)_)(repeating_[^_]+)_[^_]+?_(.+)/,(match,type,section,field)=>\n                                                                                                {\n    (sections[section]||[]).forEach((id)=>\n                                                                                                  {\n      memo[`${type}${section}_${id}_${field}`]=_.clone(cascade[key]);//clone the details so that each row's attributes have correct ids\n      memo[`${type}${section}_${id}_${field}`].name = `${section}_${id}_${field}`;\n      if(key.startsWith('attr_')){\n        memo[`${type}${section}_${id}_${field}`].affects = memo[`${type}${section}_${id}_${field}`].affects.reduce((m,affected)=>\n                                                                                                    {\n          if(section === affected){//otherwise if the affected attribute is in the same section, simply set the affected attribute to have the same row id.\n            m.push(applyID(affected,id));\n          }else if(/repeating/.test(affected)){//If the affected attribute isn't in the same repeating section but is still a repeating attribute, add all the rows of that section\n            addAllRows(affected,m,sections);\n          }else{//otherwise the affected attribute is a non repeating attribute. Simply add it to the computed affected array\n            m.push(affected);\n          }\n          return m;\n        },[]);\n      }\n    });\n  });\n};\n\nconst applyID = function(affected,id){\n  return affected.replace(/(repeating_[^_]+_)[^_]+(.+)/,`$1${id}$2`);\n};\n\nconst expandNormal = function(memo,key,cascade,sections){\n  memo[key] = _.clone(cascade[key]);\n  if(key.startsWith('attr_')){\n    memo[key].affects = memo[key].affects || [];\n    memo[key].affects = memo[key].affects.reduce((m,a)=>\n                                                                                                      {\n      if(/^repeating/.test(a)){\n        addAllRows(a,m,sections);\n      }else{\n        m.push(a);\n      }\n      return m;\n    },[]);\n  }\n};\n\nconst addAllRows = function(affected,memo,sections){\n  affected.replace(/(repeating_[^_]+?)_[^_]+?_(.+)/,(match,section,field)=>\n                                                                                                        {\n    sections[section].forEach(id=>\n                                                                                                          memo.push(`${section}_${id}_${field}`));\n  });\n};/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\n/**\n * These are functions that provide K-scaffold aliases for the basic Roll20 sheetworker functions. These functions also provide many additional features on top of the standard Roll20 sheetworkers.\n * @namespace Sheetworkers.Sheetworker Aliases\n */\n/**\n * Alias for [setSectionOrder()](https://wiki.roll20.net/Sheet_Worker_Scripts#setSectionOrder.28.3CRepeating_Section_Name.3E.2C_.3CSection_Array.3E.2C_.3CCallback.3E.29) that allows you to use the section name in either `repeating_section` or `section` formats. Note that the Roll20 sheetworker [setSectionOrder](https://wiki.roll20.net/Sheet_Worker_Scripts#setSectionOrder.28.3CRepeating_Section_Name.3E.2C_.3CSection_Array.3E.2C_.3CCallback.3E.29) currently causes some display issues on sheets.\n * @memberof Sheetworker Aliases\n * @name setSectionOrder\n * @param {string} section - The name of the section, with or without `repeating_`\n * @param {string[]} order - Array of ids describing the desired order of the section.\n * @returns {void}\n * @example\n * //Set the order of a repeating_weapon section\n * k.setSectionOrder('repeating_equipment',['id1','id2','id3']);\n * //Can also specify the section name without the repeating_ prefix\n * k.setSectionOrder('equipment',['id1','id2','id3']);\n */\nconst _setSectionOrder = function(section,order){\n  let trueSection = section.replace(/repeating_/,'');\n  setSectionOrder(trueSection,order);\n};\nkFuncs.setSectionOrder = _setSectionOrder;\n\n/**\n * Alias for [removeRepeatingRow](https://wiki.roll20.net/Sheet_Worker_Scripts#removeRepeatingRow.28_RowID_.29) that also removes the row from the current object of attribute values and array of section IDs to ensure that erroneous updates are not issued.\n * @memberof Sheetworker Aliases\n * @name removeRepeatingRow\n * @param {string} row - The row id to be removed\n * @param {attributesProxy} attributes - The attribute values currently in memory\n * @param {object} sections - Object that contains arrays of all the IDs in sections on the sheet indexed by repeating name.\n * @returns {void}\n * @example\n * //Remove a repeating Row\n * k.getAllAttrs({\n *  callback:(attributes,sections)=>\n                                                                                                            {\n *    const rowID = sections.repeating_equipment[0];\n *    k.removeRepeatingRow(`repeating_equipment_${rowID}`,attributes,sections);\n *    console.log(sections.repeating_equipment); // =>\n                                                                                                               rowID no longer exists in the array.\n *    console.log(attributes[`repeating_equipment_${rowID}_name`]); // =>\n                                                                                                                 undefined\n *  }\n * })\n */\nconst _removeRepeatingRow = function(row,attributes,sections){\n  debug(`removing ${row}`);\n  Object.keys(attributes.attributes).forEach((key)=>\n                                                                                                                  {\n    if(key.startsWith(row)){\n      delete attributes[key];\n    }\n  });\n  let [,section,rowID] = row.match(/(repeating_[^_]+)_(.+)/,'');\n  sections[section] = sections[section].filter((id)=>\n                                                                                                                    id!==rowID);\n  removeRepeatingRow(row);\n};\nkFuncs.removeRepeatingRow = _removeRepeatingRow;\n\n/**\n * Alias for [getAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getAttrs.28attributeNameArray.2C_callback.29) that converts the default object of attribute values into an {@link attributesProxy} and passes that back to the callback function.\n * @memberof Sheetworker Aliases\n * @name getAttrs\n * @param {string[]} [props=baseGet] - Array of attribute names to get the value of. Defaults to {@link baseGet} if not passed.\n * @param {function(attributesProxy)} callback - The function to call after the attribute values have been gotten. An {@link attributesProxy} is passed to the callback.\n * @example\n * //Gets the attributes named in props.\n * k.getAttrs({\n *  props:['attribute_1','attribute_2'],\n *  callback:(attributes)=>\n                                                                                                                      {\n *    //Work with the attributes as you would in a normal getAttrs, or use the superpowers of the K-scaffold attributes object like so:\n *    attributes.attribute_1 = 'new value';\n *    attributes.set();\n *  }\n * })\n */\nconst _getAttrs = function({props=baseGet,callback}){\n  getAttrs(props,(values)=>\n                                                                                                                        {\n    const attributes = createAttrProxy(values);\n    callback(attributes);\n  });\n};\nkFuncs.getAttrs = _getAttrs;\n\n/**\n * Alias for [getAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getAttrs.28attributeNameArray.2C_callback.29) and [getSectionIDs](https://wiki.roll20.net/Sheet_Worker_Scripts#getSectionIDs.28section_name.2Ccallback.29) that combines the actions of both sheetworker functions and converts the default object of attribute values into an {@link attributesProxy}. Also gets the details on how to handle all attributes from the master {@link cascades} object and.\n * @memberof Sheetworker Aliases\n * @param {Object} args\n * @param {string[]} [args.props=baseGet] - Array of attribute names to get the value of. Defaults to {@link baseGet} if not passed.\n * @param {repeatingSectionDetails} sectionDetails - Array of details about a section to get the IDs for and attributes that need to be gotten. \n * @param {function(attributesProxy,sectionObj,expandedCascade):void} args.callback - The function to call after the attribute values have been gotten. An {@link attributesProxy} is passed to the callback along with a {@link sectionObj} and {@link expandedCascade}.\n * @example\n * //Get every K-scaffold linked attribute on the sheet\n * k.getAllAttrs({\n *  callback:(attributes,sections,casc)=>\n                                                                                                                          {\n *    //Work with the attributes as you please.\n *    attributes.some_attribute = 'a value';\n *    attributes.set();//Apply our change\n *  }\n * })\n */\nconst getAllAttrs = function({props=baseGet,sectionDetails=repeatingSectionDetails,callback}){\n  getSections(sectionDetails,(repeats,sections)=>\n                                                                                                                            {\n    getAttrs([...props,...repeats],(values)=>\n                                                                                                                              {\n      const attributes = createAttrProxy(values);\n      orderSections(attributes,sections);\n      const casc = expandCascade(cascades,sections,attributes);\n      callback(attributes,sections,casc);\n    })\n  });\n};\nkFuncs.getAllAttrs = getAllAttrs;\n\n/**\n * Alias for [getSectionIDs()](https://wiki.roll20.net/Sheet_Worker_Scripts#getSectionIDs.28section_name.2Ccallback.29) that allows you to iterate through several functions at once. Also assembles an array of repeating attributes to get.\n * @memberof Sheetworker Aliases\n * @param {object[]} sectionDetails - Array of details about a section to get the IDs for and attributes that need to be gotten.\n * @param {string} sectionDetails.section - The full name of the repeating section including the `repeating_` prefix.\n * @param {string[]} sectionDetails.fields - Array of field names that need to be gotten from the repeating section\n * @param {function(string[],sectionObj)} callback - The function to call once all IDs have been gotten and the array of repating attributes to get has been assembled. The callback is passed the array of repating attributes to get and a {@link sectionObj}.\n * @example\n * // Get some section details\n * const sectionDetails = {\n *  {section:'repeating_equipment',fields:['name','weight','cost']},\n *  {section:'repeating_weapon',fields:['name','attack','damage']}\n * };\n * k.getSections(sectionDetails,(attributeNames,sections)=>\n                                                                                                                                {\n *  console.log(attributeNames);// =>\n                                                                                                                                   Array containing all row specific attribute names\n *  console.log(sections);// =>\n                                                                                                                                     Object with arrays containing the row ids. Indexed by section name (e.g. repeating_eqiupment)\n * })\n */\nconst getSections = function(sectionDetails,callback){\n  let queueClone = _.clone(sectionDetails);\n  const worker = (queue,repeatAttrs=[],sections={})=>\n                                                                                                                                      {\n    let detail = queue.shift();\n    getSectionIDs(detail.section,(IDs)=>\n                                                                                                                                        {\n      sections[detail.section] = IDs;\n      IDs.forEach((id)=>\n                                                                                                                                          {\n        detail.fields.forEach((f)=>\n                                                                                                                                            {\n          repeatAttrs.push(`${detail.section}_${id}_${f}`);\n        });\n      });\n      repeatAttrs.push(`_reporder_${detail.section}`);\n      if(queue.length){\n        worker(queue,repeatAttrs,sections);\n      }else{\n        callback(repeatAttrs,sections);\n      }\n    });\n  };\n  if(!queueClone[0]){\n    callback([],{});\n  }else{\n    worker(queueClone);\n  }\n};\nkFuncs.getSections = getSections;\n\n// Sets the attributes while always calling with {silent:true}\n// Can be awaited to get the values returned from _setAttrs\n/**\n * Alias for [setAttrs()](https://wiki.roll20.net/Sheet_Worker_Scripts#setAttrs.28values.2Coptions.2Ccallback.29) that sets silently by default.\n * @memberof Sheetworker Aliases\n * @param {object} obj - The object containting attributes to set\n * @param {boolean} [vocal=false] - Whether to set silently (default value) or not.\n * @param {function()} [callback] - The callback function to invoke after the setting has been completed. No arguments are passed to the callback function.\n * @example\n * //Set some attributes silently\n * k.setAttrs({attribute_1:'new value'})\n * //Set some attributes and triggers listeners\n * k.setAttrs({attribute_1:'new value',true})\n * //Set some attributes and call a callback function\n * k.setAttrs({attribute_1:'new value'},null,()=>\n                                                                                                                                              {\n *  //Do something after the attribute is set\n * })\n */\nconst set = function(obj,vocal=false,callback){\n  setAttrs(obj,{silent:!vocal},callback);\n};\nkFuncs.setAttrs = set;\n\nconst generateCustomID = function(string){\n  if(!string.startsWith('-')){\n    string = `-${string}`;\n  }\n  rowID = generateRowID();\n  let re = new RegExp(`^.{${string.length}}`);\n  return `${string}${rowID.replace(re,'')}`;\n};\n\n\n/**\n * Alias for generateRowID that adds the new id to the {@link sectionObj}. Also allows for creation of custom IDs that conform to the section ID requirements.\n * @memberof Sheetworker Aliases\n * @name generateRowID\n * @param {sectionObj} sections\n * @param {string} [customText] - Custom text to start the ID with. This text should not be longer than the standard repeating section ID format.\n * @returns {string} - The created ID\n * @example\n * k.getAllAttrs({\n *  callback:(attributes,sections,casc)=>\n                                                                                                                                                {\n *    //Create a new row ID\n *    const rowID = k.generateRowID('repeating_equipment',sections);\n *    console.log(rowID);// =>\n                                                                                                                                                   -p8rg908ug0suzz\n *    //Create a custom row ID\n *    const customID = k.generateRowID('repeating_equipment',sections,'custom');\n *    console.log(customID);// =>\n                                                                                                                                                     -custom98uadj89kj\n *  }\n * });\n */\nconst _generateRowID = function(section,sections,customText){\n  let rowID = customText ?\n    generateCustomID(customText) :\n    generateRowID();\n  section = section.match(/^repeating_[^_]+$/) ?\n    section :\n    `repeating_${section}`;\n  sections[section] = sections[section] || [];\n  sections[section].push(rowID);\n  return `${section}_${rowID}`;\n};\nkFuncs.generateRowID = _generateRowID;/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/\n/*jshint -W014,-W084,-W030,-W033*/\nconst listeners = {};\n\n/**\n * The array of attribute names that the k-scaffold gets by default. Does not incude repeating attributes.\n * @memberof Variables\n * @var\n * @type {array}\n */\nconst baseGet = Object.entries(cascades).reduce((memo,[attrName,detailObj])=>\n                                                                                                                                                      {\n  if(!/repeating/.test(attrName) && detailObj.type !== 'action'){\n    memo.push(detailObj.name);\n  }\n  if(detailObj.listener){\n    listeners[detailObj.listener] = detailObj.listenerFunc;\n  }\n  return memo;\n},[]);\nkFuncs.baseGet = baseGet;\n\nconst registerEventHandlers = function(){\n  on('sheet:opened',updateSheet);\n  debug({funcKeys:Object.keys(funcs),funcs});\n  //Roll20 change and click listeners\n  Object.entries(listeners).forEach(([event,funcName])=>\n                                                                                                                                                        {\n    if(funcs[funcName]){\n      on(event,funcs[funcName]);\n    }else{\n      debug(`!!!Warning!!! no function named ${funcName} found. No listener created for ${event}`,true);\n    }\n  });\n  log(`kScaffold Loaded`);\n};\nsetTimeout(registerEventHandlers,0);//Delay the execution of event registration to ensure all event properties are present.\n\n/**\n * Function to add a repeating section when the add button of a customControlFieldset or inlineFieldset is clicked.\n * @memberof Sheetworkers\n * @param {object} event - The R20 event object\n */\nconst addItem = function(event){\n  let [,,section] = parseClickTrigger(event.triggerName);\n  section = section.replace(/add-/,'');\n  getAllAttrs({\n    callback:(attributes,sections,casc) =>\n                                                                                                                                                           {\n      let row = _generateRowID(section,sections);\n      debug({row});\n      attributes[`${row}_name`] = '';\n      setActionCalls({attributes,sections});\n      const trigger = cascades[`fieldset_repeating_${section}`];\n      if(trigger && trigger.addFuncs){\n        trigger.addFuncs.forEach((funcName) =>\n                                                                                                                                                             {\n          if(funcs[funcName]){\n            funcs[funcName]({attributes,sections,casc,trigger});\n          }\n        });\n      }\n      attributes.set({attributes,sections,casc});\n    }\n  });\n};\nfuncs.addItem = addItem;/**\n * The default tab navigation function of the K-scaffold. Courtesy of Riernar. It will add `k-active-tab` to the active tab-container and `k-active-button` to the active button. You can either write your own CSS to control display of these, or use the default CSS included in `scaffold/_k.scss`. Note that `k-active-button` has no default CSS as it is assumed that you will want to style the active button to match your system.\n * @memberof Sheetworkers\n * @param {Object} trigger - The trigger object\n * @param {object} attributes - The attribute values of the character\n */\nconst kSwitchTab = function ({ trigger, attributes }) {\n  const [container, tab] = (\n    trigger.name.match(/nav-tabs-(.+)--(.+)/) ||\n    []\n  ).slice(1);\n  $20(`[data-container-tab=\"${container}\"]`).removeClass('k-active-tab');\n  $20(`[data-container-tab=\"${container}\"][data-tab=\"${tab}\"]`).addClass('k-active-tab');\n  $20(`[data-container-button=\"${container}\"]`).removeClass('k-active-button');\n  $20(`[data-container-button=\"${container}\"][data-button=\"${tab}\"]`).addClass('k-active-button');\n  const tabInputName = `${container.replace(/\\-/g,'_')}_tab`;\n  if(persistentTabs.indexOf(tabInputName) >\n                                                                                                                                                               -1){\n    attributes[tabInputName] = trigger.name;\n  }\n}\n\nregisterFuncs({ kSwitchTab });\n\n/**\n * Sets persistent tabs to their last active state\n * @memberof Sheetworkers\n * @param {object} attributes - The attribute values of the character\n */\nconst kTabOnOpen = function({trigger,attributes,sections,casc}){\n  if(typeof persistentTabs === 'undefined') return;\n  persistentTabs.forEach((tabInput) =>\n                                                                                                                                                                 {\n    const pseudoTrigger = {name:attributes[tabInput]};\n    kSwitchTab({trigger:pseudoTrigger, attributes});\n  });\n};\nregisterFuncs({ kTabOnOpen },{type:['opener']});\nreturn kFuncs;\n}());\nconst actionAttributes = [\"my_button_action\",\"strength_action\"];const inlineFieldsets = [\"fieldset\"];// local js file will be put here\n// include local js file here\n                                                                                                                                                              </script>"}];
 export const js = [
 {
 "comment": "",
@@ -250,14 +250,14 @@ export const js = [
 "params": []
 },
 {
-"comment": "/**\r\n * Renders PUG and SCSS into HTML and CSS text\r\n * @memberof Build\r\n * @param {string} source - The path to the directory containing your PUG and SCSS files\r\n * @param {string} destination - The path to the directory where you want your HTML and CSS files to be created\r\n * @param {object} [pugOptions] - Options for how the k-scaffold should parse the pug and options that should be passed to pugjs. Accepts all options specified at pugjs.org. To be explicit as the pugjs docs are obtuse on this point, you may pass any local variables/functions that you want to have access to in your pug via this object. In addition you may pass:\r\n * @param {boolean} [pugOptions.suppressStack = true] - Whether the K-scaffold should suppress the full error stack from pug and only display the message portion of the error. The stack traces provided by pug do not refer to the actual chain of included pug files, and so are usually useless in troubleshooting an issue.\r\n * @param {object} [scssOptions = {}] - Options for how the k-scaffold should parse the SCSS and options that should be passed to SASS. Accepts all options specified at sass-lang.com.\r\n * @returns {Promise<array[]>} - Array containing all rendered HTML text in an array at index 0 and all rendered CSS text at index 1.\r\n */",
+"comment": "/**\r\n * Renders PUG and SCSS into HTML and CSS text\r\n * @memberof Build\r\n * @alias all\r\n * @param {string} source - The path to the directory containing your PUG and SCSS files\r\n * @param {string} destination - The path to the directory where you want your HTML and CSS files to be created\r\n * @param {object} [pugOptions] - Options for how the k-scaffold should parse the pug and options that should be passed to pugjs. Accepts all options specified at pugjs.org. To be explicit as the pugjs docs are obtuse on this point, you may pass any local variables/functions that you want to have access to in your pug via this object. In addition you may pass:\r\n * @param {boolean} [pugOptions.suppressStack = true] - Whether the K-scaffold should suppress the full error stack from pug and only display the message portion of the error. The stack traces provided by pug do not refer to the actual chain of included pug files, and so are usually useless in troubleshooting an issue.\r\n * @param {object} [scssOptions = {}] - Options for how the k-scaffold should parse the SCSS and options that should be passed to SASS. Accepts all options specified at sass-lang.com.\r\n * @returns {Promise<array[]>} - Array containing all rendered HTML text in an array at index 0 and all rendered CSS text at index 1.\r\n */",
 "meta": {
 "range": [
-1485,
-1851
+1500,
+1866
 ],
 "filename": "index.js",
-"lineno": 18,
+"lineno": 19,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -271,6 +271,7 @@ export const js = [
 },
 "description": "Renders PUG and SCSS into HTML and CSS text",
 "memberof": "Build",
+"alias": "all",
 "params": [
 {
 "type": {
@@ -333,21 +334,20 @@ export const js = [
 "description": "- Array containing all rendered HTML text in an array at index 0 and all rendered CSS text at index 1."
 }
 ],
-"name": "build",
-"longname": "Build.build",
+"name": "all",
+"longname": "all",
 "kind": "function",
-"scope": "static",
 "async": true
 },
 {
 "comment": "",
 "meta": {
 "range": [
-1501,
-1513
+1516,
+1528
 ],
 "filename": "index.js",
-"lineno": 18,
+"lineno": 19,
 "columnno": 22,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -367,11 +367,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1514,
-1525
+1529,
+1540
 ],
 "filename": "index.js",
-"lineno": 18,
+"lineno": 19,
 "columnno": 35,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -391,11 +391,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1526,
-1541
+1541,
+1556
 ],
 "filename": "index.js",
-"lineno": 18,
+"lineno": 19,
 "columnno": 47,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -415,11 +415,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1542,
-1573
+1557,
+1588
 ],
 "filename": "index.js",
-"lineno": 18,
+"lineno": 19,
 "columnno": 63,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -439,11 +439,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1554,
-1572
+1569,
+1587
 ],
 "filename": "index.js",
-"lineno": 18,
+"lineno": 19,
 "columnno": 75,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -463,11 +463,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1574,
-1588
+1589,
+1603
 ],
 "filename": "index.js",
-"lineno": 18,
+"lineno": 19,
 "columnno": 95,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -487,11 +487,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1589,
-1600
+1604,
+1615
 ],
 "filename": "index.js",
-"lineno": 18,
+"lineno": 19,
 "columnno": 110,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -511,11 +511,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1650,
-1656
+1665,
+1671
 ],
 "filename": "index.js",
-"lineno": 19,
+"lineno": 20,
 "columnno": 41,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -535,11 +535,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1657,
-1668
+1672,
+1683
 ],
 "filename": "index.js",
-"lineno": 19,
+"lineno": 20,
 "columnno": 48,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -559,11 +559,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1669,
-1684
+1684,
+1699
 ],
 "filename": "index.js",
-"lineno": 19,
+"lineno": 20,
 "columnno": 60,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -583,11 +583,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1685,
-1695
+1700,
+1710
 ],
 "filename": "index.js",
-"lineno": 19,
+"lineno": 20,
 "columnno": 76,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -607,11 +607,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1696,
-1707
+1711,
+1722
 ],
 "filename": "index.js",
-"lineno": 19,
+"lineno": 20,
 "columnno": 87,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -631,11 +631,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1749,
-1755
+1764,
+1770
 ],
 "filename": "index.js",
-"lineno": 21,
+"lineno": 22,
 "columnno": 23,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -655,11 +655,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1756,
-1767
+1771,
+1782
 ],
 "filename": "index.js",
-"lineno": 21,
+"lineno": 22,
 "columnno": 30,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -679,11 +679,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1768,
-1783
+1783,
+1798
 ],
 "filename": "index.js",
-"lineno": 21,
+"lineno": 22,
 "columnno": 42,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -703,11 +703,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1784,
-1794
+1799,
+1809
 ],
 "filename": "index.js",
-"lineno": 21,
+"lineno": 22,
 "columnno": 58,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -727,11 +727,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1795,
-1806
+1810,
+1821
 ],
 "filename": "index.js",
-"lineno": 21,
+"lineno": 22,
 "columnno": 69,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -751,11 +751,11 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-1856,
-1878
+1871,
+1893
 ],
 "filename": "index.js",
-"lineno": 27,
+"lineno": 28,
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
@@ -987,7 +987,7 @@ export const js = [
 "meta": {
 "range": [
 1774,
-2572
+2594
 ],
 "filename": "index.js",
 "lineno": 24,
@@ -1342,7 +1342,7 @@ export const js = [
 "meta": {
 "range": [
 2195,
-2321
+2343
 ],
 "filename": "index.js",
 "lineno": 40,
@@ -1352,7 +1352,7 @@ export const js = [
 "id": "astnode100000258",
 "name": "kTemplate",
 "type": "ObjectExpression",
-"value": "{\"scriptUsed\":false,\"repeatingPrefix\":\"\",\"repeatsIgnoreSystemPrefix\":false,\"systemPrefix\":\"\"}"
+"value": "{\"scriptUsed\":false,\"repeatingPrefix\":\"\",\"repeatsIgnoreSystemPrefix\":false,\"systemPrefix\":\"\",\"scriptBlocks\":\"\"}"
 }
 },
 "undocumented": true,
@@ -1464,18 +1464,43 @@ export const js = [
 "scope": "static"
 },
 {
+"comment": "",
+"meta": {
+"range": [
+2323,
+2338
+],
+"filename": "index.js",
+"lineno": 45,
+"columnno": 4,
+"path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
+"code": {
+"id": "astnode100000269",
+"name": "scriptBlocks",
+"type": "ArrayExpression",
+"value": "[]"
+}
+},
+"undocumented": true,
+"name": "scriptBlocks",
+"longname": "resetObjs~kTemplate.scriptBlocks",
+"kind": "member",
+"memberof": "resetObjs~kTemplate",
+"scope": "static"
+},
+{
 "comment": "/**\r\n * checks that the kScript mixin is the final mixin used.\r\n */",
 "meta": {
 "range": [
-2652,
-2807
+2674,
+2829
 ],
 "filename": "index.js",
-"lineno": 56,
+"lineno": 57,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000330",
+"id": "astnode100000332",
 "name": "checkKUse",
 "type": "ArrowFunctionExpression"
 }
@@ -1491,15 +1516,15 @@ export const js = [
 "comment": "/**\r\n * Gets the current state of the system prefix\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-2900,
-2944
+2922,
+2966
 ],
 "filename": "index.js",
-"lineno": 66,
+"lineno": 67,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000344",
+"id": "astnode100000346",
 "name": "getSystemPrefix",
 "type": "ArrowFunctionExpression"
 }
@@ -1524,15 +1549,15 @@ export const js = [
 "comment": "/**\r\n * Updates the k.systemPrefix K-scaffold global variable so that any attributes created after this point will be prepended with the prefix. By default attributes in repeating sections are not prepended; instead the repeating section name is prefixed. Returns the previous prefix.\r\n * @param {string} val - The value to set the prefix to. If not a string or falsy, will reset the prefix to an empty string.\r\n * @param {boolean} normalRepeating - Whether the prefix should be applied to repeating section names (default), or to the attribute name itself in repeating sections.\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-3563,
-3784
+3585,
+3806
 ],
 "filename": "index.js",
-"lineno": 74,
+"lineno": 75,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000353",
+"id": "astnode100000355",
 "name": "setSystemPrefix",
 "type": "ArrowFunctionExpression"
 },
@@ -1582,15 +1607,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-3619,
-3664
+3641,
+3686
 ],
 "filename": "index.js",
-"lineno": 75,
+"lineno": 76,
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000362",
+"id": "astnode100000364",
 "name": "k.repeatsIgnoreSystemPrefix",
 "type": "Identifier",
 "value": "normalRepeating",
@@ -1608,15 +1633,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-3675,
-3702
+3697,
+3724
 ],
 "filename": "index.js",
-"lineno": 76,
+"lineno": 77,
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000368",
+"id": "astnode100000370",
 "name": "prevPrefix",
 "type": "MemberExpression",
 "value": "k.systemPrefix"
@@ -1634,15 +1659,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-3707,
-3758
+3729,
+3780
 ],
 "filename": "index.js",
-"lineno": 77,
+"lineno": 78,
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000374",
+"id": "astnode100000376",
 "name": "k.systemPrefix",
 "type": "ConditionalExpression",
 "value": "",
@@ -1660,15 +1685,15 @@ export const js = [
 "comment": "/**\r\n * Converts an attribute name into an attribute call for that attribute. Converts `_max` attribute names to the proper attribute call syntax for `_max` attributes (see second example). If called from inside the block of a {@link fieldset} mixin, will also add the appropriate information for calling a repeating attribute.\r\n * @memberof Locals\r\n * @param {string} string - The attribute name to create an attribute call for.\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-4253,
-4350
+4275,
+4372
 ],
 "filename": "index.js",
-"lineno": 87,
+"lineno": 88,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000388",
+"id": "astnode100000390",
 "name": "attrTitle",
 "type": "ArrowFunctionExpression"
 }
@@ -1704,15 +1729,15 @@ export const js = [
 "comment": "/**\r\n * Converts a string to a valid snake_case attribute name or kebab-case action button name.\r\n * @memberof Locals\r\n * @param {string} string - The string to adapt\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-4556,
-4925
+4578,
+4947
 ],
 "filename": "index.js",
-"lineno": 95,
+"lineno": 96,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000408",
+"id": "astnode100000410",
 "name": "attrName",
 "type": "ArrowFunctionExpression"
 },
@@ -1752,15 +1777,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-4590,
-4619
+4612,
+4641
 ],
 "filename": "index.js",
-"lineno": 96,
+"lineno": 97,
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000414",
+"id": "astnode100000416",
 "name": "sysPrefix",
 "type": "CallExpression",
 "value": ""
@@ -1778,15 +1803,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-4628,
-4776
+4650,
+4798
 ],
 "filename": "index.js",
-"lineno": 97,
+"lineno": 98,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000419",
+"id": "astnode100000421",
 "name": "tempString",
 "type": "CallExpression",
 "value": ""
@@ -1804,15 +1829,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-4801,
-4894
+4823,
+4916
 ],
 "filename": "index.js",
-"lineno": 103,
+"lineno": 104,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000449",
+"id": "astnode100000451",
 "name": "tempString",
 "type": "CallExpression",
 "funcscope": "Locals.attrName",
@@ -1831,15 +1856,15 @@ export const js = [
 "comment": "/**\r\n * Converts an ability name into an ability call for that attribute. If called from inside the block of a {@link fieldset} mixin, will also add the appropriate information for calling a repeating attribute.\r\n * @memberof Locals\r\n * @param {string} string - The ability name to create a call for.\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-5265,
-5340
+5287,
+5362
 ],
 "filename": "index.js",
-"lineno": 115,
+"lineno": 116,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000467",
+"id": "astnode100000469",
 "name": "buttonTitle",
 "type": "ArrowFunctionExpression"
 }
@@ -1875,15 +1900,15 @@ export const js = [
 "comment": "/**\r\n * Replaces spaces in a string with underscores (`_`).\r\n * @memberof Locals\r\n * @param {string} string - The string to work on\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-5513,
-5567
+5535,
+5589
 ],
 "filename": "index.js",
-"lineno": 123,
+"lineno": 124,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000482",
+"id": "astnode100000484",
 "name": "replaceSpaces",
 "type": "ArrowFunctionExpression"
 }
@@ -1919,15 +1944,15 @@ export const js = [
 "comment": "/**\r\n * Escapes problem characters in a string for use as a regex.\r\n * @memberof Locals\r\n * @param {string} string - The string to work on\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-5745,
-5814
+5767,
+5836
 ],
 "filename": "index.js",
-"lineno": 131,
+"lineno": 132,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000493",
+"id": "astnode100000495",
 "name": "replaceProblems",
 "type": "ArrowFunctionExpression"
 }
@@ -1963,15 +1988,15 @@ export const js = [
 "comment": "/**\r\n * Capitalizes the first letter of words in a string.\r\n * @memberof Locals\r\n * @param {string} string \r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-5961,
-6053
+5983,
+6075
 ],
 "filename": "index.js",
-"lineno": 139,
+"lineno": 140,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000504",
+"id": "astnode100000506",
 "name": "capitalize",
 "type": "ArrowFunctionExpression"
 },
@@ -2009,15 +2034,15 @@ export const js = [
 "comment": "/**\r\n * Converts a string to a valid kebab-case action button name\r\n * @memberof Locals\r\n * @param {string} name - The string to convert to an action button name\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-6254,
-6314
+6276,
+6336
 ],
 "filename": "index.js",
-"lineno": 147,
+"lineno": 148,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000520",
+"id": "astnode100000522",
 "name": "actionButtonName",
 "type": "ArrowFunctionExpression"
 }
@@ -2053,15 +2078,15 @@ export const js = [
 "comment": "/**\r\n * Converts the name of an action button in a roller construction to the controlling attribute name.\r\n * @memberof Locals\r\n * @param {string} name - The string to convert\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-6527,
-6603
+6549,
+6625
 ],
 "filename": "index.js",
-"lineno": 154,
+"lineno": 155,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000534",
+"id": "astnode100000536",
 "name": "actionInputName",
 "type": "ArrowFunctionExpression"
 }
@@ -2097,15 +2122,15 @@ export const js = [
 "comment": "/**\r\n * Converts a title back to an attribute name\r\n * @param {string} string - The string to convert to an attribute name\r\n * @memberof Locals\r\n * @returns {string}\r\n */",
 "meta": {
 "range": [
-6786,
-6843
+6808,
+6865
 ],
 "filename": "index.js",
-"lineno": 162,
+"lineno": 163,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000548",
+"id": "astnode100000550",
 "name": "titleToName",
 "type": "ArrowFunctionExpression"
 }
@@ -2141,15 +2166,15 @@ export const js = [
 "comment": "/**\r\n * Adds an item to a designated array property of `varObjects` for tracking.\r\n * @param {any} item - \r\n * @param {string} arrName - Name of the array to manipulate\r\n */",
 "meta": {
 "range": [
-7029,
-7208
+7051,
+7230
 ],
 "filename": "index.js",
-"lineno": 169,
+"lineno": 170,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000559",
+"id": "astnode100000561",
 "name": "addIfUnique",
 "type": "ArrowFunctionExpression"
 },
@@ -2187,15 +2212,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7066,
-7113
+7088,
+7135
 ],
 "filename": "index.js",
-"lineno": 170,
+"lineno": 171,
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000566",
+"id": "astnode100000568",
 "name": "varObjects[undefined]",
 "type": "LogicalExpression",
 "value": "",
@@ -2213,15 +2238,15 @@ export const js = [
 "comment": "/**\r\n * Stores the attribute in the cascades object.\r\n * @param {object} element - Object describing the element\r\n */",
 "meta": {
 "range": [
-7338,
-10216
+7360,
+10238
 ],
 "filename": "index.js",
-"lineno": 180,
+"lineno": 181,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000596",
+"id": "astnode100000598",
 "name": "storeTrigger",
 "type": "FunctionExpression"
 },
@@ -2272,15 +2297,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7379,
-7410
+7401,
+7432
 ],
 "filename": "index.js",
-"lineno": 181,
+"lineno": 182,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000602",
+"id": "astnode100000604",
 "name": "trigger",
 "type": "LogicalExpression",
 "value": ""
@@ -2298,15 +2323,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7421,
-7505
+7443,
+7527
 ],
 "filename": "index.js",
-"lineno": 182,
+"lineno": 183,
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000610",
+"id": "astnode100000612",
 "name": "namePrefix",
 "type": "ObjectExpression",
 "value": "{\"roll\":\"roll_\",\"action\":\"act_\",\"fieldset\":\"fieldset_\"}"
@@ -2324,15 +2349,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7441,
-7453
+7463,
+7475
 ],
 "filename": "index.js",
-"lineno": 183,
+"lineno": 184,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000613",
+"id": "astnode100000615",
 "name": "roll",
 "type": "Literal",
 "value": "roll_"
@@ -2349,15 +2374,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7460,
-7473
+7482,
+7495
 ],
 "filename": "index.js",
-"lineno": 184,
+"lineno": 185,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000615",
+"id": "astnode100000617",
 "name": "action",
 "type": "Literal",
 "value": "act_"
@@ -2374,15 +2399,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7480,
-7500
+7502,
+7522
 ],
 "filename": "index.js",
-"lineno": 185,
+"lineno": 186,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000617",
+"id": "astnode100000619",
 "name": "fieldset",
 "type": "Literal",
 "value": "fieldset_"
@@ -2399,15 +2424,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7516,
-7622
+7538,
+7644
 ],
 "filename": "index.js",
-"lineno": 187,
+"lineno": 188,
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000620",
+"id": "astnode100000622",
 "name": "typeDefs",
 "type": "ObjectExpression",
 "value": "{\"select\":\"\",\"radio\":0,\"checkbox\":0,\"number\":0,\"text\":\"\",\"span\":\"\"}"
@@ -2425,15 +2450,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7534,
-7543
+7556,
+7565
 ],
 "filename": "index.js",
-"lineno": 188,
+"lineno": 189,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000623",
+"id": "astnode100000625",
 "name": "select",
 "type": "Literal",
 "value": ""
@@ -2450,15 +2475,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7550,
-7557
+7572,
+7579
 ],
 "filename": "index.js",
-"lineno": 189,
+"lineno": 190,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000625",
+"id": "astnode100000627",
 "name": "radio",
 "type": "Literal",
 "value": 0
@@ -2475,15 +2500,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7564,
-7574
+7586,
+7596
 ],
 "filename": "index.js",
-"lineno": 190,
+"lineno": 191,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000627",
+"id": "astnode100000629",
 "name": "checkbox",
 "type": "Literal",
 "value": 0
@@ -2500,15 +2525,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7581,
-7589
+7603,
+7611
 ],
 "filename": "index.js",
-"lineno": 191,
+"lineno": 192,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000629",
+"id": "astnode100000631",
 "name": "number",
 "type": "Literal",
 "value": 0
@@ -2525,15 +2550,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7596,
-7603
+7618,
+7625
 ],
 "filename": "index.js",
-"lineno": 192,
+"lineno": 193,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000631",
+"id": "astnode100000633",
 "name": "text",
 "type": "Literal",
 "value": ""
@@ -2550,15 +2575,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7610,
-7617
+7632,
+7639
 ],
 "filename": "index.js",
-"lineno": 193,
+"lineno": 194,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000633",
+"id": "astnode100000635",
 "name": "span",
 "type": "Literal",
 "value": ""
@@ -2575,15 +2600,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7633,
-7719
+7655,
+7741
 ],
 "filename": "index.js",
-"lineno": 195,
+"lineno": 196,
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000636",
+"id": "astnode100000638",
 "name": "eventTypes",
 "type": "ObjectExpression",
 "value": "{\"roll\":\"clicked\",\"action\":\"clicked\",\"fieldset\":\"remove\"}"
@@ -2601,15 +2626,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7653,
-7667
+7675,
+7689
 ],
 "filename": "index.js",
-"lineno": 196,
+"lineno": 197,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000639",
+"id": "astnode100000641",
 "name": "roll",
 "type": "Literal",
 "value": "clicked"
@@ -2626,15 +2651,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7674,
-7690
+7696,
+7712
 ],
 "filename": "index.js",
-"lineno": 197,
+"lineno": 198,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000641",
+"id": "astnode100000643",
 "name": "action",
 "type": "Literal",
 "value": "clicked"
@@ -2651,15 +2676,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7697,
-7714
+7719,
+7736
 ],
 "filename": "index.js",
-"lineno": 198,
+"lineno": 199,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000643",
+"id": "astnode100000645",
 "name": "fieldset",
 "type": "Literal",
 "value": "remove"
@@ -2676,15 +2701,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7728,
-7809
+7750,
+7831
 ],
 "filename": "index.js",
-"lineno": 200,
+"lineno": 201,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000646",
+"id": "astnode100000648",
 "name": "elementName",
 "type": "ConditionalExpression",
 "value": ""
@@ -2702,15 +2727,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7814,
-7859
+7836,
+7881
 ],
 "filename": "index.js",
-"lineno": 203,
+"lineno": 204,
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000661",
+"id": "astnode100000663",
 "name": "trigger.name",
 "type": "CallExpression",
 "funcscope": "storeTrigger",
@@ -2729,15 +2754,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7868,
-7934
+7890,
+7956
 ],
 "filename": "index.js",
-"lineno": 204,
+"lineno": 205,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000672",
+"id": "astnode100000674",
 "name": "cascName",
 "type": "TemplateLiteral",
 "value": ""
@@ -2755,15 +2780,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-7943,
-8001
+7965,
+8023
 ],
 "filename": "index.js",
-"lineno": 205,
+"lineno": 206,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000689",
+"id": "astnode100000691",
 "name": "match",
 "type": "CallExpression",
 "value": ""
@@ -2781,15 +2806,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-8063,
-8111
+8085,
+8133
 ],
 "filename": "index.js",
-"lineno": 207,
+"lineno": 208,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000708",
+"id": "astnode100000710",
 "name": "eventType",
 "type": "LogicalExpression",
 "value": ""
@@ -2807,15 +2832,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-8278,
-8371
+8300,
+8393
 ],
 "filename": "index.js",
-"lineno": 210,
+"lineno": 211,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000747",
+"id": "astnode100000749",
 "name": "trigger.listener",
 "type": "LogicalExpression",
 "funcscope": "storeTrigger",
@@ -2834,15 +2859,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-8380,
-8440
+8402,
+8462
 ],
 "filename": "index.js",
-"lineno": 211,
+"lineno": 212,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000770",
+"id": "astnode100000772",
 "name": "trigger.listenerFunc",
 "type": "LogicalExpression",
 "funcscope": "storeTrigger",
@@ -2861,15 +2886,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-8454,
-8481
+8476,
+8503
 ],
 "filename": "index.js",
-"lineno": 213,
+"lineno": 214,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000780",
+"id": "astnode100000782",
 "name": "trigger.type",
 "type": "MemberExpression",
 "funcscope": "storeTrigger",
@@ -2888,15 +2913,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-8526,
-8900
+8548,
+8922
 ],
 "filename": "index.js",
-"lineno": 215,
+"lineno": 216,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000796",
+"id": "astnode100000798",
 "name": "trigger.defaultValue",
 "type": "ConditionalExpression",
 "funcscope": "storeTrigger",
@@ -2915,15 +2940,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-8909,
-8962
+8931,
+8984
 ],
 "filename": "index.js",
-"lineno": 224,
+"lineno": 225,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000847",
+"id": "astnode100000849",
 "name": "trigger.triggeredFuncs",
 "type": "LogicalExpression",
 "funcscope": "storeTrigger",
@@ -2942,15 +2967,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-9001,
-9071
+9023,
+9093
 ],
 "filename": "index.js",
-"lineno": 226,
+"lineno": 227,
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000862",
+"id": "astnode100000864",
 "name": "trigger.affects",
 "type": "CallExpression",
 "funcscope": "storeTrigger",
@@ -2969,15 +2994,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-9096,
-9116
+9118,
+9138
 ],
 "filename": "index.js",
-"lineno": 228,
+"lineno": 229,
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000879",
+"id": "astnode100000881",
 "name": "trigger.affects",
 "type": "ArrayExpression",
 "funcscope": "storeTrigger",
@@ -2996,15 +3021,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-9139,
-9183
+9161,
+9205
 ],
 "filename": "index.js",
-"lineno": 231,
+"lineno": 232,
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000885",
+"id": "astnode100000887",
 "name": "varObjects.cascades[undefined]",
 "type": "ObjectExpression",
 "value": "{}",
@@ -3022,15 +3047,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-9260,
-9486
+9282,
+9508
 ],
 "filename": "index.js",
-"lineno": 234,
+"lineno": 235,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000908",
+"id": "astnode100000910",
 "name": "varObjects.cascades[undefined].triggeredFuncs",
 "type": "ConditionalExpression",
 "value": "",
@@ -3048,15 +3073,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-9495,
-9687
+9517,
+9709
 ],
 "filename": "index.js",
-"lineno": 237,
+"lineno": 238,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000945",
+"id": "astnode100000947",
 "name": "varObjects.cascades[undefined].affects",
 "type": "ConditionalExpression",
 "value": "",
@@ -3074,15 +3099,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-9696,
-9814
+9718,
+9836
 ],
 "filename": "index.js",
-"lineno": 240,
+"lineno": 241,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100000982",
+"id": "astnode100000984",
 "name": "varObjects.cascades[undefined].calculation",
 "type": "LogicalExpression",
 "value": "",
@@ -3100,15 +3125,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-9906,
-10063
+9928,
+10085
 ],
 "filename": "index.js",
-"lineno": 244,
+"lineno": 245,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001015",
+"id": "astnode100001017",
 "name": "varObjects.cascades[undefined].listener",
 "type": "LogicalExpression",
 "value": "",
@@ -3126,15 +3151,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-10072,
-10200
+10094,
+10222
 ],
 "filename": "index.js",
-"lineno": 245,
+"lineno": 246,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001050",
+"id": "astnode100001052",
 "name": "varObjects.cascades[undefined].listenerFunc",
 "type": "LogicalExpression",
 "value": "",
@@ -3152,15 +3177,15 @@ export const js = [
 "comment": "/**\r\n * Finds the details for a specific repeating section\r\n * @param {string} section - The name of the repeating section\r\n * @returns {object}\r\n */",
 "meta": {
 "range": [
-10378,
-10509
+10400,
+10531
 ],
 "filename": "index.js",
-"lineno": 255,
+"lineno": 256,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001072",
+"id": "astnode100001074",
 "name": "getSectionDetails",
 "type": "FunctionExpression"
 },
@@ -3198,15 +3223,15 @@ export const js = [
 "comment": "/**\r\n * Creates an object to store information about a repating section in `varObjects` and pushes it to `repeatingSectionDetails`.\r\n * @param {string} section - The name of the repeating section\r\n */",
 "meta": {
 "range": [
-10722,
-10878
+10744,
+10900
 ],
 "filename": "index.js",
-"lineno": 263,
+"lineno": 264,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001094",
+"id": "astnode100001096",
 "name": "createFieldsetObj",
 "type": "FunctionExpression"
 }
@@ -3232,15 +3257,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-10843,
-10850
+10865,
+10872
 ],
 "filename": "index.js",
-"lineno": 265,
+"lineno": 266,
 "columnno": 45,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001112",
+"id": "astnode100001114",
 "name": "section",
 "type": "Identifier",
 "value": "section"
@@ -3256,15 +3281,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-10851,
-10860
+10873,
+10882
 ],
 "filename": "index.js",
-"lineno": 265,
+"lineno": 266,
 "columnno": 53,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001114",
+"id": "astnode100001116",
 "name": "fields",
 "type": "ArrayExpression",
 "value": "[]"
@@ -3280,15 +3305,15 @@ export const js = [
 "comment": "/**\r\n * Adds info on an attribute to an existing repeating section detail object.\r\n * @param {object} obj - Object describing the attribute element being created\r\n */",
 "meta": {
 "range": [
-11057,
-11364
+11079,
+11386
 ],
 "filename": "index.js",
-"lineno": 273,
+"lineno": 274,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001118",
+"id": "astnode100001120",
 "name": "addFieldToFieldsetObj",
 "type": "FunctionExpression"
 },
@@ -3319,15 +3344,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11103,
-11153
+11125,
+11175
 ],
 "filename": "index.js",
-"lineno": 274,
+"lineno": 275,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001124",
+"id": "astnode100001126",
 "name": "section",
 "type": "CallExpression",
 "value": ""
@@ -3345,15 +3370,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11162,
-11205
+11184,
+11227
 ],
 "filename": "index.js",
-"lineno": 275,
+"lineno": 276,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001135",
+"id": "astnode100001137",
 "name": "sectionDetails",
 "type": "CallExpression",
 "value": ""
@@ -3371,15 +3396,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11214,
-11250
+11236,
+11272
 ],
 "filename": "index.js",
-"lineno": 276,
+"lineno": 277,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001141",
+"id": "astnode100001143",
 "name": "name",
 "type": "CallExpression",
 "value": ""
@@ -3397,15 +3422,15 @@ export const js = [
 "comment": "/**\r\n * Converts a k-scaffold element object with a trigger to an element object without k-scaffold specific information.\r\n * @param {object} obj - The object to convert\r\n * @returns {object}\r\n */",
 "meta": {
 "range": [
-11573,
-11679
+11595,
+11701
 ],
 "filename": "index.js",
-"lineno": 287,
+"lineno": 288,
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001173",
+"id": "astnode100001175",
 "name": "makeElementObj",
 "type": "FunctionExpression"
 },
@@ -3443,15 +3468,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11614,
-11631
+11636,
+11653
 ],
 "filename": "index.js",
-"lineno": 288,
+"lineno": 289,
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001179",
+"id": "astnode100001181",
 "name": "newObj",
 "type": "ObjectExpression",
 "value": "{}"
@@ -3469,15 +3494,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11684,
-12004
+11706,
+12026
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001192",
+"id": "astnode100001194",
 "name": "module.exports",
 "type": "ObjectExpression",
 "value": "{\"varObjects\":\"\",\"k\":\"\",\"resetObjs\":\"\",\"checkKUse\":\"\",\"getSystemPrefix\":\"\",\"setSystemPrefix\":\"\",\"attrTitle\":\"\",\"attrName\":\"\",\"buttonTitle\":\"\",\"replaceSpaces\":\"\",\"replaceProblems\":\"\",\"capitalize\":\"\",\"actionButtonName\":\"\",\"actionInputName\":\"\",\"titleToName\":\"\",\"addIfUnique\":\"\",\"storeTrigger\":\"\",\"getSectionDetails\":\"\",\"createFieldsetObj\":\"\",\"addFieldToFieldsetObj\":\"\",\"makeElementObj\":\"\"}",
@@ -3495,15 +3520,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11703,
-11713
+11725,
+11735
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 19,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001197",
+"id": "astnode100001199",
 "name": "varObjects",
 "type": "Identifier",
 "value": "varObjects"
@@ -3520,15 +3545,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11715,
-11716
+11737,
+11738
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 31,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001199",
+"id": "astnode100001201",
 "name": "k",
 "type": "Identifier",
 "value": "k"
@@ -3545,15 +3570,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11718,
-11727
+11740,
+11749
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 34,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001201",
+"id": "astnode100001203",
 "name": "resetObjs",
 "type": "Identifier",
 "value": "resetObjs"
@@ -3570,15 +3595,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11729,
-11738
+11751,
+11760
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 45,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001203",
+"id": "astnode100001205",
 "name": "checkKUse",
 "type": "Identifier",
 "value": "checkKUse"
@@ -3595,15 +3620,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11740,
-11755
+11762,
+11777
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 56,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001205",
+"id": "astnode100001207",
 "name": "getSystemPrefix",
 "type": "Identifier",
 "value": "getSystemPrefix"
@@ -3620,15 +3645,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11757,
-11772
+11779,
+11794
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 73,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001207",
+"id": "astnode100001209",
 "name": "setSystemPrefix",
 "type": "Identifier",
 "value": "setSystemPrefix"
@@ -3645,15 +3670,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11774,
-11783
+11796,
+11805
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 90,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001209",
+"id": "astnode100001211",
 "name": "attrTitle",
 "type": "Identifier",
 "value": "attrTitle"
@@ -3670,15 +3695,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11785,
-11793
+11807,
+11815
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 101,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001211",
+"id": "astnode100001213",
 "name": "attrName",
 "type": "Identifier",
 "value": "attrName"
@@ -3695,15 +3720,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11795,
-11806
+11817,
+11828
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 111,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001213",
+"id": "astnode100001215",
 "name": "buttonTitle",
 "type": "Identifier",
 "value": "buttonTitle"
@@ -3720,15 +3745,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11808,
-11821
+11830,
+11843
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 124,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001215",
+"id": "astnode100001217",
 "name": "replaceSpaces",
 "type": "Identifier",
 "value": "replaceSpaces"
@@ -3745,15 +3770,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11823,
-11838
+11845,
+11860
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 139,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001217",
+"id": "astnode100001219",
 "name": "replaceProblems",
 "type": "Identifier",
 "value": "replaceProblems"
@@ -3770,15 +3795,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11840,
-11850
+11862,
+11872
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 156,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001219",
+"id": "astnode100001221",
 "name": "capitalize",
 "type": "Identifier",
 "value": "capitalize"
@@ -3795,15 +3820,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11852,
-11868
+11874,
+11890
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 168,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001221",
+"id": "astnode100001223",
 "name": "actionButtonName",
 "type": "Identifier",
 "value": "actionButtonName"
@@ -3820,15 +3845,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11870,
-11885
+11892,
+11907
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 186,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001223",
+"id": "astnode100001225",
 "name": "actionInputName",
 "type": "Identifier",
 "value": "actionInputName"
@@ -3845,15 +3870,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11887,
-11898
+11909,
+11920
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 203,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001225",
+"id": "astnode100001227",
 "name": "titleToName",
 "type": "Identifier",
 "value": "titleToName"
@@ -3870,15 +3895,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11900,
-11911
+11922,
+11933
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 216,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001227",
+"id": "astnode100001229",
 "name": "addIfUnique",
 "type": "Identifier",
 "value": "addIfUnique"
@@ -3895,15 +3920,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11913,
-11925
+11935,
+11947
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 229,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001229",
+"id": "astnode100001231",
 "name": "storeTrigger",
 "type": "Identifier",
 "value": "storeTrigger"
@@ -3920,15 +3945,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11927,
-11944
+11949,
+11966
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 243,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001231",
+"id": "astnode100001233",
 "name": "getSectionDetails",
 "type": "Identifier",
 "value": "getSectionDetails"
@@ -3945,15 +3970,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11946,
-11963
+11968,
+11985
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 262,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001233",
+"id": "astnode100001235",
 "name": "createFieldsetObj",
 "type": "Identifier",
 "value": "createFieldsetObj"
@@ -3970,15 +3995,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11965,
-11986
+11987,
+12008
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 281,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001235",
+"id": "astnode100001237",
 "name": "addFieldToFieldsetObj",
 "type": "Identifier",
 "value": "addFieldToFieldsetObj"
@@ -3995,15 +4020,15 @@ export const js = [
 "comment": "",
 "meta": {
 "range": [
-11988,
-12002
+12010,
+12024
 ],
 "filename": "index.js",
-"lineno": 293,
+"lineno": 294,
 "columnno": 304,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render\\locals",
 "code": {
-"id": "astnode100001237",
+"id": "astnode100001239",
 "name": "makeElementObj",
 "type": "Identifier",
 "value": "makeElementObj"
@@ -4028,7 +4053,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001242",
+"id": "astnode100001244",
 "name": "path",
 "type": "CallExpression",
 "value": ""
@@ -4053,7 +4078,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001248",
+"id": "astnode100001250",
 "name": "fs",
 "type": "CallExpression",
 "value": ""
@@ -4078,7 +4103,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001254",
+"id": "astnode100001256",
 "name": "jsdom",
 "type": "CallExpression",
 "value": ""
@@ -4103,7 +4128,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001262",
+"id": "astnode100001264",
 "name": "JSDOM",
 "type": "Identifier",
 "value": "JSDOM"
@@ -4127,7 +4152,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001266",
+"id": "astnode100001268",
 "name": "outputTests",
 "type": "CallExpression",
 "value": ""
@@ -4152,7 +4177,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001272",
+"id": "astnode100001274",
 "name": "outputPug",
 "type": "ArrowFunctionExpression"
 },
@@ -4188,7 +4213,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001284",
+"id": "astnode100001286",
 "name": "destDir",
 "type": "CallExpression",
 "value": ""
@@ -4214,7 +4239,7 @@ export const js = [
 "columnno": 26,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001299",
+"id": "astnode100001301",
 "name": "recursive",
 "type": "Literal",
 "value": true
@@ -4238,7 +4263,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001319",
+"id": "astnode100001321",
 "name": "dom",
 "type": "NewExpression",
 "value": ""
@@ -4264,7 +4289,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001327",
+"id": "astnode100001329",
 "name": "window",
 "type": "Identifier",
 "value": "window"
@@ -4288,7 +4313,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001333",
+"id": "astnode100001335",
 "name": "document",
 "type": "Identifier",
 "value": "document"
@@ -4312,7 +4337,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001346",
+"id": "astnode100001348",
 "name": "i18nSubTypes",
 "type": "ArrayExpression",
 "value": "[\"\",\"-title\",\"-placeholder\",\"-label\",\"-aria-label\",\"-alt\",\"-vars\",\"-dynamic\",\"-list\"]"
@@ -4338,7 +4363,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001359",
+"id": "astnode100001361",
 "name": "translations",
 "type": "CallExpression",
 "value": ""
@@ -4364,7 +4389,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001370",
+"id": "astnode100001372",
 "name": "transElems",
 "type": "ArrayExpression",
 "value": "[\"\"]"
@@ -4390,7 +4415,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001383",
+"id": "astnode100001385",
 "name": "baseType",
 "type": "CallExpression",
 "value": ""
@@ -4416,7 +4441,7 @@ export const js = [
 "columnno": 14,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001405",
+"id": "astnode100001407",
 "name": "listArr",
 "type": "ArrayExpression",
 "value": "[]"
@@ -4442,7 +4467,7 @@ export const js = [
 "columnno": 14,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001409",
+"id": "astnode100001411",
 "name": "items",
 "type": "ArrayExpression",
 "value": "[\"\"]"
@@ -4468,7 +4493,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001442",
+"id": "astnode100001444",
 "name": "memo[undefined]",
 "type": "CallExpression",
 "value": "",
@@ -4493,7 +4518,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001468",
+"id": "astnode100001470",
 "name": "memo[undefined]",
 "type": "LogicalExpression",
 "value": "",
@@ -4518,7 +4543,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001503",
+"id": "astnode100001505",
 "name": "transPath",
 "type": "CallExpression",
 "value": ""
@@ -4544,7 +4569,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001516",
+"id": "astnode100001518",
 "name": "currTranslation",
 "type": "AwaitExpression",
 "value": ""
@@ -4570,7 +4595,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001544",
+"id": "astnode100001546",
 "name": "toUse",
 "type": "ObjectExpression",
 "value": "{}"
@@ -4596,7 +4621,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001566",
+"id": "astnode100001568",
 "name": "module.exports",
 "type": "Identifier",
 "value": "outputPug",
@@ -4622,7 +4647,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001574",
+"id": "astnode100001576",
 "name": "path",
 "type": "CallExpression",
 "value": ""
@@ -4647,7 +4672,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001580",
+"id": "astnode100001582",
 "name": "fs",
 "type": "CallExpression",
 "value": ""
@@ -4672,7 +4697,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001586",
+"id": "astnode100001588",
 "name": "outputTests",
 "type": "ArrowFunctionExpression"
 },
@@ -4708,7 +4733,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001593",
+"id": "astnode100001595",
 "name": "mockPath",
 "type": "CallExpression",
 "value": ""
@@ -4734,7 +4759,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001602",
+"id": "astnode100001604",
 "name": "mockScafPath",
 "type": "CallExpression",
 "value": ""
@@ -4760,7 +4785,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001611",
+"id": "astnode100001613",
 "name": "scriptContent",
 "type": "ChainExpression",
 "value": ""
@@ -4786,7 +4811,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001619",
+"id": "astnode100001621",
 "name": "repeatingAttributes",
 "type": "CallExpression",
 "value": ""
@@ -4812,7 +4837,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001636",
+"id": "astnode100001638",
 "name": "repAttr",
 "type": "ArrayExpression",
 "value": "[\"\"]"
@@ -4838,7 +4863,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001656",
+"id": "astnode100001658",
 "name": "attributes",
 "type": "CallExpression",
 "value": ""
@@ -4864,7 +4889,7 @@ export const js = [
 "columnno": 14,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001686",
+"id": "astnode100001688",
 "name": "name",
 "type": "CallExpression",
 "value": ""
@@ -4890,7 +4915,7 @@ export const js = [
 "columnno": 14,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001717",
+"id": "astnode100001719",
 "name": "tag",
 "type": "MemberExpression",
 "value": "el.tagName"
@@ -4916,7 +4941,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001728",
+"id": "astnode100001730",
 "name": "memo[undefined]",
 "type": "LogicalExpression",
 "value": "",
@@ -4941,7 +4966,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001748",
+"id": "astnode100001750",
 "name": "memo[undefined]",
 "type": "MemberExpression",
 "value": "el.value",
@@ -4966,7 +4991,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001763",
+"id": "astnode100001765",
 "name": "memo[undefined]",
 "type": "ConditionalExpression",
 "value": "",
@@ -4991,7 +5016,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001777",
+"id": "astnode100001779",
 "name": "memo[undefined]",
 "type": "LogicalExpression",
 "value": "",
@@ -5016,7 +5041,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001792",
+"id": "astnode100001794",
 "name": "scriptPrepend",
 "type": "AwaitExpression",
 "value": ""
@@ -5042,7 +5067,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001816",
+"id": "astnode100001818",
 "name": "scriptAppend",
 "type": "AwaitExpression",
 "value": ""
@@ -5068,7 +5093,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001826",
+"id": "astnode100001828",
 "name": "testContent",
 "type": "TemplateLiteral",
 "value": ""
@@ -5094,7 +5119,7 @@ export const js = [
 "columnno": 30,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001844",
+"id": "astnode100001846",
 "name": "recursive",
 "type": "Literal",
 "value": true
@@ -5118,7 +5143,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001859",
+"id": "astnode100001861",
 "name": "module.exports",
 "type": "Identifier",
 "value": "outputTests",
@@ -5144,7 +5169,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001867",
+"id": "astnode100001869",
 "name": "fs",
 "type": "CallExpression",
 "value": ""
@@ -5169,7 +5194,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001873",
+"id": "astnode100001875",
 "name": "kStatus",
 "type": "CallExpression",
 "value": ""
@@ -5194,7 +5219,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001879",
+"id": "astnode100001881",
 "name": "resolvePaths",
 "type": "CallExpression",
 "value": ""
@@ -5219,7 +5244,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001885",
+"id": "astnode100001887",
 "name": "renderSASS",
 "type": "CallExpression",
 "value": ""
@@ -5244,7 +5269,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001891",
+"id": "astnode100001893",
 "name": "renderPug",
 "type": "CallExpression",
 "value": ""
@@ -5269,7 +5294,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001897",
+"id": "astnode100001899",
 "name": "isSASS",
 "type": "ArrowFunctionExpression"
 }
@@ -5294,7 +5319,7 @@ export const js = [
 "columnno": 23,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001901",
+"id": "astnode100001903",
 "name": "entry",
 "type": "Identifier",
 "value": "entry"
@@ -5318,7 +5343,7 @@ export const js = [
 "columnno": 29,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001903",
+"id": "astnode100001905",
 "name": "source",
 "type": "Identifier",
 "value": "resSource"
@@ -5342,7 +5367,7 @@ export const js = [
 "columnno": 46,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001905",
+"id": "astnode100001907",
 "name": "destination",
 "type": "Identifier",
 "value": "resDest"
@@ -5366,7 +5391,7 @@ export const js = [
 "columnno": 66,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001907",
+"id": "astnode100001909",
 "name": "options",
 "type": "Identifier",
 "value": "options"
@@ -5390,7 +5415,7 @@ export const js = [
 "columnno": 74,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001909",
+"id": "astnode100001911",
 "name": "runSCSS",
 "type": "Identifier",
 "value": "runSCSS"
@@ -5414,7 +5439,7 @@ export const js = [
 "columnno": 23,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001936",
+"id": "astnode100001938",
 "name": "source",
 "type": "Identifier",
 "value": "resSource"
@@ -5438,7 +5463,7 @@ export const js = [
 "columnno": 40,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001938",
+"id": "astnode100001940",
 "name": "destination",
 "type": "Identifier",
 "value": "resDest"
@@ -5462,7 +5487,7 @@ export const js = [
 "columnno": 60,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001940",
+"id": "astnode100001942",
 "name": "options",
 "type": "Identifier",
 "value": "options"
@@ -5486,7 +5511,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001943",
+"id": "astnode100001945",
 "name": "isPUG",
 "type": "ArrowFunctionExpression"
 }
@@ -5511,7 +5536,7 @@ export const js = [
 "columnno": 22,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001947",
+"id": "astnode100001949",
 "name": "entry",
 "type": "Identifier",
 "value": "entry"
@@ -5535,7 +5560,7 @@ export const js = [
 "columnno": 28,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001949",
+"id": "astnode100001951",
 "name": "source",
 "type": "Identifier",
 "value": "resSource"
@@ -5559,7 +5584,7 @@ export const js = [
 "columnno": 45,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001951",
+"id": "astnode100001953",
 "name": "destination",
 "type": "Identifier",
 "value": "resDest"
@@ -5583,7 +5608,7 @@ export const js = [
 "columnno": 65,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001953",
+"id": "astnode100001955",
 "name": "testDestination",
 "type": "Identifier",
 "value": "testDestination"
@@ -5607,7 +5632,7 @@ export const js = [
 "columnno": 81,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001955",
+"id": "astnode100001957",
 "name": "options",
 "type": "Identifier",
 "value": "options"
@@ -5631,7 +5656,7 @@ export const js = [
 "columnno": 89,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001957",
+"id": "astnode100001959",
 "name": "runPUG",
 "type": "Identifier",
 "value": "runPUG"
@@ -5655,7 +5680,7 @@ export const js = [
 "columnno": 22,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001984",
+"id": "astnode100001986",
 "name": "source",
 "type": "Identifier",
 "value": "resSource"
@@ -5679,7 +5704,7 @@ export const js = [
 "columnno": 39,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001986",
+"id": "astnode100001988",
 "name": "destination",
 "type": "Identifier",
 "value": "resDest"
@@ -5703,7 +5728,7 @@ export const js = [
 "columnno": 59,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001988",
+"id": "astnode100001990",
 "name": "testDestination",
 "type": "Identifier",
 "value": "testDestination"
@@ -5727,7 +5752,7 @@ export const js = [
 "columnno": 75,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001990",
+"id": "astnode100001992",
 "name": "options",
 "type": "Identifier",
 "value": "options"
@@ -5751,7 +5776,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001993",
+"id": "astnode100001995",
 "name": "processSheet",
 "type": "ArrowFunctionExpression"
 },
@@ -5786,7 +5811,7 @@ export const js = [
 "columnno": 29,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100001997",
+"id": "astnode100001999",
 "name": "source",
 "type": "AssignmentPattern",
 "value": "source"
@@ -5810,7 +5835,7 @@ export const js = [
 "columnno": 42,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002001",
+"id": "astnode100002003",
 "name": "destination",
 "type": "Identifier",
 "value": "destination"
@@ -5834,7 +5859,7 @@ export const js = [
 "columnno": 54,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002003",
+"id": "astnode100002005",
 "name": "testDestination",
 "type": "Identifier",
 "value": "testDestination"
@@ -5858,7 +5883,7 @@ export const js = [
 "columnno": 70,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002005",
+"id": "astnode100002007",
 "name": "pugOptions",
 "type": "AssignmentPattern",
 "value": "pugOptions"
@@ -5882,7 +5907,7 @@ export const js = [
 "columnno": 82,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002009",
+"id": "astnode100002011",
 "name": "suppressStack",
 "type": "Literal",
 "value": true
@@ -5906,7 +5931,7 @@ export const js = [
 "columnno": 102,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002011",
+"id": "astnode100002013",
 "name": "scssOptions",
 "type": "AssignmentPattern",
 "value": "scssOptions"
@@ -5930,7 +5955,7 @@ export const js = [
 "columnno": 117,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002015",
+"id": "astnode100002017",
 "name": "runSCSS",
 "type": "AssignmentPattern",
 "value": "runSCSS"
@@ -5954,7 +5979,7 @@ export const js = [
 "columnno": 130,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002019",
+"id": "astnode100002021",
 "name": "runPUG",
 "type": "AssignmentPattern",
 "value": "runPUG"
@@ -5978,7 +6003,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002025",
+"id": "astnode100002027",
 "name": "files",
 "type": "AwaitExpression",
 "value": ""
@@ -6004,7 +6029,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002034",
+"id": "astnode100002036",
 "name": "pugPromises",
 "type": "ArrayExpression",
 "value": "[]"
@@ -6030,7 +6055,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002038",
+"id": "astnode100002040",
 "name": "scssPromises",
 "type": "ArrayExpression",
 "value": "[]"
@@ -6056,7 +6081,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002085",
+"id": "astnode100002087",
 "name": "newSASS",
 "type": "AwaitExpression",
 "value": ""
@@ -6082,7 +6107,7 @@ export const js = [
 "columnno": 36,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002091",
+"id": "astnode100002093",
 "name": "entry",
 "type": "Identifier",
 "value": "entry"
@@ -6106,7 +6131,7 @@ export const js = [
 "columnno": 42,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002093",
+"id": "astnode100002095",
 "name": "source",
 "type": "Identifier",
 "value": "resSource"
@@ -6130,7 +6155,7 @@ export const js = [
 "columnno": 59,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002095",
+"id": "astnode100002097",
 "name": "destination",
 "type": "Identifier",
 "value": "resDest"
@@ -6154,7 +6179,7 @@ export const js = [
 "columnno": 79,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002097",
+"id": "astnode100002099",
 "name": "options",
 "type": "Identifier",
 "value": "scssOptions"
@@ -6178,7 +6203,7 @@ export const js = [
 "columnno": 99,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002099",
+"id": "astnode100002101",
 "name": "runSCSS",
 "type": "Identifier",
 "value": "runSCSS"
@@ -6202,7 +6227,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002102",
+"id": "astnode100002104",
 "name": "newPUG",
 "type": "AwaitExpression",
 "value": ""
@@ -6228,7 +6253,7 @@ export const js = [
 "columnno": 34,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002108",
+"id": "astnode100002110",
 "name": "entry",
 "type": "Identifier",
 "value": "entry"
@@ -6252,7 +6277,7 @@ export const js = [
 "columnno": 40,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002110",
+"id": "astnode100002112",
 "name": "source",
 "type": "Identifier",
 "value": "resSource"
@@ -6276,7 +6301,7 @@ export const js = [
 "columnno": 57,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002112",
+"id": "astnode100002114",
 "name": "destination",
 "type": "Identifier",
 "value": "resDest"
@@ -6300,7 +6325,7 @@ export const js = [
 "columnno": 77,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002114",
+"id": "astnode100002116",
 "name": "testDestination",
 "type": "Identifier",
 "value": "testDestination"
@@ -6324,7 +6349,7 @@ export const js = [
 "columnno": 93,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002116",
+"id": "astnode100002118",
 "name": "options",
 "type": "Identifier",
 "value": "pugOptions"
@@ -6348,7 +6373,7 @@ export const js = [
 "columnno": 112,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002118",
+"id": "astnode100002120",
 "name": "runPUG",
 "type": "Identifier",
 "value": "runPUG"
@@ -6372,7 +6397,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002139",
+"id": "astnode100002141",
 "name": "pugOutput",
 "type": "AwaitExpression",
 "value": ""
@@ -6398,7 +6423,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002148",
+"id": "astnode100002150",
 "name": "scssOutput",
 "type": "AwaitExpression",
 "value": ""
@@ -6424,7 +6449,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002161",
+"id": "astnode100002163",
 "name": "module.exports",
 "type": "Identifier",
 "value": "processSheet",
@@ -6450,7 +6475,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002169",
+"id": "astnode100002171",
 "name": "pug",
 "type": "CallExpression",
 "value": ""
@@ -6475,7 +6500,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002175",
+"id": "astnode100002177",
 "name": "path",
 "type": "CallExpression",
 "value": ""
@@ -6500,7 +6525,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002181",
+"id": "astnode100002183",
 "name": "kErrorHead",
 "type": "CallExpression",
 "value": ""
@@ -6525,7 +6550,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002187",
+"id": "astnode100002189",
 "name": "getTemplate",
 "type": "CallExpression",
 "value": ""
@@ -6550,7 +6575,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002193",
+"id": "astnode100002195",
 "name": "outputPug",
 "type": "CallExpression",
 "value": ""
@@ -6575,7 +6600,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002199",
+"id": "astnode100002201",
 "name": "renderPug",
 "type": "ArrowFunctionExpression"
 },
@@ -6655,7 +6680,7 @@ export const js = [
 "columnno": 26,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002203",
+"id": "astnode100002205",
 "name": "source",
 "type": "Identifier",
 "value": "source"
@@ -6679,7 +6704,7 @@ export const js = [
 "columnno": 33,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002205",
+"id": "astnode100002207",
 "name": "destination",
 "type": "Identifier",
 "value": "destination"
@@ -6703,7 +6728,7 @@ export const js = [
 "columnno": 45,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002207",
+"id": "astnode100002209",
 "name": "testDestination",
 "type": "Identifier",
 "value": "testDestination"
@@ -6727,7 +6752,7 @@ export const js = [
 "columnno": 61,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002209",
+"id": "astnode100002211",
 "name": "options",
 "type": "AssignmentPattern",
 "value": "options"
@@ -6751,7 +6776,7 @@ export const js = [
 "columnno": 70,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002213",
+"id": "astnode100002215",
 "name": "suppressStack",
 "type": "Literal",
 "value": true
@@ -6775,7 +6800,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002217",
+"id": "astnode100002219",
 "name": "template",
 "type": "AwaitExpression",
 "value": ""
@@ -6801,7 +6826,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002226",
+"id": "astnode100002228",
 "name": "k",
 "type": "CallExpression",
 "value": ""
@@ -6827,7 +6852,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002237",
+"id": "astnode100002239",
 "name": "html",
 "type": "CallExpression",
 "value": ""
@@ -6853,7 +6878,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002245",
+"id": "astnode100002247",
 "name": "pretty",
 "type": "Literal",
 "value": true
@@ -6877,7 +6902,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002251",
+"id": "astnode100002253",
 "name": "filename",
 "type": "Identifier",
 "value": "source"
@@ -6901,7 +6926,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002253",
+"id": "astnode100002255",
 "name": "basedir",
 "type": "CallExpression",
 "value": ""
@@ -6925,7 +6950,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002320",
+"id": "astnode100002322",
 "name": "module.exports",
 "type": "Identifier",
 "value": "renderPug",
@@ -6951,7 +6976,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002328",
+"id": "astnode100002330",
 "name": "sass",
 "type": "CallExpression",
 "value": ""
@@ -6976,7 +7001,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002334",
+"id": "astnode100002336",
 "name": "path",
 "type": "CallExpression",
 "value": ""
@@ -7001,7 +7026,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002340",
+"id": "astnode100002342",
 "name": "fs",
 "type": "CallExpression",
 "value": ""
@@ -7026,7 +7051,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002348",
+"id": "astnode100002350",
 "name": "pathToFileURL",
 "type": "Identifier",
 "value": "pathToFileURL"
@@ -7050,7 +7075,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002354",
+"id": "astnode100002356",
 "name": "kErrorHead",
 "type": "CallExpression",
 "value": ""
@@ -7075,7 +7100,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002360",
+"id": "astnode100002362",
 "name": "renderSASS",
 "type": "ArrowFunctionExpression"
 },
@@ -7147,7 +7172,7 @@ export const js = [
 "columnno": 27,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002364",
+"id": "astnode100002366",
 "name": "source",
 "type": "Identifier",
 "value": "source"
@@ -7171,7 +7196,7 @@ export const js = [
 "columnno": 34,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002366",
+"id": "astnode100002368",
 "name": "destination",
 "type": "Identifier",
 "value": "destination"
@@ -7195,7 +7220,7 @@ export const js = [
 "columnno": 46,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002368",
+"id": "astnode100002370",
 "name": "options",
 "type": "AssignmentPattern",
 "value": "options"
@@ -7219,7 +7244,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002376",
+"id": "astnode100002378",
 "name": "dirname",
 "type": "CallExpression",
 "value": ""
@@ -7245,7 +7270,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002390",
+"id": "astnode100002392",
 "name": "compileOptions",
 "type": "ObjectExpression",
 "value": "{\"charset\":false,\"importers\":\"\"}"
@@ -7271,7 +7296,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002393",
+"id": "astnode100002395",
 "name": "charset",
 "type": "Literal",
 "value": false
@@ -7296,7 +7321,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002395",
+"id": "astnode100002397",
 "name": "importers",
 "type": "ArrayExpression",
 "value": "[\"{\\\"findFileUrl\\\":\\\"\\\"}\"]"
@@ -7321,7 +7346,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002398",
+"id": "astnode100002400",
 "name": "findFileUrl",
 "type": "FunctionExpression"
 },
@@ -7348,7 +7373,7 @@ export const js = [
 "columnno": 18,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002412",
+"id": "astnode100002414",
 "name": "fileURL",
 "type": "CallExpression",
 "value": ""
@@ -7374,7 +7399,7 @@ export const js = [
 "columnno": 18,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002428",
+"id": "astnode100002430",
 "name": "newURL",
 "type": "NewExpression",
 "value": ""
@@ -7400,7 +7425,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002436",
+"id": "astnode100002438",
 "name": "currOptions",
 "type": "ObjectExpression",
 "value": "{}"
@@ -7426,7 +7451,7 @@ export const js = [
 "columnno": 11,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002472",
+"id": "astnode100002474",
 "name": "css",
 "type": "Identifier",
 "value": "css"
@@ -7450,7 +7475,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002531",
+"id": "astnode100002533",
 "name": "module.exports",
 "type": "Identifier",
 "value": "renderSASS",
@@ -7476,7 +7501,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002541",
+"id": "astnode100002543",
 "name": "resolve",
 "type": "Identifier",
 "value": "resolve"
@@ -7500,7 +7525,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002547",
+"id": "astnode100002549",
 "name": "path",
 "type": "CallExpression",
 "value": ""
@@ -7525,7 +7550,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002553",
+"id": "astnode100002555",
 "name": "resolvePaths",
 "type": "ArrowFunctionExpression"
 },
@@ -7553,7 +7578,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002561",
+"id": "astnode100002563",
 "name": "resSource",
 "type": "CallExpression",
 "value": ""
@@ -7579,7 +7604,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002572",
+"id": "astnode100002574",
 "name": "resDest",
 "type": "ConditionalExpression",
 "value": ""
@@ -7605,7 +7630,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002600",
+"id": "astnode100002602",
 "name": "module.exports",
 "type": "Identifier",
 "value": "resolvePaths",
@@ -7631,7 +7656,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002608",
+"id": "astnode100002610",
 "name": "watch",
 "type": "CallExpression",
 "value": ""
@@ -7656,7 +7681,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002614",
+"id": "astnode100002616",
 "name": "processSheet",
 "type": "CallExpression",
 "value": ""
@@ -7681,7 +7706,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002620",
+"id": "astnode100002622",
 "name": "kWatch",
 "type": "ArrowFunctionExpression"
 },
@@ -7708,7 +7733,7 @@ export const js = [
 "columnno": 17,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002624",
+"id": "astnode100002626",
 "name": "source",
 "type": "AssignmentPattern",
 "value": "source"
@@ -7732,7 +7757,7 @@ export const js = [
 "columnno": 30,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002628",
+"id": "astnode100002630",
 "name": "destination",
 "type": "Identifier",
 "value": "destination"
@@ -7756,7 +7781,7 @@ export const js = [
 "columnno": 42,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002630",
+"id": "astnode100002632",
 "name": "testDestination",
 "type": "Identifier",
 "value": "testDestination"
@@ -7780,7 +7805,7 @@ export const js = [
 "columnno": 58,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002632",
+"id": "astnode100002634",
 "name": "pugOptions",
 "type": "AssignmentPattern",
 "value": "pugOptions"
@@ -7804,7 +7829,7 @@ export const js = [
 "columnno": 70,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002636",
+"id": "astnode100002638",
 "name": "suppressStack",
 "type": "Literal",
 "value": true
@@ -7828,7 +7853,7 @@ export const js = [
 "columnno": 90,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002638",
+"id": "astnode100002640",
 "name": "scssOptions",
 "type": "AssignmentPattern",
 "value": "scssOptions"
@@ -7852,7 +7877,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002648",
+"id": "astnode100002650",
 "name": "recursive",
 "type": "Literal",
 "value": true
@@ -7876,7 +7901,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002650",
+"id": "astnode100002652",
 "name": "filter",
 "type": "FunctionExpression"
 }
@@ -7899,7 +7924,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002697",
+"id": "astnode100002699",
 "name": "runSCSS",
 "type": "CallExpression",
 "value": ""
@@ -7925,7 +7950,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002705",
+"id": "astnode100002707",
 "name": "runPUG",
 "type": "CallExpression",
 "value": ""
@@ -7951,7 +7976,7 @@ export const js = [
 "columnno": 26,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002724",
+"id": "astnode100002726",
 "name": "source",
 "type": "Identifier",
 "value": "source"
@@ -7975,7 +8000,7 @@ export const js = [
 "columnno": 33,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002726",
+"id": "astnode100002728",
 "name": "destination",
 "type": "Identifier",
 "value": "destination"
@@ -7999,7 +8024,7 @@ export const js = [
 "columnno": 45,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002728",
+"id": "astnode100002730",
 "name": "testDestination",
 "type": "Identifier",
 "value": "testDestination"
@@ -8023,7 +8048,7 @@ export const js = [
 "columnno": 61,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002730",
+"id": "astnode100002732",
 "name": "pugOptions",
 "type": "Identifier",
 "value": "pugOptions"
@@ -8047,7 +8072,7 @@ export const js = [
 "columnno": 72,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002732",
+"id": "astnode100002734",
 "name": "scssOptions",
 "type": "Identifier",
 "value": "scssOptions"
@@ -8071,7 +8096,7 @@ export const js = [
 "columnno": 84,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002734",
+"id": "astnode100002736",
 "name": "runSCSS",
 "type": "Identifier",
 "value": "runSCSS"
@@ -8095,7 +8120,7 @@ export const js = [
 "columnno": 92,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002736",
+"id": "astnode100002738",
 "name": "runPUG",
 "type": "Identifier",
 "value": "runPUG"
@@ -8119,7 +8144,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\render",
 "code": {
-"id": "astnode100002739",
+"id": "astnode100002741",
 "name": "module.exports",
 "type": "Identifier",
 "value": "kWatch",
@@ -8159,7 +8184,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002747",
+"id": "astnode100002749",
 "name": "updateSheet",
 "type": "FunctionExpression"
 },
@@ -8186,7 +8211,7 @@ export const js = [
 "columnno": 15,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002759",
+"id": "astnode100002761",
 "name": "props",
 "type": "ArrayExpression",
 "value": "[\"debug_mode\",\"\"]"
@@ -8210,7 +8235,7 @@ export const js = [
 "columnno": 47,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002764",
+"id": "astnode100002766",
 "name": "callback",
 "type": "ArrowFunctionExpression"
 },
@@ -8238,7 +8263,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002771",
+"id": "astnode100002773",
 "name": "kFuncs.debugMode",
 "type": "LogicalExpression",
 "value": "",
@@ -8264,7 +8289,7 @@ export const js = [
 "columnno": 11,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002788",
+"id": "astnode100002790",
 "name": "sheet_version",
 "type": "MemberExpression",
 "value": "attributes.sheet_version"
@@ -8288,7 +8313,7 @@ export const js = [
 "columnno": 27,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002831",
+"id": "astnode100002833",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -8312,7 +8337,7 @@ export const js = [
 "columnno": 38,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002833",
+"id": "astnode100002835",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -8336,7 +8361,7 @@ export const js = [
 "columnno": 47,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002835",
+"id": "astnode100002837",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -8360,7 +8385,7 @@ export const js = [
 "columnno": 19,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002870",
+"id": "astnode100002872",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -8384,7 +8409,7 @@ export const js = [
 "columnno": 30,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002872",
+"id": "astnode100002874",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -8408,7 +8433,7 @@ export const js = [
 "columnno": 39,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002874",
+"id": "astnode100002876",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -8432,7 +8457,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002882",
+"id": "astnode100002884",
 "name": "openHandlers",
 "type": "Identifier",
 "value": "openHandlers"
@@ -8456,7 +8481,7 @@ export const js = [
 "columnno": 25,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002917",
+"id": "astnode100002919",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -8480,7 +8505,7 @@ export const js = [
 "columnno": 36,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002919",
+"id": "astnode100002921",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -8504,7 +8529,7 @@ export const js = [
 "columnno": 45,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002921",
+"id": "astnode100002923",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -8528,7 +8553,7 @@ export const js = [
 "columnno": 20,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002935",
+"id": "astnode100002937",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -8552,7 +8577,7 @@ export const js = [
 "columnno": 31,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002937",
+"id": "astnode100002939",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -8576,7 +8601,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002940",
+"id": "astnode100002942",
 "name": "attributes.sheet_version",
 "type": "MemberExpression",
 "value": "kFuncs.version",
@@ -8602,7 +8627,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002966",
+"id": "astnode100002968",
 "name": "initialSetup",
 "type": "FunctionExpression"
 }
@@ -8626,7 +8651,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002977",
+"id": "astnode100002979",
 "name": "accessSheet",
 "type": "FunctionExpression"
 },
@@ -8676,7 +8701,7 @@ export const js = [
 "columnno": 9,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002986",
+"id": "astnode100002988",
 "name": "funcs",
 "type": "CallExpression",
 "value": ""
@@ -8700,7 +8725,7 @@ export const js = [
 "columnno": 9,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100002996",
+"id": "astnode100002998",
 "name": "event",
 "type": "Identifier",
 "value": "event"
@@ -8724,7 +8749,7 @@ export const js = [
 "columnno": 15,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003002",
+"id": "astnode100003004",
 "name": "callback",
 "type": "ArrowFunctionExpression"
 },
@@ -8750,7 +8775,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003009",
+"id": "astnode100003011",
 "name": "trigger",
 "type": "CallExpression",
 "value": ""
@@ -8776,7 +8801,7 @@ export const js = [
 "columnno": 30,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003023",
+"id": "astnode100003025",
 "name": "event",
 "type": "Identifier",
 "value": "event"
@@ -8800,7 +8825,7 @@ export const js = [
 "columnno": 36,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003025",
+"id": "astnode100003027",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -8824,7 +8849,7 @@ export const js = [
 "columnno": 44,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003027",
+"id": "astnode100003029",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -8848,7 +8873,7 @@ export const js = [
 "columnno": 55,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003029",
+"id": "astnode100003031",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -8872,7 +8897,7 @@ export const js = [
 "columnno": 64,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003031",
+"id": "astnode100003033",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -8896,7 +8921,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003034",
+"id": "astnode100003036",
 "name": "funcs.accessSheet",
 "type": "Identifier",
 "value": "accessSheet",
@@ -8922,7 +8947,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003042",
+"id": "astnode100003044",
 "name": "createAttrProxy",
 "type": "FunctionExpression"
 },
@@ -8956,7 +8981,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003048",
+"id": "astnode100003050",
 "name": "getCascObj",
 "type": "FunctionExpression"
 },
@@ -8990,7 +9015,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003055",
+"id": "astnode100003057",
 "name": "eventName",
 "type": "LogicalExpression",
 "value": ""
@@ -9016,7 +9041,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003065",
+"id": "astnode100003067",
 "name": "typePrefix",
 "type": "ConditionalExpression",
 "value": ""
@@ -9042,7 +9067,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003081",
+"id": "astnode100003083",
 "name": "cascName",
 "type": "TemplateLiteral",
 "value": ""
@@ -9068,7 +9093,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003095",
+"id": "astnode100003097",
 "name": "cascObj",
 "type": "MemberExpression",
 "value": "casc[undefined]"
@@ -9094,7 +9119,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003106",
+"id": "astnode100003108",
 "name": "cascName",
 "type": "Identifier",
 "value": "cascObj"
@@ -9118,7 +9143,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003119",
+"id": "astnode100003121",
 "name": "cascObj.previousValue",
 "type": "MemberExpression",
 "funcscope": "createAttrProxy~getCascObj",
@@ -9145,7 +9170,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003132",
+"id": "astnode100003134",
 "name": "cascObj.originalRollId",
 "type": "MemberExpression",
 "funcscope": "createAttrProxy~getCascObj",
@@ -9172,7 +9197,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003140",
+"id": "astnode100003142",
 "name": "cascObj.rollData",
 "type": "CallExpression",
 "funcscope": "createAttrProxy~getCascObj",
@@ -9199,7 +9224,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003156",
+"id": "astnode100003158",
 "name": "triggerFunctions",
 "type": "FunctionExpression"
 },
@@ -9227,7 +9252,7 @@ export const js = [
 "columnno": 21,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003206",
+"id": "astnode100003208",
 "name": "trigger",
 "type": "Identifier",
 "value": "obj"
@@ -9251,7 +9276,7 @@ export const js = [
 "columnno": 33,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003208",
+"id": "astnode100003210",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -9275,7 +9300,7 @@ export const js = [
 "columnno": 44,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003210",
+"id": "astnode100003212",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -9299,7 +9324,7 @@ export const js = [
 "columnno": 53,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003212",
+"id": "astnode100003214",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -9323,7 +9348,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003226",
+"id": "astnode100003228",
 "name": "initialFunction",
 "type": "FunctionExpression"
 }
@@ -9348,7 +9373,7 @@ export const js = [
 "columnno": 32,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003261",
+"id": "astnode100003263",
 "name": "trigger",
 "type": "Identifier",
 "value": "obj"
@@ -9372,7 +9397,7 @@ export const js = [
 "columnno": 44,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003263",
+"id": "astnode100003265",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -9396,7 +9421,7 @@ export const js = [
 "columnno": 55,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003265",
+"id": "astnode100003267",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -9420,7 +9445,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003281",
+"id": "astnode100003283",
 "name": "alwaysFunctions",
 "type": "FunctionExpression"
 },
@@ -9448,7 +9473,7 @@ export const js = [
 "columnno": 15,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003305",
+"id": "astnode100003307",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -9472,7 +9497,7 @@ export const js = [
 "columnno": 23,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003307",
+"id": "astnode100003309",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -9496,7 +9521,7 @@ export const js = [
 "columnno": 34,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003309",
+"id": "astnode100003311",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -9520,7 +9545,7 @@ export const js = [
 "columnno": 43,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003311",
+"id": "astnode100003313",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -9544,7 +9569,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003314",
+"id": "astnode100003316",
 "name": "processChange",
 "type": "FunctionExpression"
 },
@@ -9572,7 +9597,7 @@ export const js = [
 "columnno": 34,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003318",
+"id": "astnode100003320",
 "name": "event",
 "type": "Identifier",
 "value": "event"
@@ -9596,7 +9621,7 @@ export const js = [
 "columnno": 40,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003320",
+"id": "astnode100003322",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -9620,7 +9645,7 @@ export const js = [
 "columnno": 48,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003322",
+"id": "astnode100003324",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -9644,7 +9669,7 @@ export const js = [
 "columnno": 59,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003324",
+"id": "astnode100003326",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -9668,7 +9693,7 @@ export const js = [
 "columnno": 68,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003326",
+"id": "astnode100003328",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -9692,7 +9717,7 @@ export const js = [
 "columnno": 11,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003377",
+"id": "astnode100003379",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -9716,7 +9741,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003434",
+"id": "astnode100003436",
 "name": "attributes[undefined]",
 "type": "CallExpression",
 "value": "",
@@ -9741,7 +9766,7 @@ export const js = [
 "columnno": 63,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003447",
+"id": "astnode100003449",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -9765,7 +9790,7 @@ export const js = [
 "columnno": 71,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003449",
+"id": "astnode100003451",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -9789,7 +9814,7 @@ export const js = [
 "columnno": 82,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003451",
+"id": "astnode100003453",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -9813,7 +9838,7 @@ export const js = [
 "columnno": 91,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003453",
+"id": "astnode100003455",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -9837,7 +9862,7 @@ export const js = [
 "columnno": 20,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003502",
+"id": "astnode100003504",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -9861,7 +9886,7 @@ export const js = [
 "columnno": 31,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003504",
+"id": "astnode100003506",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -9885,7 +9910,7 @@ export const js = [
 "columnno": 40,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003506",
+"id": "astnode100003508",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -9909,7 +9934,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003509",
+"id": "astnode100003511",
 "name": "attrTarget",
 "type": "ObjectExpression",
 "value": "{\"updates\":\"\",\"attributes\":\"\",\"repOrders\":\"\",\"queue\":\"\",\"casc\":\"\",\"alwaysFunctions\":\"\",\"processChange\":\"\",\"triggerFunctions\":\"\",\"initialFunction\":\"\",\"getCascObj\":\"\"}"
@@ -9935,7 +9960,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003512",
+"id": "astnode100003514",
 "name": "updates",
 "type": "ObjectExpression",
 "value": "{}"
@@ -9960,7 +9985,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003514",
+"id": "astnode100003516",
 "name": "attributes",
 "type": "ObjectExpression",
 "value": "{}"
@@ -9985,7 +10010,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003518",
+"id": "astnode100003520",
 "name": "repOrders",
 "type": "ObjectExpression",
 "value": "{}"
@@ -10010,7 +10035,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003520",
+"id": "astnode100003522",
 "name": "queue",
 "type": "ArrayExpression",
 "value": "[]"
@@ -10035,7 +10060,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003522",
+"id": "astnode100003524",
 "name": "casc",
 "type": "ObjectExpression",
 "value": "{}"
@@ -10060,7 +10085,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003524",
+"id": "astnode100003526",
 "name": "alwaysFunctions",
 "type": "Identifier",
 "value": "alwaysFunctions"
@@ -10085,7 +10110,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003526",
+"id": "astnode100003528",
 "name": "processChange",
 "type": "Identifier",
 "value": "processChange"
@@ -10110,7 +10135,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003528",
+"id": "astnode100003530",
 "name": "triggerFunctions",
 "type": "Identifier",
 "value": "triggerFunctions"
@@ -10135,7 +10160,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003530",
+"id": "astnode100003532",
 "name": "initialFunction",
 "type": "Identifier",
 "value": "initialFunction"
@@ -10160,7 +10185,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003532",
+"id": "astnode100003534",
 "name": "getCascObj",
 "type": "Identifier",
 "value": "getCascObj"
@@ -10185,7 +10210,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003535",
+"id": "astnode100003537",
 "name": "attrHandler",
 "type": "ObjectExpression",
 "value": "{\"get\":\"\",\"set\":\"\",\"deleteProperty\":\"\"}"
@@ -10211,7 +10236,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003538",
+"id": "astnode100003540",
 "name": "get",
 "type": "FunctionExpression"
 },
@@ -10241,7 +10266,7 @@ export const js = [
 "columnno": 15,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003554",
+"id": "astnode100003556",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -10265,7 +10290,7 @@ export const js = [
 "columnno": 26,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003556",
+"id": "astnode100003558",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -10289,7 +10314,7 @@ export const js = [
 "columnno": 35,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003558",
+"id": "astnode100003560",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -10313,7 +10338,7 @@ export const js = [
 "columnno": 40,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003560",
+"id": "astnode100003562",
 "name": "callback",
 "type": "Identifier",
 "value": "callback"
@@ -10337,7 +10362,7 @@ export const js = [
 "columnno": 49,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003562",
+"id": "astnode100003564",
 "name": "vocal",
 "type": "Identifier",
 "value": "vocal"
@@ -10361,7 +10386,7 @@ export const js = [
 "columnno": 16,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003586",
+"id": "astnode100003588",
 "name": "triggerName",
 "type": "CallExpression",
 "value": ""
@@ -10387,7 +10412,7 @@ export const js = [
 "columnno": 16,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003595",
+"id": "astnode100003597",
 "name": "trigger",
 "type": "CallExpression",
 "value": ""
@@ -10413,7 +10438,7 @@ export const js = [
 "columnno": 38,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003600",
+"id": "astnode100003602",
 "name": "sourceAttribute",
 "type": "Identifier",
 "value": "triggerName"
@@ -10437,7 +10462,7 @@ export const js = [
 "columnno": 38,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003609",
+"id": "astnode100003611",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -10461,7 +10486,7 @@ export const js = [
 "columnno": 46,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003611",
+"id": "astnode100003613",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -10485,7 +10510,7 @@ export const js = [
 "columnno": 57,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003613",
+"id": "astnode100003615",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -10509,7 +10534,7 @@ export const js = [
 "columnno": 66,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003615",
+"id": "astnode100003617",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -10533,7 +10558,7 @@ export const js = [
 "columnno": 19,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003622",
+"id": "astnode100003624",
 "name": "updates",
 "type": "MemberExpression",
 "value": "obj.updates"
@@ -10557,7 +10582,7 @@ export const js = [
 "columnno": 16,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003627",
+"id": "astnode100003629",
 "name": "trueCallback",
 "type": "ConditionalExpression",
 "value": ""
@@ -10583,7 +10608,7 @@ export const js = [
 "columnno": 52,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003679",
+"id": "astnode100003681",
 "name": "obj.attributes[undefined]",
 "type": "MemberExpression",
 "value": "obj.updates[undefined]",
@@ -10609,7 +10634,7 @@ export const js = [
 "columnno": 18,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003691",
+"id": "astnode100003693",
 "name": "update",
 "type": "MemberExpression",
 "value": "obj.updates"
@@ -10635,7 +10660,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003697",
+"id": "astnode100003699",
 "name": "obj.updates",
 "type": "ObjectExpression",
 "value": "{}",
@@ -10661,7 +10686,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003732",
+"id": "astnode100003734",
 "name": "retValue"
 }
 },
@@ -10685,7 +10710,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003745",
+"id": "astnode100003747",
 "name": "retValue",
 "type": "MemberExpression",
 "funcscope": "createAttrProxy~attrHandler.get",
@@ -10712,7 +10737,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003762",
+"id": "astnode100003764",
 "name": "retValue",
 "type": "MemberExpression",
 "funcscope": "createAttrProxy~attrHandler.get",
@@ -10739,7 +10764,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003772",
+"id": "astnode100003774",
 "name": "retValue",
 "type": "MemberExpression",
 "funcscope": "createAttrProxy~attrHandler.get",
@@ -10766,7 +10791,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003781",
+"id": "astnode100003783",
 "name": "cascRef",
 "type": "TemplateLiteral",
 "value": ""
@@ -10792,7 +10817,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003793",
+"id": "astnode100003795",
 "name": "numRetVal",
 "type": "UnaryExpression",
 "value": "+retValue"
@@ -10818,7 +10843,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003810",
+"id": "astnode100003812",
 "name": "retValue",
 "type": "Identifier",
 "funcscope": "createAttrProxy~attrHandler.get",
@@ -10845,7 +10870,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003836",
+"id": "astnode100003838",
 "name": "retValue",
 "type": "MemberExpression",
 "funcscope": "createAttrProxy~attrHandler.get",
@@ -10872,7 +10897,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003845",
+"id": "astnode100003847",
 "name": "set",
 "type": "FunctionExpression"
 },
@@ -10901,7 +10926,7 @@ export const js = [
 "columnno": 14,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003870",
+"id": "astnode100003872",
 "name": "section",
 "type": "CallExpression",
 "value": ""
@@ -10927,7 +10952,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003879",
+"id": "astnode100003881",
 "name": "obj.repOrders[undefined]",
 "type": "Identifier",
 "value": "value",
@@ -10953,7 +10978,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003918",
+"id": "astnode100003920",
 "name": "obj.updates[undefined]",
 "type": "Identifier",
 "value": "value",
@@ -10979,7 +11004,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003937",
+"id": "astnode100003939",
 "name": "deleteProperty",
 "type": "FunctionExpression"
 },
@@ -11006,7 +11031,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003970",
+"id": "astnode100003972",
 "name": "registerFuncs",
 "type": "FunctionExpression"
 },
@@ -11078,7 +11103,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100003997",
+"id": "astnode100003999",
 "name": "typeArr",
 "type": "ConditionalExpression",
 "value": ""
@@ -11104,7 +11129,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004012",
+"id": "astnode100004014",
 "name": "typeSwitch",
 "type": "ObjectExpression",
 "value": "{\"undefined\":\"\"}"
@@ -11130,7 +11155,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004015",
+"id": "astnode100004017",
 "name": "opener",
 "type": "Identifier",
 "value": "openHandlers"
@@ -11155,7 +11180,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004017",
+"id": "astnode100004019",
 "name": "updater",
 "type": "Identifier",
 "value": "updateHandlers"
@@ -11180,7 +11205,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004019",
+"id": "astnode100004021",
 "name": "new",
 "type": "Identifier",
 "value": "initialSetups"
@@ -11205,7 +11230,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004021",
+"id": "astnode100004023",
 "name": "all",
 "type": "Identifier",
 "value": "allHandlers"
@@ -11230,7 +11255,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004023",
+"id": "astnode100004025",
 "name": "default",
 "type": "Identifier",
 "value": "funcs"
@@ -11255,7 +11280,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004026",
+"id": "astnode100004028",
 "name": "setState"
 }
 },
@@ -11279,7 +11304,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004065",
+"id": "astnode100004067",
 "name": "setState",
 "type": "Literal",
 "funcscope": "<anonymous>",
@@ -11306,7 +11331,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004075",
+"id": "astnode100004077",
 "name": "typeSwitch[undefined][undefined]",
 "type": "Identifier",
 "funcscope": "Utilities.registerFuncs",
@@ -11333,7 +11358,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004083",
+"id": "astnode100004085",
 "name": "setState",
 "type": "ConditionalExpression",
 "funcscope": "<anonymous>",
@@ -11360,7 +11385,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004100",
+"id": "astnode100004102",
 "name": "setState",
 "type": "Literal",
 "funcscope": "<anonymous>",
@@ -11387,7 +11412,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004106",
+"id": "astnode100004108",
 "name": "kFuncs.registerFuncs",
 "type": "Identifier",
 "value": "registerFuncs",
@@ -11413,7 +11438,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004112",
+"id": "astnode100004114",
 "name": "setActionCalls",
 "type": "FunctionExpression"
 },
@@ -11460,7 +11485,7 @@ export const js = [
 "columnno": 33,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004116",
+"id": "astnode100004118",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -11484,7 +11509,7 @@ export const js = [
 "columnno": 44,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004118",
+"id": "astnode100004120",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -11508,7 +11533,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004138",
+"id": "astnode100004140",
 "name": "fieldAction",
 "type": "CallExpression",
 "value": ""
@@ -11534,7 +11559,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004160",
+"id": "astnode100004162",
 "name": "attributes[undefined]",
 "type": "TemplateLiteral",
 "value": "",
@@ -11559,7 +11584,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004185",
+"id": "astnode100004187",
 "name": "attributes[undefined]",
 "type": "TemplateLiteral",
 "value": "",
@@ -11584,7 +11609,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004201",
+"id": "astnode100004203",
 "name": "funcs.setActionCalls",
 "type": "Identifier",
 "value": "setActionCalls",
@@ -11610,7 +11635,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004207",
+"id": "astnode100004209",
 "name": "callFunc",
 "type": "FunctionExpression"
 }
@@ -11668,7 +11693,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004244",
+"id": "astnode100004246",
 "name": "kFuncs.callFunc",
 "type": "Identifier",
 "value": "callFunc",
@@ -11710,7 +11735,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004252",
+"id": "astnode100004254",
 "name": "sheetName",
 "type": "Literal",
 "value": "kScaffold Powered Sheet"
@@ -11741,7 +11766,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004256",
+"id": "astnode100004258",
 "name": "kFuncs.sheetName",
 "type": "Identifier",
 "value": "sheetName",
@@ -11767,7 +11792,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004262",
+"id": "astnode100004264",
 "name": "version",
 "type": "Literal",
 "value": 0
@@ -11798,7 +11823,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004266",
+"id": "astnode100004268",
 "name": "kFuncs.version",
 "type": "Identifier",
 "value": "version",
@@ -11824,7 +11849,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004272",
+"id": "astnode100004274",
 "name": "debugMode",
 "type": "Literal",
 "value": false
@@ -11855,7 +11880,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004276",
+"id": "astnode100004278",
 "name": "kFuncs.debugMode",
 "type": "Identifier",
 "value": "debugMode",
@@ -11881,7 +11906,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004282",
+"id": "astnode100004284",
 "name": "funcs",
 "type": "ObjectExpression",
 "value": "{}"
@@ -11906,7 +11931,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004286",
+"id": "astnode100004288",
 "name": "kFuncs.funcs",
 "type": "Identifier",
 "value": "funcs",
@@ -11932,7 +11957,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004292",
+"id": "astnode100004294",
 "name": "updateHandlers",
 "type": "ObjectExpression",
 "value": "{}"
@@ -11957,7 +11982,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004296",
+"id": "astnode100004298",
 "name": "openHandlers",
 "type": "ObjectExpression",
 "value": "{}"
@@ -11982,7 +12007,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004300",
+"id": "astnode100004302",
 "name": "initialSetups",
 "type": "ObjectExpression",
 "value": "{}"
@@ -12007,7 +12032,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004304",
+"id": "astnode100004306",
 "name": "allHandlers",
 "type": "ObjectExpression",
 "value": "{}"
@@ -12032,7 +12057,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004308",
+"id": "astnode100004310",
 "name": "addFuncs",
 "type": "ObjectExpression",
 "value": "{}"
@@ -12057,7 +12082,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004312",
+"id": "astnode100004314",
 "name": "kscaffoldJSVersion",
 "type": "Literal",
 "value": "1.0.0"
@@ -12082,7 +12107,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004316",
+"id": "astnode100004318",
 "name": "kscaffoldPUGVersion",
 "type": "Literal",
 "value": "1.0.0"
@@ -12107,7 +12132,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004322",
+"id": "astnode100004324",
 "name": "listeners",
 "type": "ObjectExpression",
 "value": "{}"
@@ -12132,7 +12157,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004326",
+"id": "astnode100004328",
 "name": "baseGet",
 "type": "CallExpression",
 "value": ""
@@ -12163,7 +12188,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004368",
+"id": "astnode100004370",
 "name": "listeners[undefined]",
 "type": "MemberExpression",
 "value": "detailObj.listenerFunc",
@@ -12188,7 +12213,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004381",
+"id": "astnode100004383",
 "name": "kFuncs.baseGet",
 "type": "Identifier",
 "value": "baseGet",
@@ -12214,7 +12239,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004387",
+"id": "astnode100004389",
 "name": "registerEventHandlers",
 "type": "FunctionExpression"
 },
@@ -12241,7 +12266,7 @@ export const js = [
 "columnno": 9,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004400",
+"id": "astnode100004402",
 "name": "funcKeys",
 "type": "CallExpression",
 "value": ""
@@ -12265,7 +12290,7 @@ export const js = [
 "columnno": 37,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004406",
+"id": "astnode100004408",
 "name": "funcs",
 "type": "Identifier",
 "value": "funcs"
@@ -12289,7 +12314,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004454",
+"id": "astnode100004456",
 "name": "addItem",
 "type": "FunctionExpression"
 },
@@ -12329,7 +12354,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004468",
+"id": "astnode100004470",
 "name": "section",
 "type": "CallExpression",
 "funcscope": "Sheetworkers.addItem",
@@ -12356,7 +12381,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004480",
+"id": "astnode100004482",
 "name": "callback",
 "type": "ArrowFunctionExpression"
 },
@@ -12385,7 +12410,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004487",
+"id": "astnode100004489",
 "name": "row",
 "type": "CallExpression",
 "value": ""
@@ -12411,7 +12436,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004497",
+"id": "astnode100004499",
 "name": "row",
 "type": "Identifier",
 "value": "row"
@@ -12435,7 +12460,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004500",
+"id": "astnode100004502",
 "name": "attributes[undefined]",
 "type": "Literal",
 "value": "",
@@ -12460,7 +12485,7 @@ export const js = [
 "columnno": 22,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004512",
+"id": "astnode100004514",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -12484,7 +12509,7 @@ export const js = [
 "columnno": 33,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004514",
+"id": "astnode100004516",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -12508,7 +12533,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004517",
+"id": "astnode100004519",
 "name": "trigger",
 "type": "MemberExpression",
 "value": "cascades[undefined]"
@@ -12534,7 +12559,7 @@ export const js = [
 "columnno": 29,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004553",
+"id": "astnode100004555",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -12558,7 +12583,7 @@ export const js = [
 "columnno": 40,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004555",
+"id": "astnode100004557",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -12582,7 +12607,7 @@ export const js = [
 "columnno": 49,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004557",
+"id": "astnode100004559",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -12606,7 +12631,7 @@ export const js = [
 "columnno": 54,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004559",
+"id": "astnode100004561",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -12630,7 +12655,7 @@ export const js = [
 "columnno": 22,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004567",
+"id": "astnode100004569",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -12654,7 +12679,7 @@ export const js = [
 "columnno": 33,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004569",
+"id": "astnode100004571",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -12678,7 +12703,7 @@ export const js = [
 "columnno": 42,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004571",
+"id": "astnode100004573",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -12702,7 +12727,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004574",
+"id": "astnode100004576",
 "name": "funcs.addItem",
 "type": "Identifier",
 "value": "addItem",
@@ -12783,7 +12808,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004590",
+"id": "astnode100004592",
 "name": "environment",
 "type": "ObjectExpression",
 "value": "{\"triggers\":\"\",\"otherCharacters\":\"\",\"queryResponses\":\"\"}"
@@ -12808,7 +12833,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004593",
+"id": "astnode100004595",
 "name": "triggers",
 "type": "ArrayExpression",
 "value": "[]"
@@ -12833,7 +12858,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004595",
+"id": "astnode100004597",
 "name": "otherCharacters",
 "type": "ObjectExpression",
 "value": "{}"
@@ -12858,7 +12883,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004597",
+"id": "astnode100004599",
 "name": "queryResponses",
 "type": "ObjectExpression",
 "value": "{}"
@@ -12883,7 +12908,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004600",
+"id": "astnode100004602",
 "name": "global.environment",
 "type": "Identifier",
 "value": "environment",
@@ -12909,7 +12934,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004606",
+"id": "astnode100004608",
 "name": "on",
 "type": "CallExpression",
 "value": ""
@@ -12934,7 +12959,7 @@ export const js = [
 "columnno": 30,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004624",
+"id": "astnode100004626",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -12958,7 +12983,7 @@ export const js = [
 "columnno": 39,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004626",
+"id": "astnode100004628",
 "name": "func",
 "type": "Identifier",
 "value": "func"
@@ -12982,7 +13007,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004629",
+"id": "astnode100004631",
 "name": "global.on",
 "type": "Identifier",
 "value": "on",
@@ -13008,7 +13033,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004635",
+"id": "astnode100004637",
 "name": "getAttrs",
 "type": "CallExpression",
 "value": ""
@@ -13033,7 +13058,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004646",
+"id": "astnode100004648",
 "name": "values",
 "type": "ObjectExpression",
 "value": "{}"
@@ -13059,7 +13084,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004651",
+"id": "astnode100004653",
 "name": "attr"
 }
 },
@@ -13083,7 +13108,7 @@ export const js = [
 "columnno": 40,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004662",
+"id": "astnode100004664",
 "name": "values[undefined]",
 "type": "MemberExpression",
 "funcscope": "<anonymous>",
@@ -13110,7 +13135,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004681",
+"id": "astnode100004683",
 "name": "global.getAttrs",
 "type": "Identifier",
 "value": "getAttrs",
@@ -13136,7 +13161,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004687",
+"id": "astnode100004689",
 "name": "setAttrs",
 "type": "CallExpression",
 "value": ""
@@ -13161,7 +13186,7 @@ export const js = [
 "columnno": 49,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004707",
+"id": "astnode100004709",
 "name": "callback",
 "type": "Identifier",
 "funcscope": "<anonymous>",
@@ -13188,7 +13213,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004712",
+"id": "astnode100004714",
 "name": "attr"
 }
 },
@@ -13212,7 +13237,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004717",
+"id": "astnode100004719",
 "name": "environment.attributes[undefined]",
 "type": "MemberExpression",
 "value": "submit[undefined]",
@@ -13238,7 +13263,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004735",
+"id": "astnode100004737",
 "name": "global.setAttrs",
 "type": "Identifier",
 "value": "setAttrs",
@@ -13264,7 +13289,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004741",
+"id": "astnode100004743",
 "name": "getSectionIDs",
 "type": "CallExpression",
 "value": ""
@@ -13289,7 +13314,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004752",
+"id": "astnode100004754",
 "name": "ids",
 "type": "ArrayExpression",
 "value": "[]"
@@ -13315,7 +13340,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004756",
+"id": "astnode100004758",
 "name": "sectionName",
 "type": "ConditionalExpression",
 "value": ""
@@ -13341,7 +13366,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004772",
+"id": "astnode100004774",
 "name": "attributes",
 "type": "MemberExpression",
 "value": "environment.attributes"
@@ -13367,7 +13392,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004779",
+"id": "astnode100004781",
 "name": "attr"
 }
 },
@@ -13391,7 +13416,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004804",
+"id": "astnode100004806",
 "name": "idMap",
 "type": "ArrayExpression",
 "value": "[\"\"]"
@@ -13417,7 +13442,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004821",
+"id": "astnode100004823",
 "name": "global.getSectionIDs",
 "type": "Identifier",
 "value": "getSectionIDs",
@@ -13443,7 +13468,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004827",
+"id": "astnode100004829",
 "name": "getSectionIDsSync",
 "type": "CallExpression",
 "value": ""
@@ -13468,7 +13493,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004837",
+"id": "astnode100004839",
 "name": "ids",
 "type": "ArrayExpression",
 "value": "[]"
@@ -13494,7 +13519,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004841",
+"id": "astnode100004843",
 "name": "sectionName",
 "type": "ConditionalExpression",
 "value": ""
@@ -13520,7 +13545,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004857",
+"id": "astnode100004859",
 "name": "attributes",
 "type": "MemberExpression",
 "value": "environment.attributes"
@@ -13546,7 +13571,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004864",
+"id": "astnode100004866",
 "name": "attr"
 }
 },
@@ -13570,7 +13595,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004889",
+"id": "astnode100004891",
 "name": "idMap",
 "type": "ArrayExpression",
 "value": "[\"\"]"
@@ -13596,7 +13621,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004899",
+"id": "astnode100004901",
 "name": "global.getSectionIDsSync",
 "type": "Identifier",
 "value": "getSectionIDsSync",
@@ -13622,7 +13647,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004905",
+"id": "astnode100004907",
 "name": "removeRepeatingRow",
 "type": "CallExpression",
 "value": ""
@@ -13647,7 +13672,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004915",
+"id": "astnode100004917",
 "name": "attributes",
 "type": "MemberExpression",
 "value": "environment.attributes"
@@ -13673,7 +13698,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004922",
+"id": "astnode100004924",
 "name": "attr"
 }
 },
@@ -13697,7 +13722,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004943",
+"id": "astnode100004945",
 "name": "global.removeRepeatingRow",
 "type": "Identifier",
 "value": "removeRepeatingRow",
@@ -13723,7 +13748,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004949",
+"id": "astnode100004951",
 "name": "getCompendiumPage",
 "type": "CallExpression",
 "value": ""
@@ -13748,7 +13773,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004960",
+"id": "astnode100004962",
 "name": "pages",
 "type": "Identifier",
 "value": "compendiumData"
@@ -13774,7 +13799,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004985",
+"id": "astnode100004987",
 "name": "response",
 "type": "ObjectExpression",
 "value": "{\"Name\":\"\",\"Category\":\"\",\"data\":\"\"}"
@@ -13800,7 +13825,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004988",
+"id": "astnode100004990",
 "name": "Name",
 "type": "Identifier",
 "value": "pageName"
@@ -13825,7 +13850,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004990",
+"id": "astnode100004992",
 "name": "Category",
 "type": "Identifier",
 "value": "category"
@@ -13850,7 +13875,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004992",
+"id": "astnode100004994",
 "name": "data",
 "type": "ObjectExpression",
 "value": "{}"
@@ -13875,7 +13900,7 @@ export const js = [
 "columnno": 24,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100004999",
+"id": "astnode100005001",
 "name": "response.data",
 "type": "MemberExpression",
 "funcscope": "<anonymous>",
@@ -13902,7 +13927,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005025",
+"id": "astnode100005027",
 "name": "pageArray",
 "type": "ArrayExpression",
 "value": "[]"
@@ -13928,7 +13953,7 @@ export const js = [
 "columnno": 15,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005030",
+"id": "astnode100005032",
 "name": "page"
 }
 },
@@ -13952,7 +13977,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005064",
+"id": "astnode100005066",
 "name": "global.getCompendiumPage",
 "type": "Identifier",
 "value": "getCompendiumPage",
@@ -13978,7 +14003,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005070",
+"id": "astnode100005072",
 "name": "generateUUID",
 "type": "CallExpression",
 "value": ""
@@ -14003,7 +14028,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005079",
+"id": "astnode100005081",
 "name": "a",
 "type": "Literal",
 "value": 0
@@ -14029,7 +14054,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005082",
+"id": "astnode100005084",
 "name": "b",
 "type": "ArrayExpression",
 "value": "[]"
@@ -14055,7 +14080,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005090",
+"id": "astnode100005092",
 "name": "c",
 "type": "BinaryExpression",
 "value": ""
@@ -14081,7 +14106,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005099",
+"id": "astnode100005101",
 "name": "d",
 "type": "BinaryExpression",
 "value": ""
@@ -14107,7 +14132,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005105",
+"id": "astnode100005107",
 "name": "a",
 "type": "Identifier",
 "funcscope": "<anonymous>",
@@ -14134,7 +14159,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005110",
+"id": "astnode100005112",
 "name": "e",
 "type": "CallExpression",
 "value": ""
@@ -14160,7 +14185,7 @@ export const js = [
 "columnno": 27,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005115",
+"id": "astnode100005117",
 "name": "f",
 "type": "Literal",
 "value": 7
@@ -14186,7 +14211,7 @@ export const js = [
 "columnno": 7,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005125",
+"id": "astnode100005127",
 "name": "e[undefined]",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -14213,7 +14238,7 @@ export const js = [
 "columnno": 7,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005136",
+"id": "astnode100005138",
 "name": "c",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -14240,7 +14265,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005146",
+"id": "astnode100005148",
 "name": "c",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -14267,7 +14292,7 @@ export const js = [
 "columnno": 11,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005157",
+"id": "astnode100005159",
 "name": "f",
 "type": "Literal",
 "funcscope": "<anonymous>",
@@ -14294,7 +14319,7 @@ export const js = [
 "columnno": 47,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005172",
+"id": "astnode100005174",
 "name": "b[undefined]",
 "type": "Literal",
 "funcscope": "<anonymous>",
@@ -14321,7 +14346,7 @@ export const js = [
 "columnno": 16,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005183",
+"id": "astnode100005185",
 "name": "f",
 "type": "Literal",
 "funcscope": "<anonymous>",
@@ -14348,7 +14373,7 @@ export const js = [
 "columnno": 36,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005192",
+"id": "astnode100005194",
 "name": "b[undefined]",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -14375,7 +14400,7 @@ export const js = [
 "columnno": 9,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005207",
+"id": "astnode100005209",
 "name": "f",
 "type": "Literal",
 "funcscope": "<anonymous>",
@@ -14402,7 +14427,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005216",
+"id": "astnode100005218",
 "name": "c",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -14429,7 +14454,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005233",
+"id": "astnode100005235",
 "name": "global.generateUUID",
 "type": "Identifier",
 "value": "generateUUID",
@@ -14455,7 +14480,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005239",
+"id": "astnode100005241",
 "name": "generateRowID",
 "type": "CallExpression",
 "value": ""
@@ -14480,7 +14505,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005256",
+"id": "astnode100005258",
 "name": "global.generateRowID",
 "type": "Identifier",
 "value": "generateRowID",
@@ -14506,7 +14531,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005262",
+"id": "astnode100005264",
 "name": "simulateEvent",
 "type": "CallExpression",
 "value": ""
@@ -14531,7 +14556,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005282",
+"id": "astnode100005284",
 "name": "splitTriggers",
 "type": "LogicalExpression",
 "value": ""
@@ -14557,7 +14582,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005315",
+"id": "astnode100005317",
 "name": "sourceAttribute",
 "type": "Literal",
 "value": "test"
@@ -14581,7 +14606,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005318",
+"id": "astnode100005320",
 "name": "global.simulateEvent",
 "type": "Identifier",
 "value": "simulateEvent",
@@ -14607,7 +14632,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005324",
+"id": "astnode100005326",
 "name": "getTranslationByKey",
 "type": "CallExpression",
 "value": ""
@@ -14632,7 +14657,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005334",
+"id": "astnode100005336",
 "name": "global.getTranslationByKey",
 "type": "Identifier",
 "value": "getTranslationByKey",
@@ -14658,7 +14683,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005340",
+"id": "astnode100005342",
 "name": "extractRollTemplate",
 "type": "ArrowFunctionExpression"
 },
@@ -14686,7 +14711,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005346",
+"id": "astnode100005348",
 "name": "rollTemplate",
 "type": "ChainExpression",
 "value": ""
@@ -14712,7 +14737,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005350",
+"id": "astnode100005352",
 "name": "environment.attributes.__rolltemplate",
 "type": "Identifier",
 "value": "rollTemplate",
@@ -14738,7 +14763,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005358",
+"id": "astnode100005360",
 "name": "cleanRollElements",
 "type": "ArrowFunctionExpression"
 },
@@ -14766,7 +14791,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005364",
+"id": "astnode100005366",
 "name": "cleanText",
 "type": "CallExpression",
 "value": ""
@@ -14792,7 +14817,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005378",
+"id": "astnode100005380",
 "name": "splitText",
 "type": "CallExpression",
 "value": ""
@@ -14818,7 +14843,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005388",
+"id": "astnode100005390",
 "name": "extractRollElements",
 "type": "ArrowFunctionExpression"
 },
@@ -14845,7 +14870,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005394",
+"id": "astnode100005396",
 "name": "rollElements",
 "type": "CallExpression",
 "value": ""
@@ -14871,7 +14896,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005423",
+"id": "astnode100005425",
 "name": "getExpression",
 "type": "ArrowFunctionExpression"
 }
@@ -14895,7 +14920,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005434",
+"id": "astnode100005436",
 "name": "getDiceOrHalf",
 "type": "ArrowFunctionExpression"
 },
@@ -14922,7 +14947,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005440",
+"id": "astnode100005442",
 "name": "diceStack",
 "type": "MemberExpression",
 "value": "environment.diceStack"
@@ -14948,7 +14973,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005470",
+"id": "astnode100005472",
 "name": "getDiceRolls",
 "type": "ArrowFunctionExpression"
 },
@@ -14977,7 +15002,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005476",
+"id": "astnode100005478",
 "name": "rolls",
 "type": "CallExpression",
 "value": ""
@@ -15003,7 +15028,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005489",
+"id": "astnode100005491",
 "name": "allRolls",
 "type": "ArrayExpression",
 "value": "[]"
@@ -15029,7 +15054,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005510",
+"id": "astnode100005512",
 "name": "i",
 "type": "Literal",
 "value": 1
@@ -15055,7 +15080,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005520",
+"id": "astnode100005522",
 "name": "dice",
 "type": "CallExpression",
 "value": ""
@@ -15081,7 +15106,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005534",
+"id": "astnode100005536",
 "name": "calculateResult",
 "type": "ArrowFunctionExpression"
 },
@@ -15110,7 +15135,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005541",
+"id": "astnode100005543",
 "name": "expression",
 "type": "CallExpression",
 "value": ""
@@ -15136,7 +15161,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005550",
+"id": "astnode100005552",
 "name": "rolls",
 "type": "CallExpression",
 "value": ""
@@ -15162,7 +15187,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005582",
+"id": "astnode100005584",
 "name": "total",
 "type": "Literal",
 "value": 0
@@ -15188,7 +15213,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005587",
+"id": "astnode100005589",
 "name": "i",
 "type": "Literal",
 "value": 1
@@ -15214,7 +15239,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005597",
+"id": "astnode100005599",
 "name": "total",
 "type": "UnaryExpression",
 "funcscope": "<anonymous>",
@@ -15241,7 +15266,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005605",
+"id": "astnode100005607",
 "name": "expression",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -15268,7 +15293,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005614",
+"id": "astnode100005616",
 "name": "regex",
 "type": "NewExpression",
 "value": ""
@@ -15294,7 +15319,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005621",
+"id": "astnode100005623",
 "name": "expression",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -15321,7 +15346,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005634",
+"id": "astnode100005636",
 "name": "replaceAttributes",
 "type": "ArrowFunctionExpression"
 },
@@ -15350,7 +15375,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005640",
+"id": "astnode100005642",
 "name": "test",
 "type": "Literal",
 "value": "<RegExp /@\\{(.*?)\\}/i>"
@@ -15376,7 +15401,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005651",
+"id": "astnode100005653",
 "name": "element",
 "type": "CallExpression",
 "funcscope": "replaceAttributes",
@@ -15403,7 +15428,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005664",
+"id": "astnode100005666",
 "name": "attributeName",
 "type": "MemberExpression",
 "value": "args[0]"
@@ -15429,7 +15454,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005670",
+"id": "astnode100005672",
 "name": "attributeValue",
 "type": "MemberExpression",
 "value": "environment.attributes[undefined]"
@@ -15455,7 +15480,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005678",
+"id": "astnode100005680",
 "name": "attributeExists",
 "type": "BinaryExpression",
 "value": ""
@@ -15481,7 +15506,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005685",
+"id": "astnode100005687",
 "name": "possibleAttributes",
 "type": "CallExpression",
 "value": ""
@@ -15507,7 +15532,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005716",
+"id": "astnode100005718",
 "name": "replaceQueries",
 "type": "ArrowFunctionExpression"
 },
@@ -15534,7 +15559,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005733",
+"id": "astnode100005735",
 "name": "a",
 "type": "LogicalExpression",
 "funcscope": "<anonymous>",
@@ -15561,7 +15586,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005751",
+"id": "astnode100005753",
 "name": "calculateRollResult",
 "type": "ArrowFunctionExpression"
 },
@@ -15596,7 +15621,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005757",
+"id": "astnode100005759",
 "name": "results",
 "type": "ObjectExpression",
 "value": "{}"
@@ -15622,7 +15647,7 @@ export const js = [
 "columnno": 13,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005762",
+"id": "astnode100005764",
 "name": "key"
 }
 },
@@ -15646,7 +15671,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005767",
+"id": "astnode100005769",
 "name": "element",
 "type": "MemberExpression",
 "value": "rollElements[undefined]"
@@ -15672,7 +15697,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005783",
+"id": "astnode100005785",
 "name": "attributeFilled",
 "type": "CallExpression",
 "value": ""
@@ -15698,7 +15723,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005789",
+"id": "astnode100005791",
 "name": "queryAnswered",
 "type": "CallExpression",
 "value": ""
@@ -15724,7 +15749,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005795",
+"id": "astnode100005797",
 "name": "expression",
 "type": "CallExpression",
 "value": ""
@@ -15750,7 +15775,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005801",
+"id": "astnode100005803",
 "name": "dice",
 "type": "CallExpression",
 "value": ""
@@ -15776,7 +15801,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005807",
+"id": "astnode100005809",
 "name": "result",
 "type": "CallExpression",
 "value": ""
@@ -15802,7 +15827,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005816",
+"id": "astnode100005818",
 "name": "results[undefined]",
 "type": "ObjectExpression",
 "funcscope": "calculateRollResult",
@@ -15829,7 +15854,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005821",
+"id": "astnode100005823",
 "name": "result",
 "type": "Identifier",
 "value": "result"
@@ -15854,7 +15879,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005823",
+"id": "astnode100005825",
 "name": "dice",
 "type": "Identifier",
 "value": "dice"
@@ -15879,7 +15904,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005825",
+"id": "astnode100005827",
 "name": "expression",
 "type": "Identifier",
 "value": "expression"
@@ -15904,7 +15929,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005830",
+"id": "astnode100005832",
 "name": "startRoll",
 "type": "CallExpression",
 "value": ""
@@ -15929,7 +15954,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005847",
+"id": "astnode100005849",
 "name": "rollResult",
 "type": "ObjectExpression",
 "value": "{\"results\":\"\"}"
@@ -15955,7 +15980,7 @@ export const js = [
 "columnno": 23,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005850",
+"id": "astnode100005852",
 "name": "results",
 "type": "ObjectExpression",
 "value": "{}"
@@ -15980,7 +16005,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005857",
+"id": "astnode100005859",
 "name": "rollElements",
 "type": "CallExpression",
 "value": ""
@@ -16006,7 +16031,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005863",
+"id": "astnode100005865",
 "name": "rollResult.results",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -16033,7 +16058,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005871",
+"id": "astnode100005873",
 "name": "rollResult.rollId",
 "type": "CallExpression",
 "funcscope": "<anonymous>",
@@ -16060,7 +16085,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005880",
+"id": "astnode100005882",
 "name": "global.startRoll",
 "type": "Identifier",
 "value": "startRoll",
@@ -16086,7 +16111,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005886",
+"id": "astnode100005888",
 "name": "finishRoll",
 "type": "CallExpression",
 "value": ""
@@ -16111,7 +16136,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005895",
+"id": "astnode100005897",
 "name": "global.finishRoll",
 "type": "Identifier",
 "value": "finishRoll",
@@ -16137,7 +16162,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005903",
+"id": "astnode100005905",
 "name": "console.debug",
 "type": "CallExpression",
 "value": "",
@@ -16163,7 +16188,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005915",
+"id": "astnode100005917",
 "name": "console.log",
 "type": "CallExpression",
 "value": "",
@@ -16189,7 +16214,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005927",
+"id": "astnode100005929",
 "name": "console.table",
 "type": "CallExpression",
 "value": "",
@@ -16215,7 +16240,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005939",
+"id": "astnode100005941",
 "name": "module.exports",
 "type": "ObjectExpression",
 "value": "{\"k\":\"\"}",
@@ -16241,7 +16266,7 @@ export const js = [
 "columnno": 18,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005944",
+"id": "astnode100005946",
 "name": "k",
 "type": "Identifier",
 "value": "k"
@@ -16266,7 +16291,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100005951",
+"id": "astnode100005953",
 "name": "expandCascade",
 "type": "FunctionExpression"
 },
@@ -16293,7 +16318,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006000",
+"id": "astnode100006002",
 "name": "expandRepeating",
 "type": "FunctionExpression"
 },
@@ -16320,7 +16345,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006034",
+"id": "astnode100006036",
 "name": "memo[undefined]",
 "type": "CallExpression",
 "value": "",
@@ -16345,7 +16370,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006055",
+"id": "astnode100006057",
 "name": "memo[undefined].name",
 "type": "TemplateLiteral",
 "value": "",
@@ -16371,7 +16396,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006086",
+"id": "astnode100006088",
 "name": "memo[undefined].affects",
 "type": "CallExpression",
 "value": "",
@@ -16397,7 +16422,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006160",
+"id": "astnode100006162",
 "name": "applyID",
 "type": "FunctionExpression"
 }
@@ -16421,7 +16446,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006177",
+"id": "astnode100006179",
 "name": "expandNormal",
 "type": "FunctionExpression"
 },
@@ -16450,7 +16475,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006186",
+"id": "astnode100006188",
 "name": "memo[undefined]",
 "type": "CallExpression",
 "value": "",
@@ -16475,7 +16500,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006205",
+"id": "astnode100006207",
 "name": "memo[undefined].affects",
 "type": "LogicalExpression",
 "value": "",
@@ -16501,7 +16526,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006219",
+"id": "astnode100006221",
 "name": "memo[undefined].affects",
 "type": "CallExpression",
 "value": "",
@@ -16527,7 +16552,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006261",
+"id": "astnode100006263",
 "name": "addAllRows",
 "type": "FunctionExpression"
 },
@@ -16618,7 +16643,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006303",
+"id": "astnode100006305",
 "name": "_setSectionOrder",
 "type": "FunctionExpression"
 },
@@ -16645,7 +16670,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006310",
+"id": "astnode100006312",
 "name": "trueSection",
 "type": "CallExpression",
 "value": ""
@@ -16671,7 +16696,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006324",
+"id": "astnode100006326",
 "name": "kFuncs.setSectionOrder",
 "type": "Identifier",
 "value": "_setSectionOrder",
@@ -16754,7 +16779,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006330",
+"id": "astnode100006332",
 "name": "_removeRepeatingRow",
 "type": "FunctionExpression"
 },
@@ -16783,7 +16808,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006380",
+"id": "astnode100006382",
 "name": "sections[undefined]",
 "type": "CallExpression",
 "value": "",
@@ -16808,7 +16833,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006400",
+"id": "astnode100006402",
 "name": "kFuncs.removeRepeatingRow",
 "type": "Identifier",
 "value": "_removeRepeatingRow",
@@ -16875,7 +16900,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006406",
+"id": "astnode100006408",
 "name": "_getAttrs",
 "type": "FunctionExpression"
 },
@@ -16902,7 +16927,7 @@ export const js = [
 "columnno": 28,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006410",
+"id": "astnode100006412",
 "name": "props",
 "type": "AssignmentPattern",
 "value": "props"
@@ -16926,7 +16951,7 @@ export const js = [
 "columnno": 42,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006414",
+"id": "astnode100006416",
 "name": "callback",
 "type": "Identifier",
 "value": "callback"
@@ -16950,7 +16975,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006425",
+"id": "astnode100006427",
 "name": "attributes",
 "type": "CallExpression",
 "value": ""
@@ -16976,7 +17001,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006435",
+"id": "astnode100006437",
 "name": "kFuncs.getAttrs",
 "type": "Identifier",
 "value": "_getAttrs",
@@ -17002,7 +17027,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006441",
+"id": "astnode100006443",
 "name": "getAllAttrs",
 "type": "FunctionExpression"
 },
@@ -17071,7 +17096,7 @@ export const js = [
 "columnno": 30,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006445",
+"id": "astnode100006447",
 "name": "props",
 "type": "AssignmentPattern",
 "value": "props"
@@ -17095,7 +17120,7 @@ export const js = [
 "columnno": 44,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006449",
+"id": "astnode100006451",
 "name": "sectionDetails",
 "type": "AssignmentPattern",
 "value": "sectionDetails"
@@ -17119,7 +17144,7 @@ export const js = [
 "columnno": 83,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006453",
+"id": "astnode100006455",
 "name": "callback",
 "type": "Identifier",
 "value": "callback"
@@ -17143,7 +17168,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006476",
+"id": "astnode100006478",
 "name": "attributes",
 "type": "CallExpression",
 "value": ""
@@ -17169,7 +17194,7 @@ export const js = [
 "columnno": 12,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006487",
+"id": "astnode100006489",
 "name": "casc",
 "type": "CallExpression",
 "value": ""
@@ -17195,7 +17220,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006501",
+"id": "astnode100006503",
 "name": "kFuncs.getAllAttrs",
 "type": "Identifier",
 "value": "getAllAttrs",
@@ -17221,7 +17246,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006507",
+"id": "astnode100006509",
 "name": "getSections",
 "type": "FunctionExpression"
 },
@@ -17291,7 +17316,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006514",
+"id": "astnode100006516",
 "name": "queueClone",
 "type": "CallExpression",
 "value": ""
@@ -17317,7 +17342,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006522",
+"id": "astnode100006524",
 "name": "worker",
 "type": "ArrowFunctionExpression"
 },
@@ -17346,7 +17371,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006534",
+"id": "astnode100006536",
 "name": "detail",
 "type": "CallExpression",
 "value": ""
@@ -17372,7 +17397,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006550",
+"id": "astnode100006552",
 "name": "sections[undefined]",
 "type": "Identifier",
 "value": "IDs",
@@ -17397,7 +17422,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006635",
+"id": "astnode100006637",
 "name": "kFuncs.getSections",
 "type": "Identifier",
 "value": "getSections",
@@ -17423,7 +17448,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006641",
+"id": "astnode100006643",
 "name": "set",
 "type": "FunctionExpression"
 }
@@ -17482,7 +17507,7 @@ export const js = [
 "columnno": 16,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006655",
+"id": "astnode100006657",
 "name": "silent",
 "type": "UnaryExpression",
 "value": "!vocal"
@@ -17506,7 +17531,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006660",
+"id": "astnode100006662",
 "name": "kFuncs.setAttrs",
 "type": "Identifier",
 "value": "set",
@@ -17532,7 +17557,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006666",
+"id": "astnode100006668",
 "name": "generateCustomID",
 "type": "FunctionExpression"
 },
@@ -17561,7 +17586,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006680",
+"id": "astnode100006682",
 "name": "string",
 "type": "TemplateLiteral",
 "funcscope": "generateCustomID",
@@ -17588,7 +17613,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006687",
+"id": "astnode100006689",
 "name": "rowID",
 "type": "CallExpression",
 "funcscope": "generateCustomID",
@@ -17615,7 +17640,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006692",
+"id": "astnode100006694",
 "name": "re",
 "type": "NewExpression",
 "value": ""
@@ -17690,7 +17715,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006715",
+"id": "astnode100006717",
 "name": "_generateRowID",
 "type": "FunctionExpression"
 },
@@ -17719,7 +17744,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006723",
+"id": "astnode100006725",
 "name": "rowID",
 "type": "ConditionalExpression",
 "value": ""
@@ -17745,7 +17770,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006733",
+"id": "astnode100006735",
 "name": "section",
 "type": "ConditionalExpression",
 "funcscope": "_generateRowID",
@@ -17772,7 +17797,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006747",
+"id": "astnode100006749",
 "name": "sections[undefined]",
 "type": "LogicalExpression",
 "value": "",
@@ -17797,7 +17822,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006772",
+"id": "astnode100006774",
 "name": "kFuncs.generateRowID",
 "type": "Identifier",
 "value": "_generateRowID",
@@ -17840,7 +17865,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006780",
+"id": "astnode100006782",
 "name": "sanitizeForRegex",
 "type": "FunctionExpression"
 }
@@ -17887,7 +17912,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006793",
+"id": "astnode100006795",
 "name": "kFuncs.sanitizeForRegex",
 "type": "Identifier",
 "value": "sanitizeForRegex",
@@ -17913,7 +17938,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006799",
+"id": "astnode100006801",
 "name": "value",
 "type": "FunctionExpression"
 },
@@ -17974,7 +17999,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006806",
+"id": "astnode100006808",
 "name": "convertVal",
 "type": "UnaryExpression",
 "value": "+val"
@@ -18000,7 +18025,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006837",
+"id": "astnode100006839",
 "name": "kFuncs.value",
 "type": "Identifier",
 "value": "value",
@@ -18026,7 +18051,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006843",
+"id": "astnode100006845",
 "name": "parseRepeatName",
 "type": "FunctionExpression"
 },
@@ -18084,7 +18109,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006849",
+"id": "astnode100006851",
 "name": "match",
 "type": "CallExpression",
 "value": ""
@@ -18110,7 +18135,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006864",
+"id": "astnode100006866",
 "name": "kFuncs.parseRepeatName",
 "type": "Identifier",
 "value": "parseRepeatName",
@@ -18136,7 +18161,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006870",
+"id": "astnode100006872",
 "name": "parseTriggerName",
 "type": "FunctionExpression"
 },
@@ -18194,7 +18219,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006876",
+"id": "astnode100006878",
 "name": "match",
 "type": "CallExpression",
 "value": ""
@@ -18220,7 +18245,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006896",
+"id": "astnode100006898",
 "name": "kFuncs.parseTriggerName",
 "type": "Identifier",
 "value": "parseTriggerName",
@@ -18246,7 +18271,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006902",
+"id": "astnode100006904",
 "name": "parseClickTrigger",
 "type": "Identifier",
 "value": "parseTriggerName"
@@ -18271,7 +18296,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006906",
+"id": "astnode100006908",
 "name": "kFuncs.parseClickTrigger",
 "type": "Identifier",
 "value": "parseClickTrigger",
@@ -18297,7 +18322,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006912",
+"id": "astnode100006914",
 "name": "parseHTMLName",
 "type": "FunctionExpression"
 },
@@ -18347,7 +18372,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006918",
+"id": "astnode100006920",
 "name": "match",
 "type": "CallExpression",
 "value": ""
@@ -18373,7 +18398,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006935",
+"id": "astnode100006937",
 "name": "kFuncs.parseHTMLName",
 "type": "Identifier",
 "value": "parseHTMLName",
@@ -18399,7 +18424,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006941",
+"id": "astnode100006943",
 "name": "capitalize",
 "type": "FunctionExpression"
 },
@@ -18449,7 +18474,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006959",
+"id": "astnode100006961",
 "name": "kFuncs.capitalize",
 "type": "Identifier",
 "value": "capitalize",
@@ -18475,7 +18500,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006965",
+"id": "astnode100006967",
 "name": "extractQueryResult",
 "type": "FunctionExpression"
 },
@@ -18527,7 +18552,7 @@ export const js = [
 "columnno": 5,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100006975",
+"id": "astnode100006977",
 "name": "queryRoll",
 "type": "AwaitExpression",
 "value": ""
@@ -18553,7 +18578,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007004",
+"id": "astnode100007006",
 "name": "kFuncs.extractQueryResult",
 "type": "Identifier",
 "value": "extractQueryResult",
@@ -18579,7 +18604,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007010",
+"id": "astnode100007012",
 "name": "pseudoQuery",
 "type": "FunctionExpression"
 },
@@ -18633,7 +18658,7 @@ export const js = [
 "columnno": 5,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007020",
+"id": "astnode100007022",
 "name": "queryRoll",
 "type": "AwaitExpression",
 "value": ""
@@ -18659,7 +18684,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007049",
+"id": "astnode100007051",
 "name": "kFuncs.pseudoQuery",
 "type": "Identifier",
 "value": "pseudoQuery",
@@ -18685,7 +18710,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007055",
+"id": "astnode100007057",
 "name": "log",
 "type": "FunctionExpression"
 },
@@ -18723,7 +18748,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007153",
+"id": "astnode100007155",
 "name": "kFuncs.log",
 "type": "Identifier",
 "value": "log",
@@ -18749,7 +18774,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007159",
+"id": "astnode100007161",
 "name": "debug",
 "type": "FunctionExpression"
 },
@@ -18805,7 +18830,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007282",
+"id": "astnode100007284",
 "name": "kFuncs.debug",
 "type": "Identifier",
 "value": "debug",
@@ -18831,7 +18856,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007288",
+"id": "astnode100007290",
 "name": "orderSections",
 "type": "FunctionExpression"
 },
@@ -18878,7 +18903,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007307",
+"id": "astnode100007309",
 "name": "attributes.attributes[undefined]",
 "type": "CallExpression",
 "value": "",
@@ -18904,7 +18929,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007339",
+"id": "astnode100007341",
 "name": "kFuncs.orderSections",
 "type": "Identifier",
 "value": "orderSections",
@@ -18930,7 +18955,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007345",
+"id": "astnode100007347",
 "name": "orderSection",
 "type": "FunctionExpression"
 },
@@ -18977,7 +19002,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007381",
+"id": "astnode100007383",
 "name": "kFuncs.orderSection",
 "type": "Identifier",
 "value": "orderSection",
@@ -19003,7 +19028,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007387",
+"id": "astnode100007389",
 "name": "commaArray",
 "type": "FunctionExpression"
 }
@@ -19048,7 +19073,7 @@ export const js = [
 "columnno": 0,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007404",
+"id": "astnode100007406",
 "name": "kFuncs.commaArray",
 "type": "Identifier",
 "value": "commaArray",
@@ -19074,7 +19099,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007410",
+"id": "astnode100007412",
 "name": "RE",
 "type": "ObjectExpression",
 "value": "{\"chars\":\"\",\"escape\":\"\",\"unescape\":\"\"}"
@@ -19099,7 +19124,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007413",
+"id": "astnode100007415",
 "name": "chars",
 "type": "ObjectExpression",
 "value": "{\"undefined\":\"%lcub;\"}"
@@ -19124,7 +19149,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007415",
+"id": "astnode100007417",
 "name": "\"\\\"\"",
 "type": "Literal",
 "value": "%quot;"
@@ -19149,7 +19174,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007417",
+"id": "astnode100007419",
 "name": "\",\"",
 "type": "Literal",
 "value": "%comma;"
@@ -19174,7 +19199,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007419",
+"id": "astnode100007421",
 "name": "\":\"",
 "type": "Literal",
 "value": "%colon;"
@@ -19199,7 +19224,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007421",
+"id": "astnode100007423",
 "name": "\"}\"",
 "type": "Literal",
 "value": "%rcub;"
@@ -19224,7 +19249,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007423",
+"id": "astnode100007425",
 "name": "\"{\"",
 "type": "Literal",
 "value": "%lcub;"
@@ -19249,7 +19274,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007425",
+"id": "astnode100007427",
 "name": "escape",
 "type": "FunctionExpression"
 }
@@ -19273,7 +19298,7 @@ export const js = [
 "columnno": 2,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007451",
+"id": "astnode100007453",
 "name": "unescape",
 "type": "FunctionExpression"
 },
@@ -19300,7 +19325,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007456",
+"id": "astnode100007458",
 "name": "isData",
 "type": "LogicalExpression",
 "value": ""
@@ -19326,7 +19351,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007505",
+"id": "astnode100007507",
 "name": "escape",
 "type": "MemberExpression",
 "value": "RE.escape"
@@ -19375,7 +19400,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007511",
+"id": "astnode100007513",
 "name": "unescape",
 "type": "MemberExpression",
 "value": "RE.unescape"
@@ -19425,7 +19450,7 @@ export const js = [
 "columnno": 22,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007523",
+"id": "astnode100007525",
 "name": "escape",
 "type": "Identifier",
 "value": "escape"
@@ -19449,7 +19474,7 @@ export const js = [
 "columnno": 29,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\scripts",
 "code": {
-"id": "astnode100007525",
+"id": "astnode100007527",
 "name": "unescape",
 "type": "Identifier",
 "value": "unescape"
@@ -19473,7 +19498,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007530",
+"id": "astnode100007532",
 "name": "kSwitchTab",
 "type": "FunctionExpression"
 },
@@ -19522,7 +19547,7 @@ export const js = [
 "columnno": 31,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007534",
+"id": "astnode100007536",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -19546,7 +19571,7 @@ export const js = [
 "columnno": 40,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007536",
+"id": "astnode100007538",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -19570,7 +19595,7 @@ export const js = [
 "columnno": 8,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007604",
+"id": "astnode100007606",
 "name": "tabInputName",
 "type": "TemplateLiteral",
 "value": ""
@@ -19596,7 +19621,7 @@ export const js = [
 "columnno": 4,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007626",
+"id": "astnode100007628",
 "name": "attributes[undefined]",
 "type": "MemberExpression",
 "value": "trigger.name",
@@ -19621,7 +19646,7 @@ export const js = [
 "columnno": 16,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007637",
+"id": "astnode100007639",
 "name": "kSwitchTab",
 "type": "Identifier",
 "value": "kSwitchTab"
@@ -19645,7 +19670,7 @@ export const js = [
 "columnno": 6,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007640",
+"id": "astnode100007642",
 "name": "kTabOnOpen",
 "type": "FunctionExpression"
 },
@@ -19683,7 +19708,7 @@ export const js = [
 "columnno": 29,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007644",
+"id": "astnode100007646",
 "name": "trigger",
 "type": "Identifier",
 "value": "trigger"
@@ -19707,7 +19732,7 @@ export const js = [
 "columnno": 37,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007646",
+"id": "astnode100007648",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -19731,7 +19756,7 @@ export const js = [
 "columnno": 48,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007648",
+"id": "astnode100007650",
 "name": "sections",
 "type": "Identifier",
 "value": "sections"
@@ -19755,7 +19780,7 @@ export const js = [
 "columnno": 57,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007650",
+"id": "astnode100007652",
 "name": "casc",
 "type": "Identifier",
 "value": "casc"
@@ -19779,7 +19804,7 @@ export const js = [
 "columnno": 10,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007668",
+"id": "astnode100007670",
 "name": "pseudoTrigger",
 "type": "ObjectExpression",
 "value": "{\"name\":\"\"}"
@@ -19805,7 +19830,7 @@ export const js = [
 "columnno": 27,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007671",
+"id": "astnode100007673",
 "name": "name",
 "type": "MemberExpression",
 "value": "attributes[undefined]"
@@ -19830,7 +19855,7 @@ export const js = [
 "columnno": 16,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007679",
+"id": "astnode100007681",
 "name": "trigger",
 "type": "Identifier",
 "value": "pseudoTrigger"
@@ -19854,7 +19879,7 @@ export const js = [
 "columnno": 39,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007681",
+"id": "astnode100007683",
 "name": "attributes",
 "type": "Identifier",
 "value": "attributes"
@@ -19878,7 +19903,7 @@ export const js = [
 "columnno": 16,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007687",
+"id": "astnode100007689",
 "name": "kTabOnOpen",
 "type": "Identifier",
 "value": "kTabOnOpen"
@@ -19902,7 +19927,7 @@ export const js = [
 "columnno": 30,
 "path": "E:\\Git\\Kurohyou_studios\\k-scaffold\\lib\\tabs",
 "code": {
-"id": "astnode100007690",
+"id": "astnode100007692",
 "name": "type",
 "type": "ArrayExpression",
 "value": "[\"opener\"]"

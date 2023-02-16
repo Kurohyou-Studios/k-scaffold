@@ -56,4 +56,25 @@ mixin kscript
       |
     |
     block
+    each jsBlock in k.scriptBlocks
+      |
+      |
+      - jsBlock();
+//- End Mixin
+
+
+//- @pugdoc
+  name: module
+  description: A mixin that works with {@link kscript}. It allows you to link your js directly in the pug file that the js is related to. The K-scaffold will then put the js in the final script tag.
+  arguments:
+  attributes:
+  example: |
+    include ../_k.pug
+    +module
+      |// include local js file here
+    +kscript
+      |// local js file will be put here
+mixin module
+  if block
+    - k.scriptBlocks.push(block)
 //- End Mixin

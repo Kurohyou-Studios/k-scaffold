@@ -62,10 +62,6 @@ const entryLevel = entry.kind === 'namespace' ? 3 : 4;
 <style lang="scss">
 .card--library{
   margin-bottom:var(--gap);
-  pre{
-    margin:0;
-    overflow:auto;
-  }
   .arg-list{
     display:grid;
     grid-template-columns:auto 1fr;

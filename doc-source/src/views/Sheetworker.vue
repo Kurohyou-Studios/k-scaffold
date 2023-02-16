@@ -1,7 +1,8 @@
 <script setup>
 import Library from '@/components/Library.vue'
 import { js } from '@/assets/data/index.mjs'
-console.log('js',js.filter(o => !o.undocumented));
+import Readme from '@/assets/markdown/sheetworker.md'
+
 const data = js
   .filter(o =>
     (
@@ -10,13 +11,12 @@ const data = js
     ) &&
     !o.undocumented)
   .sort((a,b) => a.name.localeCompare(b.name))
-  .map(o => ({...o,name:o.kind === 'namespace' ? o.name : `k.${o.name}`}));
-console.log('sheetworker data',data);
+  .map(o => ({...o,name:o.kind === 'namespace' ? o.name : `k.${o.alias || o.name}`}));
 </script>
 
 <template>
   <Library :data="data">
-    <p>Placeholder description</p>
+    <Readme/>
   </Library>
 </template>
 

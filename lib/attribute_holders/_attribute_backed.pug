@@ -2,6 +2,8 @@
 //- @pugdoc
   name: img
   description: A mixin to create a sheet image element. Particularly useful when using the image attribute syntax.
+  arguments:
+    - {object} imgObj - An object describing the properties of the img just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property.
   example: |
     include ../_k.pug
     +img({name:'my image',class:'some-class'})

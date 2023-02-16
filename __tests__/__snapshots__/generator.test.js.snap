@@ -5199,6 +5199,8 @@ registerFuncs({ kTabOnOpen },{type:['opener']});
   return kFuncs;
   }());
   const actionAttributes = [\\"roller_action\\",\\"labelled_roller_action\\",\\"repeating_basic-fieldset_$X_roller_action\\",\\"repeating_basic-fieldset_$X_labelled_roller_action\\",\\"repeating_class-fieldset_$X_roller_action\\",\\"repeating_class-fieldset_$X_labelled_roller_action\\",\\"repeating_custom-fieldset_$X_roller_action\\",\\"repeating_custom-fieldset_$X_labelled_roller_action\\",\\"repeating_inline-fieldset_$X_roller_action\\",\\"repeating_inline-fieldset_$X_labelled_roller_action\\"];const inlineFieldsets = [\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\"];
+  
+  //Testing module insertion
 </script>"
 `;
 
@@ -6528,6 +6530,8 @@ registerFuncs({ kTabOnOpen },{type:['opener']});
   return kFuncs;
   }());
   const actionAttributes = [\\"roller_action\\",\\"labelled_roller_action\\",\\"repeating_basic-fieldset_$X_roller_action\\",\\"repeating_basic-fieldset_$X_labelled_roller_action\\",\\"repeating_class-fieldset_$X_roller_action\\",\\"repeating_class-fieldset_$X_labelled_roller_action\\",\\"repeating_custom-fieldset_$X_roller_action\\",\\"repeating_custom-fieldset_$X_labelled_roller_action\\",\\"repeating_inline-fieldset_$X_roller_action\\",\\"repeating_inline-fieldset_$X_labelled_roller_action\\"];const inlineFieldsets = [\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\",\\"inline fieldset\\"];
+  
+  //Testing module insertion
 
 console.debug = vi.fn(a => null);
 console.log = vi.fn(a => null);
