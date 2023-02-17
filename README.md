@@ -18,12 +18,7 @@
 A PUG, JS, and SCSS framework for building custom Roll20 character sheet templates.
 
 
-<!-- <a href="https://github.com/Kurohyou-Studios/k-scaffold"> -->
-<strong>Documentation site coming soon! »</strong>
-<!-- </a> -->
-
-
-<a href="https://github.com/Kurohyou-Studios/k-scaffold">View Demo</a> · <a href="https://github.com/Kurohyou-Studios/k-scaffold/issues">Report Bug</a> · <a href="https://github.com/Kurohyou-Studios/k-scaffold/issues">Request Feature</a>
+<a href="https://kurohyou-studios.github.io/k-scaffold/">View Documentation</a> · <a href="https://github.com/Kurohyou-Studios/k-scaffold/issues">Report Bug</a> · <a href="https://github.com/Kurohyou-Studios/k-scaffold/issues">Request Feature</a>
 </p>
 </div>
 <!-- TABLE OF CONTENTS -->
@@ -74,12 +69,11 @@ This framework simplifies the task of writing code for Roll20 character sheets. 
 
 ## Getting Started
 ### K-scaffold PUG
-To use the K-scaffold to write the html of your sheet, you will write normal PUG, but using a comprehensive library of components that are frequently used on character sheets. These range from simple mixin versions of standard html elements inputs, textareas, and selects to more complex constructions that generate Roll20 elements or workarounds for limitations of Roll20 character sheets. Library Documentation coming soon!
-<!-- See the [K-scaffold PUG documentation](https://kurohyou.github.io/Roll20-Snippets/pug.html) for full details on the mixins available. -->
+To use the K-scaffold to write the html of your sheet, you will write normal PUG, but using a comprehensive library of components that are frequently used on character sheets. These range from simple mixin versions of standard html elements inputs, textareas, and selects to more complex constructions that generate Roll20 elements or workarounds for limitations of Roll20 character sheets. For full information on the scaffold, read the [pug library documentation](https://kurohyou-studios.github.io/k-scaffold/pug).
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### K-scaffold Javascript
-To use the K-scaffold to write your sheetworkers, you will write normal sheetworkers, but using a library of utility functions and sheetworker aliases to supercharge the standard sheetworkers. Library Documentation coming soon!
+To use the K-scaffold to write your sheetworkers, you will write normal sheetworkers, but using a library of utility functions and sheetworker aliases to supercharge the standard sheetworkers. For full information on the scaffold, read the [sheetworker library documentation](https://kurohyou-studios.github.io/k-scaffold/sheetworkers).
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Prerequisites
