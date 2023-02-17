@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-const execa = import("execa");
 const fs = require("fs");
 (async () => {
+  const execa = (await import("execa")).execa;
   try {
     await execa("git", ["checkout", "--orphan", "gh-pages"]);
     // eslint-disable-next-line no-console
