@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 
 import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 
 </script>
 
@@ -11,6 +12,7 @@ import Header from '@/components/Header.vue'
   <main class="content">
     <RouterView />
   </main>
+  <Footer />
 </template>
 
 <style lang="scss">

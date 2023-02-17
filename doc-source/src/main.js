@@ -14,6 +14,7 @@ import App from './App.vue'
 import router from './router'
 
 import './assets/main.scss'
+import './assets/social-icons.scss';
 
 import * as data from '@/assets/data'
 

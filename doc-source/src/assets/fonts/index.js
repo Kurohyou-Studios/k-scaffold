@@ -1,0 +1,1 @@
+export { default as Social-Icons-v1 } from './Social-Icons-v1';
