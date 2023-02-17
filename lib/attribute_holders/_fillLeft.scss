@@ -1,3 +1,8 @@
+////
+/// @group attribute holders
+/// @author Scott Casey
+////
+
 /// The styling for the functionality of the fillLeft pug mixin. This allows us to easily make [radios/checkboxes that fill as the value increments](https://wiki.roll20.net/CSS_Wizardry#Fill_Radio_Buttons_to_the_Left).
 @mixin fillLeft{
   .fill-left{

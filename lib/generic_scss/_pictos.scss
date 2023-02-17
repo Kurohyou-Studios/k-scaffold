@@ -1,46 +1,66 @@
-//- Styling for items that need the pictos fonts
+////
+/// @group fonts
+////
+/// Styling for items that need the pictos font
 @mixin pictos{
   font-family: pictos;
   text-transform: none;
 }
+/// Styling for items that need the pictos custom font
 @mixin pictosCustom{
   font-family: pictos custom;
   text-transform: none;
 }
+/// Styling for items that need the pictos 3 font
 @mixin pictos3{
   font-family: pictos three;
   text-transform: none;
 }
 
+/// Styling for items that need the dice d4 font
 @mixin diceD4{
   font-family: dicefontd4 !important;
   text-transform: none !important;
 }
+
+/// Styling for items that need the dice d6 font
 @mixin diceD6{
   font-family: dicefontd6 !important;
   text-transform: none !important;
 }
+
+/// Styling for items that need the dice d8 font
 @mixin diceD8{
   font-family: dicefontd8 !important;
   text-transform: none !important;
 }
+
+/// Styling for items that need the dice d10 font
 @mixin diceD10{
   font-family: dicefontd10 !important;
   text-transform: none !important;
 }
+
+/// Styling for items that need the dice d12 font
 @mixin diceD12{
   font-family: dicefontd12 !important;
   text-transform: none !important;
 }
+
+/// Styling for items that need the dice d20 font
 @mixin diceD20{
   font-family: dicefontd20 !important;
   text-transform: none !important;
 }
+
+/// Styling for items that need the dice d30 font
 @mixin diceD30{
   font-family: dicefontd30 !important;
   text-transform: none !important;
 }
 
+/// Utility classes for applying the various dice and pictos fonts that are included on Roll20.
+/// @group utility
 @mixin r20FontClasses{
   .sheet-pictos,
   .pictos{

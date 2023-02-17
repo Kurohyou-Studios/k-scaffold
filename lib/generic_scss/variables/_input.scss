@@ -1,6 +1,9 @@
-////@group variables
-/// @alias input
+////
+/// @group css variables
+////
+
 /// Variables to control the display of input elements
+/// @name input variables
 @mixin variables{
   --inputTopPadding: 2px;
   --inputRightPadding: 2px;

@@ -1,6 +1,9 @@
-////@group variables
-/// @alias checked
+////
+/// @group css variables
+////
+
 /// These variables control aspects of the checkbox and radio display in the k-scaffold.
+/// @name checked variables
 @mixin variables{
   --checkContent: '✓';
   --checkWeight: bold;

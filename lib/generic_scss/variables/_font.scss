@@ -1,6 +1,9 @@
-////@group variables
-/// @alias font
+////
+/// @group css variables
+////
+
 /// Variables that control how font family, and font-size of text on the sheet.
+/// @name font variables
 @mixin variables{
   // Font families
   --font1:var(--topHeadFont);

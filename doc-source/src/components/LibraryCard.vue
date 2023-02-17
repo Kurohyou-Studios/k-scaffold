@@ -55,6 +55,8 @@ const entryLevel = entry.kind === 'namespace' ? 3 : 4;
     <pre v-for="example,index in entry?.example" :key="`${entryName}-example-${index}`"><code>{{ example.code.replace(/\r|\n/g,'\n') }}</code></pre>
     <component :is="`h${entryLevel + 1}`" v-if="entry?.output">Output</component>
     <pre v-if="entry?.output"><code>{{ entry.output }}</code></pre>
+    <component :is="`h${entryLevel + 1}`" v-if="entry?.context?.code">style rules</component>
+    <pre v-if="entry?.context?.code"><code>{{ entry?.context?.code }}</code></pre>
   </div>
 </div>
 </template>

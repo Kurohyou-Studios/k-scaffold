@@ -1,6 +1,9 @@
-////@group variables
-/// @alias fillLeft
+////
+/// @group css variables
+////
+
 /// Variables that control the style behavior of the fillLeft construction
+/// @name fillLeft variables
 @mixin variables{
   --fillLeftDisplay: flex;
   --fillLeftAlignment: center;

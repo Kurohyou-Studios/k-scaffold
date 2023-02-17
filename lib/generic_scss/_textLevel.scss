@@ -1,4 +1,7 @@
-//- Our basic setup for text on the sheet.
+////
+/// @group fonts
+////
+// Our basic setup for text on the sheet.
 @mixin baseText{
   line-height: normal;
 }
@@ -9,13 +12,14 @@
 @mixin uppercase{
   text-transform:uppercase;
 }
+/// Utility classes for applying font styles
 @mixin textStyles{
   .sheet-italics,
   .italics{
     @include italics;
   }
 }
-//- Basic styling for headers.
+/// Basic styling for headers.
 @mixin baseHeader{
   @include baseText;
   color:var(--fontColor);
@@ -26,13 +30,13 @@
   font-weight:normal;
 }
 
-//- Headers that should pop!
+/// Headers that should pop!
 @mixin importantHeader{
   text-transform: uppercase;
   font-weight: normal;
 }
 
-//- Headers that should be important, but not eye-catching
+/// Headers that should be important, but not eye-catching
 @mixin midHeader{
   &:not(:where(input)){
     text-transform:capitalize;
@@ -40,6 +44,7 @@
 }
 
 //- The next several placeholders are for styling our various levels of headers (1-5).
+/// Base styling of h1 level headers
 @mixin h1-style{
   @include baseHeader;
   @include importantHeader;
@@ -55,6 +60,7 @@
     @include h1-style;
   }
 }
+/// Base styling of h2 level headers
 @mixin h2-style{
   @include baseHeader;
   @include importantHeader;
@@ -70,6 +76,7 @@
     @include h2-style;
   }
 }
+/// Base styling of h3 level headers
 @mixin h3-style{
   @include baseHeader;
   @include importantHeader;
@@ -85,6 +92,7 @@
     @include h3-style;
   }
 }
+/// Base styling of h4 level headers
 @mixin h4-style{
   @include baseHeader;
   @include midHeader;
@@ -100,6 +108,7 @@
     @include h4-style;
   }
 }
+/// Base styling of h5 level headers
 @mixin h5-style{
   @include baseHeader;
   @include midHeader;
@@ -116,6 +125,7 @@
     @include h5-style;
   }
 }
+/// Base styling of h6 level headers
 @mixin h6-style{
   @include baseHeader;
   @include midHeader;
@@ -132,6 +142,7 @@
     @include h6-style;
   }
 }
+/// Header element styling is applied to normal header elements (h1 - h6) as well as elements that have an `aria-level` defined on them. Note that a `role='heading'` should also be defined on these html elements for full accessibility.
 @mixin headerElements{
   h1,
   *[aria-level='1']{
@@ -158,6 +169,7 @@
     @include h6;
   }
 }
+/// The styling that is applied to all text elements.
 @mixin textElements{
   span,
   input,

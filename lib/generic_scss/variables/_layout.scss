@@ -1,6 +1,9 @@
-////@group variables
-/// @alias layout
+////
+/// @group css variables
+////
+
 /// Variables to control basic layout of the k-scaffold
+/// @name layout variables
 @mixin variables{
   // Layout variables
   // Variables to define our basic gap between layout elements. Followed by several gaps that are mathematically related to it.

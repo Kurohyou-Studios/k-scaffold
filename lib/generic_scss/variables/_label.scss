@@ -1,6 +1,9 @@
-////@group variables
-/// @alias label
+////
+/// @group css variables
+////
+
 /// Variables to control the display of the various label constructions
+/// @name label variables
 @mixin variables{
 
   --input-label-gap:var(--half-gap) var(--half-gap);

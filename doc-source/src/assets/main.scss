@@ -43,6 +43,9 @@ a{
     }
   }
 }
+*{
+  box-sizing: border-box;
+}
 h1,h2,h3{
   font-family:Aldrich;
   + .subtitle{
@@ -97,11 +100,14 @@ body{
   > :not(h2) ~ * {
     display: none;
   }
-  > :is(h2,h2 ~ *) {
+  > :is(h2,h2 ~ *,img) {
     display: block;
   }
   > [align="right"]{
     display:none !important;
+  }
+  [align="center"]{
+    margin-inline:auto;
   }
 }
 pre{

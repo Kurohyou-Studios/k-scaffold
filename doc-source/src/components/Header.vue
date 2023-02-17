@@ -4,12 +4,18 @@ import { ref, onMounted } from 'vue';
 import ToggleLabel from '@/components/ToggleLabel.vue'
 import { useColorStore } from '@/stores/color'
 
+const headEl = ref(null);
+
 const colors = useColorStore();
 colors.storeColor();
+const updateOffset = ()=>
+  document.documentElement.style.setProperty('--headHeight',`${headEl.value.offsetHeight}px`);
+onMounted(updateOffset);
 </script>
 
 <template>
 <header ref="headEl">
+  <img src="/k-90b.png" alt="K-scaffold logo" height="90" width="90">
   <div class="flex align-items-end gap">
     <h1>The K-Scaffold</h1>
     <span class="subtitle">A Roll20 Sheet Framework</span>
@@ -50,8 +56,8 @@ header{
   grid-template-columns: auto 1fr;
   grid-template-rows: repeat(2,auto);
   grid-template-areas:
-    'header color'
-    'nav    nav';
+    'logo header color'
+    'logo nav    nav';
   padding:var(--gap);
   align-items:center;
   position:sticky;
@@ -63,6 +69,9 @@ header{
     input:checked:before{
       background-color:var(--secondary-font-color);
     }
+  }
+  img{
+    grid-area:logo;
   }
 }
 .toggle-label{
