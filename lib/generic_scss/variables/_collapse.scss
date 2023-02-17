@@ -1,6 +1,9 @@
-////@group variables
-/// @alias collapse
+////
+/// @group css variables
+////
+
 /// Variables that control the styling of the collapse inputs
+/// @name collapse variables
 @mixin variables{
   --expandedSymbol:'unfold_less';
   --collapsedSymbol: 'unfold_more';

@@ -1,3 +1,7 @@
+////
+/// @group attribute holders
+/// @author Scott Casey
+////
 @use '../generic_scss/borderPlaceholders';
 /// Styling for the adaptive text construction to create textareas and inputs that grow based on their contents. Used in the default [defaultStyles](#defaultStyles) mixin, but can be used separately if you only want to include specific framework css.
 @mixin adaptiveText{

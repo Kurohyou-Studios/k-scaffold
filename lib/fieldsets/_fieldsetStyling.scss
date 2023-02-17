@@ -1,6 +1,10 @@
+////
+/// @group fieldsets
+/// @author Scott Casey
+////
 @use '../attribute_holders/buttons';
 
-// Styling for our various special fieldset constructions. e.g. [customControlFieldset](/pug.html#customControlFieldset).
+/// Styling for our various special fieldset constructions. e.g. [customControlFieldset](/pug.html#customControlFieldset).
 @mixin fieldsetStyling {
   .repitem {
     >input:not([type='checkbox']) {

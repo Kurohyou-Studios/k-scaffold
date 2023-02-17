@@ -1,4 +1,6 @@
-//// @group borders
+////
+/// @group borders
+////
 //- Creates our basic border for inputs
 /// Creates the default highlight styling for inputs/selects
 @mixin inputHighlight{
@@ -22,7 +24,8 @@
   border-radius:0;
   box-sizing:border-box;
 }
-/// The complete border styling
+/// Utility classes that are provided to easily apply a variety of border styles to your elements.
+/// @group utility
 @mixin borderStyles{
   .boxed,
   .sheet-boxed{

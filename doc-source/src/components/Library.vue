@@ -18,7 +18,7 @@ const data = Object.entries(namespaceObjs)
   .reduce((memo,[name,obj]) => {
     memo.push(
       obj.head,
-      ...obj.members.sort((a,b) => (a.name || a.meta?.name).localeCompare(b.name || b.meta?.name))
+      ...obj.members.sort((a,b) => (a.name || a.meta?.name || a.context.name).localeCompare(b.name || b.meta?.name || b.context.name))
     );
     return memo;
   },[]);
@@ -60,7 +60,7 @@ const data = Object.entries(namespaceObjs)
   --topSet: calc(var(--headHeight,90px) - 1px);
   position: sticky;
   top: var(--topSet);
-  max-height: calc(100vh - var(--topSet) - 32px);
+  max-height: calc(100vh - var(--topSet));
   overflow: auto;
   background-color:var(--secondary-back-color);
   padding:var(--gap) var(--half-gap);

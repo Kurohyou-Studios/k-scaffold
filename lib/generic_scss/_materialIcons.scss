@@ -1,4 +1,6 @@
-//// @group materialStyle
+//// 
+/// @group materialStyle
+//// 
 /// Mixin to add the necessary styling to use material icons. 
 /// @example scss
 ///   @use 'k-scaffold' as k;
@@ -11,6 +13,8 @@
   font-style: normal;
   font-size: var(--icon-size);  /* Preferred icon size */
 }
+/// Utility classes that are provided to apply material icon styling to your elements
+/// @group utility
 @mixin materialIcons{
   .sheet-material-icons,
   .material-icons {

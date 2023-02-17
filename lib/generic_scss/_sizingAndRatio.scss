@@ -4,6 +4,9 @@
 @mixin ratio1_1{
   aspect-ratio: 1/1;
 }
+/// Utility classes for applying aspect ratios and sizes
+/// @name Sizes and Ratios
+/// @group layout
 @mixin sizesAndRatios{
   .ratio1-1,
   .sheet-ratio1-1{

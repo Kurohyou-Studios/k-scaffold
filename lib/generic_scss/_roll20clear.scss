@@ -1,3 +1,13 @@
+////
+/// @group base styles
+////
+
+/// All input related items have their styling cleared to remove any Roll20 default styles. Note that all of your styles should be at a level higher than this mixin is used in.
+/// @example
+///   @use 'k-scaffold' as k;
+///   .ui-dialog .tab-content .charsheet{
+///     @include k.clear;
+///   }
 @mixin clear {
   select,
   textarea,

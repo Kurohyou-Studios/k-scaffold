@@ -1,6 +1,9 @@
-////@group variables
-/// @alias colors
+////
+/// @group css variables
+////
+
 /// Variables for defining colors in your sheet using light mode and dark mode
+/// @name colors variables
 @mixin variables{
   --lm-backColor:#fff;
   --dm-backColor:var(--dark-surface1);

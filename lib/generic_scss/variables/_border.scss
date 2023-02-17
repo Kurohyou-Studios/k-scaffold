@@ -1,6 +1,9 @@
-////@group variables
-/// @alias Border
+////
+/// @group css variables
+////
+
 /// These variables control aspects of the borders in the k-scaffold
+/// @name Border variables
 @mixin variables{
   --borderWidth:1px;
   --borderStyle:solid;
