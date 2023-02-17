@@ -19,19 +19,5 @@ jobs:
         run: npm run build
       - name: Tests
         run: npm run test
-      - name: Build doc data
-        run: npm run docs
-      - name: Install doc site npm packages
-        run: cd doc-source && npm install
-      - name: Build doc site
-        run: npm run build-doc
-      - name: Push doc
-        run: |
-          rsync -r --delete --exclude '.nojekyll' doc-source/dist/ docs
-          git config --global user.name "Automated Continuous Integration"
-          git config --global user.email "Riernar@users.noreply.github.com"
-          git add -f docs
-          git commit -m "Continuous Integration - Build Doc"
-          git push
 
 

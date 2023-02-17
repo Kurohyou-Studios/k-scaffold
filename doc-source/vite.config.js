@@ -6,7 +6,7 @@ import Vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-md'
 
 export default {
-  publicPath: process.env.NODE_ENV === "production" ? "/k-scaffold/" : "/",
+  base: process.env.NODE_ENV === "production" ? "/k-scaffold/" : "/",
   plugins: [
     Vue({
       include: [/\.vue$/, /\.md$/], // <--
