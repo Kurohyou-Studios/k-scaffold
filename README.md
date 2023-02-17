@@ -9,8 +9,9 @@
 [![LinkedIn][linkedin-shield]][linkedin-url] [![Patreon][patreon-shield]][patreon-url]
 
 </span>
-<img src='/K-200.png' align="center">
-<br />
+<div align=center>
+<img src='https://raw.githubusercontent.com/Kurohyou-Studios/k-scaffold/main/K-200.png' align="center">
+</div>
 <div align="center">
 <h3 align="center">K-Scaffold</h3>
 <p align="center">
@@ -159,6 +160,12 @@ Tests for the uncovered sections of code will be written as work progresses. If 
 Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou-Studios/k-scaffold/LICENSE.txt) for more information.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <!-- CONTACT -->
+
+## Changelog
+v1.1.0
+- Added module mixin to Pug Library
+v1.0.0
+- Soft Launch
 
 ## Contact
 
