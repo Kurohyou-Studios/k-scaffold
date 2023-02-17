@@ -10,6 +10,7 @@ colors.storeColor();
 
 <template>
 <header ref="headEl">
+  <img src="/k-90b.png" alt="K-scaffold logo">
   <div class="flex align-items-end gap">
     <h1>The K-Scaffold</h1>
     <span class="subtitle">A Roll20 Sheet Framework</span>
@@ -50,8 +51,8 @@ header{
   grid-template-columns: auto 1fr;
   grid-template-rows: repeat(2,auto);
   grid-template-areas:
-    'header color'
-    'nav    nav';
+    'logo header color'
+    'logo nav    nav';
   padding:var(--gap);
   align-items:center;
   position:sticky;
@@ -63,6 +64,9 @@ header{
     input:checked:before{
       background-color:var(--secondary-font-color);
     }
+  }
+  img{
+    grid-area:logo;
   }
 }
 .toggle-label{
