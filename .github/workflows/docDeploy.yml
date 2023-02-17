@@ -12,11 +12,15 @@ jobs:
         - uses: actions/setup-node@v2
           with:
             node-version: '18'
+        - name: Set Creds
+          run: git config user.name "<kurohyou-studios>" && git config user.email "<scaseydv@gmail.com>"
         - name: Install packages
           run: npm run full-install
         - name: Build doc data
           run: npm run docs
-        - name: Set Creds
-          run: git config user.name "<kurohyou-studios>" && git config user.email "<scaseydv@gmail.com>"
-        - name: Deploy
-          run: npm run deploy
+        - name: Build Doc site
+          run: npm run build-doc
+        - name: Add doc dist
+          run: git add --force doc-source/dist && git commit -m "adding dist subtree"
+        - name: Push to gh-pages
+          run: git subtree push --prefix doc-source/dist origin gh-pages
