@@ -28,6 +28,8 @@ jobs:
     - name: Build Site
       run: npm run build-doc
 
+    - name: generate 404.html
+      run: cp ./doc-source/dist/index.html ./doc-source/dist/404.html
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
       with:
