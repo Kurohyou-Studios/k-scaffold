@@ -1,0 +1,22 @@
+name: Build Vue
+on:
+  push:
+    branches:
+      - main
+jobs:
+  gh-pages-deploy:
+    name: Deploying to Github Pages
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '18'
+        - name: Install packages
+          run: npm run full-install
+        - name: Build doc data
+          run: npm run docs
+        - name: Set Creds
+          run: git config user.name "<kurohyou-studios>" && git config user.email "<scaseydv@gmail.com>"
+        - name: Deploy
+          run: npm run deploy
