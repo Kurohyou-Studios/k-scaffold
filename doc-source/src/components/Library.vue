@@ -60,7 +60,7 @@ const data = Object.entries(namespaceObjs)
   --topSet: calc(var(--headHeight,90px) - 1px);
   position: sticky;
   top: var(--topSet);
-  max-height: calc(100vh - var(--topSet));
+  max-height: calc(100vh - var(--topSet) - var(--footerHeight));
   overflow: auto;
   background-color:var(--secondary-back-color);
   padding:var(--gap) var(--half-gap);
@@ -75,7 +75,6 @@ const data = Object.entries(namespaceObjs)
 }
 .library-content{
   grid-area:content;
-  max-width: 100%;
   overflow: hidden;
   padding: var(--huge-gap) var(--huge-gap) var(--huge-gap) 0;
 }
