@@ -1,26 +1,54 @@
-name: Build Vue
+name: Build & deploy
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  gh-pages-deploy:
-    name: Deploying to Github Pages
+  build:
+    name: Build
     runs-on: ubuntu-latest
+    
     steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2
-          with:
-            node-version: '18'
-        - name: Set Creds
-          run: git config user.name "<kurohyou-studios>" && git config user.email "<scaseydv@gmail.com>"
-        - name: Install packages
-          run: npm run full-install
-        - name: Build doc data
-          run: npm run docs
-        - name: Build Doc site
-          run: npm run build-doc
-        - name: Add doc dist
-          run: git add --force doc-source/dist && git commit -m "adding dist subtree"
-        - name: Push to gh-pages
-          run: git subtree push --prefix doc-source/dist origin gh-pages
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 18.x
+    
+    - name: Install NPM packages
+      run: npm run full-install
+
+    - name: Build Doc Data
+      run: npm run docs
+    
+    - name: Build Site
+      run: npm run build-doc
+
+    - name: Upload production-ready build files
+      uses: actions/upload-artifact@v2
+      with:
+        name: production-files
+        path: ./doc-source/dist
+  
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: production-files
+        path: ./doc-source/dist
+
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./doc-source/dist
