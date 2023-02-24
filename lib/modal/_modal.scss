@@ -104,6 +104,10 @@
         transform: rotate(-45deg);
     }
 
+    .kmodal__checkbox:not(:checked)+.kmodal__outer {
+        display: none;
+    }
+
     .kmodal__checkbox:checked+.kmodal__outer {
         opacity: 1;
         visibility: visible;
