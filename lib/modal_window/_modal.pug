@@ -1,0 +1,73 @@
+//- @pugdoc
+  name: modalButton
+  description: One of the mixin to create modal window (i.e. pop-up). This makes a label that, when clicked, will trigger the display of same-named modal {@link modalWindow}.
+  arguments:
+    - {string} [name] - The name of the modal window this button is for.
+  attributes:
+  example: |
+    include ../_k.pug
+    // Tabs that are persistent (default) and have the background tab as the default tab
+    +modalButton({name: "settings"})
+        // Use a nice google-font (will need a suitable SCSS import)
+        span.material-icons settings
+        
+    +modalWindow({name: "settings"})
+        p Content of the settings modal window
+mixin modalButton({name})
+    //- Cleanup the name like an action button, i.e. with '-', because it is used in CSS
+    - name = actionButtonName(replaceProblems(name));
+    - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
+    //- Use 'kmodal' instead of modal, because Roll20 already uses a 'modal' class
+    - attributes.class = `kmodal kmodal--${name} kmodal__button kmodal--${name}__button${attributes.class}`;
+    - attributes.for = `kmodal-${name}`;
+    label&attributes(attributes)
+        block
+
+//- @pugdoc
+  name: modalWindow
+  description: One of the mixin to create modal window (i.e. pop-up). This makes the window that will be displayed when the corrresponding {@link modalButton} is clicked.
+  arguments:
+    - {string} [name] - The name of the modal window
+  attributes:
+  example: |
+    include ../_k.pug
+    // Tabs that are persistent (default) and have the background tab as the default tab
+    +modalButton({name: "settings"})
+        // Use a nice google-font (will need a suitable SCSS import)
+        span.material-icons settings
+        
+    +modalWindow({name: "settings"})
+        p Content of the settings modal window
+mixin modalWindow({name})
+    //- Cleanup the name like an action button, i.e. with '-', because it is used in CSS
+    - name = actionButtonName(replaceProblems(name))
+    - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
+        //- Use 'kmodal' instead of modal, because Roll20 already uses a 'modal' class
+    - attributes.class = `kmodal kmodal__outer kmodal--${name} kmodal--${name}__outer${attributes.class}`;
+        
+    input(class=`kmodal kmodal--${name} kmodal__checkbox kmodal--${name}__checkbox` type="checkbox" id=`kmodal-${name}`)
+    div&attributes(attributes)
+        label(class=`kmodal kmodal__background kmodal--${name} kmodal--${name}__background` for=`kmodal-${name}`)
+        div(class=`kmodal kmodal__inner kmodal--${name} kmodal--${name}__inner`)
+            label(class=`kmodal kmodal__close kmodal--${name} kmodal--${name}__close` for=`kmodal-${name}`)
+            div(class=`kmodal kmodal__content kmodal--${name} kmodal--${name}__content`)
+                block
+
+//- @pugdoc
+  name: modalContainer
+  description: One of the mixin to create modal window (i.e. pop-up). This reduces the scope of a {@link modalWindow}: by default, the window covers all of the character sheet. Inside a modal container, it covers at most the container.
+  arguments:
+  attributes:
+  example: |
+    include ../_k.pug
+    // Tabs that are persistent (default) and have the background tab as the default tab
+    +modalButton({name: "settings"})
+        // Use a nice google-font (will need a suitable SCSS import)
+        span.material-icons settings
+    
+    +modalContainer
+        +modalWindow({name: "settings"})
+            p Content of the settings modal window
+mixin modalContainer()
+    .kmodal.kmodal__container&attributes(attributes)
+        block
