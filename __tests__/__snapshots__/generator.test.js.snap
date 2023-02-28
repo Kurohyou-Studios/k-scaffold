@@ -7,6 +7,109 @@ exports[`k.build > Should generate the css file from scss 1`] = `
   display: none !important;
 }
 
+.ui-dialog .tab-content .charsheet {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  --color-kmodal-background: rgba(0, 0, 0, .9);
+}
+.ui-dialog .tab-content .charsheet .kmodal__container {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.ui-dialog .tab-content .charsheet .kmodal__button {
+  all: initial;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.ui-dialog .tab-content .charsheet .kmodal__checkbox {
+  display: none;
+}
+.ui-dialog .tab-content .charsheet .kmodal__outer {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: left;
+  background: var(--color-kmodal-background);
+  transition: opacity 0.25s ease;
+  z-index: 999;
+}
+.ui-dialog .tab-content .charsheet .kmodal__background {
+  all: initial;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+.ui-dialog .tab-content .charsheet .kmodal__inner {
+  position: absolute;
+  top: -20%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+  margin: auto;
+  overflow: auto;
+  background: #fff;
+  border-radius: 5px;
+  padding: 1em 2em;
+  height: 90%;
+  transition: opacity 0.25s ease;
+}
+.ui-dialog .tab-content .charsheet .kmodal__close {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  width: 1.1em;
+  height: 1.1em;
+  cursor: pointer;
+}
+.ui-dialog .tab-content .charsheet .kmodal__close:after,
+.ui-dialog .tab-content .charsheet .kmodal__close:before {
+  content: \\"\\";
+  position: absolute;
+  width: 2px;
+  height: 1.5em;
+  background: #ccc;
+  display: block;
+  transform: rotate(45deg);
+  left: 50%;
+  margin: -3px 0 0 -1px;
+  top: 0;
+}
+.ui-dialog .tab-content .charsheet .kmodal__close:hover:after,
+.ui-dialog .tab-content .charsheet .kmodal__close:hover:before {
+  background: #aaa;
+}
+.ui-dialog .tab-content .charsheet .kmodal__close:before {
+  transform: rotate(-45deg);
+}
+.ui-dialog .tab-content .charsheet .kmodal__checkbox:not(:checked) + .kmodal__outer {
+  display: none;
+}
+.ui-dialog .tab-content .charsheet .kmodal__checkbox:checked + .kmodal__outer {
+  opacity: 1;
+  visibility: visible;
+}
+.ui-dialog .tab-content .charsheet .kmodal__checkbox:checked + .kmodal__outer .kmodal__inner {
+  top: 0;
+}
+
 body {
   --font1:var(--topHeadFont);
   --font2:var(--topHeadFont);
