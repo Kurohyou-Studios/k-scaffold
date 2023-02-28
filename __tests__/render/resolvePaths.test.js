@@ -11,6 +11,6 @@ describe('resolvePaths()',()=>{
     const retArr = resolvePaths('./','./',true,{name:'test.pug'});
     console.log('retArr[1]:',retArr[1]);
     expect(retArr[0]).toMatch(/test\.pug$/);
-    expect(retArr[1]).toMatch(/test\\test\.html$/);
+    expect(retArr[1]).toMatch(/test[\\/]test\.html$/);
   })
 });
