@@ -162,8 +162,16 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.2.1
+- Fixed a dependency issue with node-watch
+- Updated readme.
+
+v1.2.0
+- Added the ability for dynamic destination directories
+
 v1.1.0
 - Added module mixin to Pug Library
+
 v1.0.0
 - Soft Launch
 
