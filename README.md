@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.2.2
+- Fixed an issue that caused the watch build mode to ignore dynamic destinations
+
 v1.2.1
 - Fixed a dependency issue with node-watch
 - Updated readme.
