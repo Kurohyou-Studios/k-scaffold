@@ -1,6 +1,6 @@
 .ui-dialog .tab-content .charsheet {
 
-    // mke the top-level .charsheet div the default root of position: absolute; elements
+    // make the top-level .charsheet div the default root of "position: absolute;" elements
     position: relative;
     top: 0;
     bottom: 0;
@@ -8,7 +8,8 @@
     right: 0;
 
     --color-kmodal-background: rgba(0, 0, 0, .9);
-        //- Use 'kmodal' instead of modal, because Roll20 already uses a 'modal' class
+    
+    //- Use 'kmodal' instead of modal, because Roll20 already uses a 'modal' class
     .kmodal__container {
         position: relative;
         top: 0;

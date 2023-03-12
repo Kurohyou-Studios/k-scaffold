@@ -1,4 +1,10 @@
 include k-scaffold
+//- Create a modal window for settings
++modalButton({name:"settings"})
+  span Settings
++modalWindow({name:"settings"})
+  +checkbox({name: "setting 1"})
+  +checkbox({name: "setting 2"})
 //- Create a tabs construct
 +tabs({name:"test-tabs",defaultActiveTab:'background'})(class="outer")
   //- Some basic text to display before the navigation
