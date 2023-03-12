@@ -1,0 +1,9 @@
+include ./../../lib/_k.pug
+
+
++modalContainer()
+    +modalButton({name:"settings"})
+        span Settings
+    +modalWindow({name:"settings"})
+        +checkbox({name: "setting 1"})
+        +checkbox({name: "setting 2"})
