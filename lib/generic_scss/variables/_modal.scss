@@ -1,0 +1,55 @@
+@mixin variables{
+  // modal sizing
+  --kmodal-width:fit-content;
+  --kmodal-height:fit-content;
+  --kmodal-max-width:90vw;
+  --kmodal-max-height:90vh;
+
+  // Modal colors
+  --lm-kmodal-overlay-background:rgba(0,0,0,.9);
+  --dm-kmodal-overlay-background:rgba(0,0,0,.9);
+  --kmodal-overlay-background: var(--lm-kmodal-overlay-background);
+
+  --lm-kmodal-dialog-background:var(--lm-backColor);
+  --dm-kmodal-dialog-background:var(--dm-backColor);
+  --kmodal-dialog-background: var(--lm-kmodal-dialog-background);
+
+  // Modal border
+  --kmodal-border-width:0px;
+  --kmodal-border-color:transparent;
+
+  // Modal box-shadow
+  --lm-kmodal-box-shadow-color1:rgba(0, 0, 0, 0.25);
+  --dm-kmodal-box-shadow-color1:rgba(0, 0, 0, 0.25);
+  --kmodal-box-shadow-color1:var(--lm-kmodal-box-shadow-color1);
+  --kmodal-box-shadow-blur1:28px;
+  --kmodal-box-shadow-x1:0px;
+  --kmodal-box-shadow-y1:14px;
+  --kmodal-box-shadow-spread1:0px;
+
+  --lm-kmodal-box-shadow-color2:rgba(0, 0, 0, 0.22);
+  --dm-kmodal-box-shadow-color2:rgba(0, 0, 0, 0.22);
+  --kmodal-box-shadow-color2:var(--lm-kmodal-box-shadow-color2);
+  --kmodal-box-shadow-blur2:10px;
+  --kmodal-box-shadow-x2:0px;
+  --kmodal-box-shadow-y2:10px;
+  --kmodal-box-shadow-spread2:0px;
+
+  --kmodal-box-shadow:
+    var(--kmodal-box-shadow-x1) var(--kmodal-box-shadow-y1) var(--kmodal-box-shadow-blur1) var(--kmodal-box-shadow-spread1) var(--kmodal-box-shadow-color1),
+    var(--kmodal-box-shadow-x2) var(--kmodal-box-shadow-y2) var(--kmodal-box-shadow-blur2) var(--kmodal-box-shadow-spread2) var(--kmodal-box-shadow-color2);
+
+  // close button
+  --kmodal-close-width:1rem;
+  --kmodal-close-height:1rem;
+  --lm-kmodal-close-color:#ccc;
+  --dm-kmodal-close-color:#aaa;
+  --kmodal-close-color:var(--lm-kmodal-close-color);
+  
+  --lm-kmodal-close-hover-color:#aaa;
+  --dm-kmodal-close-hover-color:#aaa;
+  --kmodal-close-hover-color:var(--lm-kmodal-close-hover-color);
+
+  --kmodal-close-line-thickness:2px;
+  --kmodal-close-line-length:calc(var(--kmodal-close-width) * 1.5);
+}

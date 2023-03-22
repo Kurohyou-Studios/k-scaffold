@@ -1,0 +1,12 @@
++modalContainer()
+    +modalButton({name:"settings"})
+        span Settings
+    +modalWindow({name:"settings"})
+        +input-label({
+            inputObj:{name:'setting 1',type:'checkbox',value:1},
+            spanObj:{'data-i18n':'setting 1'}
+        })
+        +input-label({
+            inputObj:{name:'setting 2',type:'checkbox',value:1},
+            spanObj:{'data-i18n':'setting 2'}
+        })
