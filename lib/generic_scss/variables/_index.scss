@@ -8,6 +8,7 @@
 @use './collapse';
 @use './fillLeft';
 @use './select';
+@use './modal';
 
 @mixin variables{
   @include font.variables;
@@ -20,4 +21,5 @@
   @include fillLeft.variables;
   @include select.variables;
   @include animation.variables;
+  @include modal.variables;
 }

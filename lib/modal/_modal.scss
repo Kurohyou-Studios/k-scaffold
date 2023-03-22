@@ -6,17 +6,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-
-    --color-kmodal-background: rgba(0, 0, 0, .9);
     
     //- Use 'kmodal' instead of modal, because Roll20 already uses a 'modal' class
-    .kmodal__container {
-        position: relative;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
 
     .kmodal__button {
         all: initial;
@@ -33,13 +24,13 @@
     .kmodal__outer {
         opacity: 0;
         visibility: hidden;
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
         text-align: left;
-        background: var(--color-kmodal-background);
+        background: var(--kmodal-overlay-background);
         transition: opacity .25s ease;
         z-index: 999;
     }
@@ -57,28 +48,28 @@
     }
 
     .kmodal__inner {
-        position: absolute;
-        top: -20%;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 90%;
+        position: fixed;
+        width:var(--kmodal-width);
+        height:var(--kmodal-height);
+        inset:0;
         margin: auto;
         overflow: auto;
-        background: #fff;
+        background: var(--kmodal-dialog-background);
         border-radius: 5px;
-        padding: 1em 2em;
-        height: 90%;
+        padding: var(--kmodal-close-height) calc(var(--kmodal-close-width) * 3) var(--kmodal-close-height) calc(var(--kmodal-close-width) * 2);
+        max-width:var(--kmodal-max-width);
+        max-height:var(--kmodal-max-height);
         transition: opacity .25s ease;
+        box-shadow:var(--kmodal-box-shadow);
     }
 
 
     .kmodal__close {
         position: absolute;
-        right: 1em;
-        top: 1em;
-        width: 1.1em;
-        height: 1.1em;
+        right: var(--kmodal-close-width);
+        top: var(--kmodal-close-height);
+        width: var(--kmodal-close-width);
+        height: var(--kmodal-close-height);
         cursor: pointer;
     }
 
@@ -86,9 +77,9 @@
     .kmodal__close:before {
         content: '';
         position: absolute;
-        width: 2px;
-        height: 1.5em;
-        background: #ccc;
+        width: var(--kmodal-close-line-thickness);
+        height: var(--kmodal-close-line-length);
+        background: var(--kmodal-close-color);
         display: block;
         transform: rotate(45deg);
         left: 50%;
@@ -98,7 +89,7 @@
 
     .kmodal__close:hover:after,
     .kmodal__close:hover:before {
-        background: #aaa;
+        background: var(--kmodal-close-hover-color);
     }
 
     .kmodal__close:before {
