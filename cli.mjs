@@ -6,9 +6,9 @@ const [,,...args] = process.argv;
 
 const baseDir = process.cwd();
 const mConfigPath = path.resolve(baseDir,'./k.config.mjs');
-const mConfigURL = new URL(mConfigPath);
+const mConfigURL = new URL(mConfigPath, 'file:');
 const jConfigPath = path.resolve(baseDir,'./k.config.js');
-const jConfigURL = new URL(jConfigPath);
+const jConfigURL = new URL(jConfigPath, 'file:');
 const userOpts = {};
 try{
   const opts = (await import(mConfigURL.pathname.replace(/\\/g,'/')))?.default;
