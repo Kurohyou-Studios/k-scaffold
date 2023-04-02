@@ -28,6 +28,7 @@ mixin modalButton({name})
   description: One of the mixin to create modal window (i.e. pop-up). This makes the window that will be displayed when the corrresponding {@link modalButton} is clicked.
   arguments:
     - {string} [name] - The name of the modal window
+    - {object} [checkboxObj] - Object to pass to {@link checkbox} to make the hidden checkbox controlling the display of the model window
   attributes:
   example: |
     include ../_k.pug
@@ -38,14 +39,19 @@ mixin modalButton({name})
         
     +modalWindow({name: "settings"})
         p Content of the settings modal window
-mixin modalWindow({name})
+mixin modalWindow({name, checkboxObj})
     //- Cleanup the name like an action button, i.e. with '-', because it is used in CSS
     - name = actionButtonName(replaceProblems(name))
     - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
         //- Use 'kmodal' instead of modal, because Roll20 already uses a 'modal' class
     - attributes.class = `kmodal kmodal__outer kmodal--${name} kmodal--${name}__outer${attributes.class}`;
-        
-    input(class=`kmodal kmodal--${name} kmodal__checkbox kmodal--${name}__checkbox` type="checkbox" id=`kmodal-${name}`)
+
+    - checkboxObj = checkboxObj || {};
+    - checkboxObj.class = checkboxObj.class ? ` ${replaceProblems(checkboxObj.class)}` : "";
+    - checkboxObj.class = `kmodal kmodal--${name} kmodal__checkbox kmodal--${name}__checkbox${checkboxObj.class}`;
+    - checkboxObj.id = `kmodal-${name}`; //- needs to be exactly this to connect to the labels, so override the user
+    - checkboxObj.name = checkboxObj.name || `kmodal-${name}`; //- user can override this, it just make the checkbox attribute-backed
+    +checkbox(checkboxObj)
     div&attributes(attributes)
         label(class=`kmodal kmodal__background kmodal--${name} kmodal--${name}__background` for=`kmodal-${name}`)
         div(class=`kmodal kmodal__inner kmodal--${name} kmodal--${name}__inner`)
