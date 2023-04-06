@@ -28,8 +28,6 @@ exports[`Environment > Should have attributes, characters, query response sub ob
     "roller_action": "",
     "roller_text": "",
     "select": "option 1",
-    "setting_1": 0,
-    "setting_2": 0,
     "span": "",
     "template_start": "&{template:test} {{character_name=@{character_name}}} {{character_id=@{character_id}}}",
     "text": "text",
