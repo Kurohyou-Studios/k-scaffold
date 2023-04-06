@@ -37,7 +37,7 @@ mixin span(obj)
   - checkKUse();
   - obj.class = obj.class ? replaceProblems(obj.class) : undefined;
   if obj.name
-    - obj.name = replaceSpaces(obj.name);
+    - obj.name = attrName(obj.name);
     - obj.title = obj.title || attrTitle(obj.name);
     - obj.name = `attr_${obj.name}`;
     - addFieldToFieldsetObj(obj);
