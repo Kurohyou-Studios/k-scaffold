@@ -1,0 +1,40 @@
+on:
+  workflow_call:
+    inputs:
+      ref:
+        required: true
+        type: string
+
+name: Tests
+jobs:
+  tests:
+    name: "test"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Setup npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+
+      - name: Setup doc data Folder
+        run: mkdir -p ./doc-source/src/assets/data
+
+      - name: Install npm packages
+        run: npm run full-install
+
+      - name: Build test sheet
+        run: npm run build
+
+      - name: Tests
+        run: npm run test
+
+      - name: Build Doc Data
+        run: npm run docs
+
+      - name: Build Doc Site
+        run: npm run build-doc
