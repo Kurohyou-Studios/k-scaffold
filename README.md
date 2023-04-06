@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.2.4
+- Fixed an issue that caused the existing key/value pairs of the translation file to be overwritten every time.
+
 v1.2.3
 - Fixed an issue that caused the build to fail on some linux systems.
 
