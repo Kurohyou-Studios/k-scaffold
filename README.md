@@ -162,10 +162,11 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
-v1.2.4
+v1.3.0
 - Fixed an issue that caused the existing key/value pairs of the translation file to be overwritten every time.
 - Fixed an issue that prevented some mixins from using passed attributes (e.g. `+text({name:'my-text'}).quick-class`).
 - Fixed an issue that prevented attribute backed spans from using the attribute prefix that the user has defined.
+- Added a modal mixin
 
 v1.2.3
 - Fixed an issue that caused the build to fail on some linux systems.
