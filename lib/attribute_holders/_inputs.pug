@@ -31,7 +31,7 @@ mixin input(obj)
     +text({name:'my attribute',class:'some-class',trigger:{affects:['other_attribute']}})
 mixin text(obj)
   - obj.type = 'text';
-  +input(obj)
+  +input(obj)&attributes(attributes)
 //-End Mixin
 
 //- @pugdoc
@@ -74,7 +74,7 @@ mixin collapse(name='collapse')
     +radio({name:'my radio',value:3})
 mixin radio(obj)
   - obj.type = 'radio';
-  +input(obj)
+  +input(obj)&attributes(attributes)
 //-End Mixin
 
 //- @pugdoc
@@ -88,7 +88,7 @@ mixin radio(obj)
     +number({name:'my number',class:'some-class',trigger:{affects:['other_attribute']}})
 mixin number(obj)
   - obj.type = 'number';
-  +input(obj)
+  +input(obj)&attributes(attributes)
 //-End Mixin
 
 //- @pugdoc
@@ -102,7 +102,7 @@ mixin number(obj)
     +range({name:'my range',class:'some-class'})
 mixin range(obj)
   - obj.type = 'range';
-  +input(obj)
+  +input(obj)&attributes(attributes)
 //-End Mixin
 
 //- @pugdoc
@@ -116,7 +116,7 @@ mixin range(obj)
     +hidden({name:'my hidden attribute',class:'some-class',trigger:{triggeredFuncs:['someFunction']}})
 mixin hidden(obj)
   - obj.type = 'hidden';
-  +input(obj)
+  +input(obj)&attributes(attributes)
 //-End Mixin
 
 mixin radioGroup(objArray)
