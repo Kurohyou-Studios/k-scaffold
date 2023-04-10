@@ -59,7 +59,7 @@ jobs:
         run: cp ./doc-source/dist/index.html ./doc-source/dist/404.html
       
       - name: Upload documentation artifact
-        uses: actions/upload-pages-artifact
+        uses: actions/upload-pages-artifact@v1
         with:
           path: ./doc-source/dist
       
