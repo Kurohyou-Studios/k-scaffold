@@ -16,6 +16,7 @@ exports[`Environment > Should have attributes, characters, query response sub ob
     "fill_left_with_display": "0",
     "hidden": "hidden",
     "image": "",
+    "kmodal-settings": 0,
     "labelled_input": "",
     "labelled_roller_action": "",
     "labelled_select": "option 1",
