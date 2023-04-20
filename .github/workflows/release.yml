@@ -1,6 +1,7 @@
 on:
   release:
     types: [published]
+name: Release
 
 jobs:
   version:
@@ -26,48 +27,47 @@ jobs:
   tests:
     needs: version
     name: Tests
-    uses: ./github/workflows/reusable-tests.yml
+    uses: ./.github/workflows/reusable-tests.yml
     with:
       ref: ${{ github.ref }}
-    
+
   build:
     name: Build
     needs: tests
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
-        
-        - name: Install Node.js
-          uses: actions/setup-node@v1
-          with:
-            node-version: 18.x
-            registry-url: 'https://registry.npmjs.org'
-        
-        - name: Install NPM packages
-          run: npm run full-install
 
-        - name: Build Doc Data
-          run: npm run docs
-        
-        - name: Build Site
-          run: npm run build-doc
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+          registry-url: "https://registry.npmjs.org"
 
-        - name: generate 404.html
-          run: cp ./doc-source/dist/index.html ./doc-source/dist/404.html
-        
-        - name: Upload documentation artifact
-          uses: actions/upload-pages-artifact
-          with:
-            path: ./doc-source/dist
-        
-        - name: Deploy package
-          run: npm publish --access public
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install NPM packages
+        run: npm run full-install
+
+      - name: Build Doc Data
+        run: npm run docs
+
+      - name: Build Site
+        run: npm run build-doc
+
+      - name: generate 404.html
+        run: cp ./doc-source/dist/index.html ./doc-source/dist/404.html
+
+      - name: Upload documentation artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./doc-source/dist
+
+      - name: Deploy package
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   doc:
     needs: build

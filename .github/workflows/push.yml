@@ -3,6 +3,6 @@ name: CI/CD
 jobs:
   tests:
     name: Tests
-    uses: ./github/workflows/reusable-tests.yml
+    uses: ./.github/workflows/reusable-tests.yml
     with:
       ref: ${{ github.ref }}

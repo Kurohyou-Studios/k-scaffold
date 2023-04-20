@@ -23,6 +23,7 @@
     })
       +text({name:'name'})
 mixin fieldset({name,trigger,addClass})
+  - if (typeof name === 'undefined') { throw new Error("+fieldset() mixin require a name"); }
   -
     name = repeatsIgnoreSystemPrefix || !getSystemPrefix() ?
       name :
@@ -51,18 +52,19 @@ mixin fieldset({name,trigger,addClass})
   example: |
     include ../_k.pug
     //A basic customControlfieldset declaration with a trigger
-    +customControlfieldset({
+    +customControlFieldset({
       name:'fieldset',
       trigger:{triggeredFuncs:['doWhenRemoved']}
     })
     
     //A customControlfieldset with an added class
-    +customControlfieldset({
+    +customControlFieldset({
       name:'fieldset',
       trigger:{triggeredFuncs:['doWhenRemoved']},
       addClass:'some-class'
     })
 mixin customControlFieldset({name,trigger,addClass})
+  - if (typeof name === 'undefined') { throw new Error("+customControlFieldset() mixin require a name"); }
   - const prefixHolder = setSystemPrefix();
   -
     buttonName = prefixHolder ?
@@ -91,6 +93,7 @@ mixin customControlFieldset({name,trigger,addClass})
       +text({name:'damage'})
       +text({name:'properties'})
 mixin repeating_section(name,header,columnArr,id)
+  - if (typeof name === 'undefined') { throw new Error("+repeating_section() mixin require a name"); }
   section(class=`repeating-container--${name} repeating-container section` id=`${(id||name).replace(/\s+/g,'-')}`)
     if header
       h2(data-i18n=header)
@@ -98,7 +101,7 @@ mixin repeating_section(name,header,columnArr,id)
       .repeat-columns
         each head in columnArr
           h5(data-i18n=head)
-    +customControlFieldset(name)
+    +customControlFieldset({name: name})
       block
 //- End Mixin
 
@@ -118,6 +121,7 @@ mixin repeating_section(name,header,columnArr,id)
       addClass:'some-class'
     })
 mixin inlineFieldset({name,trigger,addClass})
+  - if (typeof name === 'undefined') { throw new Error("+inlineFieldset() mixin require a name"); }
   - addClass = addClass ? `${addClass} inline-fieldset` : 'inline-fieldset';
   - varObjects.inlineFieldsets = varObjects.inlineFieldsets || [];
   - varObjects.inlineFieldsets.push(name);
