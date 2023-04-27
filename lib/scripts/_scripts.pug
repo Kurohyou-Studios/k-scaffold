@@ -7,8 +7,12 @@
   example: |
     include ../_k.pug
     +script
-mixin script
+mixin script(scriptName)
   script(type='text/worker')
+    if scriptName
+      |//# sourceURL=#{scriptName}.js
+      |
+      |
     block
 //-End Mixin
 
