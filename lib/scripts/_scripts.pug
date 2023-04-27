@@ -16,13 +16,18 @@ mixin script
   name: kscript
   description: Similar to {@link script}, but includes the K-scaffold\'s javascript function library.
   arguments:
+    - {string} scriptName - Name to use for the sourceURL comment of the script tag.
   attributes:
   example: |
     include ../_k.pug
     +kscript
-mixin kscript
+mixin kscript(scriptName)
   - scriptUsed = true;
   +script
+    if scriptName
+      |//# sourceURL=#{scriptName}.js
+      |
+      |
     |const k = (function(){
     |const kFuncs = {};
     //- The below declarations import variables from the pug file and mixins into the sheetworker code
