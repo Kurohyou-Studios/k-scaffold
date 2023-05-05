@@ -162,6 +162,13 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.4.2
+- Fixed an issue that prevented translation automation from handling complex i18n entities like `data-i18n-placeholder`.
+
+v1.4.1
+- Add ul element wrapper around nav buttons
+- Add ability to specify source url for scripts
+
 v1.3.0
 - Fixed an issue that caused the existing key/value pairs of the translation file to be overwritten every time.
 - Fixed an issue that prevented some mixins from using passed attributes (e.g. `+text({name:'my-text'}).quick-class`).
