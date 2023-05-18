@@ -4587,7 +4587,7 @@ kFuncs.debug = debug;
 const orderSections = function(attributes,sections){
   Object.keys(sections).forEach((section)=>{
     attributes.attributes[\`_reporder_\${section}\`] = commaArray(attributes[\`_reporder_\${section}\`]);
-    orderSection(attributes.attributes[\`_reporder_\${section}\`],sections[section]);
+    sections[section] = orderSection(attributes.attributes[\`_reporder_\${section}\`],sections[section]);
   });
 };
 kFuncs.orderSections = orderSections;
@@ -4596,12 +4596,12 @@ kFuncs.orderSections = orderSections;
  * Orders a single ID array.
  * @memberof Utilities
  * @param {string[]} repOrder - Array of IDs in the order they are in on the sheet.
- * @param {string[]} IDs - Array of IDs to be ordered.
+ * @param {string[]} IDs - Array of IDs to be ordered. Aka the default ID Array passed to the getSectionIDs callback
+ * @returns {string[]} - The ordered id array
  */
 const orderSection = function(repOrder,IDs=[]){
-  IDs.sort((a,b)=>{
-    return repOrder.indexOf(a.toLowerCase()) - repOrder.indexOf(b.toLowerCase());
-  });
+  const idArr = [...repOrder,...IDs.filter(id => !repOrder.includes(id.toLowerCase()))];
+  return idArr;
 };
 kFuncs.orderSection = orderSection;
 
@@ -5917,7 +5917,7 @@ kFuncs.debug = debug;
 const orderSections = function(attributes,sections){
   Object.keys(sections).forEach((section)=>{
     attributes.attributes[\`_reporder_\${section}\`] = commaArray(attributes[\`_reporder_\${section}\`]);
-    orderSection(attributes.attributes[\`_reporder_\${section}\`],sections[section]);
+    sections[section] = orderSection(attributes.attributes[\`_reporder_\${section}\`],sections[section]);
   });
 };
 kFuncs.orderSections = orderSections;
@@ -5926,12 +5926,12 @@ kFuncs.orderSections = orderSections;
  * Orders a single ID array.
  * @memberof Utilities
  * @param {string[]} repOrder - Array of IDs in the order they are in on the sheet.
- * @param {string[]} IDs - Array of IDs to be ordered.
+ * @param {string[]} IDs - Array of IDs to be ordered. Aka the default ID Array passed to the getSectionIDs callback
+ * @returns {string[]} - The ordered id array
  */
 const orderSection = function(repOrder,IDs=[]){
-  IDs.sort((a,b)=>{
-    return repOrder.indexOf(a.toLowerCase()) - repOrder.indexOf(b.toLowerCase());
-  });
+  const idArr = [...repOrder,...IDs.filter(id => !repOrder.includes(id.toLowerCase()))];
+  return idArr;
 };
 kFuncs.orderSection = orderSection;
 
