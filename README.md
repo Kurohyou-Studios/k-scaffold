@@ -164,6 +164,7 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 ## Changelog
 v1.5.1
 - Fixed an error in `orderSection`/`orderSections` that caused rowIDs to be improperly ordered when IDs were a mix of user ordered and unordered IDS. **NOTE** This changes how `orderSection` works. It now returns the ordered array instead of mutating the ID array in place.
+
 v1.4.2
 - Fixed an issue that prevented translation automation from handling complex i18n entities like `data-i18n-placeholder`.
 
