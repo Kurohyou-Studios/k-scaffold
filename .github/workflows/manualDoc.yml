@@ -1,5 +1,5 @@
 name: Manual Doc Deploy
-
+on: workflow_dispatch
 jobs:
   build:
     name: Build
