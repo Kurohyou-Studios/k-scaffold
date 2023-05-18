@@ -1,4 +1,6 @@
 name: Manual Doc Deploy
+
+jobs:
   build:
     name: Build
     needs: tests
