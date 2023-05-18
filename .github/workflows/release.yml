@@ -59,9 +59,10 @@ jobs:
       - name: generate 404.html
         run: cp ./doc-source/dist/index.html ./doc-source/dist/404.html
 
-      - name: Upload documentation artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload production-ready documentation files
+        uses: actions/upload-artifact@v2
         with:
+          name: production-files
           path: ./doc-source/dist
 
       - name: Deploy package
