@@ -31,6 +31,7 @@ jobs:
       - name: Upload documentation artifact
         uses: actions/upload-pages-artifact@v1
         with:
+          name: production-files
           path: ./doc-source/dist
 
   doc:
