@@ -1,0 +1,14 @@
+
+
+mixin alerts({name})
+    - name = actionButtonName(replaceProblems(name));
+    - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
+    - attributes.class = `kalerts kalerts--${name} kalerts__container kalerts--${name}__container${attributes.class}`;
+    div&attributes(attributes)
+        +fieldset({name: `alerts--${name}`})
+            +hidden({name: "level", value: "info", class: `kalerts kalerts--${name} kalerts__level kalerts--${name}__level`})
+            div(class=`kalerts kalerts--${name} kalerts__content kalerts--${name}__content`)
+                span(class=`kalerts kalerts--${name} kalerts__title kalerts--${name}__title`)
+                    +text({name: "title", readonly: true, value: "title"})
+                +adaptiveTextarea({name: "text", readonly: true, class:`kalerts kalerts--${name} kalerts__text kalerts--${name}__text`})
+                +action({name: "close", class:`kalerts kalerts--${name} kalerts__close kalerts--${name}__close`, trigger: {triggeredFuncs: ["kDeleteAlert"]}})
