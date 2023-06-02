@@ -19,6 +19,9 @@
 @use 'modal/_modal';
 @forward 'modal/_modal';
 
+@use 'alerts/_alerts';
+@forward 'alerts/_alerts';
+
 
 @import url("https://fonts.googleapis.com/css?family=Material+Icons&display=swap");
 /// Mixin that includes all of the framework's styles. Should be included in a 3 class declaration for character sheets.

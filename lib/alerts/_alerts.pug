@@ -1,11 +1,24 @@
 
-
-mixin alerts({name})
+//- @pugdoc
+  name: alerts
+  description: A mixin that creates a fieldset containing alerts (aka callouts, admonitions). The fieldset name is prepended by `alerts--`. All elements added by this mixin are in a containing div, to which any attributes passed to the mixin will be applied. The content of the mixin is ignored.
+  arguments:
+    - {string} name - The name of the repeating section. Will be prefixed with `repeating_alerts--` and spaces will be replaced with dashes (`-`).
+    - {object} [trigger] - Trigger that defines how to handle the removal of a row from the fieldset. `Optional`
+  attributes:
+  example: |
+    include ../_k.pug
+    // A simple alert declaration.
+    +alerts({name:"global-alerts"})
+    
+    // An alert declaration with a trigger and attributes
+    +fieldset({name:'global-alerts',trigger:{triggeredFuncs:['doWhenRemoved']}})(class="my-class")
+mixin alerts({name, trigger})
     - name = actionButtonName(replaceProblems(name));
     - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
     - attributes.class = `kalerts kalerts--${name} kalerts__container kalerts--${name}__container${attributes.class}`;
     div&attributes(attributes)
-        +fieldset({name: `alerts--${name}`})
+        +fieldset({name: `alerts--${name}`, trigger: trigger})
             +hidden({name: "level", value: "info", class: `kalerts kalerts--${name} kalerts__level kalerts--${name}__level`})
             div(class=`kalerts kalerts--${name} kalerts__content kalerts--${name}__content`)
                 span(class=`kalerts kalerts--${name} kalerts__title kalerts--${name}__title`)
