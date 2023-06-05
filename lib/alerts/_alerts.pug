@@ -4,7 +4,8 @@
   description: A mixin that creates a fieldset containing alerts (aka callouts, admonitions). The fieldset name is prepended by `alerts--`. All elements added by this mixin are in a containing div, to which any attributes passed to the mixin will be applied. The content of the mixin is ignored.
   arguments:
     - {string} name - The name of the repeating section. Will be prefixed with `repeating_alerts--` and spaces will be replaced with dashes (`-`).
-    - {object} [trigger] - Trigger that defines how to handle the removal of a row from the fieldset. `Optional`
+    - {object} [fieldsetTrigger] - A trigger object that is passed to the underlying `fieldset()`. `Optional`.
+    - {object} [closeTrigger] - A trigger object that is passed to the underlying `action()` mixin used to make the close button. `Optional`. If not provided, defaults to `{triggeredFuncs: ["kDeleteAlert"]}`. If you override this default, it is your responsability to call `kDeleteAlert`.
   attributes:
   example: |
     include ../_k.pug
@@ -13,15 +14,16 @@
     
     // An alert declaration with a trigger and attributes
     +fieldset({name:'global-alerts',trigger:{triggeredFuncs:['doWhenRemoved']}})(class="my-class")
-mixin alerts({name, trigger})
+mixin alerts({name, fieldsetTrigger, closeTrigger})
     - name = actionButtonName(replaceProblems(name));
     - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
     - attributes.class = `kalerts kalerts--${name} kalerts__container kalerts--${name}__container${attributes.class}`;
+    - closeTrigger = closeTrigger || {triggeredFuncs: ["kDeleteAlert"]};
     div&attributes(attributes)
-        +fieldset({name: `alerts--${name}`, trigger: trigger})
+        +fieldset({name: `alerts--${name}`, trigger: fieldsetTrigger})
             +hidden({name: "level", value: "info", class: `kalerts kalerts--${name} kalerts__level kalerts--${name}__level`})
             div(class=`kalerts kalerts--${name} kalerts__content kalerts--${name}__content`)
                 span(class=`kalerts kalerts--${name} kalerts__title kalerts--${name}__title`)
                     +adaptiveInput({type: "text", name: "title", readonly: true, value: "title"})
                 +adaptiveTextarea({name: "text", readonly: true, class:`kalerts kalerts--${name} kalerts__text kalerts--${name}__text`})
-                +action({name: "close", class:`kalerts kalerts--${name} kalerts__close kalerts--${name}__close`, trigger: {triggeredFuncs: ["kDeleteAlert"]}})
+                +action({name: "close", class:`kalerts kalerts--${name} kalerts__close kalerts--${name}__close`, trigger: closeTrigger})
