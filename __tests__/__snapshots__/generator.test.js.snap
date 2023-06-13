@@ -4600,7 +4600,7 @@ kFuncs.orderSections = orderSections;
  * @returns {string[]} - The ordered id array
  */
 const orderSection = function(repOrder,IDs=[]){
-  const idArr = [...repOrder,...IDs.filter(id => !repOrder.includes(id.toLowerCase()))];
+  const idArr = [...repOrder.filter(id => id),...IDs.filter(id => !repOrder.includes(id.toLowerCase()))];
   return idArr;
 };
 kFuncs.orderSection = orderSection;
@@ -5930,7 +5930,7 @@ kFuncs.orderSections = orderSections;
  * @returns {string[]} - The ordered id array
  */
 const orderSection = function(repOrder,IDs=[]){
-  const idArr = [...repOrder,...IDs.filter(id => !repOrder.includes(id.toLowerCase()))];
+  const idArr = [...repOrder.filter(id => id),...IDs.filter(id => !repOrder.includes(id.toLowerCase()))];
   return idArr;
 };
 kFuncs.orderSection = orderSection;
