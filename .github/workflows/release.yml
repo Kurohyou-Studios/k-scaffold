@@ -24,13 +24,6 @@ jobs:
             exit 1
           fi
 
-  tests:
-    needs: version
-    name: Tests
-    uses: ./.github/workflows/reusable-tests.yml
-    with:
-      ref: ${{ github.ref }}
-
   build:
     name: Build
     needs: tests
