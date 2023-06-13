@@ -162,6 +162,10 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.5.2
+- Fixed an error that prevented the scaffold from responding to removal of repeating section rows.
+- Fixed an error that caused an empty string to be the first "id" stored for each section.
+
 v1.5.1
 - Fixed an error in `orderSection`/`orderSections` that caused rowIDs to be improperly ordered when IDs were a mix of user ordered and unordered IDS. **NOTE** This changes how `orderSection` works. It now returns the ordered array instead of mutating the ID array in place.
 
