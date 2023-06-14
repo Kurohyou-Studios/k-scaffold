@@ -1508,36 +1508,48 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   </fieldset>
 </div>
 <select name=\\"attr_select\\" title=\\"@{select}\\">
-  <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-  <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+  <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+  </option>
+  <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+  </option>
 </select>
 <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
   <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{labelled_select}\\">
-    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-    <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+    </option>
+    <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+    </option>
   </select>
 </label>
 <fieldset class=\\"repeating_basic-fieldset\\">
   <select name=\\"attr_select\\" title=\\"@{repeating_basic-fieldset_$X_select}\\">
-    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-    <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+    </option>
+    <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+    </option>
   </select>
   <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
     <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_basic-fieldset_$X_labelled_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
   </label>
 </fieldset><span class=\\"add-a-class\\" hidden=\\"\\"></span>
 <fieldset class=\\"repeating_class-fieldset\\">
   <select name=\\"attr_select\\" title=\\"@{repeating_class-fieldset_$X_select}\\">
-    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-    <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+    </option>
+    <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+    </option>
   </select>
   <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
     <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_class-fieldset_$X_labelled_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
   </label>
 </fieldset>
@@ -1546,13 +1558,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
   </button>
   <fieldset class=\\"repeating_custom-fieldset\\">
     <select name=\\"attr_select\\" title=\\"@{repeating_custom-fieldset_$X_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
     <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
       <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_custom-fieldset_$X_labelled_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
     </label>
   </fieldset>
@@ -1571,13 +1587,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     <div class=\\"inline-fieldset__detail display-target\\">
       <input class=\\"collapse\\" name=\\"attr_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/>
       <select name=\\"attr_select\\" title=\\"@{repeating_inline-fieldset_$X_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
       <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
         <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_inline-fieldset_$X_labelled_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
       </label>
     </div>
@@ -2108,36 +2128,48 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     </fieldset>
   </div>
   <select name=\\"attr_select\\" title=\\"@{select}\\">
-    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-    <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+    </option>
+    <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+    </option>
   </select>
   <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
     <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{labelled_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
   </label>
   <fieldset class=\\"repeating_basic-fieldset\\">
     <select name=\\"attr_select\\" title=\\"@{repeating_basic-fieldset_$X_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
     <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
       <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_basic-fieldset_$X_labelled_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
     </label>
   </fieldset><span class=\\"add-a-class\\" hidden=\\"\\"></span>
   <fieldset class=\\"repeating_class-fieldset\\">
     <select name=\\"attr_select\\" title=\\"@{repeating_class-fieldset_$X_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
     <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
       <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_class-fieldset_$X_labelled_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
     </label>
   </fieldset>
@@ -2146,13 +2178,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     </button>
     <fieldset class=\\"repeating_custom-fieldset\\">
       <select name=\\"attr_select\\" title=\\"@{repeating_custom-fieldset_$X_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
       <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
         <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_custom-fieldset_$X_labelled_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
       </label>
     </fieldset>
@@ -2171,13 +2207,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       <div class=\\"inline-fieldset__detail display-target\\">
         <input class=\\"collapse\\" name=\\"attr_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/>
         <select name=\\"attr_select\\" title=\\"@{repeating_inline-fieldset_$X_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
         <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
           <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_inline-fieldset_$X_labelled_select}\\">
-            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-            <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+            </option>
+            <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+            </option>
           </select>
         </label>
       </div>
@@ -2706,36 +2746,48 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     </fieldset>
   </div>
   <select name=\\"attr_select\\" title=\\"@{select}\\">
-    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-    <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+    <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+    </option>
+    <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+    </option>
   </select>
   <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
     <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{labelled_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
   </label>
   <fieldset class=\\"repeating_basic-fieldset\\">
     <select name=\\"attr_select\\" title=\\"@{repeating_basic-fieldset_$X_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
     <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
       <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_basic-fieldset_$X_labelled_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
     </label>
   </fieldset><span class=\\"add-a-class\\" hidden=\\"\\"></span>
   <fieldset class=\\"repeating_class-fieldset\\">
     <select name=\\"attr_select\\" title=\\"@{repeating_class-fieldset_$X_select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
     <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
       <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_class-fieldset_$X_labelled_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
     </label>
   </fieldset>
@@ -2744,13 +2796,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     </button>
     <fieldset class=\\"repeating_custom-fieldset\\">
       <select name=\\"attr_select\\" title=\\"@{repeating_custom-fieldset_$X_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
       <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
         <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_custom-fieldset_$X_labelled_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
       </label>
     </fieldset>
@@ -2769,13 +2825,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       <div class=\\"inline-fieldset__detail display-target\\">
         <input class=\\"collapse\\" name=\\"attr_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/>
         <select name=\\"attr_select\\" title=\\"@{repeating_inline-fieldset_$X_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
         <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
           <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_inline-fieldset_$X_labelled_select}\\">
-            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-            <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+            </option>
+            <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+            </option>
           </select>
         </label>
       </div>
@@ -3307,36 +3367,48 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       </fieldset>
     </div>
     <select name=\\"attr_select\\" title=\\"@{select}\\">
-      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-      <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+      <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+      </option>
+      <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+      </option>
     </select>
     <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
       <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{labelled_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
     </label>
     <fieldset class=\\"repeating_basic-fieldset\\">
       <select name=\\"attr_select\\" title=\\"@{repeating_basic-fieldset_$X_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
       <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
         <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_basic-fieldset_$X_labelled_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
       </label>
     </fieldset><span class=\\"add-a-class\\" hidden=\\"\\"></span>
     <fieldset class=\\"repeating_class-fieldset\\">
       <select name=\\"attr_select\\" title=\\"@{repeating_class-fieldset_$X_select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
       <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
         <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_class-fieldset_$X_labelled_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
       </label>
     </fieldset>
@@ -3345,13 +3417,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
       </button>
       <fieldset class=\\"repeating_custom-fieldset\\">
         <select name=\\"attr_select\\" title=\\"@{repeating_custom-fieldset_$X_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
         <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
           <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_custom-fieldset_$X_labelled_select}\\">
-            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-            <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+            </option>
+            <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+            </option>
           </select>
         </label>
       </fieldset>
@@ -3370,13 +3446,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
         <div class=\\"inline-fieldset__detail display-target\\">
           <input class=\\"collapse\\" name=\\"attr_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/>
           <select name=\\"attr_select\\" title=\\"@{repeating_inline-fieldset_$X_select}\\">
-            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-            <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+            </option>
+            <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+            </option>
           </select>
           <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
             <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_inline-fieldset_$X_labelled_select}\\">
-              <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-              <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+              <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+              </option>
+              <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+              </option>
             </select>
           </label>
         </div>
@@ -3918,36 +3998,48 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
         </fieldset>
       </div>
       <select name=\\"attr_select\\" title=\\"@{select}\\">
-        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-        <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+        <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+        </option>
+        <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+        </option>
       </select>
       <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
         <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{labelled_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
       </label>
       <fieldset class=\\"repeating_basic-fieldset\\">
         <select name=\\"attr_select\\" title=\\"@{repeating_basic-fieldset_$X_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
         <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
           <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_basic-fieldset_$X_labelled_select}\\">
-            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-            <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+            </option>
+            <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+            </option>
           </select>
         </label>
       </fieldset><span class=\\"add-a-class\\" hidden=\\"\\"></span>
       <fieldset class=\\"repeating_class-fieldset\\">
         <select name=\\"attr_select\\" title=\\"@{repeating_class-fieldset_$X_select}\\">
-          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-          <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+          <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+          </option>
+          <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+          </option>
         </select>
         <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
           <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_class-fieldset_$X_labelled_select}\\">
-            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-            <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+            </option>
+            <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+            </option>
           </select>
         </label>
       </fieldset>
@@ -3956,13 +4048,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
         </button>
         <fieldset class=\\"repeating_custom-fieldset\\">
           <select name=\\"attr_select\\" title=\\"@{repeating_custom-fieldset_$X_select}\\">
-            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-            <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+            <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+            </option>
+            <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+            </option>
           </select>
           <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
             <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_custom-fieldset_$X_labelled_select}\\">
-              <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-              <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+              <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+              </option>
+              <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+              </option>
             </select>
           </label>
         </fieldset>
@@ -3981,13 +4077,17 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
           <div class=\\"inline-fieldset__detail display-target\\">
             <input class=\\"collapse\\" name=\\"attr_collapse\\" value=\\"1\\" type=\\"checkbox\\" title=\\"@{repeating_inline-fieldset_$X_collapse}\\"/>
             <select name=\\"attr_select\\" title=\\"@{repeating_inline-fieldset_$X_select}\\">
-              <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-              <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+              <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+              </option>
+              <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+              </option>
             </select>
             <label class=\\"input-label\\"><span class=\\"input-label__text\\" data-i18n=\\"select label\\"></span>
               <select class=\\"input-label__input\\" name=\\"attr_labelled_select\\" title=\\"@{repeating_inline-fieldset_$X_labelled_select}\\">
-                <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\"></option>
-                <option value=\\"option 2\\" data-i18n=\\"option 2\\"></option>
+                <option value=\\"option 1\\" data-i18n=\\"option 1\\" selected=\\"\\">
+                </option>
+                <option value=\\"option 2\\" data-i18n=\\"option 2\\">
+                </option>
               </select>
             </label>
           </div>

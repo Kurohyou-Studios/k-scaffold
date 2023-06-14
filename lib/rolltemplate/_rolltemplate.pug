@@ -15,12 +15,12 @@ mixin multiPartTemplate(name)
     div(class=`template ${name}{{#continuation}} continuation{{/continuation}}{{#first}} first{{/first}} finished`)
       block
 //- End Mixin
-mixin characterLink
+mixin characterLink(level = 4)
   +templateConditionalDisplay('character_name')
     +templateConditionalDisplay('character_id')
-      h4.character_name [{{character_name}}](http://journal.roll20.net/character/{{character_id}})
+      #{`h${level}`}.character_name&attributes(attributes) [{{character_name}}](http://journal.roll20.net/character/{{character_id}})
     +templateConditionalDisplay('character_id',true)
-      h4.character_name {{character_name}}
+      #{`h${level}`}.character_name&attributes(attributes) {{character_name}}
 //-End mixin
 mixin templateConditionalDisplay(fieldBool,invert)
   !=`{{${invert ? '^' : '#'}${fieldBool}}}`
