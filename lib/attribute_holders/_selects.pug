@@ -66,6 +66,7 @@ mixin select(obj)
             - triggerObj.trigger = o.trigger;
         - const elemObj = makeElementObj(o.obj);
         option&attributes(elemObj)&attributes(o.attributes)
+          - o.block && o.block();
     - storeTrigger(triggerObj);
   
 //- mixin select(obj)

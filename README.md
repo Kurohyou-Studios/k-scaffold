@@ -162,6 +162,11 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.5.4
+- Updated rolltemplate mixin `characterLink` to accept a level argument to customize what level of h1-h6 it uses.
+- Updated `characterLink` to use the attributes passed to it via pug.
+- Fixed an error in the `select` mixin that prevented `option`s from using custom content.
+
 v1.5.2
 - Fixed an error that prevented the scaffold from responding to removal of repeating section rows.
 - Fixed an error that caused an empty string to be the first "id" stored for each section.
