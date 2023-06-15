@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.5.5
+- Miscellaneous blocks in the tabs mixin are now added to nav instead of at the top of the tabs container.
+
 v1.5.4
 - Updated rolltemplate mixin `characterLink` to accept a level argument to customize what level of h1-h6 it uses.
 - Updated `characterLink` to use the attributes passed to it via pug.
