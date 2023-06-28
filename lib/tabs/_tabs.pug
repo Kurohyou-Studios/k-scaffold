@@ -64,7 +64,8 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
     - delete button.content;
 
     //- If not provided, hook the button to the default tab switcher listener
-    - button.trigger = button.trigger || {triggeredFuncs:["kSwitchTab"]};
+    - button.trigger = {triggeredFuncs:[],...(button.trigger || {})}; 
+    - button.trigger.triggeredFuncs.unshift('kSwitchTab');
     //- Cleanup the class of the tab content passed through the implicit attributes
     //- and add our own internal classes
     - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
@@ -81,10 +82,10 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
     //- Execute the block passed to the +tabs mixin, if any
     //- this fills the `tabs` array above when the +tab nested mixin
     //- is called in the block
-    - block ? block() : undefined;
 
     //- Navigation header with action button to switch tabs
     nav(class=`tabs__header tabs--${sectionName}__header`)
+      - block ? block() : undefined;
       ul.tabs__nav-list
         each tab, index in tabs
           if !tab.content

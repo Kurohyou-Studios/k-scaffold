@@ -1249,6 +1249,7 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
 "<!-- sectionName:main-tabs -->
 <input name=\\"attr_main_tabs_tab\\" value=\\"nav-tabs-main-tabs--tab1\\" type=\\"hidden\\" title=\\"@{main_tabs_tab}\\"/>
 <div class=\\"tabs tabs--main-tabs\\" id=\\"main\\">
+  <nav class=\\"tabs__header tabs--main-tabs__header\\">
 <div class=\\"kmodal kmodal__container\\">
   <label class=\\"kmodal kmodal--settings kmodal__button kmodal--settings__button\\" for=\\"kmodal-settings\\"><span>Settings</span>
   </label>
@@ -1268,7 +1269,6 @@ exports[`k.build > Should generate the html file from the pug and js 1`] = `
     </div>
   </div>
 </div>
-  <nav class=\\"tabs__header tabs--main-tabs__header\\">
     <ul class=\\"tabs__nav-list\\">
       <li class=\\"tabs__nav-item\\">
         <button class=\\"tabs__button tabs--main-tabs__button tabs--main-tabs__button--basic-attributes\\" name=\\"act_nav-tabs-main-tabs--basic-attributes\\" data-container-button=\\"main-tabs\\" data-button=\\"basic-attributes\\" data-i18n=\\"tabs-main-tabs-basic-attributes\\" type=\\"action\\" title=\\"%{nav-tabs-main-tabs--basic-attributes}\\" data-container-tab=\\"main-tabs\\" data-tab=\\"basic-attributes\\">
