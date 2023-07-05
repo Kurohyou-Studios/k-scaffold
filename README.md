@@ -162,6 +162,12 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.5.7
+- Expose setActionCalls function
+
+v1.5.6
+- fixes an error where defining a triggeredFunc for a tab would overwrite the default of kSwitchTab
+
 v1.5.5
 - Miscellaneous blocks in the tabs mixin are now added to nav instead of at the top of the tabs container.
 
