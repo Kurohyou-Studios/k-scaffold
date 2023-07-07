@@ -16,7 +16,8 @@ export default {
   destination:'./build',
   testDestination:'../__tests',
   pugOptions:{},
-  scssOptions:{}
+  scssOptions:{},
+  translationTemplate:'./source'
 };
 ```
 It exports the details of how you want to build your sheet so that the build API knows where to send files and how to report. The properties of the exported object are the same as described for the [k.all](#k.all) function.

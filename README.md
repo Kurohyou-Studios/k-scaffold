@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.6.0
+- Added the ability to define a translation template file instead of relying on the scaffold to not overwrite manual changes to the generated translation file.
+
 v1.5.7
 - Expose setActionCalls function
 
