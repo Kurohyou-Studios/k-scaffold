@@ -1,6 +1,6 @@
 {
   "name": "@kurohyou/k-scaffold",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -26,11 +26,11 @@
   "dependencies": {
     "colors": "^1.4.0",
     "jsdom": "^20.0.1",
+    "node-watch": "^0.7.3",
     "pug": "^3.0.2",
     "sass": "^1.54.9",
     "sass-embedded": "^1.55.0",
-    "underscore": "^1.13.6",
-    "node-watch": "^0.7.3"
+    "underscore": "^1.13.6"
   },
   "author": "Scott Casey",
   "devDependencies": {
