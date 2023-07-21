@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.7.1
+- Fix handling of prefixes in action buttons and rollers
+
 v1.7.0
 - Added ability to template sheet.json, and instructions property of sheet.json.
   - Instructions can be templated by adding a `readme.md` file to your source directory. This will be converted to sheet.json format and added as the instructions format. If no readme is provided, instructions property will not be set/will use what was in the sheet.json template file.
