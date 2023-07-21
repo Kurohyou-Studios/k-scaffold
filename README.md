@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.7.2
+- Fix readme encoding for sheet.json templating
+
 v1.7.1
 - Fix handling of prefixes in action buttons and rollers
 
