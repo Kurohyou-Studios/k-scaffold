@@ -13,16 +13,15 @@
 mixin button(obj, _attributes)
   - checkKUse();
   - obj.class = obj.class ? replaceProblems(obj.class) : undefined;
-  - obj.name = attrName(obj.name);
-  - obj.title = obj.title || buttonTitle(obj.name);
+
   if obj.type === 'action'
-    - obj.name = `act_${obj.name}`;
+    - obj.name = `act_${attrName(obj.name).replace(/[\s_]+/g,'-')}`;
+    - storeTrigger(obj);
   else
     - obj.type = 'roll';
-    - obj.name = `roll_${obj.name}`;
+    - obj.name = `roll_${attrName(obj.name)}`;
   - const elementObj = makeElementObj(obj);
-  if obj.type !== 'roll'
-    - storeTrigger(obj);
+  - obj.title = obj.title || buttonTitle(obj.name.replace(/^(?:act|roll)_/,''));
   button&attributes(elementObj)&attributes(attributes)
     block
 //-End Mixin
@@ -40,7 +39,6 @@ mixin button(obj, _attributes)
 mixin action(obj, _attributes)
   - obj.class = obj.class ? replaceProblems(obj.class) : undefined;
   - obj.type = 'action';
-  - obj.name = attrName(obj.name).replace(/[\s_]+/g,'-');
   +button(obj)&attributes(attributes)
     block
 //- End Mixin
