@@ -16,7 +16,13 @@ mixin button(obj, _attributes)
 
   if obj.type === 'action'
     - obj.name = `act_${attrName(obj.name).replace(/[\s_]+/g,'-')}`;
-    - storeTrigger({...obj,name:obj.name.replace(/^act_/,'')});
+    -
+      const storeObj = {
+        ...obj,
+        title:buttonTitle(obj.name.replace(/^(?:act|roll)_/,'')),
+        name:obj.name.replace(/^act_/,'')
+      };
+    - storeTrigger(storeObj);
   else
     - obj.type = 'roll';
     - obj.name = `roll_${attrName(obj.name)}`;

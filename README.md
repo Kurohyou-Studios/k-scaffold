@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v1.7.4
+- Fixed an error that caused action buttons in repeating sections to not trigger
+
 v1.7.3
 - Fix an error in the scaffold when encoding cascade information for an action button
 
