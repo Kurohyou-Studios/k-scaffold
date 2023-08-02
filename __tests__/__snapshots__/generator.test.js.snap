@@ -4661,16 +4661,15 @@ kFuncs.log = log;
  * @returns {void}
  */
 const debug = function(msg,force){
-  console.warn('kFuncs.version',kFuncs.version);
   if(!kFuncs.debugMode && !force && kFuncs.version > 0) return;
   if(typeof msg === 'string'){
-    console.log(\`%c\${kFuncs.sheetName} DEBUG| \${msg}\`,\\"background-color:tan;color:red;\\");
+    console.warn(\`%c\${kFuncs.sheetName} DEBUG| \${msg}\`,\\"background-color:tan;color:red;\\");
   }else if(typeof msg === 'object'){
     Object.keys(msg).forEach((m)=>{
       if(typeof msg[m] === 'string'){
-        console.log(\`%c\${kFuncs.sheetName} DEBUG| \${m}: \${msg[m]}\`,\\"background-color:tan;color:red;\\");
+        console.warn(\`%c\${kFuncs.sheetName} DEBUG| \${m}: \${msg[m]}\`,\\"background-color:tan;color:red;\\");
       }else{
-        console.log(\`%c\${kFuncs.sheetName} DEBUG| \${typeof msg[m]} \${m}\`,\\"background-color:tan;color:red;font-weight:bold;\\");
+        console.warn(\`%c\${kFuncs.sheetName} DEBUG| \${typeof msg[m]} \${m}\`,\\"background-color:tan;color:red;font-weight:bold;\\");
         console.table(msg[m]);
       }
     });
@@ -4767,9 +4766,9 @@ Object.assign(kFuncs,{escape,unescape});/*jshint esversion: 11, laxcomma:true, e
 /*jshint -W014,-W084,-W030,-W033*/
 
 //# Attribute Obj Proxy handler
-const createAttrProxy = function(attrs){
+const createAttrProxy = function(attrs,sections,casc){
   //creates a proxy for the attributes object so that values can be worked with more easily.
-  const getCascObj = function(event,casc){
+  const getCascObj = function(event){
     const eventName = event.triggerName || event.sourceAttribute;
     let typePrefix = eventName.startsWith('clicked:') ?
       'act_' :
@@ -4790,7 +4789,7 @@ const createAttrProxy = function(attrs){
     return cascObj || {};
   };
   
-  const triggerFunctions = function(obj,attributes,sections,casc){
+  const triggerFunctions = function(obj){
     if(obj.triggeredFuncs && obj.triggeredFuncs.length){
       debug(\`triggering functions for \${obj.name}\`);
       obj.triggeredFuncs && obj.triggeredFuncs.forEach(func=>funcs[func] ? 
@@ -4799,7 +4798,7 @@ const createAttrProxy = function(attrs){
     }
   };
   
-  const initialFunction = function(obj,attributes,sections){
+  const initialFunction = function(obj){
     if(obj.initialFunc){
       debug(\`initial functions for \${obj.name}\`);
       funcs[obj.initialFunc] ?
@@ -4807,12 +4806,12 @@ const createAttrProxy = function(attrs){
         debug(\`!!!Warning!!! no function named \${obj.initialFunc} found. Initial function not called for \${obj.name}\`,true);
     }
   };
-  const alwaysFunctions = function(trigger,attributes,sections,casc){
+  const alwaysFunctions = function(trigger){
     Object.values(allHandlers).forEach((handler)=>{
       handler({trigger,attributes,sections,casc});
     });
   };
-  const processChange = function({event,trigger,attributes,sections,casc}){
+  const processChange = function({event,trigger}){
     if(event && !trigger){
       debug(\`\${event.sourceAttribute} change detected. No trigger found\`);
       return;
@@ -4824,8 +4823,12 @@ const createAttrProxy = function(attrs){
     debug({trigger});
     if(event){
       debug('checking for initial & always functions');
+      if(Array.isArray(trigger.affects)){
+        attributes.queue.push(...trigger.affects);
+      }
       alwaysFunctions(trigger,attributes,sections,casc);//Functions that should be run for all events.
       initialFunction(trigger,attributes,sections,casc);//functions that should only be run if the attribute was the thing changed by the user
+
     }
     if(trigger){
       debug(\`processing \${trigger.name}\`);
@@ -4835,11 +4838,8 @@ const createAttrProxy = function(attrs){
       }else if(trigger.calculation && !funcs[trigger.calculation]){
         debug(\`K-Scaffold Error: No function named \${trigger.calculation} found\`);
       }
-      if(Array.isArray(trigger.affects)){
-        attributes.queue.push(...trigger.affects);
-      }
     }
-    attributes.set({attributes,sections,casc});
+    attributes.set();
   };
   const attrTarget = {
     updates:{},
@@ -4858,17 +4858,17 @@ const createAttrProxy = function(attrs){
       //If it is a repeating order, returns the array, otherwise returns the update value or the original value
       if(prop === 'set'){
         return function(){
-          let {attributes,sections,casc,callback,vocal} = arguments[0] ? arguments[0] : {};
-          if(attributes && attributes.queue.length && sections && casc){
-            let triggerName = attributes.queue.shift();
-            let trigger = getCascObj({sourceAttribute:triggerName},casc);
-            attributes.processChange({trigger,attributes,sections,casc});
+          let {callback,vocal} = arguments[0] ? arguments[0] : {};
+          if(sections && casc && attributes.queue.length){
+            const triggerName = attributes.queue.shift();
+            const trigger = getCascObj({sourceAttribute:triggerName});
+            processChange({trigger,attributes,sections,casc});
           }else{
             debug({updates:obj.updates});
-            let trueCallback = Object.keys(obj.repOrders).length ?
+            const trueCallback = Object.keys(obj.repOrders).length ?
               function(){
                 Object.entries(obj.repOrders).forEach(([section,order])=>{
-                  _setSectionOrder(section,order,)
+                  _setSectionOrder(section,order)
                 });
                 callback && callback();
               }:
@@ -4914,6 +4914,12 @@ const createAttrProxy = function(attrs){
         }else if(\`\${obj.attributes}\` !== \`\${value}\` || 
           (obj.updates[prop] && \`\${obj.updates}\` !== \`\${value}\`)
         ){
+          if(sections && casc){
+            const trigger = getCascObj({sourceAttribute:prop});
+            if(Array.isArray(trigger.affects)){
+              attributes.queue.push(...trigger.affects);
+            }
+          }
           obj.updates[prop] = value;
         }
       }else{
@@ -4928,7 +4934,8 @@ const createAttrProxy = function(attrs){
       });
     }
   };
-  return new Proxy(attrTarget,attrHandler);
+  const attributes = new Proxy(attrTarget,attrHandler);
+  return attributes;
 };
 
 /**
@@ -5093,10 +5100,10 @@ funcs.accessSheet = accessSheet;/*jshint esversion: 11, laxcomma:true, eqeqeq:tr
 Cascade Expansion functions
 */
 //Expands the repeating section templates in cascades to reflect the rows actually available
-const expandCascade = function(cascade,sections,attributes){
+const expandCascade = function(cascade,sections){
   return _.keys(cascade).reduce((memo,key)=>{//iterate through cascades and replace references to repeating attributes with correct row ids.
     if(/^(?:act|attr)_repeating_/.test(key)){//If the attribute is a repeating attribute, do special logic
-      expandRepeating(memo,key,cascade,sections,attributes);
+      expandRepeating(memo,key,cascade,sections);
     }else if(key){//for non repeating attributes do this logic
       expandNormal(memo,key,cascade,sections);
     }
@@ -5104,7 +5111,7 @@ const expandCascade = function(cascade,sections,attributes){
   },{});
 };
 
-const expandRepeating = function(memo,key,cascade,sections,attributes){
+const expandRepeating = function(memo,key,cascade,sections){
   key.replace(/((?:attr|act)_)(repeating_[^_]+)_[^_]+?_(.+)/,(match,type,section,field)=>{
     (sections[section]||[]).forEach((id)=>{
       memo[\`\${type}\${section}_\${id}_\${field}\`]=_.clone(cascade[key]);//clone the details so that each row's attributes have correct ids
@@ -5250,9 +5257,9 @@ kFuncs.getAttrs = _getAttrs;
 const getAllAttrs = function({props=baseGet,sectionDetails=repeatingSectionDetails,callback}){
   getSections(sectionDetails,(repeats,sections)=>{
     getAttrs([...props,...repeats],(values)=>{
-      const attributes = createAttrProxy(values);
+      const casc = expandCascade(cascades,sections);
+      const attributes = createAttrProxy(values,sections,casc);
       orderSections(attributes,sections);
-      const casc = expandCascade(cascades,sections,attributes);
       callback(attributes,sections,casc);
     })
   });
@@ -5424,6 +5431,9 @@ const addItem = function(event){
             funcs[funcName]({attributes,sections,casc,trigger});
           }
         });
+      }
+      if(Array.isArray(trigger.affects)){
+        attributes.queue.push(...trigger.affects);
       }
       attributes.set({attributes,sections,casc});
     }
@@ -5994,16 +6004,15 @@ kFuncs.log = log;
  * @returns {void}
  */
 const debug = function(msg,force){
-  console.warn('kFuncs.version',kFuncs.version);
   if(!kFuncs.debugMode && !force && kFuncs.version > 0) return;
   if(typeof msg === 'string'){
-    console.log(\`%c\${kFuncs.sheetName} DEBUG| \${msg}\`,\\"background-color:tan;color:red;\\");
+    console.warn(\`%c\${kFuncs.sheetName} DEBUG| \${msg}\`,\\"background-color:tan;color:red;\\");
   }else if(typeof msg === 'object'){
     Object.keys(msg).forEach((m)=>{
       if(typeof msg[m] === 'string'){
-        console.log(\`%c\${kFuncs.sheetName} DEBUG| \${m}: \${msg[m]}\`,\\"background-color:tan;color:red;\\");
+        console.warn(\`%c\${kFuncs.sheetName} DEBUG| \${m}: \${msg[m]}\`,\\"background-color:tan;color:red;\\");
       }else{
-        console.log(\`%c\${kFuncs.sheetName} DEBUG| \${typeof msg[m]} \${m}\`,\\"background-color:tan;color:red;font-weight:bold;\\");
+        console.warn(\`%c\${kFuncs.sheetName} DEBUG| \${typeof msg[m]} \${m}\`,\\"background-color:tan;color:red;font-weight:bold;\\");
         console.table(msg[m]);
       }
     });
@@ -6100,9 +6109,9 @@ Object.assign(kFuncs,{escape,unescape});/*jshint esversion: 11, laxcomma:true, e
 /*jshint -W014,-W084,-W030,-W033*/
 
 //# Attribute Obj Proxy handler
-const createAttrProxy = function(attrs){
+const createAttrProxy = function(attrs,sections,casc){
   //creates a proxy for the attributes object so that values can be worked with more easily.
-  const getCascObj = function(event,casc){
+  const getCascObj = function(event){
     const eventName = event.triggerName || event.sourceAttribute;
     let typePrefix = eventName.startsWith('clicked:') ?
       'act_' :
@@ -6123,7 +6132,7 @@ const createAttrProxy = function(attrs){
     return cascObj || {};
   };
   
-  const triggerFunctions = function(obj,attributes,sections,casc){
+  const triggerFunctions = function(obj){
     if(obj.triggeredFuncs && obj.triggeredFuncs.length){
       debug(\`triggering functions for \${obj.name}\`);
       obj.triggeredFuncs && obj.triggeredFuncs.forEach(func=>funcs[func] ? 
@@ -6132,7 +6141,7 @@ const createAttrProxy = function(attrs){
     }
   };
   
-  const initialFunction = function(obj,attributes,sections){
+  const initialFunction = function(obj){
     if(obj.initialFunc){
       debug(\`initial functions for \${obj.name}\`);
       funcs[obj.initialFunc] ?
@@ -6140,12 +6149,12 @@ const createAttrProxy = function(attrs){
         debug(\`!!!Warning!!! no function named \${obj.initialFunc} found. Initial function not called for \${obj.name}\`,true);
     }
   };
-  const alwaysFunctions = function(trigger,attributes,sections,casc){
+  const alwaysFunctions = function(trigger){
     Object.values(allHandlers).forEach((handler)=>{
       handler({trigger,attributes,sections,casc});
     });
   };
-  const processChange = function({event,trigger,attributes,sections,casc}){
+  const processChange = function({event,trigger}){
     if(event && !trigger){
       debug(\`\${event.sourceAttribute} change detected. No trigger found\`);
       return;
@@ -6157,8 +6166,12 @@ const createAttrProxy = function(attrs){
     debug({trigger});
     if(event){
       debug('checking for initial & always functions');
+      if(Array.isArray(trigger.affects)){
+        attributes.queue.push(...trigger.affects);
+      }
       alwaysFunctions(trigger,attributes,sections,casc);//Functions that should be run for all events.
       initialFunction(trigger,attributes,sections,casc);//functions that should only be run if the attribute was the thing changed by the user
+
     }
     if(trigger){
       debug(\`processing \${trigger.name}\`);
@@ -6168,11 +6181,8 @@ const createAttrProxy = function(attrs){
       }else if(trigger.calculation && !funcs[trigger.calculation]){
         debug(\`K-Scaffold Error: No function named \${trigger.calculation} found\`);
       }
-      if(Array.isArray(trigger.affects)){
-        attributes.queue.push(...trigger.affects);
-      }
     }
-    attributes.set({attributes,sections,casc});
+    attributes.set();
   };
   const attrTarget = {
     updates:{},
@@ -6191,17 +6201,17 @@ const createAttrProxy = function(attrs){
       //If it is a repeating order, returns the array, otherwise returns the update value or the original value
       if(prop === 'set'){
         return function(){
-          let {attributes,sections,casc,callback,vocal} = arguments[0] ? arguments[0] : {};
-          if(attributes && attributes.queue.length && sections && casc){
-            let triggerName = attributes.queue.shift();
-            let trigger = getCascObj({sourceAttribute:triggerName},casc);
-            attributes.processChange({trigger,attributes,sections,casc});
+          let {callback,vocal} = arguments[0] ? arguments[0] : {};
+          if(sections && casc && attributes.queue.length){
+            const triggerName = attributes.queue.shift();
+            const trigger = getCascObj({sourceAttribute:triggerName});
+            processChange({trigger,attributes,sections,casc});
           }else{
             debug({updates:obj.updates});
-            let trueCallback = Object.keys(obj.repOrders).length ?
+            const trueCallback = Object.keys(obj.repOrders).length ?
               function(){
                 Object.entries(obj.repOrders).forEach(([section,order])=>{
-                  _setSectionOrder(section,order,)
+                  _setSectionOrder(section,order)
                 });
                 callback && callback();
               }:
@@ -6247,6 +6257,12 @@ const createAttrProxy = function(attrs){
         }else if(\`\${obj.attributes}\` !== \`\${value}\` || 
           (obj.updates[prop] && \`\${obj.updates}\` !== \`\${value}\`)
         ){
+          if(sections && casc){
+            const trigger = getCascObj({sourceAttribute:prop});
+            if(Array.isArray(trigger.affects)){
+              attributes.queue.push(...trigger.affects);
+            }
+          }
           obj.updates[prop] = value;
         }
       }else{
@@ -6261,7 +6277,8 @@ const createAttrProxy = function(attrs){
       });
     }
   };
-  return new Proxy(attrTarget,attrHandler);
+  const attributes = new Proxy(attrTarget,attrHandler);
+  return attributes;
 };
 
 /**
@@ -6426,10 +6443,10 @@ funcs.accessSheet = accessSheet;/*jshint esversion: 11, laxcomma:true, eqeqeq:tr
 Cascade Expansion functions
 */
 //Expands the repeating section templates in cascades to reflect the rows actually available
-const expandCascade = function(cascade,sections,attributes){
+const expandCascade = function(cascade,sections){
   return _.keys(cascade).reduce((memo,key)=>{//iterate through cascades and replace references to repeating attributes with correct row ids.
     if(/^(?:act|attr)_repeating_/.test(key)){//If the attribute is a repeating attribute, do special logic
-      expandRepeating(memo,key,cascade,sections,attributes);
+      expandRepeating(memo,key,cascade,sections);
     }else if(key){//for non repeating attributes do this logic
       expandNormal(memo,key,cascade,sections);
     }
@@ -6437,7 +6454,7 @@ const expandCascade = function(cascade,sections,attributes){
   },{});
 };
 
-const expandRepeating = function(memo,key,cascade,sections,attributes){
+const expandRepeating = function(memo,key,cascade,sections){
   key.replace(/((?:attr|act)_)(repeating_[^_]+)_[^_]+?_(.+)/,(match,type,section,field)=>{
     (sections[section]||[]).forEach((id)=>{
       memo[\`\${type}\${section}_\${id}_\${field}\`]=_.clone(cascade[key]);//clone the details so that each row's attributes have correct ids
@@ -6583,9 +6600,9 @@ kFuncs.getAttrs = _getAttrs;
 const getAllAttrs = function({props=baseGet,sectionDetails=repeatingSectionDetails,callback}){
   getSections(sectionDetails,(repeats,sections)=>{
     getAttrs([...props,...repeats],(values)=>{
-      const attributes = createAttrProxy(values);
+      const casc = expandCascade(cascades,sections);
+      const attributes = createAttrProxy(values,sections,casc);
       orderSections(attributes,sections);
-      const casc = expandCascade(cascades,sections,attributes);
       callback(attributes,sections,casc);
     })
   });
@@ -6757,6 +6774,9 @@ const addItem = function(event){
             funcs[funcName]({attributes,sections,casc,trigger});
           }
         });
+      }
+      if(Array.isArray(trigger.affects)){
+        attributes.queue.push(...trigger.affects);
       }
       attributes.set({attributes,sections,casc});
     }

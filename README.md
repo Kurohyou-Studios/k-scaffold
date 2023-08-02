@@ -162,6 +162,11 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v2.0.0
+- Potentially breaking changes
+- attribute queue management is now more dynamic and is set when the attribute value is changed
+- Watch mode now only changes file types that were actually changed (e.g. only css is updated when a scss file is updated)
+
 v1.7.4
 - Fixed an error that caused action buttons in repeating sections to not trigger
 

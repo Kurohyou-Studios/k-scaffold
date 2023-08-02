@@ -49,27 +49,13 @@ describe('k.debug()',()=>{
       k.version = 0;
       resetMock();
       k.debug('Test log');
-      expect(console.log.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "%cTest Sheet DEBUG| Test log",
-            "background-color:tan;color:red;",
-          ],
-        ]
-      `);
+      expect(console.log.calls).toMatchInlineSnapshot('[]');
     });
     it('Should expand objects to their key/value pairs',()=>{
       k.version = 0;
       resetMock();
       k.debug({nested:{attributes:['array','of','values']}});
-      expect(console.log.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "%cTest Sheet DEBUG| object nested",
-            "background-color:tan;color:red;font-weight:bold;",
-          ],
-        ]
-      `);
+      expect(console.log.calls).toMatchInlineSnapshot('[]');
       expect(console.table.calls).toMatchInlineSnapshot(`
         [
           [
@@ -107,28 +93,14 @@ describe('k.debug()',()=>{
         k.debugMode = false;
         resetMock();
         k.debug('Test log',true);
-        expect(console.log.calls).toMatchInlineSnapshot(`
-          [
-            [
-              "%cTest Sheet DEBUG| Test log",
-              "background-color:tan;color:red;",
-            ],
-          ]
-        `);
+        expect(console.log.calls).toMatchInlineSnapshot('[]');
       });
       it('Should expand objects to their key/value pairs',()=>{
         k.version = 1;
         k.debugMode = false;
         resetMock();
         k.debug({nested:{attributes:['array','of','values']}},true);
-        expect(console.log.calls).toMatchInlineSnapshot(`
-          [
-            [
-              "%cTest Sheet DEBUG| object nested",
-              "background-color:tan;color:red;font-weight:bold;",
-            ],
-          ]
-        `);
+        expect(console.log.calls).toMatchInlineSnapshot('[]');
         expect(console.table.calls).toMatchInlineSnapshot(`
           [
             [
@@ -151,27 +123,13 @@ describe('k.debug()',()=>{
       k.debugMode = true;
       resetMock();
       k.debug('Test log');
-      expect(console.log.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "%cTest Sheet DEBUG| Test log",
-            "background-color:tan;color:red;",
-          ],
-        ]
-      `);
+      expect(console.log.calls).toMatchInlineSnapshot('[]');
     });
     it('Should expand objects to their key/value pairs',()=>{
       k.debugMode = true;
       resetMock();
       k.debug({nested:{attributes:['array','of','values']}});
-      expect(console.log.calls).toMatchInlineSnapshot(`
-        [
-          [
-            "%cTest Sheet DEBUG| object nested",
-            "background-color:tan;color:red;font-weight:bold;",
-          ],
-        ]
-      `);
+      expect(console.log.calls).toMatchInlineSnapshot('[]');
       expect(console.table.calls).toMatchInlineSnapshot(`
         [
           [
