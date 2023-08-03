@@ -5425,15 +5425,17 @@ const addItem = function(event){
       attributes[\`\${row}_name\`] = '';
       setActionCalls({attributes,sections});
       const trigger = cascades[\`fieldset_repeating_\${section}\`];
-      if(trigger && trigger.addFuncs){
-        trigger.addFuncs.forEach((funcName) => {
-          if(funcs[funcName]){
-            funcs[funcName]({attributes,sections,casc,trigger});
-          }
-        });
-      }
-      if(Array.isArray(trigger.affects)){
-        attributes.queue.push(...trigger.affects);
+      if(trigger){
+        if(trigger.addFuncs){
+          trigger.addFuncs.forEach((funcName) => {
+            if(funcs[funcName]){
+              funcs[funcName]({attributes,sections,casc,trigger});
+            }
+          });
+        }
+        if(Array.isArray(trigger.affects)){
+          attributes.queue.push(...trigger.affects);
+        }
       }
       attributes.set({attributes,sections,casc});
     }
@@ -6768,15 +6770,17 @@ const addItem = function(event){
       attributes[\`\${row}_name\`] = '';
       setActionCalls({attributes,sections});
       const trigger = cascades[\`fieldset_repeating_\${section}\`];
-      if(trigger && trigger.addFuncs){
-        trigger.addFuncs.forEach((funcName) => {
-          if(funcs[funcName]){
-            funcs[funcName]({attributes,sections,casc,trigger});
-          }
-        });
-      }
-      if(Array.isArray(trigger.affects)){
-        attributes.queue.push(...trigger.affects);
+      if(trigger){
+        if(trigger.addFuncs){
+          trigger.addFuncs.forEach((funcName) => {
+            if(funcs[funcName]){
+              funcs[funcName]({attributes,sections,casc,trigger});
+            }
+          });
+        }
+        if(Array.isArray(trigger.affects)){
+          attributes.queue.push(...trigger.affects);
+        }
       }
       attributes.set({attributes,sections,casc});
     }

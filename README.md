@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v2.0.1
+- Fixed an error in the addFunc handling that caused a crash when improperly defined.
+
 v2.0.0
 - Potentially breaking changes
 - attribute queue management is now more dynamic and is set when the attribute value is changed
