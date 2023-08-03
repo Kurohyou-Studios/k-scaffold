@@ -21,9 +21,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: Setup doc data Folder
-        run: mkdir -p ./doc-source/src/assets/data
-
       - name: Install npm packages
         run: npm run full-install
 
@@ -32,9 +29,3 @@ jobs:
 
       - name: Tests
         run: npm run test
-
-      - name: Build Doc Data
-        run: npm run docs
-
-      - name: Build Doc Site
-        run: npm run build-doc
