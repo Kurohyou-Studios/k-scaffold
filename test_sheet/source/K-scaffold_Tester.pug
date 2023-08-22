@@ -3,6 +3,13 @@ include ./assets/pug/mixins/_mixins.pug
 
 - templateName = 'test';
 //- Replace `main-tabs` with whatever you would like your main tab group to be called. Change the default active tab as needed
+ul(data-i18n-list="test-list")
+  li(data-i18n-list-item="item 1")
+  li(data-i18n-list-item="item 2")
+  li(data-i18n-list-item="item 3")
+  li(data-i18n-list-item="item 4")
+  li(data-i18n-list-item="item 5")
+  li(data-i18n-list-item="item 6")
 +tabs({name:'main-tabs',defaultActiveTab:'tab1'})#main
   //- Put your sheet code in the articles folder with each article being a page of the sheet. Each discrete section of a page should be it's own file in a section folder for each page.
   include ./assets/pug/articles/_index.pug

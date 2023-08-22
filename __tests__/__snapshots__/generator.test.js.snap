@@ -1246,7 +1246,15 @@ body.sheet-darkmode {
 `;
 
 exports[`k.build > Should generate the html file from the pug and js 1`] = `
-"<!-- sectionName:main-tabs -->
+"
+<ul data-i18n-list=\\"test-list\\">
+  <li data-i18n-list-item=\\"item 1\\"></li>
+  <li data-i18n-list-item=\\"item 2\\"></li>
+  <li data-i18n-list-item=\\"item 3\\"></li>
+  <li data-i18n-list-item=\\"item 4\\"></li>
+  <li data-i18n-list-item=\\"item 5\\"></li>
+  <li data-i18n-list-item=\\"item 6\\"></li>
+</ul><!-- sectionName:main-tabs -->
 <input name=\\"attr_main_tabs_tab\\" value=\\"nav-tabs-main-tabs--tab1\\" type=\\"hidden\\" title=\\"@{main_tabs_tab}\\"/>
 <div class=\\"tabs tabs--main-tabs\\" id=\\"main\\">
   <nav class=\\"tabs__header tabs--main-tabs__header\\">

@@ -162,6 +162,9 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v2.0.2
+- Fix an error in the translation list order generation
+
 v2.0.1
 - Fixed an error in the addFunc handling that caused a crash when improperly defined.
 
