@@ -2,7 +2,7 @@ include ./../../lib/_k.pug
 .flex-box
   +number({name:'base num'}).underlined
   +input-label({
-    inputObj:{name:'base total',type:'number',trigger:{formula:'10 + floor(@{base_num}/2) + @{base_mod}'},class:'underlined'},
+    inputObj:{name:'base total',type:'number',trigger:{formula:'10 + floor(@{base_num}/2) + @{base_mod} +@{other_mod}'},class:'underlined'},
     spanObj:{'data-i18n':'total'},
     divObj:{class:'stacked'}
   })
