@@ -22,6 +22,6 @@ include ./../../lib/_k.pug
   +number({name:'weight'}).underlined
   +number({name:'quantity'}).underlined
   span Total:
-  +number({name:'total weight',trigger:{formula:'={@{repeating_equipment_$X_weight} * @{repeating_equipment_$X_quantity} + @{repeating_equipment_$X_mod_after}}='}}).underlined
+  +number({name:'total weight',trigger:{formula:'@{repeating_equipment_$X_weight} * @{repeating_equipment_$X_quantity} + @{repeating_equipment_$X_mod_after}'}}).underlined
   +number({name:'mod after'}).underlined
 +kscript('formula-test')
