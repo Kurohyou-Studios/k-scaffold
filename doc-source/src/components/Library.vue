@@ -68,7 +68,7 @@ const data = Object.entries(namespaceObjs)
     margin:0;
     padding:0;
     grid-area:nav;
-    display:flex;
+    display:block;
     flex-direction: column;
     gap:var(--half-gap);
   }
