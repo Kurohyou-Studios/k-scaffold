@@ -17,6 +17,18 @@ exports[`Environment > Should have attributes, characters, query response sub ob
       "func": [Function],
       "trigger": "change:character_name",
     },
+    {
+      "func": [Function],
+      "trigger": "change:test_text",
+    },
+    {
+      "func": [Function],
+      "trigger": "clicked:test-action",
+    },
+    {
+      "func": [Function],
+      "trigger": "change:test_roller_action",
+    },
   ],
 }
 `;

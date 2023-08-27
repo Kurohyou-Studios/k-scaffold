@@ -162,6 +162,14 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v2.1.0
+- Adds support for Roll20 macro based formula property on trigger.
+  - formulas are an easy way to define a simple calculation that a given attribute should use to calculate it's value.
+  - Formulas are an alternative to writing basic calculation functions, although more complex calculations will still require the use of a calculation function.
+  - Formulas can be used in addition to calculations, and are run before custom calculation functions.
+  - Formulas can also sum the values of a repeating section's attributes. Simply write the call to the repeating section's attributes in the generic $X syntax (e.g. `@{repeating_equipment_$X_weight}`), and surround the calculation to be done on the repeating attribute(s) with parentheses (e.g. `(@{repeating_equipment_$X_weight} * @{repeating_equipment_$X_quantity}))`.
+  - The math functions and syntax available in [Roll20 macros](https://wiki.roll20.net/Dice_Reference#Math_Operators_and_Functions) can be used in formulas.
+  
 v2.0.2
 - Fix an error in the translation list order generation
 
