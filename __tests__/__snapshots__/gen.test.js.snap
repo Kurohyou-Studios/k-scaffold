@@ -3,11 +3,8 @@
 exports[`Environment > Should have attributes, characters, query response sub objects and all attributes from sheet in attributes subobject 1`] = `
 {
   "attributes": {
-    "backpack": "",
-    "base_mod": "",
-    "base_num": "",
-    "base_total": "",
-    "repeat_total": "",
+    "test_roller_action": "",
+    "test_text": "",
   },
   "otherCharacters": {},
   "queryResponses": {},
@@ -22,39 +19,15 @@ exports[`Environment > Should have attributes, characters, query response sub ob
     },
     {
       "func": [Function],
-      "trigger": "change:base_num",
+      "trigger": "change:test_text",
     },
     {
       "func": [Function],
-      "trigger": "change:base_total",
+      "trigger": "clicked:test-action",
     },
     {
       "func": [Function],
-      "trigger": "change:base_mod",
-    },
-    {
-      "func": [Function],
-      "trigger": "change:repeat_total",
-    },
-    {
-      "func": [Function],
-      "trigger": "change:backpack",
-    },
-    {
-      "func": [Function],
-      "trigger": "change:repeating_equipment:name",
-    },
-    {
-      "func": [Function],
-      "trigger": "change:repeating_equipment:weight",
-    },
-    {
-      "func": [Function],
-      "trigger": "change:repeating_equipment:quantity",
-    },
-    {
-      "func": [Function],
-      "trigger": "change:repeating_equipment:total_weight",
+      "trigger": "change:test_roller_action",
     },
   ],
 }
