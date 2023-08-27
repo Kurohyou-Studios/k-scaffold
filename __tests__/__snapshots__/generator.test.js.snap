@@ -4774,7 +4774,7 @@ const unescape = RE.unescape;
 Object.assign(kFuncs,{escape,unescape});
 
 /**
- * Parses a macro so that it is reduced to the final values of all attributes contained in the macro. Will drill down up to 99 levels deep. If the string was not parseable, the original string is returned.
+ * Parses a macro so that it is reduced to the final values of all attributes contained in the macro. Will drill down up to 99 levels deep. If the string was not parseable, string will be returned with as much parsed as possible.
  * @param {string} mutStr - The string macro to parse
  * @param {AttributesProxy} attributes - The K-scaffold Attributes Proxy
  * @param {Object} sections - The K-scaffold sections object
@@ -4782,24 +4782,18 @@ Object.assign(kFuncs,{escape,unescape});
  */
 const parseMacro = (str,attributes,sections) => {
   let iter = 0;
-  let parseable = true;
   let mutStr = str;
-  while(mutStr.match(/@{.+?}/) && iter < 99 && parseable){
+  while(mutStr.match(/@{.+?}/) && iter < 99){
     mutStr = mutStr.replace(/@{(.+?)}/g,(match,name) => {
       name = name.replace(/\\\\|/,'_');
-      if(attributes[name] === undefined){
-        parseable = false;
-      }
-      debugger;
       return attributes[name] !== null && attributes[name] !== undefined ?
-        attributes[name]:
-        match;
+        attributes[name] :
+        \`@(\${name})\`;
     })
     iter++;
   }
-  return parseable ?
-    mutStr :
-    str;
+  mutStr = mutStr.replace(/@\\\\((.+?)\\\\)/g,'@{$1}');
+  return mutStr;
 }/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/
 /*jshint -W014,-W084,-W030,-W033*/
 
@@ -5068,11 +5062,17 @@ kFuncs.setActionCalls = setActionCalls;
  * @param {object[]} sections - All the repeating section IDs
  */
 const parseKFormula = ({trigger,attributes,sections,casc}) => {
-  const repeatBlockRx = /\\\\(([^)]*repeating_[^_]+[^)]*)\\\\)/g;
+  const [baseSection,rowID,attrName] = parseTriggerName(trigger.name);
+  const repeatBlockRx = baseSection ?
+    /(@{repeating_.+?_\\\\$X_.+?})/g :
+    /={([^)]*repeating_[^_]+[^)]*)}=/g;
   let mutFormula = trigger.formula;
   mutFormula = mutFormula.replace(repeatBlockRx,(match,repeatMacro) => {
     const [section] = repeatMacro.match(/repeating_[^_]+/);
-    return sections[section].map(id => {
+    const idArray = baseSection ?
+      [rowID] :
+      sections[section];
+    return idArray.map(id => {
         return \`(\${repeatMacro.replace(/repeating_[^_]+?_[^_]+?_([^}]+)/g,\`\${section}_\${id}_$1\`)})\`;
       }).join(
         trigger.type === 'number' ?
@@ -5080,14 +5080,20 @@ const parseKFormula = ({trigger,attributes,sections,casc}) => {
           ''
       );
   });
-  mutFormula = parseMacro(mutFormula,attributes);
+  mutFormula = parseMacro(mutFormula,attributes)
+    .replace(/@{.+?}/g,'0');
   const mathKeys = ['floor','ceil','round','abs'];
   mathKeys.forEach(func => mutFormula = mutFormula.replace(new RegExp(\`\${func}\\\\\\\\(\`,'g'),\`Math.\${func}(\`));
   const mathRx = new RegExp(\`Math\\\\\\\\.(?:\${mathKeys.join('|')})\`,'g');
-  let noAlphaStr = mutFormula.replace(mathRx,'');
-  return !noAlphaStr.match(/a-z/i) ?
-    eval(mutFormula) :
-    undefined;
+  let noAlphaStr = mutFormula
+    .replace(mathRx,'');
+  return trigger.type !== 'text' ?
+    (
+      !noAlphaStr.match(/[a-z]/i) ?
+        eval(mutFormula) :
+        undefined
+    ) :
+    mutFormula;
 };
 funcs.parseKFormula = parseKFormula;
 kFuncs.parseKFormula = parseKFormula;
@@ -5198,7 +5204,7 @@ const expandRepeating = function(memo,key,cascade,sections){
       memo[\`\${type}\${section}_\${id}_\${field}\`].name = \`\${section}_\${id}_\${field}\`;
       if(key.startsWith('attr_')){
         memo[\`\${type}\${section}_\${id}_\${field}\`].affects = memo[\`\${type}\${section}_\${id}_\${field}\`].affects.reduce((m,affected)=>{
-          if(section === affected){//otherwise if the affected attribute is in the same section, simply set the affected attribute to have the same row id.
+          if(affected.startsWith(section)){//otherwise if the affected attribute is in the same section, simply set the affected attribute to have the same row id.
             m.push(applyID(affected,id));
           }else if(/repeating/.test(affected)){//If the affected attribute isn't in the same repeating section but is still a repeating attribute, add all the rows of that section
             addAllRows(affected,m,sections);
@@ -6191,7 +6197,7 @@ const unescape = RE.unescape;
 Object.assign(kFuncs,{escape,unescape});
 
 /**
- * Parses a macro so that it is reduced to the final values of all attributes contained in the macro. Will drill down up to 99 levels deep. If the string was not parseable, the original string is returned.
+ * Parses a macro so that it is reduced to the final values of all attributes contained in the macro. Will drill down up to 99 levels deep. If the string was not parseable, string will be returned with as much parsed as possible.
  * @param {string} mutStr - The string macro to parse
  * @param {AttributesProxy} attributes - The K-scaffold Attributes Proxy
  * @param {Object} sections - The K-scaffold sections object
@@ -6199,24 +6205,18 @@ Object.assign(kFuncs,{escape,unescape});
  */
 const parseMacro = (str,attributes,sections) => {
   let iter = 0;
-  let parseable = true;
   let mutStr = str;
-  while(mutStr.match(/@{.+?}/) && iter < 99 && parseable){
+  while(mutStr.match(/@{.+?}/) && iter < 99){
     mutStr = mutStr.replace(/@{(.+?)}/g,(match,name) => {
       name = name.replace(/\\\\|/,'_');
-      if(attributes[name] === undefined){
-        parseable = false;
-      }
-      debugger;
       return attributes[name] !== null && attributes[name] !== undefined ?
-        attributes[name]:
-        match;
+        attributes[name] :
+        \`@(\${name})\`;
     })
     iter++;
   }
-  return parseable ?
-    mutStr :
-    str;
+  mutStr = mutStr.replace(/@\\\\((.+?)\\\\)/g,'@{$1}');
+  return mutStr;
 }/*jshint esversion: 11, laxcomma:true, eqeqeq:true*/
 /*jshint -W014,-W084,-W030,-W033*/
 
@@ -6485,11 +6485,17 @@ kFuncs.setActionCalls = setActionCalls;
  * @param {object[]} sections - All the repeating section IDs
  */
 const parseKFormula = ({trigger,attributes,sections,casc}) => {
-  const repeatBlockRx = /\\\\(([^)]*repeating_[^_]+[^)]*)\\\\)/g;
+  const [baseSection,rowID,attrName] = parseTriggerName(trigger.name);
+  const repeatBlockRx = baseSection ?
+    /(@{repeating_.+?_\\\\$X_.+?})/g :
+    /={([^)]*repeating_[^_]+[^)]*)}=/g;
   let mutFormula = trigger.formula;
   mutFormula = mutFormula.replace(repeatBlockRx,(match,repeatMacro) => {
     const [section] = repeatMacro.match(/repeating_[^_]+/);
-    return sections[section].map(id => {
+    const idArray = baseSection ?
+      [rowID] :
+      sections[section];
+    return idArray.map(id => {
         return \`(\${repeatMacro.replace(/repeating_[^_]+?_[^_]+?_([^}]+)/g,\`\${section}_\${id}_$1\`)})\`;
       }).join(
         trigger.type === 'number' ?
@@ -6497,14 +6503,20 @@ const parseKFormula = ({trigger,attributes,sections,casc}) => {
           ''
       );
   });
-  mutFormula = parseMacro(mutFormula,attributes);
+  mutFormula = parseMacro(mutFormula,attributes)
+    .replace(/@{.+?}/g,'0');
   const mathKeys = ['floor','ceil','round','abs'];
   mathKeys.forEach(func => mutFormula = mutFormula.replace(new RegExp(\`\${func}\\\\\\\\(\`,'g'),\`Math.\${func}(\`));
   const mathRx = new RegExp(\`Math\\\\\\\\.(?:\${mathKeys.join('|')})\`,'g');
-  let noAlphaStr = mutFormula.replace(mathRx,'');
-  return !noAlphaStr.match(/a-z/i) ?
-    eval(mutFormula) :
-    undefined;
+  let noAlphaStr = mutFormula
+    .replace(mathRx,'');
+  return trigger.type !== 'text' ?
+    (
+      !noAlphaStr.match(/[a-z]/i) ?
+        eval(mutFormula) :
+        undefined
+    ) :
+    mutFormula;
 };
 funcs.parseKFormula = parseKFormula;
 kFuncs.parseKFormula = parseKFormula;
@@ -6615,7 +6627,7 @@ const expandRepeating = function(memo,key,cascade,sections){
       memo[\`\${type}\${section}_\${id}_\${field}\`].name = \`\${section}_\${id}_\${field}\`;
       if(key.startsWith('attr_')){
         memo[\`\${type}\${section}_\${id}_\${field}\`].affects = memo[\`\${type}\${section}_\${id}_\${field}\`].affects.reduce((m,affected)=>{
-          if(section === affected){//otherwise if the affected attribute is in the same section, simply set the affected attribute to have the same row id.
+          if(affected.startsWith(section)){//otherwise if the affected attribute is in the same section, simply set the affected attribute to have the same row id.
             m.push(applyID(affected,id));
           }else if(/repeating/.test(affected)){//If the affected attribute isn't in the same repeating section but is still a repeating attribute, add all the rows of that section
             addAllRows(affected,m,sections);
