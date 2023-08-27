@@ -8,10 +8,16 @@ Telling the K-scaffold what function to call requires a little more work though.
 
 #### Trigger Properties
 - affects: This is an array of strings that lists what attributes this attribute affects. In other words, what attributes need to be recalculated because this attribute has changed. While you can use this on buttons, the triggeredFuncs property, described below, is probably better for those.
-- listenerFunc: This is a string that is the name of a function to be called in response to the events for this attribute/button/fieldset. If you don't provide this, the K-scaffold will use its default listener function, [accessSheet](/sheetworkers#k.accessSheet).
+- calculation: A string that gives the name of a function registered to the K-scaffold that should return the calculated value for this attribute. Alternatively use the formula property for simple calculations (see next point).
+- formula: A string that specifies the calculation to be done for this attribute. Uses a syntax inspired by Roll20 macro syntax. The syntax is the following:
+  - Any attribute from outside of a sheet will be ignored. Roll Queries may cause unexpected results and are not recommended
+  - Use normal Roll20 macro syntax for writing non repeating calculations. (e.g. the formula for `attribute_3` might be `@{attribute_1} + @{attribute_2}`).
+  - Repeating section attributes are referenced using the `$X` placeholder. Calculations of repeating items that rely only on attributes within the same row or non-repeating items otherwise use normal Roll20 macro syntax. (e.g. the formula to calculate `repeating_equipment_$X_total_weight` would be `@{repeating_equipment_$X_weight} * @{repeating_equipment_$X_quantity}`).
+  - It is also possible to write a formula for a non repeating attribute that iterates over all rows in a repeating section. The formula uses the same syntax as above, except that the section that contains the repeating attribute call and needs to be iterated is wrapped in `={...}=`. e.g. To calculate the total weight of held items and coins, the formula would be `@{gold_weight} + @{silver_weight} + @{copper_weight} + ={@{repeating_equipment_$X_weight} * @{repeating_equipment_$X_quantity}}=`.
 - triggeredFuncs: This is an array of strings. Each string should be the name of a function that you want to be called every time this attribute is changed or this button is clicked. Note that triggeredFuncs on triggers for repeating sections will run when an item is removed from the section by the user.
 - initialFunc: This is a string with the name of a function that you want to be called only when this attribute is changed directly by the user, not by another function in the cascade.
 - addFuncs: This is an array of function names similar to triggeredFuncs. However, this one is only used on triggers for repeating sections where these functions when a new item is added in a [customControlFieldset](#customControlFieldset) or [inlineFieldset](#inlineFieldset).
+- listenerFunc: This is a string that is the name of a function to be called in response to the events for this attribute/button/fieldset. If you don't provide this, the K-scaffold will use its default listener function, [accessSheet](/sheetworkers#k.accessSheet). Using the default listener as **RECOMMENDED** as using a custom listener will remove nearly all of the K-scaffold automation.
 
 For information about using the trigger object and the other arguments passed to functions called by the K-scaffold, see the [sheetworker library documentation](/sheetworkers).
 
