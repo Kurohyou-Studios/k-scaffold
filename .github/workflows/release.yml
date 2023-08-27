@@ -25,6 +25,7 @@ jobs:
           fi
 
   build:
+    needs: version
     name: Build
     runs-on: ubuntu-latest
     steps:
