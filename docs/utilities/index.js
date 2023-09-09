@@ -1,0 +1,1 @@
+export { parseLink } from './parseLink'
