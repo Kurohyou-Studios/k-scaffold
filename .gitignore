@@ -8,6 +8,7 @@ lerna-debug.log*
 
 # Test Framework
 testFramework.js
+translation.json
 
 # Documentation data
 docs/src/assets/data/
