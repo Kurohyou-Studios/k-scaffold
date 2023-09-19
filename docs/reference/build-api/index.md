@@ -3,8 +3,6 @@ import { useData } from 'vitepress'
 
 import { data } from '@/reference.data.js'
 
-import { parseLink } from '@/utilities'
-
 const docArr = data.build.Build;
 const nameSpaceIndex = docArr.findIndex(o => o.kind === 'namespace');
 const nameSpaceObj = docArr.splice(nameSpaceIndex,1)?.[0] || {};
@@ -41,20 +39,19 @@ k.all(kOpts);// Invoke the all method of the K-scaffold npm package to process a
 
 <h2 :id="obj.name">k.{{obj.name}}</h2>
 {{obj.kind !== 'Mixin' ? obj.kind : ''}}
-
-{{ obj.description }}
-
-{{ obj.returns}}
+<div v-html="obj.description" />
 
 <ul>
   <li v-for="propObj in obj.properties" :key="`${obj.name}-${propObj.name}`">
 
-{{propObj.name}} - `{{propObj.type}}` - {{propObj.description}}
+{{propObj.name}} - `{{propObj.type}}`
+<div v-html="propObj.description" />
 
   </li>
   <li v-for="propObj,i in obj.returns" :key="`${obj.name}-return-${i}`">
 
-Returns: `{{propObj.type}}` {{propObj.description}}
+Returns: `{{propObj.type}}` 
+<div v-html="propObj.description" />
 
   </li>
 </ul>

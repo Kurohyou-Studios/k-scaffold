@@ -4,4 +4,19 @@
   --vp-c-indigo-3:#3e6667;
   --vp-c-indigo-soft:#d4dfdf;
   --r20-link-color:#e10085;
+  --r20-icon:url('/roll20_logo.png');
+}
+
+a[href*="roll20.net"]{
+  color:var(--r20-link-color);
+}
+a[href*="roll20.net"]::after{
+  content:'';
+  background-image: var(--r20-icon);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+a[href*="roll20.net"]:is(:hover,:visited){
+  color: color-mix(in lch,var(--r20-link-color) 80%,var(--vp-c-bg));
 }

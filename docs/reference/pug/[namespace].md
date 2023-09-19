@@ -7,8 +7,6 @@ import { useData } from 'vitepress'
 
 import { data } from '@/reference.data.js'
 
-import { parseLink } from '@/utilities'
-
 const { params } = useData();
 
 const docArr = data.pug[params.value.namespace];
@@ -21,12 +19,13 @@ const scriptNamespace = params.value.namespace;
 <h2 :id="obj.name">{{obj.name}}</h2>
 {{obj.kind !== 'Mixin' ? obj.kind : ''}}
 
-{{ obj.description }}
+<div v-html="obj.description" />
 
 <ul>
   <li v-for="propObj in obj.properties" :key="`${obj.name}-${propObj.name}`">
 
-{{propObj.name}} - `{{propObj.type}}` - {{propObj.description}}
+{{propObj.name}} - `{{propObj.type}}` 
+<div v-html="propObj.description" />
 
   </li>
 </ul>

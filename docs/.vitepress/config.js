@@ -47,22 +47,17 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Pug',
+          text: 'Creating Content',
           collapsed:false,
           items: [
-            { text: 'Buttons', link: '/guide/pug/buttons.html' },
-            { text: 'Inputs', link: '/guide/pug/inputs.html' },
-            { text: 'Labels', link: '/guide/pug/labels.html' },
-            { text: 'Modals', link: '/guide/pug/modal.html' },
-            { text: 'Trigger Property', link: '/guide/pug/trigger.html' },
-            { text: 'Repeating Sections', link: '/guide/pug/repeating-sections.html' },
-            { text: 'Scripts', link: '/guide/pug/scripts.html' },
-            { text: 'Tabs', link: '/guide/pug/tabs.html' },
-            { text: 'Variables', link: '/guide/pug/variables.html' }
+            { text: 'Attributes and Abilities', link: '/guide/creating-content/attributes and abilities.html' },
+            { text: 'Premade Layouts', link: '/guide/creating-content/layouts.html' },
+            { text: 'Repeating Sections', link: '/guide/creating-content/repeating-sections.html' },
+            { text: 'Navigation', link: '/guide/creating-content/navigation.html' },
           ]
         },
         {
-          text: 'Styling',
+          text: 'Styling Your Sheet',
           collapsed:false,
           items: [
             { text: 'Character Sheet', link: '/guide/styling/character.html' },
@@ -72,9 +67,11 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Sheetworkers',
+          text: 'Connecting Javascript and Attributes',
           collapsed:false,
           items: [
+            { text: 'Scripts', link: '/guide/sheetworkers/scripts.html' },
+            { text: 'Trigger Property', link: '/guide/sheetworkers/trigger.html' },
             { text: 'Arguments & Variables', link: '/guide/sheetworkers/arguments.html' },
             { text: 'Calculation Functions', link: '/guide/sheetworkers/calculations.html' },
             { text: 'Roll Functions', link: '/guide/sheetworkers/roll-functions.html' },
@@ -82,12 +79,12 @@ export default defineConfig({
             { text: 'Update Functions', link: '/guide/sheetworkers/update-functions.html' }
           ]
         },
-        {
-          text: "Sheet Author's Journey (WIP)",
-          collapsed:false,
-          items: [
-          ]
-        }
+        // {
+        //   text: "Sheet Author's Journey (WIP)",
+        //   collapsed:false,
+        //   items: [
+        //   ]
+        // }
       ],
       '/reference/pug/': Object.entries(pug)
         .reduce((arr,[namespace,content]) => {
