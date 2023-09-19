@@ -17,7 +17,14 @@
 
     //Specifying lookupAttributes and a prefix
     +compendiumAttributes({lookupAttributes:['Name','data','Category'],prefix:'prefix'})
-mixin compendiumAttributes({prefix,lookupAttributes = ['Name','data'],triggerAccept = 'Name',trigger = {triggeredFuncs:["handleCompendiumDrop"]}})
+mixin compendiumAttributes({
+  prefix,
+  lookupAttributes = ['Name','data'],
+  triggerAccept = 'Name',
+  trigger = {
+    triggeredFuncs:["handleCompendiumDrop"]
+  }
+})
   - prefix = prefix ? `${prefix} ` : '';
   each accept in lookupAttributes
     - let inputObj = {name:`${prefix}drop ${accept.toLowerCase()}`,accept,value:''};
