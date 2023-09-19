@@ -17,7 +17,7 @@ export default {
 ```
 You'll put a `sheet.json`, `translation.json`, and `readme.md` file in this directory.
 ## Templating sheet.json
-The K-scaffold will take care of generating the references to the built html and css, but your template `sheet.json` file should specify other [properties of the `sheet.json` file](https://wiki.roll20.net/Sheet.json). At minimum this should be your roll20userid and the names of the authors:
+The K-scaffold will take care of generating the references to the built html and css, but your template `sheet.json` file should specify other [properties of the sheet.json file](https://wiki.roll20.net/Sheet.json). At minimum this should be your roll20userid and the names of the authors:
 ```json
 {
   "authors": "Scott Casey",
@@ -43,4 +43,4 @@ The K-scaffold automates many of the tasks for creating a `translation.json` fil
   "key that is in pug, but needs different value":"other value"
 }
 ```
-This is particularly useful for translating the generated content of tab buttons (which by default use a string based on the tab container name and specific tab name), and for creating translation keys that are only used in your sheetworkers via [`k.getTranslationByKey`](/reference/sheetworkers/Sheetworker%20Aliases.html#getTranslationByKey). Any key/value pair that you put in the template `translation.json` will override the value for that key in the generated `translation.json`.
+This is particularly useful for translating the generated content of tab buttons (which by default use a string based on the tab container name and specific tab name), and for creating translation keys that are only used in your sheetworkers via [k.getTranslationByKey](/reference/sheetworkers/Sheetworker%20Aliases.html#getTranslationByKey). Any key/value pair that you put in the template `translation.json` will override the value for that key in the generated `translation.json`.

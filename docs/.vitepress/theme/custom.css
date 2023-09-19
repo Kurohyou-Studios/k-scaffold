@@ -10,8 +10,11 @@
 a[href*="roll20.net"]{
   color:var(--r20-link-color);
 }
-a[href*="roll20.net"]::after{
+:is(#roll20-link,.roll20-link,a[href*="roll20.net"]):not(.no-icon)::after{
   content:'';
+  background: none;
+  -webkit-mask-image: none;
+  mask-image: none;
   background-image: var(--r20-icon);
   background-size: contain;
   background-repeat: no-repeat;
