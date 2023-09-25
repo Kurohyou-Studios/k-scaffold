@@ -8,6 +8,7 @@ export default defineConfig({
   description: "A Roll20 sheet framework",
   head: [['link', { rel: 'icon', href: '/k-90b.png' }]],
   base: '/k-scaffold',
+  ignoreDeadLinks:[/\/reference\//],
   vite:{
     resolve: {
       alias: {

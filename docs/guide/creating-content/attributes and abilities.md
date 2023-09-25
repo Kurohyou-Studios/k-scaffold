@@ -29,12 +29,12 @@ The object that is passed to the mixin can have any properties that an input or 
 <input type="text" name="attr_my_attribute" style="border-bottom:1px solid black">
 <button type="action" name="act_my-button" style="border-bottom:1px solid black">
 ```
-In addition to the normal html element properties, you can also add a [trigger property](/guide/pug/trigger.html) to the object in order to tell the K-scaffold how this attribute should be treated in your sheetworkers.
+In addition to the normal html element properties, you can also add a [trigger property](/guide/sheetworkers/scripts.html) to the object in order to tell the K-scaffold how this attribute should be treated in your sheetworkers.
 ```pug
 +input({name:'my attribute',type:'number',trigger:{affects:['other_attribute'],formula:'@{base_attribute} + @{base_mod}'}})
 +button({name:'my button',type:'action',trigger:{triggeredFuncs:['rollButton']}})
 ```
-See the [trigger property](/guide/pug/trigger.html) section for more details.
+See the [trigger property](/guide/sheetworkers/scripts.html) section for more details.
 ### Related elements
 There are other elements that are related to inputs or buttons, such as selects. These work the same as the base input/button mixins, but with some additions.
 #### Textareas

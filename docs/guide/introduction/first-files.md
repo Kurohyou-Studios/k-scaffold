@@ -88,7 +88,7 @@ The `translation.json` template is simply a json files that contains translation
 The K-scaffold will automatically insert the correct name of your html and css files in the generated `sheet.json` file. In addition to this, you can specify the other fields of the `sheet.json` file by putting them in the `sheet.json` located in `source/`. See the [Roll20 wiki](https://wiki.roll20.net/Sheet.json) for more details on `sheet.json` properties.
 
 In addition, you can write the contents of the `instructions` property using markdown format in the `source/readme.md` file. This allows you to write detailed instructions for your sheet easily.
-## Advanced Topics
+<!-- ## Advanced Topics
 A character sheet is of course much more involved than these simple files. For a more involved tutorial on using the K-scaffold to create a sheet, see the [Sheet Author's Journey (WIP)](/guide/sheet-journey-1) which creates an actual sheet from project initialization to deployment.
 
-You can also read the rest of the generic guide which will go over how to use each piece of the library.
+You can also read the rest of the generic guide which will go over how to use each piece of the library. -->
