@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Guide
-      link: /guide/
+      link: /guide/introduction/what-is.html
     - theme: alt
       text: Reference
       link: /reference/sheetworkers/Sheetworkers
