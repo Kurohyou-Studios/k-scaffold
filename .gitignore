@@ -8,10 +8,12 @@ lerna-debug.log*
 
 # Test Framework
 testFramework.js
+translation.json
 
 # Documentation data
 docs/src/assets/data/
-
+.vitepress/cache
+.vitepress/dist
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 

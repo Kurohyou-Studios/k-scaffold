@@ -7,10 +7,13 @@
     "k-build": "cli.mjs"
   },
   "scripts": {
-    "full-install": "npm i && cd test_sheet && npm i && cd ../doc-source && npm i",
+    "full-install": "npm i && cd test_sheet && npm i && cd ../docs && npm i",
     "docs": "node docGen",
     "doc-dev": "cd doc-source && npm run dev",
     "build-doc": "cd doc-source && npm run build",
+    "docs:dev": "cd docs && npm run docs:dev",
+    "docs:build": "cd docs && npm run docs:build",
+    "docs:preview": "cd docs && npm run docs:preview",
     "build": "cd test_sheet && npm run build",
     "watch": "cd test_sheet && npm start",
     "test": "vitest run",

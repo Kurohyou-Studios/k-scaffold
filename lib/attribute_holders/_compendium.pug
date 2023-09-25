@@ -25,3 +25,30 @@ mixin compendiumAttributes({prefix,lookupAttributes = ['Name','data'],triggerAcc
       - inputObj.trigger = trigger;
     +hidden(inputObj)
 //- End Mixin
+
+//- @pugdoc
+  name: compendiumContainer
+  description: Creates a set of compendium drop target attributes and a container to target with the drag and drop. Defaults to creating target attributes for the `Name` and `data` compendium attributes.
+  arguments:
+    - {string} [prefix] - A prefix to attach to the default attribute names.
+    - {array} [lookupAttributes = ['Name','data']] - An array of the lookup attributes to create targets for. The target attributes are named based on the compendium attribute they are for.
+    - {string} [triggerAccept = 'Name'] - The compendium attribute that should trigger the sheetworkers to handle the compendium drop.
+    - {object} [trigger] - The trigger object.
+    - {string[]} [vttCategories] - The compendium categories that could be dropped directly to the VTT (e.g. NPCs in the 5e compendium).
+  example: |
+    include ../_k.pug
+    //Using default compendium attributes and defining categories for direct vtt drop.
+    +compendiumContainer({
+      vttCategories:['npcs','vehicles']
+    })
+      |Sheet content here
+mixin compendiumContainer({prefix,lookupAttributes = ['Name','data'],triggerAccept = 'Name',trigger = {triggeredFuncs:["handleCompendiumDrop"]},vttCategories = []})
+  div(class=`compendium-drop-target${vttCategories.length ? ` ${vttCategories.join(' ').toLowerCase()}` : ''}`)&attributes(attributes)
+    +compendiumAttributes({
+      prefix,
+      lookupAttributes,
+      triggerAccept,
+      trigger
+    })
+    block
+//- End Mixin

@@ -2,36 +2,32 @@ const docPath = `./docs`;
 
 // NPM modules
 const { exec } = require(`child_process`);
-const fs = require('fs/promises');
-const pugDoc = require('pug-doc');
+const pugDoc = require('@kurohyou/pug-doc');
 const sassdoc = require('sassdoc');
 
-const locals = require('./lib/render/locals');
+const locals = require('../../lib/render/locals');
 
-const gen = async ()=>{
+export const docGen = async ()=>{
   locals.resetObjs();
-  // generate pug data
-  const pdocs = new Promise((res,rej) => {
-      pugDoc({
-      input: `lib/**/*.pug`,
-      output: `./docs/data/pug.json`,
-      locals:{...locals,pretty:true},
-      complete:()=> res(true)
-    });
-  });
-  // Generate jsDoc data
-  const jdocs = new Promise((res,rej) => {
-    exec(`jsdoc -r -X lib > docs/data/jsdoc-ast.json`,(err,stdout,stderr)=> res(true));
-  });
 
-  await Promise.all([pdocs,jdocs]);
-  const pugPath = './docs/data/pug.json';
-  const jsPath = './docs/data/jsdoc-ast.json';
+  const [pData,jData] = await Promise.all([
+    pugDoc({
+      input: `lib/**/*.pug`,
+      output: `../data/pug.json`,
+      locals:{...locals,pretty:true},
+      complete:(...args)=> {
+        res(true)
+      }
+    }),
+    new Promise((res,rej) => {
+      exec(`jsdoc -r -X lib`,(err,stdout,stderr)=> {
+        res(JSON.parse(stdout))
+      });
+    })
+  ]);
   const [pJSON,jJSON,sJSON] = await Promise.all([
-    fs.readFile(pugPath,'utf8')
-      .then(string => JSON.parse(string).map(o => ({...o,output:prettifyHTML(o.output)}))),
-    fs.readFile(jsPath,'utf8')
-      .then(t => JSON.parse(t)),
+    pData.map(o => ({...o,output:prettifyHTML(o.output)})),
+    jData,
     // Generate sass data
     sassdoc.parse('./lib',{verbose:true,package:'./package.json'})
   ]);
@@ -74,22 +70,12 @@ const gen = async ()=>{
     memo[namespace].push(obj);
     return memo;
   },{});
-  sJSONString = JSON.stringify(finalSJSON);
-  pJSONString = JSON.stringify(finalPJSON);
-  jJSONString = JSON.stringify(finalJJSON);
-  buildString = JSON.stringify(finalBuildJSON);
-  await fs.writeFile('./docs/data/index.js',
-    `
-    export const scss = ${sJSONString};
-    export const pug = ${pJSONString};
-    export const js = ${jJSONString};
-    export const build = ${buildString};`
-      .replace(/^\s+/mg,'')
-  );
-  await Promise.all([
-    fs.rm(pugPath),
-    fs.rm(jsPath),
-  ])
+  return [
+    finalSJSON,
+    finalPJSON,
+    finalJJSON,
+    finalBuildJSON
+  ];
 };
 
 const stringifyJSDocProps = (properties) => {
@@ -139,21 +125,4 @@ const prettifyHTML = (html) => {
       m += c;
       return m;
     },'');
-  // return html.replace(/((?:\/[a-z]*|--)?>)(<(?:\/|--)?)/g,(match,start,end)=>{
-  //   if(!start.startsWith('/') && !start.startsWith('-') && !start.startsWith('!')){
-  //     indent++;
-  //   }
-  //   if(end.length > 1){
-  //     indent--;
-  //   }
-  //   let line = !start.startsWith('/') && /^<\//.test(end) ?
-  //     '' :
-  //     '\n';
-  //   let spacing = line ?
-  //     [...Array(Math.max(0,indent)).keys()].map(n => '  ').join('') :
-  //     '';
-  //   return `${start}${line}${spacing}${end}`;
-  // });
 }
-
-gen();
