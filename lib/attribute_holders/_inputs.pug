@@ -1,6 +1,7 @@
 
 //- @pugdoc
   name: input
+  memberof: Attributes
   description: A generic mixin to create an input. The mixin will replace spaces in the attribute name with underscores and will add a title property if one isn't supplied that will inform the user what the attribute call for the attribute is.
   arguments:
     - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
@@ -22,6 +23,7 @@ mixin input(obj)
 
 //- @pugdoc
   name: text
+  memberof: Attributes
   arguments:
     - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
   description: An alias for {@link input} that specifies the input type as text. See {@link input} for arguments.
@@ -36,6 +38,7 @@ mixin text(obj)
 
 //- @pugdoc
   name: checkbox
+  memberof: Attributes
   arguments:
     - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
   description: An alias for {@link input} that specifies the input type as checkbox. See {@link input} for arguments.
@@ -50,6 +53,7 @@ mixin checkbox(obj)
 
 //- @pugdoc
   name: collapse
+  memberof: Attributes
   arguments:
     - {string} [name=collapse] - The name to use for the collapse element. Defaults to `collapse`
   description: Alias for {@link checkbox} that creates a checkbox for us in collapse/expanding a section. Sets the checkbox to unchecked with a checked value of `1` and a class of `collapse`. Additional classes/ids can be applied by applying them inline to the mixin call.
@@ -63,6 +67,7 @@ mixin collapse(name='collapse')
 
 //- @pugdoc
   name: radio
+  memberof: Attributes
   arguments:
     - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
   description: Alias for {@link input} that specifies `radio` as the input type. See {@link input} for arguments.
@@ -79,6 +84,7 @@ mixin radio(obj)
 
 //- @pugdoc
   name: number
+  memberof: Attributes
   arguments:
     - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
   description: Alias for {@link input} that makes a number input. See {@link input} for arguments.
@@ -93,6 +99,7 @@ mixin number(obj)
 
 //- @pugdoc
   name: range
+  memberof: Attributes
   arguments:
     - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
   description: Alias for {@link input} that makes a range input. See {@link input} for arguments.
@@ -107,6 +114,7 @@ mixin range(obj)
 
 //- @pugdoc
   name: hidden
+  memberof: Attributes
   arguments:
     - {object} inputObj - An object describing the properties of the input just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property
   description: Alias for {@link input} that makes a hidden input. See {@link input} for arguments.
@@ -127,6 +135,7 @@ mixin radioGroup(objArray)
 
 //- @pugdoc
   name: textarea
+  memberof: Attributes
   description: A mixin to create K-scaffold compatible textareas. 
   arguments:
     - {object} textObj - See {@link input} for information on valid properties of the textObj.

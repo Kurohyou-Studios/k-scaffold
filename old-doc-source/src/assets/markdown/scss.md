@@ -1,2 +1,0 @@
-## SCSS Library
-The K-scaffold's SCSS library provides out of the box styling for complex components in the [Pug Library](/pug) like [adaptive textareas](/pug#adaptiveTextarea) and [fill to left radio buttons](/pug#fillToLeft). You can use the library by either adding the provided utility classes to your html elements, or by using the provided base mixins in your own class definitions. Or do both!

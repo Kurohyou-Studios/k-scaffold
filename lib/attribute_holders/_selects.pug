@@ -1,5 +1,6 @@
 //- @pugdoc
   name: select
+  memberof: Attributes
   arguments:
     - {object} selectObj - The object describing the select
     - {block} block - The content within the select
@@ -68,11 +69,3 @@ mixin select(obj)
         option&attributes(elemObj)&attributes(o.attributes)
           - o.block && o.block();
     - storeTrigger(triggerObj);
-  
-//- mixin select(obj)
-//-   select&attributes(obj)
-//-     if block
-//-       block
-//-     else
-//-       +option({value:'empty select, PEBKAC',selected:true})
-//-End Mixin

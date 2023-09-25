@@ -1,3 +1,0 @@
-(function(){
-  PR.prettyPrint();
-})();

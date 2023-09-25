@@ -11,11 +11,8 @@ hero:
     alt: K-Scaffold
   actions:
     - theme: brand
-      text: Guide
-      link: /guide/introduction/what-is.html
-    - theme: alt
-      text: Reference
-      link: /reference/sheetworkers/Sheetworkers
+      text: Getting Started
+      link: /guide/introduction/getting-started.html
 
 features:
   - title: Code Less

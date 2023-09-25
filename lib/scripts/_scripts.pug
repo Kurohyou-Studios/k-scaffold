@@ -1,6 +1,7 @@
 //- Functions
 //- @pugdoc
   name: script
+  memberof: Scripts
   description: Creates a generic [Roll20 script block](https://wiki.roll20.net/Building_Character_Sheets#JavaScript_2) for use with the sheetworker system.
   arguments:
   attributes:
@@ -18,6 +19,7 @@ mixin script(scriptName)
 
 //- @pugdoc
   name: kscript
+  memberof: Scripts
   description: Similar to {@link script}, but includes the K-scaffold\'s javascript function library.
   arguments:
     - {string} scriptName - Name to use for the sourceURL comment of the script tag.
@@ -74,6 +76,7 @@ mixin kscript(scriptName)
 
 //- @pugdoc
   name: module
+  memberof: Scripts
   description: A mixin that works with {@link kscript}. It allows you to link your js directly in the pug file that the js is related to. The K-scaffold will then put the js in the final script tag.
   arguments:
   attributes:

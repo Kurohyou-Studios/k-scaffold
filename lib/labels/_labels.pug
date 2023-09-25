@@ -1,6 +1,7 @@
 
 //- @pugdoc
   name: button-label
+  memberof: Premade Layouts
   description: A mixin to create a combined button and input that are within the same container. Similar to {@link input-label}, but does not use a label.
   arguments:
     - {object} inputObj - An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}.
@@ -34,6 +35,7 @@ mixin button-label({inputObj,buttonObj,divObj})
 
 //- @pugdoc
   name: roller-label
+  memberof: Premade Layouts
   description: Similar to the construction created by {@link button-label}, except that it creates a {@link roller} construction instead of just a straight button.
   arguments:
     - {object} inputObj - An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}.
@@ -57,6 +59,7 @@ mixin roller-label({inputObj,buttonObj,divObj})
 
 //- @pugdoc
   name: action-label
+  memberof: Premade Layouts
   description: Similar to the construction created by {@link button-label}, except that it specifcally creates an [action button](https://wiki.roll20.net/Button#Action_Button) as per {@link action}.
   arguments:
     - {object} inputObj - An object describing the input to be paired with the button. This is the same object that you would pass to {@link input}.
@@ -80,6 +83,7 @@ mixin action-label({inputObj,buttonObj,divObj})
 
 //- @pugdoc
   name: select-label
+  memberof: Premade Layouts
   description: Similar to the construction created by {@link input-label}, except that the input is replaced with a select.
   arguments:
     - {string} label - The translation key to use for the span. If not passed, then the spanObj must be passed with a translation key
@@ -120,6 +124,7 @@ mixin select-label({label,inputObj,divObj,spanObj})
 
 //- @pugdoc
   name: input-label
+  memberof: Premade Layouts
   description: 
   arguments:
     - {string} label - The translation key to use for the span. If not passed, then the spanObj must be passed with a translation key
@@ -168,6 +173,7 @@ mixin dual-input-label({label,inputArr,divObj,spanObj})
 
 //- @pugdoc
   name: headedTextarea
+  memberof: Premade Layouts
   description: Creates a construction for pairing a header with a textarea. Currently is locked to creating an `h3`.  This mixin also accepts classes and IDs appended directly to it (see the second example)
   arguments:
     - {object} textObj - The object describing the textarea as per {@link textarea}

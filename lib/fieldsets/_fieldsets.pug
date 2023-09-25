@@ -1,5 +1,6 @@
 //- @pugdoc
   name: fieldset
+  memberof: Fieldsets
   description: A mixin that creates a fieldset for the creation of a repeating section. The mixin prefixes the name with `repeating_` and replaces problem characters (e.g. spaces are replaced with dashes). Additionally, the auto-generated title properties from the K-scaffold\'s mixins will include the proper repeating section information.
   arguments:
     - {string} name - The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`).
@@ -43,6 +44,7 @@ mixin fieldset({name,trigger,addClass})
 
 //- @pugdoc
   name: customControlFieldset
+  memberof: Fieldsets
   description: Alias for {@link fieldset} that creates to custom action buttons to add/remove rows to the repeating section. Useful when you need to trigger a sheetworker when a row is added. This also prevents the occassional error of a new row disappearing immediately after the user has clicked the button to create one. Proper use of this will require css to hide the default buttons that fieldsets create automatically. Note that currently this assumes the existence of an addItem and editSection sheetworker function.
   arguments:
     - {string} name - The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`).
@@ -78,6 +80,7 @@ mixin customControlFieldset({name,trigger,addClass})
 
 //- @pugdoc
   name: repeating_section
+  memberof: Fieldsets
   description: A mixin that creates a section element with an h2, a space for column headers, and a {@link customcontrolfieldset} which can be styled to fit those column headers. The h2 labels the section via `aria-labelledby`.
   arguments:
     - {string} name - The name of the section as per {@link fieldset}. This name will also be added to the section's class list as `repeating-container--NAME`. If no id argument is passed, this is also used as the id of the section.
@@ -107,6 +110,7 @@ mixin repeating_section(name,header,columnArr,id)
 
 //- @pugdoc
   name: inlineFieldset
+  memberof: Fieldsets
   description: An alias for {@link fieldset} that creates a fieldset with an added class that can be easily hooked into via CSS to style the fieldset for inline display.
   arguments:
     - {string} name - The name of the repeating section. Will be prefixed with `repeating_` and spaces will be replaced with dashes (`-`).

@@ -1,13 +1,48 @@
 //-Roll Template Mixins to be included in Sheet files
+//- @pugdoc
+  name: rolltemplate
+  memberof: Roll Templates
+  description: Creates a rolltemplate wrapper around content
+  arguments:
+    - {string} name - The name of the roll template
+    - {block} block - The content of the roll template
+  attributes:
+  example: |
+    include ../_k.pug
+    +rolltemplate('my-rolltemplate')
+      //- Some roll template content
 mixin rolltemplate(name)
   rolltemplate(class=`sheet-rolltemplate-${name}`)
     block
 //- End Mixin
+//- @pugdoc
+  name: templateWrapper
+  memberof: Roll Templates
+  description: Creates a nested rolltemplate wrapper. Useful for ensuring you can add enough specificity to your roll template css.
+  arguments:
+    - {string} name - The name of the roll template
+    - {block} block - The content of the roll template
+  attributes:
+  example: |
+    include ../_k.pug
+    +templateWrapper('my-template')
 mixin templateWrapper(name)
   +rolltemplate(name)
     div(class=`template ${name}`)
       block
 //- End Mixin
+//- @pugdoc
+  name: multiPartTemplate
+  memberof: Roll Templates
+  description: Creates a rolltemplate wrapper for use in creating multi part roll templates that look like one message, but are actually created from multiple roll messages.
+  arguments:
+    - {string} name - The name of the roll template
+    - {block} block - The content of the roll template
+  attributes:
+  example: |
+    include ../_k.pug
+    +multiPartTemplate
+      //- Roll template content here Use the provided finished span to conditionally display elements in your scss
 mixin multiPartTemplate(name)
   rolltemplate(class=`sheet-rolltemplate-${name}`)
     +templateHelperFunction({func:'rollBetween',values:'computed::finished 0 0',invert:true})
@@ -15,6 +50,16 @@ mixin multiPartTemplate(name)
     div(class=`template ${name}{{#continuation}} continuation{{/continuation}}{{#first}} first{{/first}} finished`)
       block
 //- End Mixin
+//- @pugdoc
+  name: characterLink
+  memberof: Roll Templates
+  description: Creates handling for creating a link back to the character that sent the roll.
+  arguments:
+    - {number} [level = 4] - The header level to use for the link
+  attributes:
+  example: |
+    include ../_k.pug
+    +characterLink()
 mixin characterLink(level = 4)
   +templateConditionalDisplay('character_name')
     +templateConditionalDisplay('character_id')
@@ -22,46 +67,161 @@ mixin characterLink(level = 4)
     +templateConditionalDisplay('character_id',true)
       #{`h${level}`}.character_name&attributes(attributes) {{character_name}}
 //-End mixin
+//- @pugdoc
+  name: templateConditionalDisplay
+  memberof: Roll Templates
+  description: Helper mixin for using the [Roll20 Roll Template Logic](https://wiki.roll20.net/Building_Character_Sheets/Roll_Templates#Logic).
+  arguments:
+    - {string} fieldBool - The name of the field to look at to determine if the content should be created
+    - {boolean} invert - Whether to invert the logic (aka show if a field is not present).
+    - {block} block - The content to conditionally display
+  attributes:
+  example: |
+    include ../_k.pug
+    //- Display content if field present
+    +templateConditionalDisplay('my-field')
+      span shown if my-field is used in the template
+    
+    //- Display content if field is not present
+    +templateConditionalDisplay('my-field','invert')
+      span shown if my-field isn't used in the template
 mixin templateConditionalDisplay(fieldBool,invert)
   !=`{{${invert ? '^' : '#'}${fieldBool}}}`
   block
   !=`{{/${fieldBool}}}`
 //- End mixin
+//- @pugdoc
+  name: templateHelperFunction
+  memberof: Roll Templates
+  description: Helper function that simplifies using the [Roll20 Roll Template Helper Functions](https://wiki.roll20.net/Building_Character_Sheets/Roll_Templates#Helper_Functions).
+  arguments:
+    - {object} helperObj - Object describing the helper function and arguments to be used
+    - {string} helperObj.func - The name of the helper function to use.
+    - {string} helperObj.values - The arguments for the helper function
+    - {boolean} [helperObj.invert = false] - Whether to invert the function's logic
+  attributes:
+  example: |
+    include ../_k.pug
+    +templateHelperFunction({func:'rollWasCrit',values:'my-roll'})
 mixin templateHelperFunction(helperObj)
   !=`{{${helperObj.invert ? '#^':'#'}${helperObj.func ? `${helperObj.func}() `:''}${helperObj.values ? `${helperObj.values}` : ''}}}`
   block
   !=`{{/${(helperObj.invert) ? '^' : ''}${helperObj.func ? `${helperObj.func}() `:''}${helperObj.values}}}`
 //- End Mixin
+//- @pugdoc
+  name: rollWasCrit
+  memberof: Roll Templates
+  description: Alias for {@link templateHelperFunction} that sets the function to be `rollWasCrit`.
+  arguments:
+    - {object} helperObj - Object describing the helper function and arguments to be used
+    - {string} helperObj.values - The arguments for the helper function
+    - {boolean} [helperObj.invert = false] - Whether to invert the function's logic
+  attributes:
+  example: |
+    include ../_k.pug
+    +rollWasCrit({values:'my-roll'})
 mixin rollWasCrit(helperObj)
   - helperObj.func = 'rollWasCrit';
   +templateHelperFunction(helperObj)
     block
 //- End Mixin
+//- @pugdoc
+  name: rollWasFumble
+  memberof: Roll Templates
+  description: Alias for {@link templateHelperFunction} that sets the function to be `rollWasFumble`.
+  arguments:
+    - {object} helperObj - Object describing the helper function and arguments to be used
+    - {string} helperObj.values - The arguments for the helper function
+    - {boolean} [helperObj.invert = false] - Whether to invert the function's logic
+  attributes:
+  example: |
+    include ../_k.pug
+    +rollWasFumble({values:'my-roll'})
 mixin rollWasFumble(helperObj)
   - helperObj.func = 'rollWasFumble';
   +templateHelperFunction(helperObj)
     block
 //- End Mixin
+//- @pugdoc
+  name: rollTotal
+  memberof: Roll Templates
+  description: Alias for {@link templateHelperFunction} that sets the function to be `rollTotal`.
+  arguments:
+    - {object} helperObj - Object describing the helper function and arguments to be used
+    - {string} helperObj.values - The arguments for the helper function
+    - {boolean} [helperObj.invert = false] - Whether to invert the function's logic
+  attributes:
+  example: |
+    include ../_k.pug
+    +rollTotal({values:'my-roll 10'})
 mixin rollTotal(helperObj)
   - helperObj.func = 'rollTotal';
   +templateHelperFunction(helperObj)
     block
 //- End Mixin
+//- @pugdoc
+  name: rollGreater
+  memberof: Roll Templates
+  description: Alias for {@link templateHelperFunction} that sets the function to be `rollGreater`.
+  arguments:
+    - {object} helperObj - Object describing the helper function and arguments to be used
+    - {string} helperObj.values - The arguments for the helper function
+    - {boolean} [helperObj.invert = false] - Whether to invert the function's logic
+  attributes:
+  example: |
+    include ../_k.pug
+    +rollGreater({values:'my-roll 10'})
 mixin rollGreater(helperObj)
   - helperObj.func = 'rollGreater';
   +templateHelperFunction(helperObj)
     block
 //- End Mixin
+//- @pugdoc
+  name: rollLess
+  memberof: Roll Templates
+  description: Alias for {@link templateHelperFunction} that sets the function to be `rollLess`.
+  arguments:
+    - {object} helperObj - Object describing the helper function and arguments to be used
+    - {string} helperObj.values - The arguments for the helper function
+    - {boolean} [helperObj.invert = false] - Whether to invert the function's logic
+  attributes:
+  example: |
+    include ../_k.pug
+    +rollLess({values:'my-roll 10'})
 mixin rollLess(helperObj)
   - helperObj.func = 'rollLess';
   +templateHelperFunction(helperObj)
     block
 //- End Mixin
+//- @pugdoc
+  name: rollBetween
+  memberof: Roll Templates
+  description: Alias for {@link templateHelperFunction} that sets the function to be `rollBetween`.
+  arguments:
+    - {object} helperObj - Object describing the helper function and arguments to be used
+    - {string} helperObj.values - The arguments for the helper function
+    - {boolean} [helperObj.invert = false] - Whether to invert the function's logic
+  attributes:
+  example: |
+    include ../_k.pug
+    +rollBetween({values:'my-roll 10 20'})
 mixin rollBetween(helperObj)
   - helperObj.func = 'rollBetween';
   +templateHelperFunction(helperObj)
     block
 //- End Mixin
+//- @pugdoc
+  name: allProps
+  memberof: Roll Templates
+  description: Alias for {@link templateHelperFunction} that sets the function to be `allProps`.
+  arguments:
+    - {object} helperObj - Object describing the helper function and arguments to be used
+    - {string} helperObj.values - The arguments for the helper function
+    - {boolean} [helperObj.invert = false] - Whether to invert the function's logic
+  attributes:
+  example: |
+    include ../_k.pug
+    +allProps({values:'my-roll character_name character_id'})
 mixin allProps(helperObj)
   - helperObj.func = 'allprops';
   +templateHelperFunction(helperObj)

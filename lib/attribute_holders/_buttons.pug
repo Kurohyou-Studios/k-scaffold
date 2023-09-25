@@ -1,5 +1,6 @@
 //- @pugdoc
   name: button
+  memberof: Buttons
   description: Creates a button element. Valid types are `roll` or `action`. If a type is not specified in the object argument, a roll button is created. If an action button is created, spaces in the name are replaced with dashes instead of underscores.
   arguments:
     - {object} buttonObj - The object describing the button
@@ -34,6 +35,7 @@ mixin button(obj, _attributes)
 
 //- @pugdoc
   name: action
+  memberof: Buttons
   arguments:
     - {object} buttonObj - The object describing the button
     - {block} block - The contents of the button element
@@ -62,6 +64,7 @@ mixin rollerExtras(obj)
   +hidden({name:attributeName})
 //- @pugdoc
   name: roller
+  memberof: Buttons
   arguments:
     - {object} buttonObj - The object describing the button
     - {block} block - The contents of the button element

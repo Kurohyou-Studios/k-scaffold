@@ -9,7 +9,7 @@ import { data } from '@/reference.data.js'
 
 const { params } = useData();
 
-const docArr = data.pug[params.value.namespace];
+const docArr = [...data.pug[params.value.namespace]];
 const scriptNamespace = params.value.namespace;
 </script>
 # {{scriptNamespace}}

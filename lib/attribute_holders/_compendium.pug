@@ -1,5 +1,6 @@
 //- @pugdoc
   name: compendiumAttributes
+  memberof: Compendium
   description: Creates a set of compendium drop target attributes. Defaults to creating target attributes for the `Name` and `data` compendium attributes.
   arguments:
     - {string} [prefix] - A prefix to attach to the default attribute names.
@@ -28,6 +29,7 @@ mixin compendiumAttributes({prefix,lookupAttributes = ['Name','data'],triggerAcc
 
 //- @pugdoc
   name: compendiumContainer
+  memberof: Compendium
   description: Creates a set of compendium drop target attributes and a container to target with the drag and drop. Defaults to creating target attributes for the `Name` and `data` compendium attributes.
   arguments:
     - {string} [prefix] - A prefix to attach to the default attribute names.
