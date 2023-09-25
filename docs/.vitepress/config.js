@@ -7,6 +7,7 @@ export default defineConfig({
   title: "K-Scaffold",
   description: "A Roll20 sheet framework",
   head: [['link', { rel: 'icon', href: '/k-90b.png' }]],
+  base: '/k-scaffold',
   vite:{
     resolve: {
       alias: {
