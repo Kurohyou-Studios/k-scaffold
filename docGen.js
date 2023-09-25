@@ -1,3 +1,4 @@
+// Creates the reference data for the API documentation
 const docPath = `./docs`;
 
 // NPM modules
@@ -36,12 +37,14 @@ const gen = async ()=>{
     sassdoc.parse('./lib',{verbose:true,package:'./package.json'})
   ]);
 
-  const finalPJSON = {
-    Mixins:pJSON.map(o => ({...o,name:o.meta.name,description:o.meta.description,properties:o.meta.arguments,example:o.meta.example.replace(/\.\.\/_k\.pug/g,'k-scaffold'),kind:'Mixin'})),
-    Locals:[]
-  };
+  const finalPJSON = pJSON.reduce((memo,o) => {
+    const formattedObj = {...o,name:o.meta.name,description:o.meta.description,properties:o.meta.arguments,example:o.meta.example.replace(/\.\.\/_k\.pug/g,'k-scaffold'),kind:'Mixin',memberof:o.meta.memberof || 'Mixin'};
+    memo[formattedObj.memberof || formattedObj.kind] = memo[formattedObj.memberof || formattedObj.kind] || [];
+    memo[formattedObj.memberof || formattedObj.kind].push(formattedObj);
+    return memo;
+  },{});
   const finalBuildJSON = {Build:[]};
-  const nonSheetNamespaces = ['Locals','mock20','Build','generic']
+  const nonSheetNamespaces = ['Locals','mock20','Build','generic','Render']
   const finalJJSON = jJSON.reduce((memo,obj) => {
     if(obj.undocumented) return memo;
     obj.properties = obj.properties ?
@@ -49,21 +52,19 @@ const gen = async ()=>{
       stringifyJSDocProps(obj.params);
     obj.returns = stringifyJSDocProps(obj.returns);
     if(obj.memberof === 'Locals' || obj.name === 'Locals'){
+      finalPJSON.Locals = finalPJSON.Locals || [];
       finalPJSON.Locals.push(obj);
     }else if(/build/i.test(obj.memberof) || /build/i.test(obj.name)){
       finalBuildJSON.Build.push(obj);
-    }else if(
-      // logic needs to be improved, this doesn't actually filter anything at the moment
-    
-      (obj.kind !== 'namespace' && !nonSheetNamespaces.includes(obj.namespace)) ||
-      (obj.kind === 'namespace' && !nonSheetNamespaces.includes(obj.name))
-    ){
+    }else{
       const namespace = obj.kind === 'namespace' ?
         obj.name :
         (obj.memberof || 'generic');
-      memo[namespace] = memo[namespace] || [];
-          
-      memo[namespace].push(obj);
+      if(!nonSheetNamespaces.includes(namespace)){
+        memo[namespace] = memo[namespace] || [];
+            
+        memo[namespace].push(obj);
+      }
     }
     return memo;
   },{});
@@ -74,10 +75,43 @@ const gen = async ()=>{
     memo[namespace].push(obj);
     return memo;
   },{});
-  sJSONString = JSON.stringify(finalSJSON);
-  pJSONString = JSON.stringify(finalPJSON);
-  jJSONString = JSON.stringify(finalJJSON);
-  buildString = JSON.stringify(finalBuildJSON);
+  Object.values(finalPJSON).forEach(arr => 
+    arr.sort((a,b) => a.name?.localeCompare(b.name)));
+  Object.values(finalBuildJSON).forEach(arr => 
+    arr.sort((a,b) => a.name?.localeCompare(b.name)));
+  Object.values(finalJJSON).forEach(arr => 
+    arr.sort((a,b) => a.name?.localeCompare(b.name)));
+  Object.values(finalSJSON).forEach(arr => 
+    arr.sort((a,b) => a.name?.localeCompare(b.name)));
+  const sCatOrder = Object.keys(finalSJSON).sort((a,b) =>
+    a.localeCompare(b));
+  const pCatOrder = Object.keys(finalPJSON).sort((a,b) =>
+    a.localeCompare(b));
+  const jCatOrder = Object.keys(finalJJSON).sort((a,b) =>
+    a.localeCompare(b));
+  const bCatOrder = Object.keys(finalBuildJSON).sort((a,b) =>
+    a.localeCompare(b));
+
+  const orderedSJSON = sCatOrder.reduce((obj,key) =>{
+    obj[key] = finalSJSON[key];
+    return obj;
+  },{});
+  const orderedPJSON = pCatOrder.reduce((obj,key) =>{
+    obj[key] = finalPJSON[key];
+    return obj;
+  },{});
+  const orderedJJSON = jCatOrder.reduce((obj,key) =>{
+    obj[key] = finalJJSON[key];
+    return obj;
+  },{});
+  const orderedBuildJSON = bCatOrder.reduce((obj,key) =>{
+    obj[key] = finalBuildJSON[key];
+    return obj;
+  },{});
+  sJSONString = JSON.stringify(orderedSJSON);
+  pJSONString = JSON.stringify(orderedPJSON);
+  jJSONString = JSON.stringify(orderedJJSON);
+  buildString = JSON.stringify(orderedBuildJSON);
   await fs.writeFile('./docs/data/index.js',
     `
     export const scss = ${sJSONString};
@@ -139,21 +173,6 @@ const prettifyHTML = (html) => {
       m += c;
       return m;
     },'');
-  // return html.replace(/((?:\/[a-z]*|--)?>)(<(?:\/|--)?)/g,(match,start,end)=>{
-  //   if(!start.startsWith('/') && !start.startsWith('-') && !start.startsWith('!')){
-  //     indent++;
-  //   }
-  //   if(end.length > 1){
-  //     indent--;
-  //   }
-  //   let line = !start.startsWith('/') && /^<\//.test(end) ?
-  //     '' :
-  //     '\n';
-  //   let spacing = line ?
-  //     [...Array(Math.max(0,indent)).keys()].map(n => '  ').join('') :
-  //     '';
-  //   return `${start}${line}${spacing}${end}`;
-  // });
 }
 
 gen();

@@ -1,3 +1,4 @@
+# First Files
 Once your file structure is created and your config file set up, the first files you need to create for your project are your master Pug and SCSS files. These will group all of your ./Pug/SCSS into a single final file that will be parsed by the scaffold. These master Pug and SCSS files will be the only Pug/SCSS files whose names do **not** start with an underscore (`_`).
 ## Pug file
 Your master Pug file will import the K-scaffold's pug library as well as be the entry point for all the rest of your Pug files. For a tabbed character sheet, this will look like:

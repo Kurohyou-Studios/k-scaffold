@@ -9,7 +9,7 @@ import { data } from '@/reference.data.js'
 
 const { params } = useData();
 
-const docArr = data.scss[params.value.namespace];
+const docArr = [...data.scss[params.value.namespace]];
 const nameSpaceIndex = docArr.findIndex(o => o.kind === 'namespace');
 const nameSpaceObj = docArr.splice(nameSpaceIndex,1)?.[0] || {};
 const scriptNamespace = params.value.namespace;

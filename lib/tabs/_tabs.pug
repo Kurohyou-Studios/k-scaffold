@@ -1,5 +1,6 @@
 //- @pugdoc
   name: tabs
+  memberof: Navigation
   description: A generic mixin to create tabs using jQuery. It uses a nested {@link tab} mixin to define tabs. Any content outside those mixin in put in the containing div, before the tabs. Attributes passed to the mixin are passed to the outer containing div.
   arguments:
     - {string} [name=tabs] - The name of the tabs construct. Used in all elements so that you may vary the styling of different tabs
@@ -105,11 +106,12 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
 
 //- duplicate for documentation purposes
 //- @pugdoc
-    name: tab
-    description: Mixin to add a new tab. Only available inside a {@link tabs} mixin. Attributes passed to the mixin are passed to the div containing the content, not to the header button.
-    arguments:
-      - {string} [name] - The name of the tab. Defaults to `tab` followed by a index count starting at 1 (so tab1, then tab2, ...)
-      - {object} [button] - object passed to the +action mixin to build the action button for switching tabe. By default a trigger is defined, but you can override it.
-      - {string} [container] - tag to use to contain the whole tab. A div by default but can be overridden.
+  name: tab
+  memberof: Navigation
+  description: Mixin to add a new tab. Only available inside a {@link tabs} mixin. Attributes passed to the mixin are passed to the div containing the content, not to the header button.
+  arguments:
+    - {string} [name] - The name of the tab. Defaults to `tab` followed by a index count starting at 1 (so tab1, then tab2, ...)
+    - {object} [button] - object passed to the +action mixin to build the action button for switching tabe. By default a trigger is defined, but you can override it.
+    - {string} [container] - tag to use to contain the whole tab. A div by default but can be overridden.
 mixin tab({name,button={},container="div"})
   - throw new Error("The +tab() mixin can only be used within a +tabs() mixin");

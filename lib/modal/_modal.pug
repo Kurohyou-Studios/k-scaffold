@@ -1,5 +1,6 @@
 //- @pugdoc
   name: modalButton
+  memberof: Navigation
   description: One of the mixin to create modal window (i.e. pop-up). This makes a label that, when clicked, will trigger the display of same-named modal {@link modalWindow}.
   arguments:
     - {string} [name] - The name of the modal window this button is for.
@@ -25,6 +26,7 @@ mixin modalButton({name})
 
 //- @pugdoc
   name: modalWindow
+  memberof: Navigation
   description: One of the mixin to create modal window (i.e. pop-up). This makes the window that will be displayed when the corrresponding {@link modalButton} is clicked.
   arguments:
     - {string} [name] - The name of the modal window
@@ -61,6 +63,7 @@ mixin modalWindow({name, checkboxObj})
 
 //- @pugdoc
   name: modalContainer
+  memberof: Navigation
   description: One of the mixin to create modal window (i.e. pop-up). This reduces the scope of a {@link modalWindow}. By default, the window covers all of the character sheet. Inside a modal container, it covers at most the container.
   arguments:
   attributes:

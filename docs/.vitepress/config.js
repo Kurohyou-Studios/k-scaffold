@@ -26,12 +26,21 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Getting Started', link: '/guide/introduction/getting-started.html' },
-      { text: 'Guide', link: '/guide/introduction/what-is.html' },
+      {
+        text: 'Guide',
+        activeMatch: '/guide/',
+        items: [
+          { text: 'Introduction', link: '/guide/introduction/what-is.html', activeMatch:'/guide/introduction/' },
+          { text: 'Creating Content', link: '/guide/creating-content/attributes and abilities.html', activeMatch:'/guide/creating-content/' },
+          { text: 'Connecting Javascript and Attributes', link: '/guide/sheetworkers/scripts.html', activeMatch:'/guide/sheetworkers/' },
+        ]
+      },
       { 
         text: 'Reference',
+        activeMatch: '/reference/',
         items: [
           {text:'Build API',link:'/reference/build-api/'},
-          {text:'Pug Library',link:'/reference/pug/Mixins'},
+          {text:'Pug Library',link:'/reference/pug/Attributes'},
           {text:'Style Library',link:'/reference/style/mixin'},
           {text:'Sheetworker Library',link:'/reference/sheetworkers/Sheetworkers'}
         ]
@@ -41,7 +50,7 @@ export default defineConfig({
       '/guide/':[
         {
           text: 'Introduction',
-          collapsed:false,
+          collapsed:true,
           items: [
             { text: 'What is the Scaffold', link: '/guide/introduction/what-is.html' },
             { text: 'Getting Started', link: '/guide/introduction/getting-started.html' },
@@ -50,7 +59,7 @@ export default defineConfig({
         },
         {
           text: 'Creating Content',
-          collapsed:false,
+          collapsed:true,
           items: [
             { text: 'Attributes and Abilities', link: '/guide/creating-content/attributes and abilities.html' },
             { text: 'Premade Layouts', link: '/guide/creating-content/layouts.html' },
@@ -60,7 +69,7 @@ export default defineConfig({
         },
         // {
         //   text: 'Styling Your Sheet',
-        //   collapsed:false,
+        //   collapsed:true,
         //   items: [
         //     { text: 'Character Sheet', link: '/guide/styling/character.html' },
         //     { text: 'CSS Variables', link: '/guide/styling/css-variables.html' },
@@ -70,7 +79,7 @@ export default defineConfig({
         // },
         {
           text: 'Connecting Javascript and Attributes',
-          collapsed:false,
+          collapsed:true,
           items: [
             { text: 'Scripts', link: '/guide/sheetworkers/scripts.html' },
             { text: 'Formula Calculations', link: '/guide/sheetworkers/formula.html' },
@@ -80,7 +89,7 @@ export default defineConfig({
         },
         // {
         //   text: "Sheet Author's Journey (WIP)",
-        //   collapsed:false,
+        //   collapsed:true,
         //   items: [
         //   ]
         // }
@@ -89,8 +98,8 @@ export default defineConfig({
         .reduce((arr,[namespace,content]) => {
           const spaceObj = {
             text:namespace,
-            collapsed:false,
-            items:content.map(o => ({text:o.name,link:`${namespace}.html#${o.name}`}))
+            collapsed:true,
+            items:content.map(o => ({text:o.name,activeMatch:`/reference/pug/${namespace}.html#${o.name}`,link:`${namespace}.html#${o.name}`}))
           };
           arr.push(spaceObj);
           return arr;
@@ -99,18 +108,20 @@ export default defineConfig({
         .reduce((arr,[namespace,content]) => {
           const spaceObj = {
             text:namespace,
-            collapsed:false,
-            items:content.map(o => ({text:`k.${o.name}`,link:`${namespace}.html#${o.name}`}))
+            collapsed:true,
+            items:content.map(o => ({text:`k.${o.name}`,activeMatch:`/reference/sheetworkers/${namespace}.html#${o.name}`,link:`${namespace}.html#${o.name}`}))
           };
-          arr.push(spaceObj);
+          if(namespace !== 'generic'){
+            arr.push(spaceObj);
+          }
           return arr;
         },[]),
       '/reference/style/': Object.entries(scss)
         .reduce((arr,[namespace,content]) => {
           const spaceObj = {
             text:namespace,
-            collapsed:false,
-            items:content.map(o => ({text:o.name,link:`${namespace}.html#${o.name}`}))
+            collapsed:true,
+            items:content.map(o => ({text:o.name,activeMatch:`/reference/style/${namespace}.html#${o.name}`,link:`${namespace}.html#${o.name}`}))
           };
           arr.push(spaceObj);
           return arr;

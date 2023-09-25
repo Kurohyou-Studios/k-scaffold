@@ -1,6 +1,7 @@
 
 //- @pugdoc
   name: img
+  memberof: Attributes
   description: A mixin to create a sheet image element. Particularly useful when using the image attribute syntax.
   arguments:
     - {object} imgObj - An object describing the properties of the img just like they would be in a PUG or HTML element declaration, but in JS Object syntax. May also include a trigger property.
@@ -25,6 +26,7 @@ mixin img(obj)
 
 //- @pugdoc
   name: span
+  memberof: Attributes
   description: Creates a span element and formats the name of the span for compatibility with the Roll20 attribute system.
   arguments:
     - {object} attrObj - The object describing the span itself.
@@ -54,6 +56,7 @@ mixin span(obj)
 
 //- @pugdoc
   name: div
+  memberof: Attributes
   description: Creates a div element and will properly format the name attribute of the div if it is provided
   arguments:
     - {object} divObj - The object describing the div

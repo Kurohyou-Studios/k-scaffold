@@ -1,9 +1,11 @@
 ---
 title: Guide
 ---
+# Getting Started
+The K-scaffold is simple to use as the base for a character sheet project. Follow the instructions below for installing it and initializing your project.
 ## Installation
-### Prerequisites
 ::: info
+### Prerequisites
 - Node.js v18+ & NPM
 - A Roll20 Pro subscription to test your sheet
 :::
