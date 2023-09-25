@@ -6,7 +6,7 @@ import { pug,js,scss,build } from '../data'
 export default defineConfig({
   title: "K-Scaffold",
   description: "A Roll20 sheet framework",
-  head: [['link', { rel: 'icon', href: '/k-90b.png' }]],
+  head: [['link', { rel: 'icon', href: '/k-scaffold/k-90b.png' }]],
   base: '/k-scaffold',
   ignoreDeadLinks:[/\/reference\//],
   vite:{
@@ -19,7 +19,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo:'/k-90b.png',
+    logo:'/k-200.png',
     search:{
       provider:'local'
     },
