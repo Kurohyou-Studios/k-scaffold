@@ -54,30 +54,26 @@ export default defineConfig({
             { text: 'Premade Layouts', link: '/guide/creating-content/layouts.html' },
             { text: 'Repeating Sections', link: '/guide/creating-content/repeating-sections.html' },
             { text: 'Navigation', link: '/guide/creating-content/navigation.html' },
-            { text: 'Template Files', link: '/guide/creating-content/template files.html' }
           ]
         },
-        {
-          text: 'Styling Your Sheet',
-          collapsed:false,
-          items: [
-            { text: 'Character Sheet', link: '/guide/styling/character.html' },
-            { text: 'CSS Variables', link: '/guide/styling/css-variables.html' },
-            { text: 'Mixins', link: '/guide/styling/mixins.html' },
-            { text: 'Roll Templates', link: '/guide/styling/roll-template.html' }
-          ]
-        },
+        // {
+        //   text: 'Styling Your Sheet',
+        //   collapsed:false,
+        //   items: [
+        //     { text: 'Character Sheet', link: '/guide/styling/character.html' },
+        //     { text: 'CSS Variables', link: '/guide/styling/css-variables.html' },
+        //     { text: 'Mixins', link: '/guide/styling/mixins.html' },
+        //     { text: 'Roll Templates', link: '/guide/styling/roll-template.html' }
+        //   ]
+        // },
         {
           text: 'Connecting Javascript and Attributes',
           collapsed:false,
           items: [
             { text: 'Scripts', link: '/guide/sheetworkers/scripts.html' },
-            { text: 'Trigger Property', link: '/guide/sheetworkers/trigger.html' },
+            { text: 'Formula Calculations', link: '/guide/sheetworkers/formula.html' },
             { text: 'Arguments & Variables', link: '/guide/sheetworkers/arguments.html' },
-            { text: 'Calculation Functions', link: '/guide/sheetworkers/calculations.html' },
-            { text: 'Roll Functions', link: '/guide/sheetworkers/roll-functions.html' },
-            { text: 'Triggered Functions', link: '/guide/sheetworkers/triggered-functions.html' },
-            { text: 'Update Functions', link: '/guide/sheetworkers/update-functions.html' }
+            { text: 'Writing your own Functions', link: '/guide/sheetworkers/function types.html' }
           ]
         },
         // {

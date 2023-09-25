@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "K-Scaffold"
   text: "A Roll20 sheet framework"
-  tagline: Sheets built with ease and confidence!
+  tagline: Critically successful sheets!
   image:
     src: /K-200.png
     alt: K-Scaffold

@@ -17,14 +17,7 @@
 
     //Specifying lookupAttributes and a prefix
     +compendiumAttributes({lookupAttributes:['Name','data','Category'],prefix:'prefix'})
-mixin compendiumAttributes({
-  prefix,
-  lookupAttributes = ['Name','data'],
-  triggerAccept = 'Name',
-  trigger = {
-    triggeredFuncs:["handleCompendiumDrop"]
-  }
-})
+mixin compendiumAttributes({prefix,lookupAttributes = ['Name','data'],triggerAccept = 'Name',trigger = {triggeredFuncs:["handleCompendiumDrop"]}})
   - prefix = prefix ? `${prefix} ` : '';
   each accept in lookupAttributes
     - let inputObj = {name:`${prefix}drop ${accept.toLowerCase()}`,accept,value:''};
@@ -49,13 +42,7 @@ mixin compendiumAttributes({
       vttCategories:['npcs','vehicles']
     })
       |Sheet content here
-mixin compendiumContainer({
-  prefix,
-  lookupAttributes = ['Name','data'],
-  triggerAccept = 'Name',
-  trigger = {triggeredFuncs:["handleCompendiumDrop"]},
-  vttCategories = []
-})
+mixin compendiumContainer({prefix,lookupAttributes = ['Name','data'],triggerAccept = 'Name',trigger = {triggeredFuncs:["handleCompendiumDrop"]},vttCategories = []})
   div(class=`compendium-drop-target${vttCategories.length ? ` ${vttCategories.join(' ').toLowerCase()}` : ''}`)&attributes(attributes)
     +compendiumAttributes({
       prefix,

@@ -7,7 +7,7 @@
     "k-build": "cli.mjs"
   },
   "scripts": {
-    "full-install": "npm i && cd test_sheet && npm i && cd ../doc-source && npm i",
+    "full-install": "npm i && cd test_sheet && npm i && cd ../docs && npm i",
     "docs": "node docGen",
     "doc-dev": "cd doc-source && npm run dev",
     "build-doc": "cd doc-source && npm run build",
