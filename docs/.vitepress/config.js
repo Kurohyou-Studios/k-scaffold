@@ -99,7 +99,7 @@ export default defineConfig({
           const spaceObj = {
             text:namespace,
             collapsed:true,
-            items:content.map(o => ({text:o.name,activeMatch:`/reference/pug/${namespace}.html#${o.name}`,link:`${namespace}.html#${o.name}`}))
+            items:content.map(o => ({text:o.name,activeMatch:`/reference/pug/${namespace}.html#${o.name}`,link:`/reference/pug/${namespace}.html#${o.name}`}))
           };
           arr.push(spaceObj);
           return arr;
@@ -109,7 +109,7 @@ export default defineConfig({
           const spaceObj = {
             text:namespace,
             collapsed:true,
-            items:content.map(o => ({text:`k.${o.name}`,activeMatch:`/reference/sheetworkers/${namespace}.html#${o.name}`,link:`${namespace}.html#${o.name}`}))
+            items:content.map(o => ({text:`k.${o.name}`,activeMatch:`/reference/sheetworkers/${namespace}.html#${o.name}`,link:`/reference/sheetworkers/${namespace}.html#${o.name}`}))
           };
           if(namespace !== 'generic'){
             arr.push(spaceObj);
@@ -121,7 +121,7 @@ export default defineConfig({
           const spaceObj = {
             text:namespace,
             collapsed:true,
-            items:content.map(o => ({text:o.name,activeMatch:`/reference/style/${namespace}.html#${o.name}`,link:`${namespace}.html#${o.name}`}))
+            items:content.map(o => ({text:o.name,activeMatch:`/reference/style/${namespace}.html#${o.name}`,link:`/reference/style/${namespace}.html#${o.name}`}))
           };
           arr.push(spaceObj);
           return arr;
