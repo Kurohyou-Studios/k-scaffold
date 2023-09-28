@@ -8,7 +8,7 @@ The K-scaffold is a library of Pug, SCSS, and Javascript code that simplifies th
 There are three libraries that make up the K-scaffold.
 
 ## Pug Library
-The [Pug library](/reference/pug/Mixins.html) provides mixins and functions that speed up common creations for Roll20 character sheets and automate the linking of your sheet's attributes to your sheetworkers. These range from basic inputs to complex constructions of autosizing textareas. In addition, the mixins provided by the library ensure that your attribute and button names follow a good naming scheme where attribute and roll button names are in `snake_case` while action buttons are in `kebab-case`. These casing rules ensure that your sheet avoids known issues with naming conventions.
+The [Pug library](/reference/pug/Attributes.html) provides mixins and functions that speed up common creations for Roll20 character sheets and automate the linking of your sheet's attributes to your sheetworkers. These range from basic inputs to complex constructions of autosizing textareas. In addition, the mixins provided by the library ensure that your attribute and button names follow a good naming scheme where attribute and roll button names are in `snake_case` while action buttons are in `kebab-case`. These casing rules ensure that your sheet avoids known issues with naming conventions.
 
 ## Style Library
 The [style library](/reference/style/mixin.html) provides out of the box functionality for several of the constructions created by the Pug Library, particularly the auto sizing inputs and textareas, and the fill to left constructions.

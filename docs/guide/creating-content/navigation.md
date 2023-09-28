@@ -2,7 +2,7 @@
 outline: 'deep'
 ---
 # Navigation
-The K-scaffold offers several ways to create navigation elements within your sheet. This functionality does require that you use the [kscript](/reference/pug/kscript.html) mixin in your pug file as the navigation is powered by javascript sheetworkers.
+The K-scaffold offers several ways to create navigation elements within your sheet. This functionality does require that you use the [kscript](/reference/pug/Scripts.html#kscript) mixin in your pug file as the navigation is powered by javascript sheetworkers.
 ## Tabbed Layouts
 Many Roll20 character sheets utilize a tabbed layout to split content into discrete sections (e.g. a Core page, a spells page, and an NPC page). The `tabs` and `tab` mixins allow you to easily create these layouts with a defined `nav` element and content that is displayed when a given tab is active.
 ```pug
@@ -44,7 +44,7 @@ You can also customize what container the content of each tab is displayed in by
 ```
 As shown here, you can also use different containers for each tab. Note that while the container argument is just a string, it needs to be the name of a valid html element. It is recommended to use elements that are `display:block;` by default, and using semantic html, the `article` or `section` element should be specified. By default tab content is contained in a basic `div`.
 ### Custom Tab Buttons
-You can also customize the tab buttons themselves using the `button` argument on the tab object. This is the same object that is used by the [`button`](/reference/pug/buttons.html) mixin. However, the name property should **not** be specified here as the tab functionality relies on the button name being related to the tab's container name. You can however add additional classes or `triggeredFuncs` to be run when the tab button is clicked.
+You can also customize the tab buttons themselves using the `button` argument on the tab object. This is the same object that is used by the [`button`](/reference/pug/Buttons.html#buttons) mixin. However, the name property should **not** be specified here as the tab functionality relies on the button name being related to the tab's container name. You can however add additional classes or `triggeredFuncs` to be run when the tab button is clicked.
 ```pug
 +tabs({name="my tabs"})
   +tab({name:'settings',container:'article',button:{trigger:{triggeredFuncs:['toggleTabButtons']}}})
