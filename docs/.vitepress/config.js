@@ -19,7 +19,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo:'/k-200.png',
+    logo:'/k-90b.png',
     search:{
       provider:'local'
     },

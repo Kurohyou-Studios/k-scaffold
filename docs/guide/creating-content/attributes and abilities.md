@@ -8,7 +8,7 @@ At base, a character sheet needs attributes to store character information and a
 Inputs and buttons are the work horses of the K-scaffold. They are how you define attributes to be created on your character sheet, and how you connect the attributes and buttons to your sheetworkers. There are mixins for all input and button types that are valid on Roll20 character sheets.
 
 ### Creating an input or button
-The most basic method of creating an input and button is to simply use the [input](/reference/pug/input.html) or [button](/reference/pug/button.html) mixins.
+The most basic method of creating an input and button is to simply use the [input](/reference/pug/Attributes.html#input) or [button](/reference/pug/Buttons.html#button) mixins.
 ```pug
 +input({name:'my attribute',type:'text'})
 +button({name:'my button',type:'action'})
