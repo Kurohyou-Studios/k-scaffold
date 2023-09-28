@@ -1,0 +1,10 @@
+@use 'sfc';
+body{
+  .ui-dialog{
+    .tab-content{
+      .charsheet{
+        @include sfc.all;
+      }
+    }
+  }
+}
