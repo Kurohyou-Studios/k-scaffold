@@ -1,0 +1,14 @@
+@use 'k-scaffold' as k;
+@use 'sfc';
+body{
+  .ui-dialog{
+    .tab-content{
+      .charsheet{
+        @include sfc.sheet;
+      }
+    }
+  }
+}
+.sheet-rolltemplate-style{
+  @include sfc.roll;
+}

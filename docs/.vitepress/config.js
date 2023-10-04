@@ -65,6 +65,7 @@ export default defineConfig({
             { text: 'Premade Layouts', link: '/guide/creating-content/layouts.html' },
             { text: 'Repeating Sections', link: '/guide/creating-content/repeating-sections.html' },
             { text: 'Navigation', link: '/guide/creating-content/navigation.html' },
+            { text: 'Single File Components', link: '/guide/creating-content/sfc.html' },
           ]
         },
         // {

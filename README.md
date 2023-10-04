@@ -162,6 +162,11 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v2.2.0
+- Adds a macro parser function to the K-scaffold
+- Adds an scss mixin to the pug library for making Single File Components of pug, SCSS, and sheetworkers
+  - Also adds an `sfc` import for use in scss files to access the sfc styling.
+
 v2.1.0
 - Adds support for Roll20 macro based formula property on trigger.
   - formulas are an easy way to define a simple calculation that a given attribute should use to calculate it's value.
