@@ -288,7 +288,7 @@ mixin dRow
     align-items:start;
   }
 ```
-This component is intended to be used in both the sheet and the roll template. Because of this, the scss for is written to be compatible with both the legacy and  CSE sanitization. You could alternatively simply write your class names in the pug with the `sheet-` prepend, but which option is better is largely a personal choice. The only recommendation is that the presence or absence of the `sheet-` prepend in the pug should be consistent throughout the project instead of being present sometimes and absent other times.
+This component is intended to be used in both the sheet and the roll template. Because of this, the scss is written to be compatible with both the legacy and  CSE sanitization. You could alternatively simply write your class names in the pug with the `sheet-` prepend, but which option is better is largely a personal choice. The only recommendation is that the presence or absence of the `sheet-` prepend in the pug should be consistent throughout the project instead of being present sometimes and absent other times.
 ### Syntax Highlighting & Intellisense
 It is recommended to use the [official K-scaffold Sheet Framework VSCode extension](https://marketplace.visualstudio.com/items?itemName=kurohyou-studios.pugfold) in order to provide SCSS and JS syntax highlighting within your single file components. Unfortunately, the intellisense features of SCSS and Javascript are not currently available when writing single file components, even with the extension.
 
