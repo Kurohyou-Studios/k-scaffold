@@ -155,7 +155,7 @@ body {
   @include scss.variables;
   @include k.defaultRollStyling;
   @include scss.generic;
-  @include sfc.rollTemplate;
+  @include sfc.roll;
   // Additional styling as needed here.
 }
 ```
@@ -226,7 +226,7 @@ In Roll20 character sheets, many of the advanced scoping solutions for CSS seen 
 ```
 This will ensure that your style for the component is only applied to elements contained within it. Of course, you'll want to be aware of if your component is meant to contain other components within it.
 #### Sheet vs. Rolltemplate styles
-By default, the styles added via the `scss` mixin are added to both `sfc.sheet` and `sfc.rollTemplate`. You can scope these to the sheet or the roll template by adding an argument specifying which style sheet they should be available in.
+By default, the styles added via the `scss` mixin are added to both `sfc.sheet` and `sfc.roll`. You can scope these to the sheet or the roll template by adding an argument specifying which style sheet they should be available in.
 
 ::: code-group
 ```pug{6} [Sheet Component]
