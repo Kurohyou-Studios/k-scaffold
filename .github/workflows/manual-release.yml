@@ -2,26 +2,6 @@ on: workflow_dispatch
 name: Manual Release
 
 jobs:
-  version:
-    name: Check version & tags
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref }}
-
-      - name: Check tags
-        env:
-          TAG: ${{ github.event.release.tag_name }}
-        run: |
-          sudo apt-get install jq
-          VERSION="$(cat package.json | jq -r '.["version"]')"
-          if [ "$VERSION" != "$TAG" ]; then
-            printf "ERROR: release tag $TAG is not equal to package version $VERSION\n"
-            exit 1
-          fi
-
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -37,41 +17,7 @@ jobs:
           node-version: 18.x
           registry-url: "https://registry.npmjs.org"
 
-      - name: Install NPM packages
-        run: npm run full-install
-
-      - name: Build Doc Data
-        run: npm run docs
-
-      - name: Build Site
-        run: npm run build-doc
-
-      - name: generate 404.html
-        run: cp ./doc-source/dist/index.html ./doc-source/dist/404.html
-
-      - name: Upload production-ready documentation files
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files
-          path: ./doc-source/dist
-
       - name: Deploy package
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  doc:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: production-files
-        path: ./doc-source/dist
-
-    - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./doc-source/dist
