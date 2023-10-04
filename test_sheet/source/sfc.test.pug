@@ -1,0 +1,19 @@
+include k-scaffold
+include ./assets/pug/_nestedComponent.pug
++text({name:'my attribute'})
++scss.
+  .test-class{
+    display: none;
+  }
++scss('sheet').
+  .test-sheet-only{
+    outline: 1px solid green;
+  }
++scss('roll').
+  .sheet-template-only{
+    outline: 1px solid red;
+  }
++module.
+  const myvar = {};
++kscript
+  

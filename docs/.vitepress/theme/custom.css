@@ -23,3 +23,12 @@ a[href*="roll20.net"]{
 a[href*="roll20.net"]:is(:hover,:visited){
   color: color-mix(in lch,var(--r20-link-color) 80%,var(--vp-c-bg));
 }
+.flex-box{
+  display:flex;
+}
+.half-gap{
+  gap:0.5rem;
+}
+.flex-align-start{
+  align-items: start;
+}

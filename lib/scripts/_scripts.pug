@@ -60,10 +60,11 @@ mixin kscript(scriptName)
     |
     each content,prop in varObjects
       |
-      if typeof content === 'object'
-        |const !{prop} = !{JSON.stringify(content)};
-      else
-        |let !{prop} = !{content};
+      if prop !== 'styles'
+        if typeof content === 'object'
+          |const !{prop} = !{JSON.stringify(content)};
+        else
+          |let !{prop} = !{content};
       |
     |
     block
@@ -71,8 +72,44 @@ mixin kscript(scriptName)
       |
       |
       - jsBlock();
+  each obj,scope in varObjects.styles
+    style(id=`scf-${scope}`).scf-styles
+      each style in obj
+        - style();
+        |
+        |
 //- End Mixin
 
+
+//-
+  name: scss
+  memberof: Scripts
+  description: Stores SCSS (or CSS) for later addition to your general scss file. Useful for creating true Single File Components or Single Directory Components. Can be accessed in your scss via the `sfc` import. Accessible via `@use 'sfc'` and usable in your scss via `@include sfc.all`.
+  arguments:
+    - {block} block - The scss content to be added.
+  attributes:
+
+//- @pugdoc
+  name: scss
+  memberof: Scripts
+  description: Stores SCSS (or CSS) for later addition to your general scss file. Useful for creating true Single File Components or Single Directory Components. Can be accessed in your scss via the `sfc` import. Accessible via `@use 'sfc'` and usable in your scss via `@include sfc.all`.
+  arguments:
+    - {block} block - The scss content to be added.
+  attributes:
+  example: |
+    include ../_k.pug
+    +scss
+      |// include local scss file here or write scss here
+    +kscript
+      |// local js file will be put here
+mixin scss(scope='sheet,roll')
+  - const scopes = scope?.split(/\s*,\s*/) || [];
+  each s in scopes  
+    if block
+      - varObjects.styles = varObjects.styles || {};
+      - varObjects.styles[s] = varObjects.styles[s] || [];
+      - varObjects.styles[s].push(block);
+//- End Mixin
 
 //- @pugdoc
   name: module

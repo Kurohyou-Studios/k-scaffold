@@ -12,26 +12,26 @@
     // Tabs that are persistent (default) and have the background tab as the default tab
     +tabs({name:"sheet-tabs",defaultActiveTab:'background'})(class="outer")
       span before the header
-      +tab({})(class="tab-vertical")
-        span(style="background: white;") Tab 1 content
+      +tab({name:'tab 1'})(class="tab-vertical")
+        span Tab 1 content
       +tab({name:"background"})(class="tab_horizontal")
-        span(style="background: white;") Tab background content
+        span Tab background content
       +tab({name:"history", button:{class:"custom-button"}})(class="tab_horizontal")
-        span(style="background: white;") Tab history content
+        span Tab history content
       +tab({name:"inventory", container:"span"})(class="tab_horizontal")
-        span(style="background: white;") Tab inventory content
+        span Tab inventory content
         
     // Tabs that are NOT persistent and have no default tab (aka all tab content will be hidden by default)
     +tabs({name:"sheet-tabs-2",persistent:false})(class="outer")
       span before the header
-      +tab({})(class="tab-vertical")
-        span(style="background: white;") Tab 1 content
+      +tab({name:'tab 1'})(class="tab-vertical")
+        span Tab 1 content
       +tab({name:"background"})(class="tab_horizontal")
-        span(style="background: white;") Tab background content
+        span Tab background content
       +tab({name:"history", button:{class:"custom-button"}})(class="tab_horizontal")
-        span(style="background: white;") Tab history content
+        span Tab history content
       +tab({name:"inventory", container:"span"})(class="tab_horizontal")
-        span(style="background: white;") Tab inventory content
+        span Tab inventory content
 mixin tabs({name="tabs",defaultActiveTab,persistent=true})
   //- Cleanup the name to use "-" instead of spaces, and no problematic chars
   //- We use "-" as in action buttons, because this name will be used in CSS classes
@@ -45,7 +45,9 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
     - const inputObj = {name:`${sectionName.replace(/\-/g,'_')} tab`};
     if defaultActiveTab
       - inputObj.value = `nav-tabs-${sectionName}--${defaultActiveTab}`;
+    |
     +hidden(inputObj)
+    - varObjects.persistentTabs = varObjects.persistentTabs || [];
     - varObjects.persistentTabs.push(inputObj.name.replace(/attr_/,''))
 
   //- Storage for all the tabs in this construct, plus a local mixin to pass
@@ -103,15 +105,3 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
         - const container = tab.container;
         #{container}(data-container-tab=sectionName data-tab=tab.name)&attributes(tab.attributes)
           - tab.block && tab.block();
-
-//- duplicate for documentation purposes
-//- @pugdoc
-  name: tab
-  memberof: Navigation
-  description: Mixin to add a new tab. Only available inside a {@link tabs} mixin. Attributes passed to the mixin are passed to the div containing the content, not to the header button.
-  arguments:
-    - {string} [name] - The name of the tab. Defaults to `tab` followed by a index count starting at 1 (so tab1, then tab2, ...)
-    - {object} [button] - object passed to the +action mixin to build the action button for switching tabe. By default a trigger is defined, but you can override it.
-    - {string} [container] - tag to use to contain the whole tab. A div by default but can be overridden.
-mixin tab({name,button={},container="div"})
-  - throw new Error("The +tab() mixin can only be used within a +tabs() mixin");

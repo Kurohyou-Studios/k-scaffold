@@ -3,6 +3,7 @@ title: Style
 aside: false
 ---
 <script setup>
+import Argument from '@/components/Argument.vue';
 import { useData } from 'vitepress'
 
 import { data } from '@/reference.data.js'
@@ -26,10 +27,13 @@ const scriptNamespace = params.value.namespace;
 
 <ul>
   <li v-for="propObj in obj.properties" :key="`${obj.name}-${propObj.name}`">
-
-{{propObj.name}} - `{{propObj.type}}` -
-<div v-html="propObj.description" />
-
+    <Argument>
+      <template #name>{{propObj.name}}</template>
+      <template #type>{{propObj.type}}</template>
+      <template #description>
+        <div v-html="propObj.description" />
+      </template>
+    </Argument>
   </li>
   <li v-for="propObj,i in obj.returns" :key="`${obj.name}-return-${i}`">
 

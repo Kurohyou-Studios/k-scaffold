@@ -9,24 +9,41 @@ The K-scaffold is simple to use as the base for a character sheet project. Follo
 - Node.js v18+ & NPM
 - A Roll20 Pro subscription to test your sheet
 :::
-Once you have the prerequisites set up, you can initialize your project with npm and install the K-scaffold via the command line
+Once you have the prerequisites set up, you can initialize your project with npm and install the K-scaffold via the command line using the K-scaffold initializer
 ```sh
-$ npm init -y
-$ npm i -D @kurohyou/k-scaffold@latest
+$ npx @kurohyou/k-init
 ```
-Once the project is initialized and the K-scaffold is installed, you can set up your required files
+This will ask you several questions about your project and setup a basic folder structure. Follow the prompts on the terminal.
+```sh
+$ npx @kurohyou/k-init
+? Your Roll20 ID (blank to ignore) 123
+? Your name, user name, handle, etc Scott Casey
+? Sheet name Test Sheet
+? Directory name (blank to use current directory) inittest
+? Associated compendium (Blank for none)
+Now run:
+cd ./inittest
+npm i
+```
+::: tip
+A few additional programs and extensions are recommended for the best development experience.
+- [The Roll20 API and Sheet Autouploader](https://chrome.google.com/webstore/detail/roll20-api-and-sheet-auto/hboggmcfmaakkifgifjbccnpfmnegick) will make uploading updated code to your sheet sandbox smooth and seamless
+- [The Official K-scaffold VSCode extension](https://marketplace.visualstudio.com/items?itemName=kurohyou-studios.kscaffold) will provide K-scaffold snippets for PUG, JS, and SCSS. It will also provide specific syntax highlighting when working with `.kscaf` files for [single file components](/guide/creating-content/sfc.html).
+:::
 ### File Organization
-Your project directory should be set up with at least a source directory where all of your pug, scss, and js files will be located. Additionally it is recommended that the source folder be further divided by file type (Pug, SCSS, JS).
+Your project directory should be set up with at least a source directory where all of your pug, scss, and js files will be located. Additionally it is recommended that the source folder be further divided by file type (articles,mixins,rolltemplate, scss, javascript).
 ```
 Project Name/
   source/
-    pug/
+    articles/
+    mixins/
+    rolltemplate/
     scss/
       components/
         _index.scss
       sections/
         _index.scss
-    js/
+    javascript/
       _index.pug
     projectName.pug
     projectName.scss
@@ -39,7 +56,7 @@ Project Name/
 ```
 This organizational pattern helps keep your files organized and makes them easier to find.
 ### package.json
-The `package.json` file is what tells NPM what packages (like the K-scaffold) your project needs, as well as what terminal commands are available. While you can use the native K-scaffold `k-build` command to run it in dev mode, creating script aliases in your `package.json` will probably be preferred.
+The `package.json` file is what tells NPM what packages (like the K-scaffold) your project needs, as well as what terminal commands are available. While you can use the native K-scaffold `k-build` command to run it in dev mode, creating script aliases in your `package.json` will probably be preferred. If you used the K-scaffold initializer, these scripts will already be created.
 ```json
 {
   "name": "Project Name",
