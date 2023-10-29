@@ -162,6 +162,12 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v2.2.1
+- Fixes an issue where scss would not recompile when changes were made to scss in a `+scss` mixin in the pug.
+- Fixed a potential crash when using sfc before creating sfc scss content (Thanks Rich!).
+- Updated sfc backend to use better object management.
+- Adds the `googleFont` pug mixin to provide a unified font import between the fonts the K-scaffold is dependent on and custom fonts for your sheet.
+
 v2.2.0
 - Adds a macro parser function to the K-scaffold
 - Adds an scss mixin to the pug library for making Single File Components of pug, SCSS, and sheetworkers

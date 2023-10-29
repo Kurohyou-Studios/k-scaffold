@@ -33,7 +33,23 @@ This makes it very easy to write a function that uses only the arguments you act
 ## Specific Arguments
 Each of the predefined arguments that are passed to a K-scaffold function contain different pieces of information. These are all useful to varying degrees and in different situations.
 ### Trigger Argument
-The trigger argument is one of the most likely to be used. This argument is an object that describes the attribute that the K-scaffold is currently working on in the cascade. It is an extension of the trigger property used in the K-scaffold pug mixins and allows functions to be written in a generic manner to respond to any of a collection of related attributes or buttons. For instance, if we were writing a character sheet based on D&D 5e, we'd likely have around 6 ability score modifiers that are calculated based on specifici ability scores. With the trigger property we can connect all of these modifiers to a single calculation function that will calculate each modifier.
+The trigger argument is one of the most likely to be used. This argument is an object that describes the attribute that the K-scaffold is currently working on in the cascade. It is an extension of the trigger property used in the K-scaffold pug mixins and allows functions to be written in a generic manner to respond to any of a collection of related attributes or buttons. It contains the following properties:
+```js
+trigger = {
+  name: "full name of the attribute including repeating info",
+  type:'Type of input the attribute is associated with',
+  defaultValue: number || "string",
+  affects:['array of attribute names'],
+  listener:'listener string that would be passed to on()',
+  triggeredFuncs:['array of function names'],
+  listenerFunc:'functionName',
+  initialFunc:'functionName',
+  calculation:'functionName',
+  previousValue:'previous value pulled from the R20 event'
+}
+```
+
+For instance, if we were writing a character sheet based on D&D 5e, we'd likely have around 6 ability score modifiers that are calculated based on specifici ability scores. With the trigger property we can connect all of these modifiers to a single calculation function that will calculate each modifier.
 ```pug
 //- Strength
 +number({name:'strength',trigger:{affects:['strength_mod']}})

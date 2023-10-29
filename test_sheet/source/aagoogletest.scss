@@ -1,0 +1,15 @@
+@use 'k-scaffold' as k;
+@use 'googleFont';
+@use 'sfc';
+body{
+  .ui-dialog{
+    .tab-content{
+      .charsheet{
+        @include sfc.sheet;
+        span{
+          color:blue;
+        }
+      }
+    }
+  }
+}
