@@ -26,20 +26,20 @@
   ],
   "dependencies": {
     "colors": "^1.4.0",
-    "jsdom": "^20.0.1",
-    "node-watch": "^0.7.3",
+    "jsdom": "^22.1.0",
+    "node-watch": "^0.7.4",
     "pug": "^3.0.2",
-    "sass": "^1.54.9",
-    "sass-embedded": "^1.55.0",
+    "sass": "^1.69.5",
+    "sass-embedded": "^1.69.5",
     "underscore": "^1.13.6"
   },
   "author": "Scott Casey",
   "devDependencies": {
-    "@vitest/ui": "^0.26.2",
-    "execa": "^7.0.0",
-    "jsdoc": "^3.6.11",
+    "@vitest/ui": "^0.34.6",
+    "execa": "^8.0.1",
+    "jsdoc": "^4.0.2",
     "pug-doc": "^2.23.1",
-    "sassdoc": "^2.7.2",
-    "vitest": "^0.26.3"
+    "sassdoc": "^2.7.4",
+    "vitest": "^0.34.6"
   }
 }
