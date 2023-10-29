@@ -162,6 +162,8 @@ Distributed under the mit License. See [LICENSE.txt](https://github.com/Kurohyou
 <!-- CONTACT -->
 
 ## Changelog
+v2.2.2
+- Updates dependencies for production to remove critical vulnerabilities.
 v2.2.1
 - Fixes an issue where scss would not recompile when changes were made to scss in a `+scss` mixin in the pug.
 - Fixed a potential crash when using sfc before creating sfc scss content (Thanks Rich!).

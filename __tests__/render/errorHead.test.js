@@ -5,6 +5,6 @@ import '../mocks';
 describe('kErrorhead',()=>{
   it('Should log the provided error',()=>{
     kErrorHead('test');
-    expect(console.log.calls[0][0]).toMatch('test');
+    expect(console.log.mock.calls[0][0]).toMatch('test');
   })
 })

@@ -10,7 +10,7 @@ describe('k.log()',()=>{
   it('Should log the message with the sheet name tag prepended',()=>{
     resetMock();
     k.log('Test log');
-    expect(console.log.calls[0]).toMatchInlineSnapshot(`
+    expect(console.log.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "%cTest Sheet log| Test log",
         "background-color:#159ccf",
@@ -20,7 +20,7 @@ describe('k.log()',()=>{
   it('Should expand objects to their key/value pairs',()=>{
     resetMock();
     k.log({nested:{attributes:['array','of','values']}});
-    expect(console.log.calls).toMatchInlineSnapshot(`
+    expect(console.log.mock.calls).toMatchInlineSnapshot(`
       [
         [
           "%cTest Sheet log| object nested",
@@ -28,7 +28,7 @@ describe('k.log()',()=>{
         ],
       ]
     `);
-    expect(console.table.calls).toMatchInlineSnapshot(`
+    expect(console.table.mock.calls).toMatchInlineSnapshot(`
       [
         [
           {
@@ -49,14 +49,14 @@ describe('k.debug()',()=>{
       k.version = 0;
       resetMock();
       k.debug('Test log');
-      expect(console.log.calls).toMatchInlineSnapshot('[]');
+      expect(console.log.mock.calls).toMatchInlineSnapshot('[]');
     });
     it('Should expand objects to their key/value pairs',()=>{
       k.version = 0;
       resetMock();
       k.debug({nested:{attributes:['array','of','values']}});
-      expect(console.log.calls).toMatchInlineSnapshot('[]');
-      expect(console.table.calls).toMatchInlineSnapshot(`
+      expect(console.log.mock.calls).toMatchInlineSnapshot('[]');
+      expect(console.table.mock.calls).toMatchInlineSnapshot(`
         [
           [
             {
@@ -77,15 +77,15 @@ describe('k.debug()',()=>{
       k.debugMode = false;
       resetMock();
       k.debug('Test log');
-      expect(console.log.calls).toMatchInlineSnapshot('[]');
+      expect(console.log.mock.calls).toMatchInlineSnapshot('[]');
     });
     it('Should not log objects either',()=>{
       k.version = 1;
       k.debugMode = false;
       resetMock();
       k.debug({nested:{attributes:['array','of','values']}});
-      expect(console.log.calls).toMatchInlineSnapshot('[]');
-      expect(console.table.calls).toMatchInlineSnapshot('[]');
+      expect(console.log.mock.calls).toMatchInlineSnapshot('[]');
+      expect(console.table.mock.calls).toMatchInlineSnapshot('[]');
     });
     describe('forced',()=>{
       it('Should log the message with the sheet name tag prepended',()=>{
@@ -93,15 +93,15 @@ describe('k.debug()',()=>{
         k.debugMode = false;
         resetMock();
         k.debug('Test log',true);
-        expect(console.log.calls).toMatchInlineSnapshot('[]');
+        expect(console.log.mock.calls).toMatchInlineSnapshot('[]');
       });
       it('Should expand objects to their key/value pairs',()=>{
         k.version = 1;
         k.debugMode = false;
         resetMock();
         k.debug({nested:{attributes:['array','of','values']}},true);
-        expect(console.log.calls).toMatchInlineSnapshot('[]');
-        expect(console.table.calls).toMatchInlineSnapshot(`
+        expect(console.log.mock.calls).toMatchInlineSnapshot('[]');
+        expect(console.table.mock.calls).toMatchInlineSnapshot(`
           [
             [
               {
@@ -123,14 +123,14 @@ describe('k.debug()',()=>{
       k.debugMode = true;
       resetMock();
       k.debug('Test log');
-      expect(console.log.calls).toMatchInlineSnapshot('[]');
+      expect(console.log.mock.calls).toMatchInlineSnapshot('[]');
     });
     it('Should expand objects to their key/value pairs',()=>{
       k.debugMode = true;
       resetMock();
       k.debug({nested:{attributes:['array','of','values']}});
-      expect(console.log.calls).toMatchInlineSnapshot('[]');
-      expect(console.table.calls).toMatchInlineSnapshot(`
+      expect(console.log.mock.calls).toMatchInlineSnapshot('[]');
+      expect(console.table.mock.calls).toMatchInlineSnapshot(`
         [
           [
             {
