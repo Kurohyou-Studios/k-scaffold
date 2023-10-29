@@ -73,7 +73,7 @@ mixin kscript(scriptName)
       |
       - jsBlock();
   each obj,scope in k.styles
-    .scf-styles(id=`scf-${scope}`)
+    scf.scf-styles(id=`scf-${scope}`)
       each style in obj
         - style();
         |
