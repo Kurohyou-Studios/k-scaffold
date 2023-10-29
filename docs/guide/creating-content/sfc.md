@@ -2,7 +2,7 @@
 outline: 'deep'
 ---
 # Single File Components
-The K-scaffold also makes it possible to write single file components (SFCs). This is possible by using the [module](/k-scaffold/reference/pug/Scripts.html#module) and [scss](/k-scaffold/reference/pug/Scripts.html#scss) mixins. SFCs provide a simple project structure that ensures code for a given section is located near the rest of the code for that section.
+The K-scaffold also makes it possible to write single file components (SFCs). This is possible by using the [module](/k-scaffold/reference/pug/Scripts.html#module) and [scss](/k-scaffold/reference/pug/Scripts.html#scss) mixins. SFCs provide a simple project structure that ensures code for a given section is located near the rest of the code for that section. *Single File Components are the recommended architecture for new sheet projects as they improve the file organization.*
 ## Setup your project to use SFCs
 To setup an SFC based project, you will need to modify the directory setup described in [getting started](/k-scaffold/guide/introduction/getting-started.html). Instead of separating files by file type, they should be separated by purpose.
 ```
@@ -50,6 +50,8 @@ include ./components/_index.pug
 include ./sections/_index.pug
 //- Other globally required pug files should be included here
 - const templateName = 'project Name';
+//- import the Roboto font from Google
++googleFont('Roboto')
 +hidden({name:'sheet version',value:0})
 //- Now, for our actual sheet. We'll wrap this in a main element and give it an ID of main.
 main#main
@@ -64,9 +66,11 @@ include ./rolltemplate/_index.pug
 ```scss [projectName.scss]
 // projectName.scss
 @use 'k-scaffold' as k;
-@use './scss';
+// Use the K-scaffold default fonts as well as those specified in our sheet's pug
+@use 'googleFont';
 // use the K-scaffold's sfc export:
 @use 'sfc';
+@use './scss';
 
 html {
   font-size: 16px;
