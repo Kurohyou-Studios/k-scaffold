@@ -18,9 +18,6 @@
 
 @use 'modal/_modal';
 @forward 'modal/_modal';
-
-
-@import url("https://fonts.googleapis.com/css?family=Material+Icons&display=swap");
 /// Mixin that includes all of the framework's styles. Should be included in a 3 class declaration for character sheets.
 /// @example
 ///   @use 'k-scaffold' as k;
