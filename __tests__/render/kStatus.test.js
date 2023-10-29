@@ -6,6 +6,6 @@ import '../mocks';
 describe('kStatus()',()=>{
   it('Should log the message',()=>{
     kStatus('test message');
-    expect(console.log.calls[0][0]).toMatch('test message');
+    expect(console.log.mock.calls[0][0]).toMatch('test message');
   })
 })
