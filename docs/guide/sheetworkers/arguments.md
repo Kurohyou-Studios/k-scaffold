@@ -32,6 +32,11 @@ k.registerFuncs({noArgs});
 This makes it very easy to write a function that uses only the arguments you actually need, or even a function that expects to be called from the K-scaffold, but can also be called in other situations with different arguments.
 ## Specific Arguments
 Each of the predefined arguments that are passed to a K-scaffold function contain different pieces of information. These are all useful to varying degrees and in different situations.
+
+::: warning
+Note that while you can create attributes and buttons with capitalization in the name, all attributes and buttons are provided in lowercase in K-scaffold sheetworkers. It is recommended that you use all lowercase for attribute and button names to avoid confusion between the pug and the sheetworkers.
+:::
+
 ### Trigger Argument
 The trigger argument is one of the most likely to be used. This argument is an object that describes the attribute that the K-scaffold is currently working on in the cascade. It is an extension of the trigger property used in the K-scaffold pug mixins and allows functions to be written in a generic manner to respond to any of a collection of related attributes or buttons. It contains the following properties:
 ```js

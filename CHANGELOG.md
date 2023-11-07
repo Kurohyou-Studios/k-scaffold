@@ -1,5 +1,11 @@
 # K-scaffold
 ## Changelog
+#### v2.3.0
+- Improved sanitization for capitalization in attribute/button names
+- Expose the K-scaffolds `updateSheet` function
+- Attributes are now properly passed to all pug mixins (e.g. `+text({name:'my text'}).my-class` will now work as expected)
+- Error added when using the `input` mixin without specifying a type.
+
 #### v2.2.3
 - Fixes an error with extraction of sfc styles using nested styles that caused a non crashing error message to be logged.
 - Moved the changelog to a separate file.

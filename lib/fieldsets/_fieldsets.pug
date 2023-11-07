@@ -37,7 +37,7 @@ mixin fieldset({name,trigger,addClass})
     - storeTrigger({name:section,type:'fieldset',trigger})
   if addClass
     span(hidden="" class=addClass)
-  fieldset(class=`${section}`)
+  fieldset(class=`${section}`)&attributes(attributes)
     block
   - k.repeatingPrefix = '';
 //-End Mixin
@@ -74,7 +74,7 @@ mixin customControlFieldset({name,trigger,addClass})
       name;
   +action({name:`add ${buttonName}`,class:'repcontrol-button repcontrol-button--add',trigger:{listenerFunc:'addItem'}})
   - setSystemPrefix(prefixHolder);
-  +fieldset({name,trigger,addClass})
+  +fieldset({name,trigger,addClass})&attributes(attributes)
     block
 //- End Mixin
 
@@ -104,7 +104,7 @@ mixin repeating_section(name,header,columnArr,id)
       .repeat-columns
         each head in columnArr
           h5(data-i18n=head)
-    +customControlFieldset({name: name})
+    +customControlFieldset({name: name})&attributes(attributes)
       block
 //- End Mixin
 
@@ -131,7 +131,7 @@ mixin inlineFieldset({name,trigger,addClass})
   - varObjects.inlineFieldsets.push(name);
   
   +action({name:`add ${name}`,class:'repcontrol-button repcontrol-button--add repcontrol-button--inline',trigger:{listenerFunc:'sectionInteract'}})
-  +fieldset({name,trigger,addClass})
+  +fieldset({name,trigger,addClass})&attributes(attributes)
     +radio({name:'display state',class:'display-control',value:'short-display',hidden:''})
     .inline-fieldset__summary.display-target
       label.pointer

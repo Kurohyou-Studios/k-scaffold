@@ -11,6 +11,8 @@
     +input({name:'my attribute',type:'text',class:'some-class',trigger:{affects:['other_attribute']}})
 mixin input(obj)
   - checkKUse();
+  if !obj.hasOwnProperty('type')
+    - throw new Error(`+input() mixin for "${obj.name}" was called without a 'type', roll20 will not detect the attribute.`);
   - obj.class = obj.class ? replaceProblems(obj.class) : undefined;
   - obj.name = attrName(obj.name);
   - obj.title = obj.title || attrTitle(obj.name);
@@ -152,5 +154,5 @@ mixin textarea(obj)
   - addFieldToFieldsetObj(obj);
   - storeTrigger(obj);
   - const elementObj = makeElementObj(obj);
-  textarea&attributes(elementObj)
+  textarea&attributes(elementObj)&attributes(attributes)
 //-End Mixin

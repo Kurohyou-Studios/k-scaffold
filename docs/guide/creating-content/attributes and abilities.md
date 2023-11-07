@@ -19,6 +19,9 @@ You might notice that the name here is not a valid Roll20 character sheet name. 
 <input type="text" name="attr_my_attribute">
 <button type="action" name="act_my-button">
 ```
+::: warning
+Note that while you can create attributes and buttons with capitalization in the name, all attributes and buttons are provided in lowercase in K-scaffold sheetworkers. It is recommended that you use all lowercase for attribute and button names to avoid confusion between the pug and the sheetworkers.
+:::
 The object that is passed to the mixin can have any properties that an input or button html element can have. For example, adding inline styling to an input element would look like:
 ```pug
 +input({name:'my attribute',type:'text',style:'border-bottom:1px solid black'})
