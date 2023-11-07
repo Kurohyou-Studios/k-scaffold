@@ -22,7 +22,7 @@ mixin button-label({inputObj,buttonObj,divObj})
   - buttonObj.class = buttonObj.class ? replaceProblems(buttonObj.class) : undefined;
   - inputObj.name = inputObj.name.replace(/\s+/g,'_');
   - buttonObj.name = (buttonObj.name || inputObj.name).replace(/\s+/g,'_');
-  .input-label.input-label--button&attributes(divObj)
+  .input-label.input-label--button&attributes(divObj)&attributes(attributes)
     - inputObj.class = inputObj.class ? `${inputObj.class} input-label__input` : 'input-label__input';
     if spanObj
       - buttonObj.class = buttonObj.class ? `${buttonObj.class} input-label__text` : 'input-label__text';
@@ -51,7 +51,7 @@ mixin button-label({inputObj,buttonObj,divObj})
     })
 mixin roller-label({inputObj,buttonObj,divObj})
   +rollerExtras(buttonObj)
-    +button-label({inputObj,buttonObj,divObj})
+    +button-label({inputObj,buttonObj,divObj})&attributes(attributes)
 //-End Mixin
 
 
@@ -75,7 +75,7 @@ mixin roller-label({inputObj,buttonObj,divObj})
     })
 mixin action-label({inputObj,buttonObj,divObj})
   - buttonObj.type = 'action';
-  +button-label({inputObj,buttonObj,divObj})
+  +button-label({inputObj,buttonObj,divObj})&attributes(attributes)
 //-End Mixin
 
 
@@ -109,7 +109,7 @@ mixin select-label({label,inputObj,divObj,spanObj})
     - inputObj.class = inputObj.class ? replaceProblems(inputObj.class) : undefined;
   if spanObj
     - spanObj.class = spanObj.class ? replaceProblems(spanObj.class) : undefined;
-  label.input-label&attributes(divObj)
+  label.input-label&attributes(divObj)&attributes(attributes)
     - inputObj.name = inputObj.name.replace(/\s+/g,'_');
     - inputObj.class = inputObj.class ? `${inputObj.class} input-label__input` : 'input-label__input';
     if spanObj
@@ -147,7 +147,7 @@ mixin input-label({label,inputObj,divObj,spanObj})
     - inputObj.class = inputObj.class ? replaceProblems(inputObj.class) : undefined;
   if spanObj
     - spanObj.class = spanObj.class ? replaceProblems(spanObj.class) : undefined;
-  label.input-label&attributes(divObj)
+  label.input-label&attributes(divObj)&attributes(attributes)
     - inputObj.name = inputObj.name.replace(/\s+/g,'_');
     - inputObj.class = inputObj.class ? `${inputObj.class} input-label__input` : 'input-label__input';
     if spanObj
@@ -161,7 +161,7 @@ mixin dual-input-label({label,inputArr,divObj,spanObj})
     - divObj.class = divObj.class ? replaceProblems(divObj.class) : undefined;
   if spanObj
     - spanObj.class = spanObj.class ? replaceProblems(spanObj.class) : undefined;
-  .input-label.input-label--dual&attributes(divObj)
+  .input-label.input-label--dual&attributes(divObj)&attributes(attributes)
     span(data-i18n=label)&attributes(spanObj)
     each inputObj,i in inputArr
       if inputObj

@@ -24,7 +24,7 @@ mixin compendiumAttributes({prefix,lookupAttributes = ['Name','data'],triggerAcc
     - let inputObj = {name:`${prefix}drop ${accept.toLowerCase()}`,accept,value:''};
     if accept === triggerAccept
       - inputObj.trigger = trigger;
-    +hidden(inputObj)
+    +hidden(inputObj)&attributes(attributes)
 //- End Mixin
 
 //- @pugdoc
