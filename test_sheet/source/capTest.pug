@@ -1,0 +1,21 @@
+include k-scaffold
++text({name:'input with CAPS',trigger:{
+  triggeredFuncs:['capReact']
+}})
++action({
+  name:'action with CAPS',
+  trigger:{triggeredFuncs:['capReact']}
+})
++module.
+  /**
+   * reacts to entities that had caps in names to see if they actually trigger
+   * @param {object} trigger - The trigger that caused the function to be called
+   * @param {object} attributes - The attribute values of the character
+   * @param {object[]} sections - All the repeating section IDs
+   * @param {object} casc - Expanded cascade object
+   */
+  const capReact = function({trigger,attributes,sections,casc}){
+    k.log(`${trigger.name} detected`);
+  };
+  k.registerFuncs({capReact});
++kscript
