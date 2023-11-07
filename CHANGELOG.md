@@ -1,5 +1,8 @@
 # K-scaffold
 ## Changelog
+#### v2.3.0
+
+
 #### v2.2.3
 - Fixes an error with extraction of sfc styles using nested styles that caused a non crashing error message to be logged.
 - Moved the changelog to a separate file.
