@@ -18,7 +18,7 @@ mixin img(obj)
   - const elementObj = makeElementObj(obj);
   - addFieldToFieldsetObj(obj);
   - storeTrigger(obj);
-  img&attributes(elementObj)
+  img&attributes(elementObj)&attributes(attributes)
 //-End Mixin
 
 
@@ -44,7 +44,7 @@ mixin span(obj)
     - obj.name = `attr_${obj.name}`;
     - addFieldToFieldsetObj(obj);
   - const elementObj = makeElementObj(obj);
-  span&attributes(elementObj)
+  span&attributes(elementObj)&attributes(attributes)
     block
   if obj.name
     - obj.type = 'span';
@@ -72,6 +72,6 @@ mixin div(obj)
     - obj.name = replaceSpaces(obj.name);
     - obj.title = obj.title || attrTitle(obj.name);
     - obj.name = `attr_${obj.name}`;
-  div&attributes(obj)
+  div&attributes(obj)&attributes(attributes)
     block
 //-End Mixin

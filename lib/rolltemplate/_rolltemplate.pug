@@ -12,7 +12,7 @@
     +rolltemplate('my-rolltemplate')
       //- Some roll template content
 mixin rolltemplate(name)
-  rolltemplate(class=`sheet-rolltemplate-${name}`)
+  rolltemplate(class=`sheet-rolltemplate-${name}`)&attributes(attributes)
     block
 //- End Mixin
 //- @pugdoc
@@ -28,7 +28,7 @@ mixin rolltemplate(name)
     +templateWrapper('my-template')
 mixin templateWrapper(name)
   +rolltemplate(name)
-    div(class=`template ${name}`)
+    div(class=`template ${name}`)&attributes(attributes)
       block
 //- End Mixin
 //- @pugdoc
@@ -47,7 +47,7 @@ mixin multiPartTemplate(name)
   rolltemplate(class=`sheet-rolltemplate-${name}`)
     +templateHelperFunction({func:'rollBetween',values:'computed::finished 0 0',invert:true})
       span(class='finished')
-    div(class=`template ${name}{{#continuation}} continuation{{/continuation}}{{#first}} first{{/first}} finished`)
+    div(class=`template ${name}{{#continuation}} continuation{{/continuation}}{{#first}} first{{/first}} finished`)&attributes(attributes)
       block
 //- End Mixin
 //- @pugdoc
