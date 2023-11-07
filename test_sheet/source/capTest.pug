@@ -6,6 +6,13 @@ include k-scaffold
   name:'action with CAPS',
   trigger:{triggeredFuncs:['capReact']}
 })
++tabs({name:'CAP TABS',defaultActiveTab:'CAP 1'})
+  +tab({name:'CAP 1'})
+    span First tab with capitals
+  +tab({name:'CAP 2'})
+    span Second tab with capitals
+  +tab({name:'uncapped tab'})
+    span Tab without capitals
 +module.
   /**
    * reacts to entities that had caps in names to see if they actually trigger
