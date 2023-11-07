@@ -6,6 +6,12 @@
   "bin": {
     "k-build": "cli.mjs"
   },
+  "keywords": [
+    "Roll20",
+    "Character Sheets",
+    "Node",
+    "ECMAScript"
+  ],
   "scripts": {
     "full-install": "npm i && cd test_sheet && npm i && cd ../docs && npm i",
     "docs": "node docGen",
