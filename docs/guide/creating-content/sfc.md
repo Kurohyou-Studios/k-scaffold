@@ -37,8 +37,17 @@ The directories have specific uses.
 
 When working with single file components, it is recommended to use [the official K-scaffold VSCode extension](https://marketplace.visualstudio.com/items?itemName=kurohyou-studios.pugfold). This will ensure that your embedded SCSS and JS will be syntax highlighted properly.
 
-The `projectName.pug` and `projectName.scss` will also be modified from what is described in getting started.
+The `k.config.mjs`, `projectName.pug` and `projectName.scss` will also be modified from what is described in getting started.
 ::: code-group
+```js [k.config.mjs] {6}
+export default {
+  source:'./source',
+  destination:'./build',
+  testDestination:'./__tests__',
+  templates:'./source',
+  sfc: true
+};
+```
 ```js [main.js]
 // main.js
 k.version = 0.2;//Set to the current version of your sheet
