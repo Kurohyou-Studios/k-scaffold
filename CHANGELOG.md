@@ -1,5 +1,10 @@
 # K-scaffold
 ## Changelog
+#### v2.4.0
+- Added ability to define custom trigger properties
+  - primitive values (e.g. numbers/strings) will only use the value for that key from the first time it is declared in the pug
+  - Array values will create a merge of arrays
+  - Object values will also create a recursive merge of objects, with properties from the first declaration of the object taking precedence. The recursive merge follows these rules as well.
 #### v2.3.0
 - Improved sanitization for capitalization in attribute/button names
 - Expose the K-scaffolds `updateSheet` function
