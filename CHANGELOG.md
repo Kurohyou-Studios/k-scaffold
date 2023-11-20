@@ -1,5 +1,7 @@
 # K-scaffold
 ## Changelog
+#### v2.4.2
+- Fixes error with passing of event object when no previousValue.
 #### v2.4.0
 ##### New Features
 - Added ability to define custom trigger properties
