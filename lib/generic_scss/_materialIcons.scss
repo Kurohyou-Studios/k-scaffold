@@ -13,11 +13,40 @@
   font-style: normal;
   font-size: var(--icon-size);  /* Preferred icon size */
 }
+/// Mixin to add the necessary styling to use material icons. 
+/// @example scss
+///   @use 'k-scaffold' as k;
+///  .charsheet .symbol-icon{
+///    @include k.symbolStyle;
+///  }
+@mixin symbolStyle{
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-variation-settings: 'FILL' 1;
+}
 /// Utility classes that are provided to apply material icon styling to your elements
 /// @group utility
 @mixin materialIcons{
   .sheet-material-icons,
   .material-icons {
     @include materialStyle;
+  }
+}
+
+/// Utility classes that are provided to apply material Symbol styling to your elements
+/// @group utility
+@mixin materialSymbols{
+  .material-symbol,
+  .sheet-material-symbol{
+    @include symbolStyle;
   }
 }

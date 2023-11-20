@@ -6,10 +6,16 @@ body{
     .tab-content{
       .charsheet{
         @include sfc.sheet;
+        textarea{
+          box-sizing: contents;
+        }
         span{
           color:blue;
         }
       }
     }
   }
+}
+.sheet-rolltemplate-test{
+  @include sfc.roll;
 }

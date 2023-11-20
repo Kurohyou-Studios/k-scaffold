@@ -79,12 +79,13 @@ The `package.json` file is what tells NPM what packages (like the K-scaffold) yo
 `vitest` and `vitest/ui` are optional dependencies if you want to use the K-scaffold's built in testing framework as well.
 ### The config file
 The `k.config.json` file is what directs the K-scaffold. It tells the K-scaffold what files to watch, what files to base your sheet's `sheet.json` and `translation.json` files off of, and where the built files should be placed. 
-```json
+```js
 export default {
   source:'./source',
   destination:'./build',
   testDestination:'./__tests__',
-  templates:'./source'
+  templates:'./source',
+  sfc: false
 };
 ```
 This basic config file will set the scaffold up to:
@@ -92,5 +93,6 @@ This basic config file will set the scaffold up to:
 - Place your built html, json, and css files in the `build/` directory.
 - Place the created test framework in the `__tests__` directory.
 - use the `sheet.json`, `translation.json`, and `readme.md` located in `source/` as the templates for your `sheet.json` and `translation.json` files.
+- we are not using [single file components](/k-scaffold/guide/creating-content/sfc.html).
 ## Next?
 Now that the K-scaffold is set up and your file structure is complete, you'll need to create your first pug and scss files in your source directory. These will be the master files that your HTML and CSS will be created from.

@@ -1,5 +1,15 @@
 # K-scaffold
 ## Changelog
+#### v2.4.0
+##### New Features
+- Added ability to define custom trigger properties
+  - primitive values (e.g. numbers/strings) will only use the value for that key from the first time it is declared in the pug
+  - Array values will create a merge of arrays
+  - Object values will also create a recursive merge of objects, with properties from the first declaration of the object taking precedence. The recursive merge follows these rules as well.
+- Added sfc k.config property. This is a boolean that will force reparsing of both pug and scss files when either is changed
+- The K-scaffold mixins are now exposed to scss used in the `+scss` mixin calls
+##### Bug Fixes
+- Fixed a bug that prevented the googlefont mixin from being parsed correctly
 #### v2.3.0
 - Improved sanitization for capitalization in attribute/button names
 - Expose the K-scaffolds `updateSheet` function
