@@ -1,0 +1,48 @@
+.hidden {
+    display: none;
+}
+
+.nestedFieldset__outer {
+
+    .repcontrol button.repcontrol_add {
+        border: 1px solid red;
+        // display: none !important;
+    }
+
+    .nestedFieldset__block {
+        display: none;
+    }
+
+    // input[type="radio"].nestedFieldset__radio {
+    //     display: block;
+    // }
+
+    input[type="radio"].nestedFieldset__radio:checked+.nestedFieldset__block {
+        display: block;
+    }
+
+    // Roll20 attach the .repitembroken class to our repeating rows for some reason
+    // This applies many styles that we need to undo
+
+    // TODO: undo those styles:
+    .repitembroken {
+        border: 1px solid red !important;
+        border-top-width: 1px !important;
+        border-right-width: 1px !important;
+        border-bottom-width: 1px !important;
+        border-left-width: 1px !important;
+        border-top-style: solid !important;
+        border-right-style: solid !important;
+        border-bottom-style: solid !important;
+        border-left-style: solid !important;
+        border-top-color: red !important;
+        border-right-color: red !important;
+        border-bottom-color: red !important;
+        border-left-color: red !important;
+        border-image-source: initial !important;
+        border-image-slice: initial !important;
+        border-image-width: initial !important;
+        border-image-outset: initial !important;
+        border-image-repeat: initial !important;
+    }
+}

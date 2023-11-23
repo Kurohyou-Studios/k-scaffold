@@ -1,0 +1,172 @@
+- const _nestedFieldsetStack = [];
+- let _currentNestedLevel = null;
+
+//- TODO: check level name unicity for mapping when re-design?
+//- TODO: think about updates where the layout changes (need to create dummy levels?)
+//- TODO: register nested fieldset in varObjects ?
+//- TODO: skip to-level to offer multi-type first level?
+//- TODO: add i18n?
+mixin nestedFieldset({name})
+    //- Argument cleanup, using actionButtonName() because used in CSS, see below
+    - name = actionButtonName(name);
+
+    //- We need to flatten the nested tree structure of the PUG into a flat list to be able
+    //- to control display and styling
+    //- We implement a Depth-First Search (DFS) algorithm, with the PUG resolution:
+    //- 1. We can capture the content of a PUG mixin in javascript by saving the block() function.
+    //-    This delays printing of the mixin content until the function is called in JS
+    //- 2. Thus we can delay the resolution of nested calls to +nestedFieldset() by having the mixin
+    //-    simply adding information on a stack (see the else-branch of the test below)
+    //- Test if we are inside another +nestedFieldset() call
+    if _currentNestedLevel === null
+        //- We are not currently walking a nested structure of +nestedFieldset(), let us make a new section
+        - const sectionName = name;
+        - const selectorName = attrName(`nestedFieldsetSelector__${sectionName}`);
+        -
+            const nestedLevel = {
+                sectionName,
+                selectorName,
+                name,
+                isTopLevel: true,
+                attributes,
+                block,
+                parent: null,
+                qualname: sectionName,
+                children: [],
+            };
+
+        //- Initialize our stack
+        - _nestedFieldsetStack.push(nestedLevel);
+        //- Container for our nested repeating section
+        div(class=`nestedFieldset__outer nestedFieldset--${sectionName}__outer`)
+            +fieldset({name: sectionName})
+                //- hidden input for exposing the RowID
+                +hidden({name: "rowid"})
+                //- Recurse into the tree-like structure and flatten it
+                while _nestedFieldsetStack.length
+                    //- NOTE: it is important to set the _currentNestedLevel so that children are registered
+                    - _currentNestedLevel = _nestedFieldsetStack.pop();
+                    +_nestedFieldsetLevel(_currentNestedLevel)
+            //- Generate the Add buttonfor the top-level level(s)
+            +_nestedFieldsetAddButton(nestedLevel)
+        //- Cleanup: empty the stack (should be empty but let's be safe), clear the current level
+        - _nestedFieldsetStack.splice(0);
+        - _currentNestedLevel = null;
+        - console.log(nestedLevel);
+    //- END section for the top-level call to +nestedFieldset()
+    else
+        //- This +nestedFieldset() is inside another, let's just push the call onto the global stack
+        //- and the parent level's list of children
+        -
+            const nestedLevel = {
+                sectionName: _currentNestedLevel.sectionName,
+                selectorName: _currentNestedLevel.selectorName,
+                name,
+                isTopLevel: false,
+                attributes,
+                block,
+                parent: _currentNestedLevel,
+                qualname: actionButtonName(`${_currentNestedLevel.qualname}--${name}`),
+                children: [],
+            };
+        - _currentNestedLevel.children.push(nestedLevel);
+        - _nestedFieldsetStack.push(nestedLevel);
+
+
+mixin _nestedFieldsetLevel(nestedLevel)
+    +_nestedFieldsetToggle(nestedLevel)
+    +_nestedFieldsetBlock(nestedLevel)
+
+
+mixin _nestedFieldsetToggle(nestedLevel)
+    -
+        const class_selector = (
+            "hidden" +
+            " nestedFieldset__radio" +
+            ` nestedFieldset--${nestedLevel.sectionName}__radio` +
+            ` nestedFieldset--${nestedLevel.sectionName}__radio--${nestedLevel.qualname}`
+        );
+    //- NOTE: for dynamic SCSS styling based on :checked to work on radio button, there
+    //-    must be a radio which is checked by default
+    +radio({
+        name: nestedLevel.selectorName,
+        value: nestedLevel.qualname,
+        class:class_selector,
+        checked: (nestedLevel.isTopLevel ? "" : false)
+    })
+
+
+mixin _nestedFieldsetBlock(nestedLevel)
+    -
+        const classes = (
+            "nestedFieldset__block" +
+            ` nestedFieldset--${nestedLevel.sectionName}` +
+            ` nestedFieldset--${nestedLevel.sectionName}__block--${nestedLevel.qualname}`
+        );
+    div(class=classes)&attributes(nestedLevel.attributes)
+        +_nestedFieldsetContent(nestedLevel)
+        +_nestedFieldsetAddChildren(nestedLevel)
+
+
+mixin _nestedFieldsetContent(nestedLevel)
+    //- Content of this specific nested level (excluding inner nested levels)
+    -
+        const classes = (
+            "nestedFieldset__content" +
+            ` nestedFieldset--${nestedLevel.sectionName}__content` +
+            ` nestedFieldset--${nestedLevel.sectionName}__content--${nestedLevel.qualname}`
+        );
+    div(class=classes)
+        //- Note: calling block() has the side-effect of putting sublevels on the stack and filling
+        //-       the _currentNestedLevel `children` attribute
+        //- We need a safety in case the mixin was empty, which cause block to be undefined
+        - nestedLevel.block ? nestedLevel.block() : undefined;
+
+
+mixin _nestedFieldsetAddChildren(nestedLevel)
+    -
+        const classes = (
+            "nestedFieldset__buttons" +
+            ` nestedFieldset--${nestedLevel.sectionName}__buttons ` +
+            ` nestedFieldset--${nestedLevel.sectionName}__buttons--${nestedLevel.qualname}`
+        );
+    div(class=classes)
+        each children in nestedLevel.children
+            +_nestedFieldsetAddButton(children)
+
+
+mixin _nestedFieldsetAddButton(nestedLevel)
+    -
+        const classes = (
+            "btn" +
+            " repcontrol_add" +
+            " repcontrol-button" +
+            " repcontrol-button--add" +
+            " nestedFieldset__addButton" +
+            ` nestedFieldset--${nestedLevel.sectionName}__addButton` +
+            ` nestedFieldset--${nestedLevel.sectionName}__addButton--${nestedLevel.qualname}`
+        )
+    +action({
+        name:`add---${nestedLevel.qualname}`,
+        class: classes,
+        trigger:{
+            triggeredFuncs:['_kAddNestedItem'],
+            data: {
+                "sectionName": nestedLevel.sectionName,
+                "selectorName": nestedLevel.selectorName,
+                "levelQualname": nestedLevel.qualname,
+            }
+        },
+        "data-nested-fieldset": nestedLevel.sectionName,
+        "data-nested-level": nestedLevel.qualname,
+    })
+
+
+
+
+
++module
+    include _nestedFieldset.js
+
++scss
+    include _nestedFieldset.scss
