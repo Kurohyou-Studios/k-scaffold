@@ -4,45 +4,68 @@
 
 .nestedFieldset__outer {
 
+    // Hide the Roll20 add button, we have our own
     .repcontrol button.repcontrol_add {
-        border: 1px solid red;
-        // display: none !important;
+        display: none !important;
     }
 
+    // Only dispay the selected level content
     .nestedFieldset__block {
         display: none;
     }
-
-    // input[type="radio"].nestedFieldset__radio {
-    //     display: block;
-    // }
 
     input[type="radio"].nestedFieldset__radio:checked+.nestedFieldset__block {
         display: block;
     }
 
-    // Roll20 attach the .repitembroken class to our repeating rows for some reason
-    // This applies many styles that we need to undo
+    // Style our add buttons in repeating rows
+    .nestedFieldset__buttons {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        gap: 0.2rem;
 
-    // TODO: undo those styles:
+        .nestedFieldset__addButton {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            align-content: center;
+            gap: 0.5rem;
+            width: auto;
+            height: auto;
+
+            &::before {
+                flex-grow: 0;
+            }
+
+            span {
+                height: auto;
+                width: auto;
+                flex-grow: 1;
+                border: 5px solid purple;
+                min-width: 50px;
+            }
+        }
+    }
+
+    // Prevent manual re-ordering of the rows, since order must be governed by the nesting
+    .itemcontrol .repcontrol_move {
+        display: none;
+    }
+
+    // Style the outside add button so that it takes the place of the default Roll20 button
+    .repcontrol {
+        display: contents;
+    }
+
+    
+
+    // Roll20 attach the .repitembroken class to our repeating rows for some reason
+    // This forces a red border with !important that we need to remove
     .repitembroken {
-        border: 1px solid red !important;
-        border-top-width: 1px !important;
-        border-right-width: 1px !important;
-        border-bottom-width: 1px !important;
-        border-left-width: 1px !important;
-        border-top-style: solid !important;
-        border-right-style: solid !important;
-        border-bottom-style: solid !important;
-        border-left-style: solid !important;
-        border-top-color: red !important;
-        border-right-color: red !important;
-        border-bottom-color: red !important;
-        border-left-color: red !important;
-        border-image-source: initial !important;
-        border-image-slice: initial !important;
-        border-image-width: initial !important;
-        border-image-outset: initial !important;
-        border-image-repeat: initial !important;
+        border: none !important;
     }
 }
