@@ -1,12 +1,48 @@
-- const _nestedFieldsetStack = [];
-- let _currentNestedLevel = null;
+//- Helper javascript for the nestedFieldset mixin
+-
+    // A Stack to implement DFS on nested +nestedFieldset() calls
+    const _nestedFieldsetStack = [];
+    // A reference to the current level being processed, to build the tree while
+    // walking it (we'll register the children in an attribute of this object)
+    // It also indicates whether we are currently inside another +nestedFieldset()
+    // or not
+    let _currentNestedLevel = null;
+
+    // prepare k-scaffold varObjects to store nested fieldset data
+    varObjects.nestedFieldsets = varObjects.nestedFieldsets || {};
+
+    // Helper function to clean up our tree structure to somehting that us JSON-able
+    // by stripping PUG-runtime functions used to build the HTML
+    const _nestedLevelToFieldsetLayout = function (nestedLevel) {
+        const nestedLayout = {...nestedLevel};
+        // Remove PUG runtime references
+        delete nestedLayout.attributes;
+        delete nestedLayout.block;
+        // break reference cycles
+        if (nestedLayout.parent) {
+            nestedLayout.parent = nestedLayout.parent.qualname;
+        }
+        nestedLayout.children = nestedLayout.children.map(_nestedLevelToFieldsetLayout);
+        return nestedLayout;
+    };
+
+    // Helper function to avoid unequal duplicate specification of nested repeating sections
+    // From https://stackoverflow.com/a/52645018
+    const _areObjectEquals = (a, b) => {
+        if (a === b) return true;
+        if (a instanceof Date && b instanceof Date) return a.getTime() === b.getTime();
+        if (!a || !b || (typeof a !== 'object' && typeof b !== 'object')) return a === b;
+        if (a === null || a === undefined || b === null || b === undefined) return false;
+        if (a.prototype !== b.prototype) return false;
+        let keys = Object.keys(a);
+        if (keys.length !== Object.keys(b).length) return false;
+        return keys.every(k => isEqual(a[k], b[k]));
+    };
 
 //- TODO: check level name unicity for mapping when re-design?
 //- TODO: think about updates where the layout changes (need to create dummy levels?)
 //- TODO: register nested fieldset in varObjects ?
-//- TODO: skip to-level to offer multi-type first level?
-//- TODO: add i18n?
-mixin nestedFieldset({name})
+mixin nestedFieldset({name, multiTopLevel=false})
     //- Argument cleanup, using actionButtonName() because used in CSS, see below
     - name = actionButtonName(name);
 
@@ -21,24 +57,34 @@ mixin nestedFieldset({name})
     if _currentNestedLevel === null
         //- We are not currently walking a nested structure of +nestedFieldset(), let us make a new section
         - const sectionName = name;
+        //- Starts with a specific prefix because we are injecting an attribute into the author's space
+        //- This should prevent any attribute name conflict
         - const selectorName = attrName(`nestedFieldsetSelector__${sectionName}`);
         -
             const nestedLevel = {
                 sectionName,
                 selectorName,
+                parent: null,
                 name,
+                qualname: sectionName,
                 isTopLevel: true,
+                depth: (multiTopLevel ? -1 : 0),
+                children: [],
                 attributes,
                 block,
-                parent: null,
-                qualname: sectionName,
-                children: [],
             };
 
         //- Initialize our stack
         - _nestedFieldsetStack.push(nestedLevel);
         //- Container for our nested repeating section
-        div(class=`nestedFieldset__outer nestedFieldset--${sectionName}__outer`)
+        -
+            const outerClasses = (
+                "nestedFieldset" +
+                ` nestedFieldset--${sectionName}` +
+                " nestedFieldset__outer" +
+                ` nestedFieldset--${sectionName}__outer`
+            );
+        div(class=outerClasses)
             +fieldset({name: sectionName})
                 //- hidden input for exposing the RowID
                 +hidden({name: "rowid"})
@@ -47,12 +93,36 @@ mixin nestedFieldset({name})
                     //- NOTE: it is important to set the _currentNestedLevel so that children are registered
                     - _currentNestedLevel = _nestedFieldsetStack.pop();
                     +_nestedFieldsetLevel(_currentNestedLevel)
-            //- Generate the Add buttonfor the top-level level(s)
-            +_nestedFieldsetAddButton(nestedLevel)
+            //- Generate the Add button for the top-level level(s)
+            if multiTopLevel
+                //- Skip the empty top-level and add buttons for each kind of top-levels
+                each children in nestedLevel.children
+                    +_nestedFieldsetAddButton(children)
+            else
+                +_nestedFieldsetAddButton(nestedLevel)
         //- Cleanup: empty the stack (should be empty but let's be safe), clear the current level
         - _nestedFieldsetStack.splice(0);
         - _currentNestedLevel = null;
-        - console.log(nestedLevel);
+        //- Export the layout of the nested section to the sheetworkers
+        -
+            let nestedLayout = _nestedLevelToFieldsetLayout(nestedLevel);
+            if (varObjects.nestedFieldsets.hasOwnProperty(sectionName)) {
+                let previousNestedLayout = varObjects.nestedFieldsets[sectionName];
+                if (!_areObjectEquals(previousNestedLayout, nestedLayout)) {
+                    throw new Error(
+                        `Nested fieldset '${sectionName}' has already been defined with a different layout!\n` +
+                        "Previous layout:\n" +
+                        `${previousNestedLayout}\n` +
+                        "\n" +
+                        "Conflicting layout:\n" +
+                        `${nestedLayout}\n`
+                    );
+                }
+                // Nothing to do if the layout are equal
+            } else {
+                varObjects.nestedFieldsets[sectionName] = nestedLayout;
+            }
+        - console.log(nestedLayout);
     //- END section for the top-level call to +nestedFieldset()
     else
         //- This +nestedFieldset() is inside another, let's just push the call onto the global stack
@@ -61,13 +131,14 @@ mixin nestedFieldset({name})
             const nestedLevel = {
                 sectionName: _currentNestedLevel.sectionName,
                 selectorName: _currentNestedLevel.selectorName,
+                parent: _currentNestedLevel,
                 name,
+                qualname: actionButtonName(`${_currentNestedLevel.qualname}--${name}`),
                 isTopLevel: false,
+                depth: _currentNestedLevel.depth + 1,
+                children: [],
                 attributes,
                 block,
-                parent: _currentNestedLevel,
-                qualname: actionButtonName(`${_currentNestedLevel.qualname}--${name}`),
-                children: [],
             };
         - _currentNestedLevel.children.push(nestedLevel);
         - _nestedFieldsetStack.push(nestedLevel);
@@ -100,6 +171,7 @@ mixin _nestedFieldsetBlock(nestedLevel)
     -
         const classes = (
             "nestedFieldset__block" +
+            ` nestedFieldset__block--depth_${nestedLevel.depth}` +
             ` nestedFieldset--${nestedLevel.sectionName}` +
             ` nestedFieldset--${nestedLevel.sectionName}__block--${nestedLevel.qualname}`
         );
@@ -150,7 +222,7 @@ mixin _nestedFieldsetAddButton(nestedLevel)
         name:`add---${nestedLevel.qualname}`,
         class: classes,
         trigger:{
-            triggeredFuncs:['_kAddNestedItem'],
+            triggeredFuncs:['kAddNestedItem'],
             data: {
                 "sectionName": nestedLevel.sectionName,
                 "selectorName": nestedLevel.selectorName,
@@ -159,7 +231,9 @@ mixin _nestedFieldsetAddButton(nestedLevel)
         },
         "data-nested-fieldset": nestedLevel.sectionName,
         "data-nested-level": nestedLevel.qualname,
-    })
+    })= nestedLevel.name
+        //-span("data-i18n"=`add---${nestedLevel.qualname}`)= nestedLevel.name
+        //- span= nestedLevel.name
 
 
 
