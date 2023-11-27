@@ -44,9 +44,11 @@
             span {
                 height: auto;
                 width: auto;
+                display: flex;
                 flex-grow: 1;
                 border: 5px solid purple;
                 min-width: 50px;
+                min-height: 15px;
             }
         }
     }

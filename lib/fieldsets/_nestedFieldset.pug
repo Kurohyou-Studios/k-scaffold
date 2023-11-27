@@ -231,8 +231,8 @@ mixin _nestedFieldsetAddButton(nestedLevel)
         },
         "data-nested-fieldset": nestedLevel.sectionName,
         "data-nested-level": nestedLevel.qualname,
-    })= nestedLevel.name
-        //-span("data-i18n"=`add---${nestedLevel.qualname}`)= nestedLevel.name
+    })
+        span("data-i18n"=`add---${nestedLevel.qualname}`)= nestedLevel.name
         //- span= nestedLevel.name
 
 
