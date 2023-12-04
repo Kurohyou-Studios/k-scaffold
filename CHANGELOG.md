@@ -1,5 +1,7 @@
 # K-scaffold
 ## Changelog
+### 2.5.1
+- Fixed missing newRow passing in `addItem`
 ### 2.5.0
 - Json method on `attributesProxy`
 - hidden k-scaffold action button for use by `k.send`
