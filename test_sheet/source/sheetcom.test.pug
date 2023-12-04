@@ -1,0 +1,47 @@
+include k-scaffold
+.flex-box
+  span This Character
+  +text({name:'character name',value:''})
+  +text({name:'for partner',value:''})
+.flex-box
+  span Partner Character
+  +text({name:'partner name',value:''})
+  +text({name:'from partner',value:''})
++action({
+  name:'update partner',
+  trigger:{triggeredFuncs:['callPartner']}
+}) update partner
++module.
+  /**
+   * 
+   * @param {object} trigger - The trigger that caused the function to be called
+   * @param {object} attributes - The attribute values of the character
+   * @param {object[]} sections - All the repeating section IDs
+   * @param {object} casc - Expanded cascade object
+   */
+  const callPartner = async function({trigger,attributes,sections,casc}){
+    const partnerName = await (
+      attributes.partner_name ?
+        k.pseudoQuery(attributes.partner_name) :
+        k.extractQueryResult('Partner name')
+    );
+    attributes.partner_name = partnerName;
+    k.send(partnerName,'updatePartner',attributes);
+    attributes.set();
+  };
+  k.registerFuncs({callPartner});
+
+
+  /**
+   * updates the partner sheet
+   * @param {object} trigger - The trigger that caused the function to be called
+   * @param {object} attributes - The attribute values of the character
+   * @param {object[]} sections - All the repeating section IDs
+   * @param {object} casc - Expanded cascade object
+   */
+  const updatePartner  = function({trigger,attributes,sections,casc},partner){
+    attributes.from_partner = partner.for_partner;
+    attributes.partner_name = partner.character_name;
+  };
+  k.registerFuncs({updatePartner });
++kscript
