@@ -35,11 +35,11 @@
   .repitem,
   .collapse-container{
     &:hover{
-      .collapse,.roll-container{
+      > .collapse,.roll-container{
         opacity:var(--collapseHoverOpacity);
       }
     }
-    .collapse{
+    > .collapse{
       opacity:var(--collapseBaseOpacity);
       position:absolute;
       right:-10px;
