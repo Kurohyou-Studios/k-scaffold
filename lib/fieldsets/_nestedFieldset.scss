@@ -62,4 +62,16 @@
     .repitembroken {
         border: none !important;
     }
+
+    // Handle styling for broken nested Repeating section
+    &.brokenLayout {
+        border: solid 1px red !important;
+
+        &::before {
+            content: "DO NOT MODIFY ! This nested repeating section is likely broken, contact the sheet author";
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+    }
 }

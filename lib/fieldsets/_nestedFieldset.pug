@@ -21,22 +21,49 @@
     let _currentNestedLevel = null;
 
     // prepare k-scaffold varObjects to store nested fieldset data
-    varObjects.nestedFieldsets = varObjects.nestedFieldsets || {};
+    varObjects.nestedFieldsetLayouts = varObjects.nestedFieldsetLayouts || {};
 
-    /** Helper function to clean up our tree structure to something that is JSON-able
+    /** Helper functions to clean up our tree structure to something that is JSON-able
      * by stripping PUG-runtime functions used to build the HTML
      */
-    const _nestedLevelToFieldsetLayout = function (nestedLevel) {
+    const _nestedLevelToNestedLayout = function (nestedLevel) {
         const nestedLayout = {...nestedLevel};
-        // Remove PUG runtime references
+        nestedLayout.parentQualname = nestedLayout.parent ? nestedLayout.parent.qualname : null;
+        // Remove unused attributes: PUG runtime references, etc...
         delete nestedLayout.attributes;
         delete nestedLayout.block;
-        // break reference cycles
-        if (nestedLayout.parent) {
-            nestedLayout.parent = nestedLayout.parent.qualname;
+        delete nestedLayout.parent;
+        if (nestedLayout.layoutAttribute) {
+            delete nestedLayout.layoutAttribute;
         }
         nestedLayout.children = nestedLayout.children.map(_nestedLevelToFieldsetLayout);
         return nestedLayout;
+    };
+    const _nestedLevelToFlattenedLayout = function(nestedLevel, map=null) {
+        map = map || {};
+        const flatLayout = {...nestedLevel};
+        flatLayout.parentQualname = flatLayout.parent ? flatLayout.parent.qualname : null;
+        // Remove unused attributes: PUG runtime references, etc...
+        delete flatLayout.attributes;
+        delete flatLayout.block;
+        delete flatLayout.parent;
+        if (flatLayout.layoutAttribute) {
+            delete flatLayout.layoutAttribute;
+        }
+        map[flatLayout.qualname] = flatLayout;
+        flatLayout.children.forEach(child => {_nestedLevelToFlattenedLayout(child, map)});
+        flatLayout.children = flatLayout.children.map(child => child.qualname);
+        return map;
+    };
+    const _nestedLevelToFieldsetLayout = function (nestedLevel) {
+        return {
+            sectionName: nestedLevel.sectionName,
+            section: `repeating_${nestedLevel.sectionName}`,
+            selectorName: nestedLevel.selectorName,
+            layoutAttribute: nestedLevel.layoutAttribute,
+            nestedLayout: _nestedLevelToNestedLayout(nestedLevel),
+            flattenedLayout: _nestedLevelToFlattenedLayout(nestedLevel),
+        };
     };
 
     /** Helper function to avoid unequal duplicate specification of nested repeating sections
@@ -55,7 +82,7 @@
         if (a.prototype !== b.prototype) return false;
         let keys = Object.keys(a);
         if (keys.length !== Object.keys(b).length) return false;
-        return keys.every(k => isEqual(a[k], b[k]));
+        return keys.every(k => _areObjectEquals(a[k], b[k]));
     };
 
 //- TODO: check level name unicity for mapping when re-design?
@@ -102,17 +129,18 @@
     - >
         {object} addTrigger - Trigger object to pass to the action buttons created for adding rows
         of this specific level and all nested levels. This is optional, and defaults to
-        `{triggeredFuncs:['kAddNestedItem']}`. Note that if you override this, you **MUST** call
-        {@link kAddNestedItem} to create the new row and get the new RowID. Do **not** use
+        `{triggeredFuncs:['_kAddNestedSubrowTrigger']}`. Note that if you override this, you **MUST**
+        call {@link addNestedSubrow} to create the new row and get the new RowID. Do **not** use
         {@link k.generateRowID} directly.
-        Additionnal data required by {@link kAddNestedItem} will always be added to the passed
+        Additional data required by {@link _kAddNestedSubrowTrigger} will always be added to the passed
         trigger, in it's `data` property.
     - >
         {object} removeTrigger - Trigger object to use when a row is removed from the underlying
         Only valid in the top-level call and passed to the underlying {@link fieldset}. Defaults
-        to `{triggeredFuncs:['kDeleteNestedItem']}`. If you override this, you **MUST** call
-        {@link kDeleteNestedItem} to properly delete the triggering row and all nested rows.
-        Additional data required by {@link kAddNestedItem} will always be added to the passed
+        to `{triggeredFuncs:['_kDeleteNestedRowTrigger']}`. If you override this, you **MUST** call
+        {@link k.deleteNestedRow} to properly delete the triggering row and all nested rows. Do not use
+        {@link removeRepeatingRow} directly.
+        Additional data required by {@link _kDeleteNestedRowTrigger} will always be added to the passed
         trigger, in it's `data` property.
   example: |
     include ../_k.pug
@@ -133,15 +161,17 @@ mixin nestedFieldset({name, multiTopLevel=null, addTrigger=null, removeTrigger=n
         //- We are not currently walking a nested structure of +nestedFieldset(), let us make a new section
         -
             const sectionName = name;
-            removeTrigger = removeTrigger || {triggeredFuncs:['kDeleteNestedItem']};
+            removeTrigger = removeTrigger || {triggeredFuncs:['_kDeleteNestedRowTrigger']};
             removeTrigger.data = removeTrigger.data || {};
-            removeTrigger.data["sectionName"] = sectionName;
+            removeTrigger.data["section"] = `repeating_${sectionName}`;
             // Starts with a specific prefix because we are injecting an attribute into the author's space
             // This should prevent any attribute name conflict
             const selectorName = attrName(`nestedFieldsetSelector__${sectionName}`);
+            const preLayoutAttribute = `_${sectionName}_layout`;
             const nestedLevel = {
                 sectionName,
                 selectorName,
+                layoutAttribute: attrName(preLayoutAttribute),
                 parent: null,
                 name,
                 qualname: sectionName,
@@ -164,6 +194,9 @@ mixin nestedFieldset({name, multiTopLevel=null, addTrigger=null, removeTrigger=n
                 ` nestedFieldset--${sectionName}__outer`
             );
         div(class=outerClasses)
+            //- Hidden attribute to store the layout
+            //- TODO: keep syncrhonized with the layout generation JS above
+            +hidden({name: preLayoutAttribute})
             +fieldset({name:sectionName, trigger:removeTrigger})
                 //- hidden input for exposing the RowID
                 +hidden({name: "rowid"})
@@ -185,8 +218,9 @@ mixin nestedFieldset({name, multiTopLevel=null, addTrigger=null, removeTrigger=n
         //- Export the layout of the nested section to the sheetworkers
         -
             let nestedLayout = _nestedLevelToFieldsetLayout(nestedLevel);
-            if (varObjects.nestedFieldsets.hasOwnProperty(sectionName)) {
-                let previousNestedLayout = varObjects.nestedFieldsets[sectionName];
+            console.log(nestedLayout);
+            if (varObjects.nestedFieldsetLayouts.hasOwnProperty(nestedLayout.section)) {
+                let previousNestedLayout = varObjects.nestedFieldsetLayouts[nestedLayout.section];
                 if (!_areObjectEquals(previousNestedLayout, nestedLayout)) {
                     throw new Error(
                         `Nested fieldset '${sectionName}' has already been defined with a different layout!\n` +
@@ -199,7 +233,7 @@ mixin nestedFieldset({name, multiTopLevel=null, addTrigger=null, removeTrigger=n
                 }
                 // Nothing to do if the layout are equal
             } else {
-                varObjects.nestedFieldsets[sectionName] = nestedLayout;
+                varObjects.nestedFieldsetLayouts[nestedLayout.section] = nestedLayout;
             }
     //- END section for the top-level call to +nestedFieldset()
     else
@@ -316,16 +350,16 @@ mixin _nestedFieldsetAddButton(nestedLevel)
             ` nestedFieldset--${nestedLevel.sectionName}__addButton` +
             ` nestedFieldset--${nestedLevel.sectionName}__addButton--${nestedLevel.qualname}`
         );
-        const trigger = nestedLevel.trigger || {triggeredFuncs:['kAddNestedItem']};
+        const trigger = nestedLevel.trigger || {triggeredFuncs:['_kAddNestedSubrowTrigger']};
         trigger.data = trigger.data || {};
-        trigger.data["sectionName"] = nestedLevel.sectionName;
+        trigger.data["section"] = `repeating_${nestedLevel.sectionName}`;
         trigger.data["selectorName"] = nestedLevel.selectorName;
         trigger.data["levelQualname"] = nestedLevel.qualname;
     +action({
         name: `add---${nestedLevel.qualname}`,
         class: classes,
         trigger: trigger,
-        "data-nested-fieldset": nestedLevel.sectionName,
+        "data-nested-fieldset": `repeating_${nestedLevel.sectionName}`,
         "data-nested-level": nestedLevel.qualname,
         "data-i18n": `add---${nestedLevel.qualname}`,
     })= nestedLevel.name
