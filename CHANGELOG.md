@@ -1,5 +1,8 @@
 # K-scaffold
 ## Changelog
+### 2.5.4
+- Update translation handling to use the i18nreplacer package
+
 ### 2.5.1
 - Fixed missing newRow passing in `addItem`
 ### 2.5.0
