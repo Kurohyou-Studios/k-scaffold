@@ -12,11 +12,33 @@
   --backColor:var(--dm-backColor);
   --selectedColor:var(--dm-selectedColor);
   --unselectedColor1:var(--dm-unselectedColor1);
-  --unselectedColor1:var(--dm-unselectedColor2);
-  --checkColor:var(--dm-checkColor);
+  --unselectedColor2:var(--dm-unselectedColor2);
+
   --borderColor:var(--dm-borderColor);
+
+  --checkColor:var(--dm-checkColor);
+  --checkboxBorderColor: var(--dm-checkBorderColor);
+  --checkedBackColor:var(--dm-checkedBackColor);
+
   --fontColor:var(--dm-fontColor);
+
   --disabledColor:var(--dm-disabledColor);
+
+  --fillLeftDataColor: var(--dm-fillLeftDataColor);
+  --fillLeftSelectedColor: var(--dm-fillLeftSelectedColor);
+  --fillLeftUnselectedColor: var(--dm-fillLeftUnselectedColor);
+
+  --placeholderColor: var(--dm-placeholderColor);
+
+  --kmodal-overlay-background: var(--dm-kmodal-overlay-background);
+  --kmodal-dialog-background: var(--dm-kmodal-dialog-background);
+  --kmodal-box-shadow-color1:var(--dm-kmodal-box-shadow-color1);
+  --kmodal-box-shadow-color2:var(--dm-kmodal-box-shadow-color2);
+  --kmodal-close-color:var(--dm-kmodal-close-color);
+  --kmodal-close-hover-color:var(--dm-kmodal-close-hover-color);
+  
+  --collapseExpandedColor: var(--dm-collapseExpandedColor);
+  --collapseCollapsedColor: var(--dm-collapseCollapsedColor);
 }
 
 /// A mixin that switches the scaffold's roll template color variables (including sheet variables) over to dark mode specific ones. Should only be used directly inside a `.sheet-rolltemplate-TEMPLATENAME` rule.

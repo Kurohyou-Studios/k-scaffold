@@ -14,10 +14,11 @@
     var(--inputRightPadding)
     var(--inputBottomPadding)
     var(--inputLeftPadding);
-  
-  --lm-placeholderColor:#ededed80;
-  --dm-placeholderColor:#3f3f3f80;
+
+  --lm-placeholderColor: color-mix(in lch,currentcolor 60%, transparent); 
+  --dm-placeholderColor: var(--lm-placeholderColor);
   --placeholderColor: var(--lm-placeholderColor);
 
   --textareaResize: vertical;
+  --textareaScrollGutter: stable;
 }

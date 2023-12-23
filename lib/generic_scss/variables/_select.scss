@@ -5,10 +5,6 @@
 /// Variables to control the display of selects
 /// @name select variables
 @mixin variables{
-  --lm-selectColor: var(--lm-fontColor);
-  --dm-selectColor: var(--dm-fontColor);
-  --selectColor: var(--lm-fontColor);
-
   --selectTextOverflow: var(--textOverflow);
   --selectTextAlign: center;
   --selectTextTransform: capitalize;

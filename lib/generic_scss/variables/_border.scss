@@ -7,4 +7,8 @@
 @mixin variables{
   --borderWidth:1px;
   --borderStyle:solid;
+
+  --lm-borderColor:#000;
+  --dm-borderColor:lightgrey;
+  --borderColor:var(--lm-borderColor);
 }

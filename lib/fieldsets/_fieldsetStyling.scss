@@ -27,7 +27,7 @@
     grid-template-areas: 'header';
     align-self: start;
 
-    >.header {
+    > .header {
       grid-area: header;
     }
     :is(.repcontrol-button,.repcontrol_edit) {
@@ -59,13 +59,12 @@
     height: 15px;
     padding: 4px;
     font-size: 0;
-    color: var(--col-alt);
-    border: 1px solid var(--col-alt);
+    border: 1px solid;
 
     &::before {
       inset: 0;
       place-self: center;
-      font-family: var(--font-icon);
+      font-family: var(--icon-family);
       font-size: 12px;
       content: 'add';
     }

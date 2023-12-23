@@ -5,6 +5,10 @@
 /// Variables that control how font family, and font-size of text on the sheet.
 /// @name font variables
 @mixin variables{
+  --lm-fontColor:#0f0f0f;
+  --dm-fontColor:var(--dark-primarytext);
+  --fontColor:var(--lm-fontColor);
+  
   // Font families
   --font1:var(--topHeadFont);
   --font2:var(--topHeadFont);
@@ -28,5 +32,5 @@
   --icon-size:24px;
 
   //Default fonts used
-  --font-icon: 'Material Icons';
+  --icon-family: 'Material Icons';
 }

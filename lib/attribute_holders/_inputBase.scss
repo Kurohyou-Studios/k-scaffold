@@ -31,7 +31,7 @@
       display:grid;
       grid-template-columns:1fr;
       grid-template-areas:"content";
-      &:not(.collapse):not(.fill-left__radio):checked{
+      &:where(:not(.collapse):not(.fill-left__radio):checked){
         @include checked;
       }
     }
@@ -75,7 +75,6 @@
     white-space: nowrap;
     text-overflow: var(--selectTextOverflow);
     text-align: var(--selectTextAlign);
-    color:var(--selectColor);
   }
   input{
     width: auto;
@@ -89,6 +88,7 @@
   textarea{
     resize: var(--textareaResize);
     white-space: pre-wrap;
+    scrollbar-gutter: var(--textareaScrollGutter);
     &.fixed{
       resize: none;
       overflow: auto;

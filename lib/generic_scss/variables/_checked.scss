@@ -12,10 +12,18 @@
 
   --checkboxBorderWidth: var(--borderWidth);
   --checkboxBorderStyle: var(--borderStyle);
+  
   --lm-checkboxBorderColor: var(--lm-borderColor);
   --dm-checkboxBorderColor: var(--dm-borderColor);
   --checkboxBorderColor: var(--lm-checkBorderColor);
 
   --checkboxWidth: 14px;
   --checkboxHeight: 14px;
+
+  --lm-checkColor:#000;
+  --dm-checkColor:#ff0000;
+  --checkColor:var(--lm-checkColor);
+  --lm-checkedBackColor:transparent;
+  --dm-checkedBackColor:transparent;
+  --checkedBackColor:var(--lm-checkedBackColor);
 }
