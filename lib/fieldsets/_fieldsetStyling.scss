@@ -7,9 +7,6 @@
 /// Styling for our various special fieldset constructions. e.g. [customControlFieldset](/pug.html#customControlFieldset).
 @mixin fieldsetStyling {
   .repitem {
-    >input:not([type='checkbox']) {
-      width: 100%;
-    }
 
     .headed-textarea,
     .description {
@@ -30,7 +27,7 @@
     > .header {
       grid-area: header;
     }
-    :is(.repcontrol-button,.repcontrol_edit) {
+    :where(.repcontrol-button,.repcontrol_edit) {
       opacity: 0;
       transition: var(--revealTrans);
     }

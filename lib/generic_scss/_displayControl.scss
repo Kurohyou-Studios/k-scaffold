@@ -1,0 +1,8 @@
+@mixin display{
+  .display-control:not(:checked) + .controlled-display,
+  .display-control--inverted:checked + .controlled-display,
+  .display-control--non-zero:is([value="0"],:not([value]),[value='']) + .controlled-display,
+  .display-control--zero:not([value="0"],:not([value]),[value='']) + .controlled-display{
+    display:none !important;
+  }
+}

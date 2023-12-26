@@ -34,6 +34,9 @@
   @include genericStyle.borderStyles;
   @include genericStyle.sizesAndRatios;
   
+  // display control
+  @include genericStyle.display;
+
   // Text stylings
   @include genericStyle.textElements;
   @include genericStyle.materialIcons;

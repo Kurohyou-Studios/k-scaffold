@@ -8,7 +8,6 @@
 /// The styling for basic collapsible/expandable sections.
 @mixin collapsible{
   .collapse-container{
-    display:grid;
     position:relative;
   }
   .text-collapse{

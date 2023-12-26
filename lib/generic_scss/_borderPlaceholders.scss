@@ -50,7 +50,7 @@
     border-bottom: 1px solid var(--borderColor);
     transition: border-radius border var(--revealTrans);
   }
-  :where(.underlined,.boxed){
+  .underlined,.boxed{
     &:where(:not([readonly]):not([type='checkbox']):not([type='radio']):is(:hover, :focus,:focus-within)){
       @include inputHighlight;
     }
@@ -58,7 +58,7 @@
       background-color: var(--disabledColor);
     }
   }
-  :where(.underlined--invisible,.sheet-underlined--invisible){
+  .underlined--invisible,.sheet-underlined--invisible{
     border-color:transparent !important;
   }
 }
