@@ -1,5 +1,7 @@
 # K-scaffold
 ## Changelog
+### 2.5.5
+- Updates k.send so that sheetworkers running on the called sheet will get the correct values even if that sheet has not been opened.
 ### 2.5.4
 - Update translation handling to use the i18nreplacer package
 
