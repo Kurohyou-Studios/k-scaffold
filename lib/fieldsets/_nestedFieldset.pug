@@ -1,89 +1,5 @@
 //- Helper javascript for the nestedFieldset mixin
--
-    /**
-     * The length in UTF-16 code units of a flat Roll20 RowID, excluding the mandatory leading "-".
-     * TODO: keep in sync with the value in _nestedFieldset.js
-     * @const @private
-     * @type {number}
-     */
-    const _Roll20RowIDLength = 19;
-
-    /**
-     * A Stack to implement DFS on nested +nestedFieldset() calls
-     */
-    const _nestedFieldsetStack = [];
-
-    /** A reference to the current level being processed, to build the tree while
-     * walking it (we'll register the children in an attribute of this object)
-     * It also indicates whether we are currently inside another +nestedFieldset()
-     * or not
-     */
-    let _currentNestedLevel = null;
-
-    // prepare k-scaffold varObjects to store nested fieldset data
-    varObjects.nestedFieldsetLayouts = varObjects.nestedFieldsetLayouts || {};
-
-    /** Helper functions to clean up our tree structure to something that is JSON-able
-     * by stripping PUG-runtime functions used to build the HTML
-     */
-    const _nestedLevelToNestedLayout = function (nestedLevel) {
-        const nestedLayout = {...nestedLevel};
-        nestedLayout.parentQualname = nestedLayout.parent ? nestedLayout.parent.qualname : null;
-        // Remove unused attributes: PUG runtime references, etc...
-        delete nestedLayout.attributes;
-        delete nestedLayout.block;
-        delete nestedLayout.parent;
-        if (nestedLayout.layoutAttribute) {
-            delete nestedLayout.layoutAttribute;
-        }
-        nestedLayout.children = nestedLayout.children.map(_nestedLevelToFieldsetLayout);
-        return nestedLayout;
-    };
-    const _nestedLevelToFlattenedLayout = function(nestedLevel, map=null) {
-        map = map || {};
-        const flatLayout = {...nestedLevel};
-        flatLayout.parentQualname = flatLayout.parent ? flatLayout.parent.qualname : null;
-        // Remove unused attributes: PUG runtime references, etc...
-        delete flatLayout.attributes;
-        delete flatLayout.block;
-        delete flatLayout.parent;
-        if (flatLayout.layoutAttribute) {
-            delete flatLayout.layoutAttribute;
-        }
-        map[flatLayout.qualname] = flatLayout;
-        flatLayout.children.forEach(child => {_nestedLevelToFlattenedLayout(child, map)});
-        flatLayout.children = flatLayout.children.map(child => child.qualname);
-        return map;
-    };
-    const _nestedLevelToFieldsetLayout = function (nestedLevel) {
-        return {
-            sectionName: nestedLevel.sectionName,
-            section: `repeating_${nestedLevel.sectionName}`,
-            selectorName: nestedLevel.selectorName,
-            layoutAttribute: nestedLevel.layoutAttribute,
-            nestedLayout: _nestedLevelToNestedLayout(nestedLevel),
-            flattenedLayout: _nestedLevelToFlattenedLayout(nestedLevel),
-        };
-    };
-
-    /** Helper function to avoid unequal duplicate specification of nested repeating sections
-     * From https://stackoverflow.com/a/52645018
-     * Note this only checks the nested levels layout, not the actual attributes
-     * This is because the nested level layout controls the RowID mapping and thus
-     * must be coherent between all usage of the same fieldset. It is not necessary,
-     * however, that actual attribute content is the same.
-     * See https://wiki.roll20.net/BCS/Repeating_Sections#Duplicate_a_repeating_section_name_to_display_the_same_data_on_more_than_one_tab_or_present_a_summary_of_the_data_elsewhere
-     */
-    const _areObjectEquals = (a, b) => {
-        if (a === b) return true;
-        if (a instanceof Date && b instanceof Date) return a.getTime() === b.getTime();
-        if (!a || !b || (typeof a !== 'object' && typeof b !== 'object')) return a === b;
-        if (a === null || a === undefined || b === null || b === undefined) return false;
-        if (a.prototype !== b.prototype) return false;
-        let keys = Object.keys(a);
-        if (keys.length !== Object.keys(b).length) return false;
-        return keys.every(k => _areObjectEquals(a[k], b[k]));
-    };
+- k.fieldsets = _kRequire('lib/fieldsets/fieldset.pug.js');
 
 //- TODO: check level name unicity for mapping when re-design?
 //- TODO: think about updates where the layout changes (need to create dummy levels?)
@@ -122,16 +38,28 @@
         {string} name - The name of the nested level. This becomes the name of the repeating section
         if this mixin is the top-level call, in which case it's passed to {@link fieldset}.
     - >
-        {boolean} [multiTopLevel] - Skip the content block of the top-level call, and use it's
+        {boolean} multiTopLevel - Skip the content block of the top-level call, and use it's
         children as the top-levels. This allows for repeating sections with different kind of top-level
         rows, in the same way that a nested level can have multiple kind of nested sub-levels.
         Only valid at the top-level, `Optional`.
+    - >
+        {string[]} onCreateRow - Array of function names registered with {@link registerFuncs} to be
+        triggered when a row of this level or any inner level is created. Will receive the same arguments
+        as a function in a trigger (like KScaffold attributes, sections, ...) and an additionnal rowID
+        argument that contains the newly-created row.
+    - >
+        {string[]} onDeleteRow - Array of function names registered with {@link registerFuncs} to be
+        triggered when a row of this level or any inner level is deleted. Will receive the same arguments
+        as a function in a trigger (like KScaffold attributes, sections, ...) and an additionnal rowID
+        argument that contains the newly-created row.
     - >
         {object} addTrigger - Trigger object to pass to the action buttons created for adding rows
         of this specific level and all nested levels. This is optional, and defaults to
         `{triggeredFuncs:['_kAddNestedSubrowTrigger']}`. Note that if you override this, you **MUST**
         call {@link addNestedSubrow} to create the new row and get the new RowID. Do **not** use
         {@link k.generateRowID} directly.
+        The semantics of `onCreateRow` are implemented by the default trigger function, if you override
+        it `onCreateRow` will not work as intented.
         Additional data required by {@link _kAddNestedSubrowTrigger} will always be added to the passed
         trigger, in it's `data` property.
     - >
@@ -140,12 +68,14 @@
         to `{triggeredFuncs:['_kDeleteNestedRowTrigger']}`. If you override this, you **MUST** call
         {@link k.deleteNestedRow} to properly delete the triggering row and all nested rows. Do not use
         {@link removeRepeatingRow} directly.
+        The semantics of `onDeleteRow` are implemented by the default trigger function, if you override
+        it `onDeleteRow` will not work as intented.
         Additional data required by {@link _kDeleteNestedRowTrigger} will always be added to the passed
         trigger, in it's `data` property.
   example: |
     include ../_k.pug
     // TODO
-mixin nestedFieldset({name, multiTopLevel=null, addTrigger=null, removeTrigger=null})
+mixin nestedFieldset({name, multiTopLevel=null, onCreateRow=null, onDeleteRow=null, addTrigger=null, removeTrigger=null})
     //- Argument cleanup, using actionButtonName() because used in CSS, see below
     - name = actionButtonName(name);
 
@@ -177,6 +107,8 @@ mixin nestedFieldset({name, multiTopLevel=null, addTrigger=null, removeTrigger=n
                 qualname: sectionName,
                 isTopLevel: true,
                 depth: (multiTopLevel ? -1 : 0),
+                onCreateRow = onCreateRow || [],
+                onDeleteRow = onDeleteRow || [],
                 trigger: addTrigger,
                 children: [],
                 attributes,
@@ -198,6 +130,8 @@ mixin nestedFieldset({name, multiTopLevel=null, addTrigger=null, removeTrigger=n
             //- TODO: keep syncrhonized with the layout generation JS above
             +hidden({name: preLayoutAttribute})
             +fieldset({name:sectionName, trigger:removeTrigger})
+                //- hidden input for storing the parent RowID, that's how we implement nested fieldset
+                +hidden({name: "parent_rowid"})
                 //- hidden input for exposing the RowID
                 +hidden({name: "rowid"})
                 //- Recurse into the tree-like structure and flatten it
@@ -258,6 +192,8 @@ mixin nestedFieldset({name, multiTopLevel=null, addTrigger=null, removeTrigger=n
                 isTopLevel: false,
                 depth: _currentNestedLevel.depth + 1,
                 trigger: (addTrigger || _currentNestedLevel.trigger),
+                onCreateRow = [..._currentNestedLevel.onCreateRow, ...(onCreateRow|| [])],
+                onDeleteRow = [..._currentNestedLevel.onDeleteRow, ...(onDeleteRow|| [])],
                 children: [],
                 attributes,
                 block,
