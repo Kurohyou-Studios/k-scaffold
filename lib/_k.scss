@@ -1,12 +1,15 @@
 @forward 'generic_scss/genericStyle';
 @use 'generic_scss/genericStyle';
-@forward 'tabs/_tabs.scss';
-@use 'tabs/_tabs.scss';
+
+@forward 'tabs/tabsStyling.scss';
+@use 'tabs/tabsStyling.scss';
 
 @forward 'attribute_holders/attributeConstructs';
 @use 'attribute_holders/attributeConstructs';
+
 @forward 'labels/labels';
 @use 'labels/labels';
+
 @forward 'adaptive/adaptive';
 @use 'adaptive/adaptive';
 
@@ -16,8 +19,9 @@
 @use 'rolltemplate/_rolltemplate';
 @forward 'rolltemplate/_rolltemplate';
 
-@use 'modal/_modal';
-@forward 'modal/_modal';
+@use 'modal/modalStyling';
+@forward 'modal/modalStyling';
+
 /// Mixin that includes all of the framework's styles. Should be included in a 3 class declaration for character sheets.
 /// @example
 ///   @use 'k-scaffold' as k;
@@ -25,7 +29,7 @@
 ///   .ui-dialog .tab-content .charsheet{
 ///     @include k.defaultStyles;
 ///   }
-@mixin defaultStyles{
+@mixin defaultStyles {
   // Clear roll20 styles
   @include genericStyle.clear;
 
@@ -33,7 +37,7 @@
   @include genericStyle.layout;
   @include genericStyle.borderStyles;
   @include genericStyle.sizesAndRatios;
-  
+
   // Text stylings
   @include genericStyle.textElements;
   @include genericStyle.materialIcons;
@@ -52,6 +56,8 @@
   @include adaptive.adaptiveText;
 
   @include fieldsetStyling.fieldsetStyling;
+  @include modalStyling.modalStyling;
+  @include tabsStyling.tabsStyling;
 }
 
 /// Mixin that includes all of the default styles as well as rolltemplate specific styling such as inline roll variable assignment. Should be included directly in the rolltemplate declaration for your roll templates.
@@ -61,10 +67,11 @@
 ///   .sheet-rolltemplate-TEMPLATENAME{
 ///     @include k.defaultRollStyling;
 ///   }
-@mixin defaultRollStyling{
+@mixin defaultRollStyling {
   @include defaultStyles;
   @include rolltemplate.rollStyles;
 }
-@mixin rollVariables{
+
+@mixin rollVariables {
   @include rolltemplate.rollVariables;
 }

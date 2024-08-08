@@ -1,4 +1,4 @@
-.ui-dialog .tab-content .charsheet {
+@mixin modalStyling {
 
     // make the top-level .charsheet div the default root of "position: absolute;" elements
     position: relative;
@@ -6,7 +6,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    
+
     //- Use 'kmodal' instead of modal, because Roll20 already uses a 'modal' class
 
     .kmodal__button {
@@ -17,7 +17,7 @@
         cursor: pointer;
     }
 
-    .kmodal__checkbox {
+    .kmodal__checkbox[type=checkbox] {
         display: none;
     }
 
@@ -49,18 +49,18 @@
 
     .kmodal__inner {
         position: fixed;
-        width:var(--kmodal-width);
-        height:var(--kmodal-height);
-        inset:0;
+        width: var(--kmodal-width);
+        height: var(--kmodal-height);
+        inset: 0;
         margin: auto;
         overflow: auto;
         background: var(--kmodal-dialog-background);
         border-radius: 5px;
         padding: var(--kmodal-close-height) calc(var(--kmodal-close-width) * 3) var(--kmodal-close-height) calc(var(--kmodal-close-width) * 2);
-        max-width:var(--kmodal-max-width);
-        max-height:var(--kmodal-max-height);
+        max-width: var(--kmodal-max-width);
+        max-height: var(--kmodal-max-height);
         transition: opacity .25s ease;
-        box-shadow:var(--kmodal-box-shadow);
+        box-shadow: var(--kmodal-box-shadow);
     }
 
 
