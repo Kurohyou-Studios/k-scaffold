@@ -20,7 +20,7 @@
         span Tab history content
       +tab({name:"inventory", container:"span"})(class="tab_horizontal")
         span Tab inventory content
-        
+
     // Tabs that are NOT persistent and have no default tab (aka all tab content will be hidden by default)
     +tabs({name:"sheet-tabs-2",persistent:false})(class="outer")
       span before the header
@@ -75,7 +75,7 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
     - attributes.class = `tabs__container tabs--${sectionName}__container tabs--${sectionName}__container--${tabName}${attributes.class}${!persistent && defaultActiveTab === tabName ? ' k-active-tab' : ''}`;
     //- Store the tab definition
     - tabs.push({name:tabName, container, button, attributes, block, content});
-      
+
 
   //- Put everything in a global div with appropriate classes for CSS styling
   //- and proper HTML organization
@@ -92,12 +92,12 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
       ul.tabs__nav-list
         each tab, index in tabs
           if !tab.content
-            - tab.button['data-i18n'] = `tabs-${sectionName}-${tab.name}`;
+            - tab.button['data-i18n'] = tab.button['data-i18n'] || `tabs-${sectionName}-${tab.name}`;
           li.tabs__nav-item
             +action(tab.button)(data-container-tab=sectionName data-tab=tab.name)
               if tab.content
                 != tab.content
-    
+
     //- Global div storing all the tabs one after another
     //- only one will be visible at the same time
     div(class=`tabs__body tabs--${sectionName.toLowerCase()}__body`)
