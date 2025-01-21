@@ -120,7 +120,7 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
 mixin tab({name,button={},container="div"})
   //- This mixin is pure JS, because we simply store the tab content. Actual generation happens once all tab have been gathered
   -
-    if (__kscaffold_section_stack.lenght < 1 ) {
+    if (__kscaffold_section_stack.length < 1 ) {
       throw new Error("Error: cannot call the +tab() mixin outside a +tabs() mixin");
     }
     const section = __kscaffold_section_stack.at(-1);
