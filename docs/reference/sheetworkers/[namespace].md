@@ -14,13 +14,16 @@ const docArr = [...data.js[params.value.namespace]];
 const nameSpaceIndex = docArr.findIndex(o => o.kind === 'namespace');
 const nameSpaceObj = docArr.splice(nameSpaceIndex,1)?.[0] || {};
 const scriptNamespace = params.value.namespace;
+const namePrefix = scriptNamespace === 'Function Arguments' ?
+  '' :
+  'k.';
 </script>
 
 # {{scriptNamespace}}
 <div v-html="nameSpaceObj.description" />
 <div v-for="obj in docArr" :key="obj.name">
 
-<h2 :id="obj.name">k.{{obj.name}}</h2>
+<h2 :id="obj.name">{{namePrefix}}{{obj.name}}</h2>
 {{ obj.kind }}
 
 <div v-html="obj.description" />

@@ -1,9 +1,20 @@
+//- The stack of +tabs() currently being processed. Each entry has the following schema
+//- {
+//-    name: string
+//-    defaultActiveTab: string | undefined
+//-    persistent: bool
+//-    tabs: []tabs // an array of tab information, see +tab() mixin
+//-    
+//- }
+- const __kscaffold_section_stack = [];
+
+
 //- @pugdoc
   name: tabs
   memberof: Navigation
-  description: A generic mixin to create tabs using jQuery. It uses a nested tab mixin to define tabs. Any content outside those mixin is put in the containing div, before the tabs. Attributes passed to the mixin are passed to the outer containing div.
+  description: A generic mixin to create tabs using jQuery. It uses a nested tab mixin to define tabs. Any content outside those mixin is put in the containing div, before the tabs. Attributes passed to the mixin are passed to the outer containing div. Tab sections can be arbitrarily nested, though be careful that a nested +tabs() must be inside a +tab().
   arguments:
-    - {string} [name=tabs] - The name of the tabs construct. Used in all elements so that you may vary the styling of different tabs
+    - {string} [name=tabs] - The name of the tab section construct. Used in all elements so that you may vary the styling of different tabs. MUST be unique in the whole sheet.
     - {string} [defaultActiveTab] - The name of the tab that should be active by default.
     - {boolean} [persistent = true] - Whether the tabs should be persistent and load their last state when the sheet is reloaded. True by default.
   attributes:
@@ -33,13 +44,17 @@
       +tab({name:"inventory", container:"span"})(class="tab_horizontal")
         span Tab inventory content
 mixin tabs({name="tabs",defaultActiveTab,persistent=true})
+  -
+    if (__kscaffold_section_stack.length > 0 && __kscaffold_section_stack.at(-1).tabs.length < 1) {
+      throw new Error("Cannot call +tabs() directly inside +tabs(): the nested section must be in a +tab()");
+    }
   //- Cleanup the name to use "-" instead of spaces, and no problematic chars
   //- We use "-" as in action buttons, because this name will be used in CSS classes
   -
+    sectionName = actionButtonName(replaceProblems(name));
     defaultActiveTab = defaultActiveTab ?
       actionButtonName(replaceProblems(defaultActiveTab)) :
       undefined;
-  - sectionName = actionButtonName(replaceProblems(name));
   if persistent
     |<!-- sectionName:#{sectionName} -->
     - const inputObj = {name:`${sectionName.replace(/\-/g,'_')} tab`};
@@ -50,31 +65,14 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
     - varObjects.persistentTabs = varObjects.persistentTabs || [];
     - varObjects.persistentTabs.push(inputObj.name.replace(/attr_/,''))
 
-  //- Storage for all the tabs in this construct, plus a local mixin to pass
-  //- several pug blocks
-  - const tabs = [];
-  mixin tab({name,button={},container="div"})
-    - tabName = actionButtonName(replaceProblems(name || `tab${tabs.length + 1}`));
-    - if (tabs.filter(tab => tab.name === tabName).length) { throw new Error(`Tab "${tabName}" already exists in "${sectionName}".`); }
-    //- Cleanup the name of the navigation button
-    - button.name = `nav-tabs-${sectionName}--${tabName}`;
-    //- Cleanup the class, add our own internal classes
-    - button.class = button.class ? ` ${replaceProblems(button.class)}` : "";
-    - button.class = `tabs__button tabs--${sectionName.toLowerCase()}__button tabs--${sectionName.toLowerCase()}__button--${tabName.toLowerCase()}${button.class ? ` ${button.class}` : ''}${!persistent && defaultActiveTab === tabName ? ' k-active-button' : ''}`;
-    - button['data-container-button'] = sectionName.toLowerCase();
-    - button['data-button'] = tabName.toLowerCase();
-    - const content = button.content;
-    - delete button.content;
+  -
+    __kscaffold_section_stack.push({
+      name: sectionName,
+      defaultActiveTab: defaultActiveTab,
+      persistent: persistent,
+      tabs: []
+    });
 
-    //- If not provided, hook the button to the default tab switcher listener
-    - button.trigger = {triggeredFuncs:[],...(button.trigger || {})}; 
-    - button.trigger.triggeredFuncs.unshift('kSwitchTab');
-    //- Cleanup the class of the tab content passed through the implicit attributes
-    //- and add our own internal classes
-    - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
-    - attributes.class = `tabs__container tabs--${sectionName}__container tabs--${sectionName}__container--${tabName}${attributes.class}${!persistent && defaultActiveTab === tabName ? ' k-active-tab' : ''}`;
-    //- Store the tab definition
-    - tabs.push({name:tabName, container, button, attributes, block, content});
 
 
   //- Put everything in a global div with appropriate classes for CSS styling
@@ -82,26 +80,68 @@ mixin tabs({name="tabs",defaultActiveTab,persistent=true})
   - attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
   - attributes.class = `tabs tabs--${sectionName}${attributes.class}`;
   div&attributes(attributes)
-    //- Execute the block passed to the +tabs mixin, if any
-    //- this fills the `tabs` array above when the +tab nested mixin
-    //- is called in the block
-
     //- Navigation header with action button to switch tabs
     nav(class=`tabs__header tabs--${sectionName}__header`)
+      //- Execute the block passed to the +tabs mixin, if any
+      //- this fills the `tabs` array above when the +tab nested mixin
+      //- is called in the block
       - block ? block() : undefined;
+      //- WARNING: now that we have executed the block(), local variable may have been changed by nested
+      //- calls to +tabs(). We need to use our stack to retrieve correct values
       ul.tabs__nav-list
-        each tab, index in tabs
+        each tab, index in __kscaffold_section_stack.at(-1).tabs
           if !tab.content
-            - tab.button['data-i18n'] = tab.button['data-i18n'] || `tabs-${sectionName}-${tab.name}`;
+            - tab.button['data-i18n'] = tab.button['data-i18n'] || `tabs-${__kscaffold_section_stack.at(-1).name}-${tab.name}`;
           li.tabs__nav-item
-            +action(tab.button)(data-container-tab=sectionName data-tab=tab.name)
+            +action(tab.button)(data-container-tab=__kscaffold_section_stack.at(-1).name data-tab=tab.name)
               if tab.content
                 != tab.content
 
     //- Global div storing all the tabs one after another
     //- only one will be visible at the same time
-    div(class=`tabs__body tabs--${sectionName.toLowerCase()}__body`)
-      each tab, index in tabs
+    //- WARNING: Again, the call to tab.block() can mess up local variables, we need to be careful to use our stack
+    div(class=`tabs__body tabs--${__kscaffold_section_stack.at(-1).name.toLowerCase()}__body`)
+      each tab, index in __kscaffold_section_stack.at(-1).tabs
         - const container = tab.container;
-        #{container}(data-container-tab=sectionName.toLowerCase() data-tab=tab.name.toLowerCase())&attributes(tab.attributes)
+        #{container}(data-container-tab=__kscaffold_section_stack.at(-1).name.toLowerCase() data-tab=tab.name.toLowerCase())&attributes(tab.attributes)
           - tab.block && tab.block();
+
+    //- Now that everything is finished, we clear our stack
+    - __kscaffold_section_stack.pop();
+
+//- @pugdoc
+  name: tab
+  memberof: Navigation
+  description: The companion to +tabs(), used to create tabs using jQuery. The content of each individual tab of a section created by +tabs() is delimited by this mixin.
+  arguments:
+    - {string} [name] - The name of the tabs construct. Used in all elements so that you may vary the styling of different tabs. MUST be unique in the whole +tabs() construct, including nested tabs.
+    - {object} [button={}] - Passed to +button(), used to build the button to display this tab. Optional.
+    - {string} [container=div] - The HTML tag to use to wrap the whole tab. Optional, defaults to div.
+mixin tab({name,button={},container="div"})
+  //- This mixin is pure JS, because we simply store the tab content. Actual generation happens once all tab have been gathered
+  -
+    if (__kscaffold_section_stack.length < 1 ) {
+      throw new Error("Error: cannot call the +tab() mixin outside a +tabs() mixin");
+    }
+    const section = __kscaffold_section_stack.at(-1);
+    tabName = actionButtonName(replaceProblems(name || `tab${tabs.length + 1}`));
+    if (section.tabs.filter(tab => tab.name === tabName).length) { throw new Error(`Tab "${tabName}" already exists in "${section.name}".`); }
+    // Cleanup the name of the navigation button
+    button.name = `nav-tabs-${section.name}--${tabName}`;
+    // Cleanup the class, add our own internal classes
+    button.class = button.class ? ` ${replaceProblems(button.class)}` : "";
+    button.class = `tabs__button tabs--${section.name.toLowerCase()}__button tabs--${section.name.toLowerCase()}__button--${tabName.toLowerCase()}${button.class ? ` ${button.class}` : ''}${!section.persistent && section.defaultActiveTab === tabName ? ' k-active-button' : ''}`;
+    button['data-container-button'] = section.name.toLowerCase();
+    button['data-button'] = tabName.toLowerCase();
+    const content = button.content;
+    delete button.content;
+
+    // If not provided, hook the button to the default tab switcher listener
+    button.trigger = {triggeredFuncs:[],...(button.trigger || {})};
+    button.trigger.triggeredFuncs.unshift('kSwitchTab');
+    //- Cleanup the class of the tab content passed through the implicit attributes
+    //- and add our own internal classes
+    attributes.class = attributes.class ? ` ${replaceProblems(attributes.class)}` : '';
+    attributes.class = `tabs__container tabs--${section.name}__container tabs--${section.name}__container--${tabName}${attributes.class}${!section.persistent && section.defaultActiveTab === tabName ? ' k-active-tab' : ''}`;
+    //- Store the tab definition
+    section.tabs.push({name:tabName, container, button, attributes, block, content});

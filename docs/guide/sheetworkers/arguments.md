@@ -128,10 +128,10 @@ const calcAttack = function({trigger,attributes,sections,casc}){
 k.registerFuncs({calcAttack});
 ```
 Our calculation function is now setup to calculate the total attack bonus for any weapon. This function also only needs to be written this once and will be used regardless of if the attack total is changing because the strength_mod or proficiency changed outside the repeating item, or the attack_mod or proficiency_checkbox changed inside the repeating item.
-#### Sections argument
-Of course, repeating sections don't just react to attribute changes. Other attributes on the sheet can rely on the values contained within an attribute section as well. The simplest example of this is an inventory section that also has an attribute showing the total weight of what the character is carrying. GiGs, an excellent sheet author in the Roll20 community, created the [repatingSum()](https://wiki.roll20.net/RepeatingSum) function to help new sheet authors solve this common problem. With the K-scaffold, it can be solved very easily as well, and with a minimum of extra code added to your sheet using the `sections` argument.
+#### Using Repeating Section Data
+Of course, repeating sections don't just react to attribute changes. Other attributes on the sheet can rely on the values contained within an attribute section as well. The simplest example of this is an inventory section that also has an attribute showing the total weight of what the character is carrying. GiGs, an excellent sheet author in the Roll20 community, created the [repatingSum()](https://wiki.roll20.net/RepeatingSum) function to help new sheet authors solve this common problem. With the K-scaffold, it can be solved very easily as well, and with a minimum of extra code added to your sheet by accessing the repeating section data direclty on the attributes argument.
 
-The `sections` argument is an object with the keys being the names of repeating sections, and the values being arrays of the ids for the rows in that section. Using it we can easily iterate over all rows in a given section and calculate a total or do anything else that we need to do on a per row basis.
+
 ```pug
 +number({name:'carried weight',trigger:{calculation:'calcWeight'}})
 +number({name:'gold',trigger:{affects:['carried_weight']}})
@@ -146,13 +146,13 @@ The `sections` argument is an object with the keys being the names of repeating 
 ```js
 const calcWeight = function({trigger,attributes,sections,casc}){
   const coinWeight = attributes.gold + attributes.silver * 0.5 + attributes.copper * 0.25;
-  return sections.repeating_inventory.reduce((total,id) => {
-    const row = `repeating_inventory_${id}`;
-    const itemWeight = attributes[`${row}_quantity`] * attributes[`${row}_weight`];
-    return total + attributes[`${row}_carried`] * itemWeight;
+  return attributes.repeating_inventory.reduce((total,row) => {
+    const itemWeight = row.quantity * row.weight;
+    return total + row.carried * itemWeight;
   },coinWeight);
 };
 k.registerFuncs({calcWeight});
 ```
+The `sections` argument is an object with the keys being the names of repeating sections, and the values being arrays of the ids for the rows in that section. This can be useful to use if you just need to get the IDs that are present in a section. As of v2.7.x though, accessing repeating section data directly on the attributes object has replaced most uses for teh sections argument.
 ### Casc argument
 The casc argument is an argument that is rarely required, but is provided in case you need to do complex manipulation of the cascade. The casc argument is a copy of the base K-scaffold cascade for the specific sheet that is being worked on. This means that it contains the `trigger` object for all attributes, buttons, and repeating sections on the sheet. An in depth overview of the casc argument is not currently available as its use is usually not required. However, one aspect of the casc argument should be noted; any changes made to it will affect the cascade that the current K-scaffold iteration is working on.

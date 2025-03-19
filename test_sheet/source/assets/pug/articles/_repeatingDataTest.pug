@@ -1,0 +1,73 @@
++tab({name:'repeatdata'})
+  +input-label({
+    inputObj:{name:'data weight',value:0,type:'number',trigger:{
+      calculation:'totalWeight'
+    }},
+    spanObj:{'data-i18n': 'data weight'}
+  })(style="border-bottom: 1px solid black")
+  +action({
+    name:'by weight',
+    trigger:{triggeredFuncs:['sortData']}
+  })(style="border:2px solid blue")
+    |BY weight
+  +action({
+    name:'by quantity',
+    trigger:{triggeredFuncs:['sortData']}
+  })(style="border:2px solid blue")
+    |BY quantity
+  +customControlFieldset({
+    name:'data'
+  })
+    +text({name:'name',value:''})(style="border-bottom: 1px solid black")
+    +number({name:'quantity',value:0,trigger:{
+      affects:['data_weight']
+    }})(style="border-bottom: 1px solid black")
+    +number({name:'weight',trigger:{
+      affects:['data_weight']
+    }})(style="border-bottom: 1px solid black")
+  +action({
+    name:'create data',
+    trigger:{triggeredFuncs:['createData']}
+  })
+    |CREATE
++module.
+  /**
+   * 
+   * @param {object} trigger - The trigger that caused the function to be called
+   * @param {object} attributes - The attribute values of the character
+   * @param {object[]} sections - All the repeating section IDs
+   * @param {object} casc - Expanded cascade object
+   */
+  const createData = function({trigger,attributes,sections,casc}){
+    attributes.repeating_data.create({
+      name: 'Created from creation',
+      weight: Math.random()*100,
+      quantity: Math.floor(Math.random() * 10),
+      _id: 'should error'
+    });
+  };
+  k.registerFuncs({createData});
+  /**
+   * 
+   * @param {object} attributes - The attribute values of the character
+   */
+  const totalWeight = function({trigger,attributes}){
+    debugger;
+    return attributes.repeating_data.reduce((total,row) => total += (row.weight * row.quantity),0);
+  };
+  k.registerFuncs({totalWeight});
+
+  /**
+   * 
+   * @param {object} trigger - The trigger that caused the function to be called
+   * @param {object} attributes - The attribute values of the character
+   * @param {object[]} sections - All the repeating section IDs
+   * @param {object} casc - Expanded cascade object
+   */
+  const sortData = function({trigger,attributes,sections,casc}){
+    const sortProp = trigger.name.replace(/by-/,'');
+    attributes.repeating_data.sort((a,b) => {
+      return b[sortProp] - a[sortProp];
+    })
+  };
+  k.registerFuncs({sortData});
