@@ -42,7 +42,8 @@
     attributes.repeating_data.create({
       name: 'Created from creation',
       weight: Math.random()*100,
-      quantity: Math.floor(Math.random() * 10)
+      quantity: Math.floor(Math.random() * 10),
+      _id: 'should error'
     });
   };
   k.registerFuncs({createData});
