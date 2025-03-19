@@ -110,7 +110,7 @@ export default defineConfig({
           const spaceObj = {
             text:namespace,
             collapsed:true,
-            items:content.map(o => ({text:`k.${o.name}`,activeMatch:`/reference/sheetworkers/${namespace}.html#${o.name}`,link:`${namespace}.html#${o.name}`}))
+            items:content.map(o => ({text:`${namespace === 'Function Arguments' ? '' : 'k.'}${o.name}`,activeMatch:`/reference/sheetworkers/${namespace}.html#${o.name}`,link:`${namespace}.html#${o.name}`}))
           };
           if(namespace !== 'generic'){
             arr.push(spaceObj);

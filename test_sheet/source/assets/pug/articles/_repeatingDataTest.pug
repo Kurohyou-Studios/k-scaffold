@@ -51,7 +51,8 @@
    * 
    * @param {object} attributes - The attribute values of the character
    */
-  const totalWeight = function({attributes}){
+  const totalWeight = function({trigger,attributes}){
+    debugger;
     return attributes.repeating_data.reduce((total,row) => total += (row.weight * row.quantity),0);
   };
   k.registerFuncs({totalWeight});
