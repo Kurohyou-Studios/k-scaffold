@@ -1,0 +1,77 @@
+.hidden {
+    display: none;
+}
+
+.nestedFieldset__outer {
+
+    // Hide the Roll20 add button, we have our own
+    .repcontrol button.repcontrol_add {
+        display: none !important;
+    }
+
+    // Only dispay the selected level content
+    .nestedFieldset__block {
+        display: none;
+    }
+
+    input[type="radio"].nestedFieldset__radio:checked+.nestedFieldset__block {
+        display: block;
+    }
+
+    // Style our add buttons in repeating rows
+    .nestedFieldset__buttons {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        gap: 0.2rem;
+
+        .nestedFieldset__addButton {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            align-content: center;
+            gap: 0.5rem;
+            width: auto;
+            height: auto;
+            // Override k-scaffold font-size of 0 that prevents display
+            font-size: 1rem;
+
+            &::before {
+                flex-grow: 0;
+                // Override k-scaffold font-size of 12px that prevents rescaling
+                font-size: 1rem;
+            }
+        }
+    }
+
+    // Prevent manual re-ordering of the rows, since order must be governed by the nesting
+    .itemcontrol .repcontrol_move {
+        display: none;
+    }
+
+    // Style the outside add button so that it takes the place of the default Roll20 button
+    .repcontrol {
+        display: contents;
+    }
+
+    // Roll20 attach the .repitembroken class to our repeating rows for some reason
+    // This forces a red border with !important that we need to remove
+    .repitembroken {
+        border: none !important;
+    }
+
+    // Handle styling for broken nested Repeating section
+    &.brokenLayout {
+        border: solid 1px red !important;
+
+        &::before {
+            content: "DO NOT MODIFY ! This nested repeating section is likely broken, contact the sheet author";
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+    }
+}
