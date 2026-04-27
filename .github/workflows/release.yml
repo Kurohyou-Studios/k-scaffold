@@ -59,29 +59,15 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          # Node 22.14+ ships npm 11.5.1+, which is required for OIDC publishing.
-          node-version: "22"
+          # Node 24 ships npm 11.x, which is required for OIDC trusted-publisher
+          # publishing. Node 22 LTS stays on npm 10.x and does not fetch the
+          # `npm:registry.npmjs.org`-audience OIDC token at publish time, so
+          # publishing falls back to anonymous and the registry returns 404.
+          node-version: "24"
           registry-url: "https://registry.npmjs.org"
-
-      - name: Print npm and Node versions
-        run: |
-          node --version
-          npm --version
-
-      - name: Inspect OIDC env presence
-        # ACTIONS_ID_TOKEN_REQUEST_URL / _TOKEN are populated only when the job
-        # has `id-token: write`. If they're empty, the CLI can't fetch an OIDC
-        # token at all and trusted publishing fails before the registry sees
-        # anything. Print presence (not values) so we can rule that out.
-        run: |
-          [ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo "ACTIONS_ID_TOKEN_REQUEST_URL: SET" || echo "ACTIONS_ID_TOKEN_REQUEST_URL: UNSET"
-          [ -n "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" ] && echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN: SET" || echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN: UNSET"
 
       - name: Deploy package
         # No NODE_AUTH_TOKEN: trusted publishers authenticates via the OIDC
         # token from `id-token: write`. `--provenance` records a signed
         # attestation linking this published version to this workflow run.
-        # `--loglevel verbose` exposes the OIDC token-fetch sequence and the
-        # registry's full rejection body — bare 404 doesn't tell us which
-        # check failed (token not requested, rule mismatch, package settings).
-        run: npm publish --access public --provenance --loglevel verbose
+        run: npm publish --access public --provenance
