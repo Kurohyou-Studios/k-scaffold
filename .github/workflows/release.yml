@@ -16,14 +16,30 @@ jobs:
 
       - name: Check tags
         env:
-          TAG: ${{ github.event.release.tag_name }}
+          # Release event sets RELEASE_TAG; manual workflow_dispatch sets
+          # neither, so we fall back to ref_name when the workflow was
+          # dispatched from a tag ref. On a branch ref (no tag at all),
+          # we skip the equality check and publish package.json as-is.
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          sudo apt-get install jq
-          VERSION="$(cat package.json | jq -r '.["version"]')"
+          sudo apt-get install -y jq
+          VERSION="$(jq -r '.version' package.json)"
+          if [ -n "$RELEASE_TAG" ]; then
+            TAG="$RELEASE_TAG"
+          elif [ "$REF_TYPE" = "tag" ]; then
+            TAG="$REF_NAME"
+          else
+            echo "Manual dispatch on branch '$REF_NAME' — skipping tag/version equality check."
+            echo "Will publish package.json version '$VERSION' as-is."
+            exit 0
+          fi
           if [ "$VERSION" != "$TAG" ]; then
-            printf "ERROR: release tag $TAG is not equal to package version $VERSION\n"
+            printf "ERROR: tag '%s' does not match package.json version '%s'\n" "$TAG" "$VERSION"
             exit 1
           fi
+          echo "OK: tag '$TAG' matches package.json version '$VERSION'"
 
   build:
     needs: version
