@@ -19,3 +19,11 @@ _Avoid_: varObjects (that's the internal implementation name), schema (ambiguous
 **Alias layer**:
 The JS `Proxy` (`lib/scripts/attribute_proxy.js`) that authored sheet-worker code reads and writes character data through. Its external interface is identical on both targets; internally it is backed by Roll20's `getAttrs`/`setAttrs` on one target and by the Foundry actor document's data directly on the other.
 _Avoid_: accessor functions, data layer, proxy (ambiguous alone — always qualify as "the alias layer" or "the attribute proxy")
+
+**Cross-document call**:
+An explicit RPC (`k.send`, `lib/scripts/utility.js`): a registered function on one document is invoked from another, with serialized arguments, rather than one document reading another's data directly. On Roll20 this already exists as a chat-command round trip between characters (no direct object references exist between sheets); on Foundry it resolves to a direct in-memory function call on the target document. This is the only sanctioned path for mode-to-mode (actor-to-actor) data access — modes do not read each other's data directly.
+_Avoid_: shared pool (that described the Roll20 side-effect this replaces, not the design), cross-actor read
+
+**Parent read**:
+An embedded Item reading its owning Actor's data. Unlike a cross-document call, this is a structural parent/child relationship (an Item always has its Actor), so it goes through an explicit accessor on the alias layer rather than the `k.send` RPC — but it stays an explicit accessor call, not a transparent data merge, so authored code always shows which document a value actually lives on.
+_Avoid_: shared pool, cross-document call (that term is for peer documents, not parent/child)
