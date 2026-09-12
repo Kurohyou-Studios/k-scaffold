@@ -53,19 +53,47 @@ mixin select(obj)
       - pushObj.block = block;
     - options.push(pushObj);
 
+  mixin dynamicOptions(dynObj)
+    - if (k.repeatingPrefix) { throw new Error(`+dynamicOptions() in "${obj.name.replace(/^attr_/,'')}": dynamic options are not supported on selects inside a repeating section.`); }
+    - options.push({dynamic:true,entry:dynamicOptionEntry(dynObj || {},obj.name.replace(/^attr_/,''))});
+
 
   if !block
     option(value='!!! Error: empty select !!!')
   else
     - block();
+    - const dynamicEntries = options.filter(o => o.dynamic);
+    - const staticEntries = options.filter(o => !o.dynamic);
+    if dynamicEntries.length && !staticEntries.length
+      - throw new Error(`+select() "${obj.name.replace(/^attr_/,'')}" uses +dynamicOptions but has no static +option. At least one static +option is required as the fallback option.`);
     - const selObj = makeElementObj(obj);
     select&attributes(selObj)&attributes(attributes)
-      each o in options
+      each o in staticEntries
         if o.hasOwnProperty('selected') && o.hasOwnProperty('value')
           - triggerObj.value = o.value;
           if o.trigger && !triggerObj.trigger
             - triggerObj.trigger = o.trigger;
         - const elemObj = makeElementObj(o.obj);
         option&attributes(elemObj)&attributes(o.attributes)
+          //- `pug_html` is pug's compiled output buffer. Reading it around the block render is how the static option's visible text is captured so the sheetworkers can re-create the option when the list is rebuilt at runtime.
+          - const blockStart = (dynamicEntries.length && typeof pug_html === 'string') ? pug_html.length : null;
           - o.block && o.block();
+          - if (blockStart !== null && o.block) { o.text = pug_html.slice(blockStart).replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(); }
     - storeTrigger(triggerObj);
+    if dynamicEntries.length
+      -
+        const selectName = obj.name.replace(/^attr_/,'');
+        const fallbackOpt = staticEntries.find(o => o.obj.hasOwnProperty('selected')) || staticEntries[0];
+        const entries = options.map(o => {
+          if(o.dynamic) return o.entry;
+          const entry = {type:'static',value:o.obj.value};
+          if(o.obj['data-i18n']) entry.i18n = o.obj['data-i18n'];
+          if(o.text) entry.label = o.text;
+          return entry;
+        });
+        registerDynamicOptions({
+          name:selectName,
+          selector:`select[name="attr_${selectName}"]`,
+          fallback:fallbackOpt.obj.value,
+          entries
+        });

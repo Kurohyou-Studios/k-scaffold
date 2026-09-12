@@ -23,7 +23,7 @@
       addClass:'some-class'
     })
       +text({name:'name'})
-mixin fieldset({name,trigger,addClass})
+mixin fieldset({name,trigger,addClass,customControl})
   - if (typeof name === 'undefined') { throw new Error("+fieldset() mixin require a name"); }
   -
     name = repeatsIgnoreSystemPrefix || !getSystemPrefix() ?
@@ -33,6 +33,8 @@ mixin fieldset({name,trigger,addClass})
   - let section = `repeating_${name}`;
   - k.repeatingPrefix = `${section}_$X_`;
   - createFieldsetObj(section)
+  if customControl
+    - markCustomControlSection(section);
   if trigger
     - storeTrigger({name:section,type:'fieldset',trigger})
   if addClass
@@ -74,7 +76,7 @@ mixin customControlFieldset({name,trigger,addClass})
       name;
   +action({name:`add ${buttonName}`,class:'repcontrol-button repcontrol-button--add',trigger:{listenerFunc:'addItem'}})
   - setSystemPrefix(prefixHolder);
-  +fieldset({name,trigger,addClass})&attributes(attributes)
+  +fieldset({name,trigger,addClass,customControl:true})&attributes(attributes)
     block
 //- End Mixin
 
