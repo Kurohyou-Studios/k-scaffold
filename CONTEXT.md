@@ -27,3 +27,7 @@ _Avoid_: shared pool (that described the Roll20 side-effect this replaces, not t
 **Parent read**:
 An embedded Item transparently reading its owning Actor's data through the same alias-layer proxy it reads its own fields through — no separate accessor. This mirrors the existing Roll20 pattern where sheet-worker code inside a repeating row already reads non-repeating (character-level) attributes through the same flat `attributes` object as the row's own fields, with no special-casing. Unlike a cross-document call, this is a structural parent/child relationship (an Item always has its Actor), so it does not go through `k.send`.
 _Avoid_: shared pool, cross-document call (that term is for peer documents, not parent/child)
+
+**Derived attribute**:
+An attribute-holder element (e.g. a named `span`, `div`, or `img`) whose value is computed from other attributes rather than authored input. It participates in the cascade schema like any other attribute, but carries no field of its own in Foundry's `defineSchema()` — its value comes from `prepareDerivedData()` instead. Contrast with an ordinary (stored) attribute, which does own a schema field.
+_Avoid_: computed attribute, read-only attribute
