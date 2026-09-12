@@ -19,6 +19,12 @@ include k-scaffold
 +fieldset({name:'proxysort'})
   +text({name:'label',value:''})
   +number({name:'weight',value:0})
+  //- Cascade keying regression: a custom title must not change the cascade key
+  +number({name:'custom title weight',value:0,title:'Weight used for sorting',trigger:{triggeredFuncs:['proxyTest_noopWrite']}})
+
+//- Cascade keying regression: the cascade must be keyed on the attribute name, not the title.
+//- Reported by Riernar: a user-supplied title (e.g. custom tooltip) used to replace the cascade key.
++number({name:'custom title attr',value:0,title:'A custom tooltip',trigger:{affects:['proxy_cascade_target'],triggeredFuncs:['proxyTest_noopWrite']}})
 
 +kscript('proxy-regression')
   |
