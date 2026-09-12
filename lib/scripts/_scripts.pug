@@ -34,6 +34,8 @@ mixin script(scriptName)
     +kscript
 mixin kscript(scriptName)
   - scriptUsed = true;
+  //- Dynamic select options can reference sections/attributes declared anywhere in the sheet, so they are validated and wired into the cascade here, once every mixin has run.
+  - finalizeDynamicOptions();
   +script
     if scriptName
       |//# sourceURL=#{scriptName}.js
@@ -42,7 +44,7 @@ mixin kscript(scriptName)
     |const k = (function(){
     |const kFuncs = {};
     //- The below declarations import variables from the pug file and mixins into the sheetworker code
-    - const propArray = ['cascades','repeatingSectionDetails','persistentTabs'];
+    - const propArray = ['cascades','repeatingSectionDetails','persistentTabs','dynamicOptions'];
     each prop in propArray
       |
       |const !{prop} = !{JSON.stringify(varObjects[prop])};
@@ -58,6 +60,7 @@ mixin kscript(scriptName)
     include parse_cascade.js
     include sheetworker_aliases.js
     include listeners.js
+    include dynamic_options.js
     include ../tabs/tabs.js
     |
     |return kFuncs;

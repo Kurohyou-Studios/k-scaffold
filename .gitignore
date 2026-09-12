@@ -113,3 +113,6 @@ dist
 
 # General pattern to ignore local files
 *.local*
+
+# Per-test sheetworker bundles built by __tests__/helpers/renderK.js
+__tests__/generated/

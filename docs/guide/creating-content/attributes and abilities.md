@@ -69,6 +69,39 @@ In addition to the functionality of an input mixin, the select mixin uses the pu
   <option value="3">Option 3</option>
 </select>
 ```
+##### Dynamic options
+Some selects can't have their options written into the sheet, because the choices come from the character's own data: an "equipped weapon" select should list whatever weapons the player has entered. The `dynamicOptions` mixin, used inside a `select` block, fills in options at runtime. It can be combined with static `option`s, and the dynamic options are inserted wherever the mixin is called relative to the static ones.
+
+There are two forms. The **declarative** form names a repeating section and the attribute in it to use as each option's label. One option is created for each row; the option's value is the row's id, so the selection survives renaming the row.
+```pug
++repeating_section('weapons','weapons',['name','damage'])
+  +text({name:'name'})
+  +text({name:'damage'})
++select({name:'equipped weapon'})
+  +option({value:'','data-i18n':'unarmed'})
+  +dynamicOptions({section:'weapons',label:'name'})
+```
+The **option generator** form names an option generator function registered with `k.registerFuncs` that returns the option list. Because the K-scaffold can't know what data a custom function reads, you list the attributes that should rebuild the list in `trigger.affects`.
+```pug
++number({name:'caster level',value:1})
++select({name:'spell slot'})
+  +option({value:''})
+    |No slot
+  +dynamicOptions({function:'slotOptions',trigger:{affects:['caster_level']}})
++kscript
+  |const slotOptions = function({trigger,attributes,sections,casc}){
+  |  return Array.from({length: attributes.caster_level},(v,i) => ({value:`${i+1}`,label:`Slot ${i+1}`}));
+  |};
+  |k.registerFuncs({slotOptions});
+```
+Passing a `section` alongside `function` additionally rebuilds the list when rows are added to or removed from that section; the function is still responsible for producing the options.
+
+A few rules are checked when the sheet is built:
+- A select using `dynamicOptions` must contain at least one static `option`. The option marked `selected` (or the first one otherwise) is the fallback the select is reset to if the selected option disappears, such as when the selected row is deleted.
+- The declarative form's section must be declared with `customControlFieldset` or `repeating_section`. Roll20 doesn't report when a row is added to a plain `fieldset`, so a select fed by one would silently miss new rows; the build fails instead.
+- `dynamicOptions` can't be used on a select that is itself inside a repeating section.
+
+Label changes, row removal, and row addition all update the list automatically for the declarative form, and the list is rebuilt each time the sheet is opened. Dynamic option labels are shown as-is and are not translated. This feature builds on Roll20's `populateListOptions` sheetworker, so it is only available on Roll20 sheets. If an option generator needs to refresh its list outside of the declared triggers, call `k.updateDynamicOptions('spell_slot',{trigger,attributes,sections,casc})` from your own function.
 ## Attribute backed elements
 Roll20 also provides the ability to name several types of elements that will pull their display state from attributes, but do not allow direct editing.
 ### Spans

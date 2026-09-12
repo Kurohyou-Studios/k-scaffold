@@ -37,3 +37,13 @@ While the basic fieldset works for most use cases, some character sheets need to
   +input({name:'name',type:'text',class:'underline'})
 ```
 This will call the `addItemEffect` after the item is created in the scaffold, but before the creation is sent to Roll20. From the standpoint of your sheetworkers, the section will fully exist, but it won't appear on the sheet until all of the functions that need to be called are finished resolving.
+## Listing Rows in a Select
+A common need is a select elsewhere on the sheet whose options are the rows of a repeating section, such as choosing which weapon is equipped. The `dynamicOptions` mixin does this for you and keeps the select in sync as rows are added, renamed, or removed:
+```pug
++customControlFieldset({name:'weapons'})
+  +text({name:'name'})
++select({name:'equipped weapon'})
+  +option({value:'','data-i18n':'unarmed'})
+  +dynamicOptions({section:'weapons',label:'name'})
+```
+Because Roll20 only reports row additions for a `customControlFieldset` (or `repeating_section`), the build will fail if the named section is a plain `fieldset`. See [Dynamic options](/guide/creating-content/attributes%20and%20abilities.html#dynamic-options) for the full rules and the option generator form.

@@ -33,6 +33,10 @@ mixin fieldset({name,trigger,addClass})
   - let section = `repeating_${name}`;
   - k.repeatingPrefix = `${section}_$X_`;
   - createFieldsetObj(section)
+  //- customControlFieldset sets this flag before delegating here so the section is recorded as one whose row additions are observable.
+  if k.pendingCustomControl
+    - markCustomControlSection(section);
+    - k.pendingCustomControl = false;
   if trigger
     - storeTrigger({name:section,type:'fieldset',trigger})
   if addClass
@@ -74,6 +78,7 @@ mixin customControlFieldset({name,trigger,addClass})
       name;
   +action({name:`add ${buttonName}`,class:'repcontrol-button repcontrol-button--add',trigger:{listenerFunc:'addItem'}})
   - setSystemPrefix(prefixHolder);
+  - k.pendingCustomControl = true;
   +fieldset({name,trigger,addClass})&attributes(attributes)
     block
 //- End Mixin

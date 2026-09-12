@@ -1,4 +1,30 @@
 //- @pugdoc
+  name: dynamicOptions
+  memberof: Attributes
+  arguments:
+    - {object} dynObj - The object describing where the options come from
+    - {string} [dynObj.section] - Declarative form. The name of a repeating section (with or without the `repeating_` prefix). One option is created per row; the option's value is the row id.
+    - {string} [dynObj.label] - Declarative form. The attribute in that section whose value is used as the option's label.
+    - {string} [dynObj.function] - Option generator form. The name of a function registered with `k.registerFuncs`. It is called like any other registered K-scaffold function and returns an array of objects with `value` and `label` properties.
+    - {object} [dynObj.trigger] - Option generator form. `trigger.affects` lists the attribute names whose changes should rebuild the list. Combine `function` with `section` to also rebuild when rows are added to or removed from that section.
+  description: |
+    Only usable inside the block of a {@link select}. Populates the select's options at runtime (Roll20 only) instead of, or in addition to, the static {@link option}s. Options are inserted where the mixin is called relative to the static options. Rules enforced at build time: the select must contain at least one static option, which is also the fallback the select resets to when the selected option disappears; a referenced section must be declared with {@link customControlFieldset} (or {@link repeating_section}) because Roll20 only reports row additions for those; and the select itself cannot be inside a repeating section. Label changes, row removal, and row addition rebuild the list automatically for the declarative form; an option generator rebuilds when one of its `trigger.affects` attributes changes. Dynamic option labels are raw data and are not translated.
+  example: |
+    include ../_k.pug
+    +customControlFieldset({name:'inventory'})
+      +text({name:'name'})
+    +select({name:'equipped item'})
+      +option({value:'','data-i18n':'nothing equipped'})
+      +dynamicOptions({section:'inventory',label:'name'})
+    |
+    |
+    +number({name:'level'})
+    +select({name:'spell slot'})
+      +option({value:''})
+        |No slot
+      +dynamicOptions({function:'slotOptions',trigger:{affects:['level']}})
+
+//- @pugdoc
   name: select
   memberof: Attributes
   arguments:
@@ -53,19 +79,47 @@ mixin select(obj)
       - pushObj.block = block;
     - options.push(pushObj);
 
+  mixin dynamicOptions(dynObj)
+    - if (k.repeatingPrefix) { throw new Error(`+dynamicOptions() in "${obj.name.replace(/^attr_/,'')}": dynamic options are not supported on selects inside a repeating section.`); }
+    - options.push({dynamic:true,entry:dynamicOptionEntry(dynObj || {},obj.name.replace(/^attr_/,''))});
+
 
   if !block
     option(value='!!! Error: empty select !!!')
   else
     - block();
+    - const dynamicEntries = options.filter(o => o.dynamic);
+    - const staticEntries = options.filter(o => !o.dynamic);
+    if dynamicEntries.length && !staticEntries.length
+      - throw new Error(`+select() "${obj.name.replace(/^attr_/,'')}" uses +dynamicOptions but has no static +option. At least one static +option is required as the fallback option.`);
     - const selObj = makeElementObj(obj);
     select&attributes(selObj)&attributes(attributes)
-      each o in options
+      each o in staticEntries
         if o.hasOwnProperty('selected') && o.hasOwnProperty('value')
           - triggerObj.value = o.value;
           if o.trigger && !triggerObj.trigger
             - triggerObj.trigger = o.trigger;
         - const elemObj = makeElementObj(o.obj);
         option&attributes(elemObj)&attributes(o.attributes)
+          //- `pug_html` is pug's compiled output buffer. Reading it around the block render is how the static option's visible text is captured so the sheetworkers can re-create the option when the list is rebuilt at runtime.
+          - const blockStart = (dynamicEntries.length && typeof pug_html === 'string') ? pug_html.length : null;
           - o.block && o.block();
+          - if (blockStart !== null && o.block) { o.text = pug_html.slice(blockStart).replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(); }
     - storeTrigger(triggerObj);
+    if dynamicEntries.length
+      -
+        const selectName = obj.name.replace(/^attr_/,'');
+        const fallbackOpt = staticEntries.find(o => o.obj.hasOwnProperty('selected')) || staticEntries[0];
+        const entries = options.map(o => {
+          if(o.dynamic) return o.entry;
+          const entry = {type:'static',value:o.obj.value};
+          if(o.obj['data-i18n']) entry.i18n = o.obj['data-i18n'];
+          if(o.text) entry.label = o.text;
+          return entry;
+        });
+        registerDynamicOptions({
+          name:selectName,
+          selector:`select[name="attr_${selectName}"]`,
+          fallback:fallbackOpt.obj.value,
+          entries
+        });

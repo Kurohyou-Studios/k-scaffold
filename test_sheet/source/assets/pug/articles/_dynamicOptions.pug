@@ -1,0 +1,29 @@
+//- Manual test surface for +dynamicOptions. Automated coverage lives in __tests__/dynamicOptions.*.test.js
++tab({name:'dynamic options'})
+  +select-label({
+    inputObj:{name:'equipped gear'},
+    spanObj:{'data-i18n':'equipped gear'}
+  })
+    +option({value:'none','data-i18n':'none'})
+    +dynamicOptions({section:'gear',label:'name'})
+  +input-label({
+    inputObj:{name:'caster level',type:'number',value:1},
+    spanObj:{'data-i18n':'caster level'}
+  })
+  +select-label({
+    inputObj:{name:'spell slot'},
+    spanObj:{'data-i18n':'spell slot'}
+  })
+    +option({value:'none'})
+      |No slot
+    +dynamicOptions({function:'slotOptions',trigger:{affects:['caster_level']}})
+  +repeating_section('gear','gear',['name'])
+    +text({name:'name'})
++module.
+  /**
+   * Custom option generator for the spell slot select: one slot per caster level.
+   */
+  const slotOptions = function({trigger,attributes,sections,casc}){
+    return Array.from({length: attributes.caster_level},(v,i) => ({value:`${i+1}`,label:`Slot ${i+1}`}));
+  };
+  k.registerFuncs({slotOptions});
