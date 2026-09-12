@@ -103,7 +103,7 @@ describe('+dynamicOptions validation errors', () => {
     +dynamicOptions({section:'inventory',label:'name'})
 `)).toThrow(/not supported on selects inside a repeating section/);
   });
-  it('errors when a custom generator depends on an attribute that does not exist', () => {
+  it('errors when a option generator depends on an attribute that does not exist', () => {
     expect(() => renderK(`
 +select({name:'equipped item'})
   +option({value:'none'})
@@ -123,7 +123,7 @@ describe('+dynamicOptions validation errors', () => {
   });
 });
 
-describe('+dynamicOptions custom generator form', () => {
+describe('+dynamicOptions option generator form', () => {
   it('registers the generator and wires its declared dependencies', () => {
     const { html } = renderK(`
 +number({name:'level'})
@@ -152,6 +152,47 @@ describe('+dynamicOptions custom generator form', () => {
     expect(cascades.fieldset_repeating_inventory.addFuncs).toContain('kDynamicOptionsUpdate');
     expect(cascades.fieldset_repeating_inventory.triggeredFuncs).toContain('kDynamicOptionsUpdate');
     expect(cascades['attr_repeating_inventory_$x_name'].triggeredFuncs || []).not.toContain('kDynamicOptionsUpdate');
+  });
+});
+
+describe('+dynamicOptions section name resolution', () => {
+  it('matches the declared section case-insensitively and records the declared spelling', () => {
+    const { html } = renderK(`
++customControlFieldset({name:'Gear'})
+  +text({name:'name'})
++select({name:'equipped item'})
+  +option({value:'none'})
+  +dynamicOptions({section:'gear',label:'name'})
++kscript
+`);
+    const registry = extractScriptConst(html, 'dynamicOptions');
+    expect(registry.equipped_item.entries[1]).toEqual({ type: 'section', section: 'repeating_Gear', label: 'name' });
+    const cascades = extractScriptConst(html, 'cascades');
+    expect(cascades['attr_repeating_gear_$x_name'].triggeredFuncs).toContain('kDynamicOptionsUpdate');
+    expect(cascades['fieldset_repeating_gear'].addFuncs).toContain('kDynamicOptionsUpdate');
+  });
+  it('finds a section declared under a system prefix when the select shares that prefix', () => {
+    const { html } = renderK(`
+- setSystemPrefix('dnd');
++customControlFieldset({name:'gear'})
+  +text({name:'name'})
++select({name:'equipped item'})
+  +option({value:'none'})
+  +dynamicOptions({section:'gear',label:'name'})
++kscript
+`);
+    const registry = extractScriptConst(html, 'dynamicOptions');
+    expect(registry.dnd_equipped_item.entries[1].section).toBe('repeating_dnd-gear');
+  });
+  it('does not let a plain +fieldset opt in through the customControl handshake', () => {
+    expect(() => renderK(`
++fieldset({name:'gear',customControl:true})
+  +text({name:'name'})
++select({name:'equipped item'})
+  +option({value:'none'})
+  +dynamicOptions({section:'gear',label:'name'})
++kscript
+`)).toThrow(/\+customControlFieldset/);
   });
 });
 

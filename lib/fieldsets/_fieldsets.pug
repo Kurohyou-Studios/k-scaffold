@@ -23,7 +23,7 @@
       addClass:'some-class'
     })
       +text({name:'name'})
-mixin fieldset({name,trigger,addClass,customControl})
+mixin fieldset({name,trigger,addClass})
   - if (typeof name === 'undefined') { throw new Error("+fieldset() mixin require a name"); }
   -
     name = repeatsIgnoreSystemPrefix || !getSystemPrefix() ?
@@ -33,8 +33,10 @@ mixin fieldset({name,trigger,addClass,customControl})
   - let section = `repeating_${name}`;
   - k.repeatingPrefix = `${section}_$X_`;
   - createFieldsetObj(section)
-  if customControl
+  //- customControlFieldset sets this flag before delegating here so the section is recorded as one whose row additions are observable.
+  if k.pendingCustomControl
     - markCustomControlSection(section);
+    - k.pendingCustomControl = false;
   if trigger
     - storeTrigger({name:section,type:'fieldset',trigger})
   if addClass
@@ -76,7 +78,8 @@ mixin customControlFieldset({name,trigger,addClass})
       name;
   +action({name:`add ${buttonName}`,class:'repcontrol-button repcontrol-button--add',trigger:{listenerFunc:'addItem'}})
   - setSystemPrefix(prefixHolder);
-  +fieldset({name,trigger,addClass,customControl:true})&attributes(attributes)
+  - k.pendingCustomControl = true;
+  +fieldset({name,trigger,addClass})&attributes(attributes)
     block
 //- End Mixin
 

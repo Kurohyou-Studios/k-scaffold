@@ -46,4 +46,4 @@ A common need is a select elsewhere on the sheet whose options are the rows of a
   +option({value:'','data-i18n':'unarmed'})
   +dynamicOptions({section:'weapons',label:'name'})
 ```
-Because Roll20 only reports row additions for a `customControlFieldset` (or `repeating_section`), the build will fail if the named section is a plain `fieldset`. See [Dynamic options](/guide/creating-content/attributes%20and%20abilities.html#dynamic-options) for the full rules and the custom generator form.
+Because Roll20 only reports row additions for a `customControlFieldset` (or `repeating_section`), the build will fail if the named section is a plain `fieldset`. See [Dynamic options](/guide/creating-content/attributes%20and%20abilities.html#dynamic-options) for the full rules and the option generator form.

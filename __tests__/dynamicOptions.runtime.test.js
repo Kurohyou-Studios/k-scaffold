@@ -114,7 +114,7 @@ describe('dynamic select options react to the source section', () => {
     expect(options).toHaveLength(4);
     const added = options[3];
     expect(added.value).toMatch(/^-/);
-    expect(added.label).toBe(added.value);
+    expect(added.label).toBe('');
     expect(fw.environment.attributes[`repeating_inventory_${added.value}_name`]).toBe('');
   });
 
@@ -125,7 +125,7 @@ describe('dynamic select options react to the source section', () => {
   });
 });
 
-describe('dynamic select options from a custom generator function', () => {
+describe('dynamic select options from an option generator function', () => {
   const fnOutDir = `${outDir}Fn`;
   const fnSheet = `
 +number({name:'level',value:1})
@@ -175,6 +175,60 @@ describe('dynamic select options from a custom generator function', () => {
   it('ignores attributes that were not declared as dependencies', () => {
     fw.environment.attributes.unrelated = 5;
     fire('change:unrelated', { sourceAttribute: 'unrelated', newValue: 5, previousValue: 0 });
+    expect(fw.populateListOptions).not.toHaveBeenCalled();
+  });
+});
+
+describe('option generator opted into a section (function + section)', () => {
+  const fnSectionOutDir = `${outDir}FnSection`;
+  const fnSectionSheet = `
++repeating_section('gear','gear header',['name'])
+  +text({name:'name'})
+  +number({name:'weight',value:0})
++select({name:'heaviest gear'})
+  +option({value:'none'})
+    |Nothing
+  +dynamicOptions({function:'heavyGear',section:'Gear'})
++kscript
+  |const heavyGear = function({attributes,sections}){
+  |  return (sections.repeating_gear || [])
+  |    .map((id) => ({value:id,label:\`\${attributes[\`repeating_gear_\${id}_name\`]} (\${attributes[\`repeating_gear_\${id}_weight\`]})\`}));
+  |};
+  |k.registerFuncs({heavyGear});
+`;
+  beforeAll(async () => {
+    fw = await buildFramework(fnSectionSheet, fnSectionOutDir);
+    await waitForHandlers();
+  });
+  beforeEach(() => {
+    fw.populateListOptions.mockClear();
+    fw.environment.attributes = {
+      heaviest_gear: '-r1',
+      'repeating_gear_-r1_name': 'Anvil',
+      'repeating_gear_-r1_weight': 50,
+    };
+  });
+
+  it('resolves the section case-insensitively and rebuilds through the generator when a row is added', () => {
+    fire('clicked:add-gear');
+    expect(fw.populateListOptions).toHaveBeenCalledTimes(1);
+    const options = lastPopulate().optionsArray;
+    expect(options[0]).toEqual({ value: 'none', label: 'Nothing' });
+    expect(options[1]).toEqual({ value: '-r1', label: 'Anvil (50)', selected: true });
+    expect(options).toHaveLength(3);
+  });
+
+  it('rebuilds through the generator when a row is removed', () => {
+    delete fw.environment.attributes['repeating_gear_-r1_name'];
+    delete fw.environment.attributes['repeating_gear_-r1_weight'];
+    fire('remove:repeating_gear', { sourceAttribute: 'repeating_gear_-r1', removedInfo: {} });
+    expect(lastPopulate().optionsArray).toEqual([{ value: 'none', label: 'Nothing', selected: true }]);
+    expect(fw.environment.attributes.heaviest_gear).toBe('none');
+  });
+
+  it('does not rebuild on a row attribute change the generator did not declare', () => {
+    fw.environment.attributes['repeating_gear_-r1_weight'] = 60;
+    fire('change:repeating_gear:weight', { sourceAttribute: 'repeating_gear_-r1_weight', newValue: 60, previousValue: 50 });
     expect(fw.populateListOptions).not.toHaveBeenCalled();
   });
 });

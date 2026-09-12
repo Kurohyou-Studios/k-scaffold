@@ -81,7 +81,7 @@ There are two forms. The **declarative** form names a repeating section and the 
   +option({value:'','data-i18n':'unarmed'})
   +dynamicOptions({section:'weapons',label:'name'})
 ```
-The **custom generator** form names a function registered with `k.registerFuncs` that returns the option list. Because the K-scaffold can't know what data a custom function reads, you list the attributes that should rebuild the list in `trigger.affects`.
+The **option generator** form names an option generator function registered with `k.registerFuncs` that returns the option list. Because the K-scaffold can't know what data a custom function reads, you list the attributes that should rebuild the list in `trigger.affects`.
 ```pug
 +number({name:'caster level',value:1})
 +select({name:'spell slot'})
@@ -101,7 +101,7 @@ A few rules are checked when the sheet is built:
 - The declarative form's section must be declared with `customControlFieldset` or `repeating_section`. Roll20 doesn't report when a row is added to a plain `fieldset`, so a select fed by one would silently miss new rows; the build fails instead.
 - `dynamicOptions` can't be used on a select that is itself inside a repeating section.
 
-Label changes, row removal, and row addition all update the list automatically for the declarative form, and the list is rebuilt each time the sheet is opened. Dynamic option labels are shown as-is and are not translated. This feature builds on Roll20's `populateListOptions` sheetworker, so it is only available on Roll20 sheets. If a custom generator needs to refresh its list outside of the declared triggers, call `k.updateDynamicOptions('spell_slot',{trigger,attributes,sections,casc})` from your own function.
+Label changes, row removal, and row addition all update the list automatically for the declarative form, and the list is rebuilt each time the sheet is opened. Dynamic option labels are shown as-is and are not translated. This feature builds on Roll20's `populateListOptions` sheetworker, so it is only available on Roll20 sheets. If an option generator needs to refresh its list outside of the declared triggers, call `k.updateDynamicOptions('spell_slot',{trigger,attributes,sections,casc})` from your own function.
 ## Attribute backed elements
 Roll20 also provides the ability to name several types of elements that will pull their display state from attributes, but do not allow direct editing.
 ### Spans
