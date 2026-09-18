@@ -1,0 +1,3 @@
+# Foundry backend keeps a single getter/setter mirroring Roll20, no yieldable get/set
+
+Investigating a way to make `set()` async-shaped on both targets (#172) turned up a yieldable/generator-driven pattern for making Roll20's `getAttrs`/`setAttrs` "asyncable but not promisable." We are not adopting it. The Foundry backend stays a single getter and a single set output, matching Roll20's existing callback-based behavior (ADR 0004) exactly rather than restructuring either backend around the new pattern — the yieldable approach's added complexity wasn't worth it for a call shape that's already batched and flushed once per cascade run (#158).
