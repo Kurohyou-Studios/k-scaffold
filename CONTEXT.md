@@ -9,8 +9,8 @@ An output platform k-scaffold can emit from one build (`roll20` or `foundry`). A
 _Avoid_: platform, backend, output format
 
 **Mode**:
-A named, self-contained chunk of a character's data and sheet content, declared via a dedicated mixin family. On Roll20 a mode renders as a tab sharing the character's single attribute pool; on Foundry each mode is emitted as its own Actor type with its own document and data namespace.
-_Avoid_: tab (a tab is a same-document visibility toggle *within* a mode; a mode is a document boundary), page, view, sheet
+A named, self-contained *kind of character* (e.g. player character, NPC, vehicle) with its own data and sheet content, declared via a dedicated mixin family. Any one character is exactly one mode; modes never coexist on a single character. On Roll20 all modes ship in one sheet codebase and render as a top-level tab selecting which kind of character the sheet is (Roll20 allows one sheet per game); on Foundry each mode is emitted as its own Actor type with its own document and data namespace.
+_Avoid_: tab (a tab is a same-document visibility toggle *within* a mode; a mode is a document boundary), page, view, sheet, sibling mode (a character has no sibling modes — it *is* one mode)
 
 **Cascade schema**:
 The compile-time registry, built as mixins render, of every attribute/button/fieldset and how it reacts to change (`affects`, triggered funcs, formulas). It is the shared intermediate representation both the Roll20 and Foundry emitters read from.
@@ -21,8 +21,8 @@ The JS `Proxy` (`lib/scripts/attribute_proxy.js`) that authored sheet-worker cod
 _Avoid_: accessor functions, data layer, proxy (ambiguous alone — always qualify as "the alias layer" or "the attribute proxy")
 
 **Cross-document call**:
-An explicit RPC (`k.send`, `lib/scripts/utility.js`): a registered function on one document is invoked from another, with serialized arguments, rather than one document reading another's data directly. On Roll20 this already exists as a chat-command round trip between characters (no direct object references exist between sheets); on Foundry it resolves to a direct in-memory function call on the target document. This is the only sanctioned path for mode-to-mode (actor-to-actor) data access — modes do not read each other's data directly.
-_Avoid_: shared pool (that described the Roll20 side-effect this replaces, not the design), cross-actor read
+An explicit RPC (`k.send`, `lib/scripts/utility.js`): a registered function on one *character* is invoked from another character, with serialized arguments, rather than one character reading another's data directly. The target is addressed by a plain runtime identifier (character name on Roll20; actor name or UUID on Foundry), never by a scaffold-declared link. On Roll20 this is a chat-command round trip (no direct object references exist between sheets); on Foundry it resolves to an in-memory function call on the target actor, relayed over the system socket when the calling client cannot write the target. This is the only sanctioned path for character-to-character data access. It is *not* a mode concept: modes are alternative kinds of character, not parts of one character, so there is no mode-to-mode traffic.
+_Avoid_: shared pool (that described the Roll20 side-effect this replaces, not the design), cross-actor read, mode-to-mode call, declared link
 
 **Parent read**:
 An embedded Item transparently reading its owning Actor's data through the same alias-layer proxy it reads its own fields through — no separate accessor. This mirrors the existing Roll20 pattern where sheet-worker code inside a repeating row already reads non-repeating (character-level) attributes through the same flat `attributes` object as the row's own fields, with no special-casing. Unlike a cross-document call, this is a structural parent/child relationship (an Item always has its Actor), so it does not go through `k.send`.
