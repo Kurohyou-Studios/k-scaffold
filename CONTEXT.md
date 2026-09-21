@@ -31,3 +31,7 @@ _Avoid_: shared pool, cross-document call (that term is for peer documents, not 
 **Derived attribute**:
 An attribute-holder element (e.g. a named `span`, `div`, or `img`) whose value is computed from other attributes rather than authored input. It participates in the cascade schema like any other attribute, but carries no field of its own in Foundry's `defineSchema()` — its value comes from `prepareDerivedData()` instead. Contrast with an ordinary (stored) attribute, which does own a schema field.
 _Avoid_: computed attribute, read-only attribute
+
+**Resource attribute**:
+An attribute `<name>` paired with an ordinary second attribute `<name>_max` (the "pairing suffix"), detected purely at runtime by the alias layer — no separate declaration exists. `.value` is always readable on any attribute; `.max` only resolves on a resource attribute. See [ADR 0026](docs/adr/0026-resource-attribute-max-pairing-convention.md).
+_Avoid_: pooled attribute, value/max attribute, bar attribute
